@@ -114,7 +114,7 @@ export function CartDrawer() {
                   </div>
                   <button
                     onClick={() => removeItem(item.product_id)}
-                    className="self-start text-gray-400 hover:text-alert cursor-pointer"
+                    className="self-start text-gray-500 hover:text-alert cursor-pointer"
                     aria-label="Remove item"
                   >
                     <X className="size-4" />
@@ -168,12 +168,12 @@ export function CartDrawer() {
               <span>Total</span>
               <span>{formatPrice(Math.max(0, subtotal - (coupon?.discountAmount || 0)))}</span>
             </div>
-            <p className="text-xs text-gray-400">Shipping and VAT calculated at checkout.</p>
+            <p className="text-xs text-gray-500">Shipping and VAT calculated at checkout.</p>
             <Button variant="default" size="lg" className="w-full" asChild onClick={closeCart}>
-              <Link href="/cart">View basket</Link>
+              <Link href="/checkout">Checkout</Link>
             </Button>
             <Button variant="outline" size="lg" className="w-full" asChild onClick={closeCart}>
-              <Link href="/checkout">Checkout</Link>
+              <Link href="/cart">View basket</Link>
             </Button>
           </SheetFooter>
         )}

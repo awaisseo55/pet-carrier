@@ -35,7 +35,7 @@ export async function FeaturedProduct() {
           <div className="mt-5 flex items-baseline gap-3">
             <span className="text-2xl font-semibold text-ink">{formatPrice(product.price)}</span>
             {product.compare_at_price && (
-              <span className="text-lg text-gray-400 line-through">{formatPrice(product.compare_at_price)}</span>
+              <span className="text-lg text-gray-500 line-through">{formatPrice(product.compare_at_price)}</span>
             )}
           </div>
           <Button variant="default" size="lg" className="mt-6">

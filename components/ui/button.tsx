@@ -9,8 +9,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-secondary text-secondary-foreground shadow-sm hover:bg-coral-600",
-        primary: "bg-primary text-primary-foreground shadow-sm hover:bg-emerald-600",
+        // "default" is the main brand CTA colour (emerald), used implicitly
+        // by most buttons. "primary" is kept as an alias for the same style
+        // so existing call sites don't need to change. Coral lives on
+        // "secondary" instead, for the rare case a button should stand out
+        // as an accent rather than the primary action (badges use coral via
+        // components/ui/badge.tsx, not this component).
+        default: "bg-primary text-primary-foreground shadow-sm hover:bg-emerald-700",
+        primary: "bg-primary text-primary-foreground shadow-sm hover:bg-emerald-700",
+        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-coral-600",
         outline:
           "border-2 border-primary text-primary bg-transparent hover:bg-emerald-50",
         ghost: "text-ink hover:bg-emerald-50 hover:text-emerald-700",

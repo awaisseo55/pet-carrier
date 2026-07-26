@@ -102,12 +102,12 @@ export function CategoryEditForm({
             <div>
               <Label>Meta title</Label>
               <Input value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} className="mt-1.5" />
-              <p className="mt-1 text-xs text-gray-400">{metaTitle.length} / 60 characters</p>
+              <p className="mt-1 text-xs text-gray-500">{metaTitle.length} / 60 characters</p>
             </div>
             <div>
               <Label>Meta description</Label>
               <Input value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} className="mt-1.5" />
-              <p className="mt-1 text-xs text-gray-400">{metaDescription.length} / 155 characters</p>
+              <p className="mt-1 text-xs text-gray-500">{metaDescription.length} / 155 characters</p>
             </div>
           </div>
           <div>
@@ -184,7 +184,7 @@ export function CategoryEditForm({
               {product.title}
             </label>
           ))}
-          {products.length === 0 && <p className="text-sm text-gray-400">No products yet.</p>}
+          {products.length === 0 && <p className="text-sm text-gray-500">No products yet.</p>}
         </div>
       </div>
 

@@ -39,7 +39,7 @@ export function CategorySearchList({
   return (
     <div>
       <div className="relative max-w-sm">
-        <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-gray-400" />
+        <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-gray-500" />
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -64,7 +64,7 @@ export function CategorySearchList({
               <tr key={node.path} className="border-b border-border last:border-0 hover:bg-gray-50">
                 <td className="p-3">
                   <p className="font-medium">{node.name}</p>
-                  <p className="text-xs text-gray-400">/{node.path}</p>
+                  <p className="text-xs text-gray-500">/{node.path}</p>
                 </td>
                 <td className="p-3 capitalize">{node.section}</td>
                 <td className="p-3">{node.level}</td>

@@ -158,7 +158,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         <div className="mt-3 rounded-lg border border-dashed border-border bg-gray-50 p-4 text-sm text-gray-600">
           <p className="font-medium text-ink">Subject: Your {form.store_name} order is confirmed</p>
           <p className="mt-2">Thanks for your order! We&apos;re getting it ready to dispatch from the UK.</p>
-          <p className="mt-2 text-xs text-gray-400">
+          <p className="mt-2 text-xs text-gray-500">
             Full templates live in <code>lib/email.ts</code>, connected via the Resend API once{" "}
             <code>RESEND_API_KEY</code> is set.
           </p>

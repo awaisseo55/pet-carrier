@@ -146,7 +146,7 @@ export default async function CategoryPage({
                 className="group flex items-center justify-between gap-2 rounded-lg border border-border bg-card p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md"
               >
                 <span className="font-medium text-foreground">{child.name}</span>
-                <ArrowRight className="size-4 shrink-0 text-gray-400 transition-transform group-hover:translate-x-0.5 group-hover:text-emerald-600" />
+                <ArrowRight className="size-4 shrink-0 text-gray-500 transition-transform group-hover:translate-x-0.5 group-hover:text-emerald-600" />
               </Link>
             ))}
           </div>

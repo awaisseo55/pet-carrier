@@ -14,7 +14,7 @@ import { toast } from "sonner";
 
 const MAX_IMAGES = 8;
 
-export function ManualProductForm() {
+export function ManualProductForm({ initialAmazonUrl = "" }: { initialAmazonUrl?: string }) {
   const router = useRouter();
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -26,6 +26,7 @@ export function ManualProductForm() {
   const [features, setFeatures] = React.useState("");
   const [images, setImages] = React.useState<string[]>([]);
   const [categorySlugs, setCategorySlugs] = React.useState<string[]>([]);
+  const [amazonUrl, setAmazonUrl] = React.useState(initialAmazonUrl);
   const [isActive, setIsActive] = React.useState(true);
   const [saving, setSaving] = React.useState(false);
 
@@ -51,6 +52,7 @@ export function ManualProductForm() {
         features: features.split("\n").filter(Boolean),
         images,
         category_slugs: categorySlugs,
+        amazon_url: amazonUrl,
         is_active: isActive,
       }),
     });
@@ -145,6 +147,15 @@ export function ManualProductForm() {
           <div>
             <Label>Categories</Label>
             <CategoryPicker selected={categorySlugs} onChange={setCategorySlugs} />
+          </div>
+          <div>
+            <Label>Amazon URL (for reordering)</Label>
+            <Input
+              value={amazonUrl}
+              onChange={(e) => setAmazonUrl(e.target.value)}
+              placeholder="https://www.amazon.co.uk/dp/..."
+              className="mt-1.5"
+            />
           </div>
           <label className="flex items-center gap-2 text-sm cursor-pointer">
             <Checkbox checked={isActive} onCheckedChange={(c) => setIsActive(!!c)} />

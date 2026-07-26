@@ -55,7 +55,7 @@ export function CarriersMegaMenu() {
         <div className="absolute top-full left-1/2 z-40 w-[560px] -translate-x-1/2 pt-2">
           <div className="grid grid-cols-3 gap-6 rounded-lg border border-border bg-white p-6 shadow-lg">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">By Pet</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">By Pet</p>
               <ul className="mt-3 flex flex-col gap-2">
                 {byPet.map((item) => (
                   <li key={item.href}>
@@ -72,7 +72,7 @@ export function CarriersMegaMenu() {
               </ul>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">By Style</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">By Style</p>
               <ul className="mt-3 flex flex-col gap-2">
                 {byStyle.map((item) => (
                   <li key={item.href}>
@@ -84,7 +84,7 @@ export function CarriersMegaMenu() {
               </ul>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">By Use</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">By Use</p>
               <ul className="mt-3 flex flex-col gap-2">
                 {byUse.map((item) => (
                   <li key={item.href}>
