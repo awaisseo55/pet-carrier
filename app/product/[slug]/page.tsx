@@ -18,6 +18,7 @@ import { breadcrumbJsonLd, faqJsonLd, productJsonLd } from "@/lib/seo";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import { getBreadcrumbTrail, getCategoryByPath } from "@/lib/categories";
 import { formatPrice } from "@/lib/utils";
+import { renderRichText } from "@/lib/markdown-lite";
 
 export async function generateStaticParams() {
   const products = await getActiveProducts();
@@ -178,11 +179,8 @@ export default async function ProductPage({
 
       <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <h2 className="font-heading text-2xl font-semibold text-foreground">Description</h2>
-          <div className="mt-4 flex flex-col gap-4 text-gray-500">
-            {product.description.split("\n\n").map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
+          <div className="prose-content flex flex-col gap-4 text-gray-500">
+            {renderRichText(product.description)}
           </div>
 
           {product.faqs && product.faqs.length > 0 && (
@@ -194,7 +192,7 @@ export default async function ProductPage({
                 {product.faqs.map((faq) => (
                   <AccordionItem key={faq.question} value={faq.question}>
                     <AccordionTrigger>{faq.question}</AccordionTrigger>
-                    <AccordionContent>{faq.answer}</AccordionContent>
+                    <AccordionContent>{renderRichText(faq.answer)}</AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
