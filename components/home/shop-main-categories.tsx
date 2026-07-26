@@ -33,16 +33,16 @@ export function ShopMainCategories() {
           <Link
             key={category.href}
             href={category.href}
-            className="group flex flex-col gap-4 rounded-lg border border-border bg-card p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-emerald-400 hover:shadow-md"
+            className="group flex flex-col gap-4 rounded-lg border border-border bg-card p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-400 hover:shadow-md"
           >
-            <span className="flex size-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-700">
+            <span className="flex size-14 items-center justify-center rounded-full bg-blue-50 text-blue-700">
               <category.icon className="size-7" strokeWidth={1.75} />
             </span>
             <div>
               <h3 className="font-heading text-xl font-semibold text-ink">{category.label}</h3>
               <p className="mt-1 text-sm text-gray-500">{category.description}</p>
             </div>
-            <span className="mt-auto flex items-center gap-1.5 text-sm font-medium text-emerald-700">
+            <span className="mt-auto flex items-center gap-1.5 text-sm font-medium text-blue-700">
               Explore
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
             </span>

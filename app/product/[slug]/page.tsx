@@ -55,7 +55,7 @@ export async function generateMetadata({
 
 const stockLabel = {
   in_stock: { label: "In stock", variant: "success" as const },
-  low_stock: { label: "Only a few left", variant: "alert" as const },
+  low_stock: { label: "Only a few left", variant: "warning" as const },
   out_of_stock: { label: "Out of stock", variant: "outline" as const },
 };
 
@@ -119,7 +119,7 @@ export default async function ProductPage({
 
         <div>
           {primaryCategoryPath && (
-            <span className="text-sm font-medium uppercase tracking-wide text-emerald-600">
+            <span className="text-sm font-medium uppercase tracking-wide text-blue-600">
               {getCategoryByPath(primaryCategoryPath)?.name}
             </span>
           )}
@@ -128,7 +128,11 @@ export default async function ProductPage({
           </h1>
 
           <div className="mt-4 flex items-center gap-3">
-            <span className="text-2xl font-semibold text-foreground">{formatPrice(product.price)}</span>
+            <span
+              className={`text-2xl font-semibold ${product.compare_at_price ? "text-alert" : "text-foreground"}`}
+            >
+              {formatPrice(product.price)}
+            </span>
             {product.compare_at_price && (
               <span className="text-lg text-muted-foreground line-through">
                 {formatPrice(product.compare_at_price)}
@@ -145,15 +149,15 @@ export default async function ProductPage({
 
           <div className="mt-6 grid grid-cols-1 gap-3 rounded-lg bg-gray-100/60 p-4 sm:grid-cols-3">
             <div className="flex items-center gap-2 text-sm">
-              <Truck className="size-4 shrink-0 text-emerald-700" />
+              <Truck className="size-4 shrink-0 text-blue-700" />
               Free UK shipping over £50
             </div>
             <div className="flex items-center gap-2 text-sm">
-              <RotateCcw className="size-4 shrink-0 text-emerald-700" />
+              <RotateCcw className="size-4 shrink-0 text-blue-700" />
               30-day returns
             </div>
             <div className="flex items-center gap-2 text-sm">
-              <ShieldCheck className="size-4 shrink-0 text-emerald-700" />
+              <ShieldCheck className="size-4 shrink-0 text-blue-700" />
               Secure checkout
             </div>
           </div>
@@ -163,7 +167,7 @@ export default async function ProductPage({
             <ul className="mt-3 flex flex-col gap-2">
               {product.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-2 text-sm text-gray-500">
-                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-coral-400" />
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-blue-500" />
                   {feature}
                 </li>
               ))}
@@ -214,7 +218,7 @@ export default async function ProductPage({
       <div className="mt-14">
         <h2 className="font-heading text-2xl font-semibold text-foreground">Reviews</h2>
         <div className="mt-4 flex flex-col items-center gap-3 rounded-lg border border-dashed border-border bg-gray-100/40 py-12 text-center">
-          <div className="flex gap-1 text-coral-300">
+          <div className="flex gap-1 text-amber-400">
             {Array.from({ length: 5 }).map((_, idx) => (
               <Star key={idx} className="size-4 fill-current" />
             ))}

@@ -38,6 +38,8 @@ function useAdminLogout() {
   }, [router]);
 }
 
+// Admin chrome (sidebar + mobile nav) is dark navy, one of the two allowed
+// exceptions to the site's all-light-mode rule. Content areas stay white.
 function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
 
@@ -51,8 +53,8 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
             href={link.href}
             onClick={onNavigate}
             className={cn(
-              "flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
-              active ? "bg-emerald-100 text-emerald-800" : "text-gray-500 hover:bg-muted"
+              "flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
+              active ? "bg-blue-600 text-white" : "text-gray-300 hover:bg-white/10 hover:text-white"
             )}
           >
             <link.icon className="size-4.5" />
@@ -71,14 +73,14 @@ export function AdminNav() {
   return (
     <nav className="flex h-full flex-col justify-between p-4">
       <div className="flex flex-col gap-1">
-        <Link href="/admin" className="mb-4 px-2 font-heading text-lg font-semibold text-emerald-700">
+        <Link href="/admin" className="mb-4 px-2 font-heading text-lg font-semibold text-white">
           Pet Carrier Admin
         </Link>
         <NavLinks />
       </div>
       <button
         onClick={handleLogout}
-        className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-500 hover:bg-muted cursor-pointer"
+        className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm font-medium text-gray-300 hover:bg-white/10 hover:text-white cursor-pointer"
       >
         <LogOut className="size-4.5" />
         Sign Out
@@ -90,7 +92,7 @@ export function AdminNav() {
 /**
  * Top bar with a hamburger toggle, shown on mobile only. Order fulfilment
  * often happens on the go, so the admin nav must be reachable without a
- * desktop-width sidebar.
+ * desktop-width sidebar. Kept in the same dark navy as the desktop sidebar.
  */
 export function AdminMobileNav() {
   const [open, setOpen] = React.useState(false);
@@ -98,13 +100,13 @@ export function AdminMobileNav() {
 
   return (
     <div className="lg:hidden">
-      <div className="flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3">
-        <Link href="/admin" className="font-heading text-lg font-semibold text-emerald-700">
+      <div className="flex items-center justify-between rounded-lg bg-gray-800 px-4 py-3">
+        <Link href="/admin" className="font-heading text-lg font-semibold text-white">
           Pet Carrier Admin
         </Link>
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex size-9 items-center justify-center rounded-full text-ink hover:bg-muted cursor-pointer"
+          className="flex size-9 items-center justify-center rounded-full text-white hover:bg-white/10 cursor-pointer"
           aria-label="Toggle admin menu"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -112,11 +114,11 @@ export function AdminMobileNav() {
       </div>
 
       {open && (
-        <div className="mt-2 rounded-lg border border-border bg-card p-4">
+        <div className="mt-2 rounded-lg bg-gray-800 p-4">
           <NavLinks onNavigate={() => setOpen(false)} />
           <button
             onClick={handleLogout}
-            className="mt-1 flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-500 hover:bg-muted cursor-pointer"
+            className="mt-1 flex w-full items-center gap-2.5 rounded-md px-3 py-2.5 text-sm font-medium text-gray-300 hover:bg-white/10 hover:text-white cursor-pointer"
           >
             <LogOut className="size-4.5" />
             Sign Out

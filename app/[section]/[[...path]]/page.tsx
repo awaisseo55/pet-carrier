@@ -143,10 +143,10 @@ export default async function CategoryPage({
               <Link
                 key={child.path}
                 href={`/${child.path}`}
-                className="group flex items-center justify-between gap-2 rounded-lg border border-border bg-card p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md"
+                className="group flex items-center justify-between gap-2 rounded-lg border border-border bg-card p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md"
               >
                 <span className="font-medium text-foreground">{child.name}</span>
-                <ArrowRight className="size-4 shrink-0 text-gray-500 transition-transform group-hover:translate-x-0.5 group-hover:text-emerald-600" />
+                <ArrowRight className="size-4 shrink-0 text-gray-500 transition-transform group-hover:translate-x-0.5 group-hover:text-blue-600" />
               </Link>
             ))}
           </div>
@@ -169,7 +169,7 @@ export default async function CategoryPage({
               We’re adding {resolved.name.toLowerCase()} to the shop. In the meantime, have a look at our featured
               carrier or browse related categories below.
             </p>
-            <Link href="/product/premium-multi-purpose-pet-carrier" className="text-sm font-medium text-emerald-700 hover:underline">
+            <Link href="/product/premium-multi-purpose-pet-carrier" className="text-sm font-medium text-blue-700 hover:underline">
               View our featured carrier &rarr;
             </Link>
           </div>
@@ -211,7 +211,7 @@ export default async function CategoryPage({
               <Link
                 key={cat.path}
                 href={`/${cat.path}`}
-                className="rounded-lg border border-border bg-card p-4 text-sm font-medium shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md"
+                className="rounded-lg border border-border bg-card p-4 text-sm font-medium shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md"
               >
                 {cat.name}
               </Link>

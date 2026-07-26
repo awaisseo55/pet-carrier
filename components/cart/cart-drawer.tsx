@@ -42,7 +42,7 @@ export function CartDrawer() {
       <SheetContent className="flex flex-col p-0">
         <SheetHeader className="border-b border-border">
           <SheetTitle className="flex items-center gap-2">
-            <ShoppingBag className="size-5 text-emerald-600" />
+            <ShoppingBag className="size-5 text-blue-600" />
             Your basket
           </SheetTitle>
         </SheetHeader>
@@ -81,7 +81,7 @@ export function CartDrawer() {
                     <Link
                       href={`/product/${item.slug}`}
                       onClick={closeCart}
-                      className="text-sm font-medium leading-snug hover:text-emerald-700"
+                      className="text-sm font-medium leading-snug hover:text-blue-700"
                     >
                       {item.title}
                     </Link>

@@ -195,7 +195,7 @@ export function CsvImport() {
       <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
         <p className="font-medium text-ink">Importing products...</p>
         <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-gray-100">
-          <div className="h-full rounded-full bg-emerald-600 transition-all" style={{ width: `${progress}%` }} />
+          <div className="h-full rounded-full bg-blue-600 transition-all" style={{ width: `${progress}%` }} />
         </div>
         <p className="mt-2 text-sm text-gray-500">{progress}% complete</p>
       </div>
@@ -207,7 +207,7 @@ export function CsvImport() {
       <div className="flex flex-col gap-6">
         <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
           <div className="flex items-center gap-2">
-            <FileText className="size-5 text-emerald-600" />
+            <FileText className="size-5 text-blue-600" />
             <p className="font-medium text-ink">{fileName}</p>
             <span className="text-sm text-gray-500">({rows.length} rows detected)</span>
           </div>
@@ -257,7 +257,7 @@ export function CsvImport() {
 
           <label className="mt-4 flex items-center gap-2 text-sm cursor-pointer">
             <Checkbox checked={useAI} onCheckedChange={(c) => setUseAI(!!c)} />
-            <Sparkles className="size-4 text-emerald-600" />
+            <Sparkles className="size-4 text-blue-600" />
             Use AI to enhance descriptions (recommended)
           </label>
           <p className="mt-1 text-xs text-gray-500">
@@ -289,7 +289,7 @@ export function CsvImport() {
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
         className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed p-12 text-center transition-colors ${
-          dragActive ? "border-emerald-500 bg-emerald-50" : "border-border bg-gray-50 hover:border-emerald-400"
+          dragActive ? "border-blue-500 bg-blue-50" : "border-border bg-gray-50 hover:border-blue-400"
         }`}
       >
         <Upload className="size-10 text-gray-400" />
@@ -313,7 +313,7 @@ export function CsvImport() {
         <AlertTriangle className="size-4 shrink-0 text-gray-400" />
         <span>
           XLSX support is coming soon. For now, export or save your spreadsheet as CSV before uploading.{" "}
-          <a href="/example-products.csv" download className="font-medium text-emerald-700 hover:underline">
+          <a href="/example-products.csv" download className="font-medium text-blue-700 hover:underline">
             Download an example CSV
           </a>{" "}
           to see the ideal format.

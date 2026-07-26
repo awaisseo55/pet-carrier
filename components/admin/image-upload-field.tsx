@@ -114,7 +114,7 @@ export function ImageUploadField({
           {progress !== null && (
             <div className="h-1.5 w-40 overflow-hidden rounded-full bg-gray-100">
               <div
-                className="h-full rounded-full bg-emerald-500 transition-all"
+                className="h-full rounded-full bg-blue-600 transition-all"
                 style={{ width: `${progress}%` }}
               />
             </div>

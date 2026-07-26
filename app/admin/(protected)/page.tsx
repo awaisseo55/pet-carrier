@@ -28,7 +28,7 @@ export default async function AdminDashboardPage() {
         <Card>
           <CardHeader className="flex-row items-center justify-between space-y-0 pb-0">
             <CardTitle className="text-sm font-medium text-muted-foreground">Products</CardTitle>
-            <Package className="size-4 text-emerald-600" />
+            <Package className="size-4 text-blue-600" />
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold">{activeProducts}</p>
@@ -38,7 +38,7 @@ export default async function AdminDashboardPage() {
         <Card>
           <CardHeader className="flex-row items-center justify-between space-y-0 pb-0">
             <CardTitle className="text-sm font-medium text-muted-foreground">Categories</CardTitle>
-            <FolderTree className="size-4 text-emerald-600" />
+            <FolderTree className="size-4 text-blue-600" />
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold">{categories.length}</p>
@@ -70,19 +70,19 @@ export default async function AdminDashboardPage() {
       <div className="mt-8 flex flex-wrap gap-3">
         <Link
           href="/admin/products/new"
-          className="rounded-full bg-secondary px-5 py-2.5 text-sm font-medium text-secondary-foreground shadow-sm hover:bg-coral-600"
+          className="rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-coral-600"
         >
           Add Product from Amazon URL
         </Link>
         <Link
           href="/admin/categories"
-          className="rounded-full border-2 border-primary px-5 py-2.5 text-sm font-medium text-primary hover:bg-emerald-50"
+          className="rounded-md border border-border bg-white px-5 py-2.5 text-sm font-medium text-ink shadow-sm hover:bg-gray-50"
         >
           Manage Categories
         </Link>
         <Link
           href="/admin/orders"
-          className="rounded-full border-2 border-primary px-5 py-2.5 text-sm font-medium text-primary hover:bg-emerald-50"
+          className="rounded-md border border-border bg-white px-5 py-2.5 text-sm font-medium text-ink shadow-sm hover:bg-gray-50"
         >
           View Orders
         </Link>

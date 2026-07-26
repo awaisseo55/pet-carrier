@@ -29,7 +29,7 @@ export function WhyChooseUs() {
       <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
         {points.map((point) => (
           <div key={point.title} className="flex flex-col items-center text-center">
-            <div className="flex size-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-700">
+            <div className="flex size-16 items-center justify-center rounded-full bg-blue-50 text-blue-700">
               <point.icon className="size-7" />
             </div>
             <h3 className="mt-4 font-heading text-xl font-semibold text-ink">{point.title}</h3>

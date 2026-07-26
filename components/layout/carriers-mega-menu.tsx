@@ -43,8 +43,8 @@ export function CarriersMegaMenu() {
       <Link
         href="/carriers"
         className={cn(
-          "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold tracking-wide text-ink transition-colors hover:text-emerald-700",
-          active && "text-emerald-700"
+          "flex items-center gap-1 px-3 py-2 text-sm font-semibold tracking-wide text-ink transition-colors hover:text-blue-700",
+          active && "text-blue-700 underline underline-offset-8 decoration-2"
         )}
       >
         CARRIERS
@@ -56,16 +56,19 @@ export function CarriersMegaMenu() {
           <div className="grid grid-cols-3 gap-6 rounded-lg border border-border bg-white p-6 shadow-lg">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">By Pet</p>
-              <ul className="mt-3 flex flex-col gap-2">
+              <ul className="mt-3 flex flex-col gap-1">
                 {byPet.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href} className="text-sm text-ink hover:text-emerald-700">
+                    <Link
+                      href={item.href}
+                      className="-mx-2 block rounded px-2 py-1 text-sm text-ink hover:bg-gray-50 hover:text-blue-700"
+                    >
                       {item.label}
                     </Link>
                   </li>
                 ))}
                 <li>
-                  <Link href="/carriers" className="text-sm font-medium text-emerald-700 hover:underline">
+                  <Link href="/carriers" className="-mx-2 block rounded px-2 py-1 text-sm font-medium text-blue-600 hover:underline">
                     View All Carriers
                   </Link>
                 </li>
@@ -73,10 +76,13 @@ export function CarriersMegaMenu() {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">By Style</p>
-              <ul className="mt-3 flex flex-col gap-2">
+              <ul className="mt-3 flex flex-col gap-1">
                 {byStyle.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href} className="text-sm text-ink hover:text-emerald-700">
+                    <Link
+                      href={item.href}
+                      className="-mx-2 block rounded px-2 py-1 text-sm text-ink hover:bg-gray-50 hover:text-blue-700"
+                    >
                       {item.label}
                     </Link>
                   </li>
@@ -85,10 +91,13 @@ export function CarriersMegaMenu() {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">By Use</p>
-              <ul className="mt-3 flex flex-col gap-2">
+              <ul className="mt-3 flex flex-col gap-1">
                 {byUse.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href} className="text-sm text-ink hover:text-emerald-700">
+                    <Link
+                      href={item.href}
+                      className="-mx-2 block rounded px-2 py-1 text-sm text-ink hover:bg-gray-50 hover:text-blue-700"
+                    >
                       {item.label}
                     </Link>
                   </li>

@@ -8,11 +8,13 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-emerald-100 text-emerald-800 border-emerald-200",
-        secondary: "bg-coral-100 text-coral-800 border-coral-200",
+        default: "bg-blue-100 text-blue-800 border-blue-200",
+        // Discount/sale badges (e.g. "Save £15"), per the red sale colour.
+        secondary: "bg-alert-light text-alert border-red-200",
         outline: "bg-transparent text-foreground border-border",
         success: "bg-success-light text-success border-transparent",
         alert: "bg-alert-light text-alert border-transparent",
+        warning: "bg-warning-light text-warning border-transparent",
       },
     },
     defaultVariants: {

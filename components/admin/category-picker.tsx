@@ -43,7 +43,7 @@ export function CategoryPicker({
                 key={path}
                 type="button"
                 onClick={() => toggle(path)}
-                className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 hover:bg-emerald-100 cursor-pointer"
+                className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100 cursor-pointer"
               >
                 {node?.name || path} &times;
               </button>

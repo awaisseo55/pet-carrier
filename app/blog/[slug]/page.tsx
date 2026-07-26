@@ -66,7 +66,7 @@ export default async function BlogPostPage({
         </Link>
       </nav>
 
-      <span className="text-sm font-medium uppercase tracking-wide text-coral-600">
+      <span className="text-sm font-medium uppercase tracking-wide text-blue-600">
         {post.category}
       </span>
       <h1 className="mt-2 font-heading text-3xl font-semibold text-foreground sm:text-4xl">

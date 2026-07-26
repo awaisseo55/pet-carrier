@@ -42,25 +42,55 @@ just easy for us to hack on.
 
 ## Design system (do not deviate without asking)
 
-This is a clean, modern, product-focused e-commerce look. Reference vibes: Chewy, Pets at Home,
-Petco, Zooplus. Not warm/editorial, not dark.
+Rebuilt 2026-07 to match Chewy.com's clean white e-commerce aesthetic: white backgrounds
+throughout, navy/blue brand accent, orange CTAs. Not warm/editorial, not dark. This replaced an
+earlier emerald/coral palette; if you see stray `emerald-*`/`coral-*` classes used as link or brand
+accent colour (as opposed to the deliberate uses below), that's a regression, fix it to blue.
 
-- **Colours**: white background (`bg-white`) throughout, light gray (`bg-gray-50`) for alternating
-  section backgrounds. Text: near-black (`text-ink`), medium gray (`text-gray-500`) secondary,
-  light gray (`text-gray-400`) muted. Primary/CTA: emerald green (`emerald-600`, hover
-  `emerald-700`). Secondary/accent: coral orange (`coral-500`), used sparingly for sale badges and
-  energy. All defined in `app/globals.css` under `@theme`.
-- **Fonts**: `Manrope` for headings via `font-heading` / `--font-manrope`, `Inter` for body via
-  `--font-inter`. Prices and numbers use `tabular-nums` (set globally on `body`). Never use
-  Fraunces or Geist, those belong to other brands under the same operator.
-- **Shape language**: moderate rounded corners, `rounded-lg` on cards and inputs (not
-  `rounded-2xl`/`rounded-3xl`, that reads too soft for this brand), `rounded-full` on buttons and
-  pills. Soft shadows only, `shadow-sm` to `shadow-md`, no custom heavy shadow utilities.
-- Light mode is the default and the primary experience. Dark mode exists via next-themes but is
-  secondary, don't design a feature that only works in one mode.
+- **Backgrounds**: pure white (`bg-white`) is the default everywhere on the public site and the
+  admin content area. `bg-gray-50` (#F9FAFB) for alternating section backgrounds, `bg-gray-100`
+  (#F3F4F6) for subtle muted emphasis (image placeholders etc). The **only** two places allowed to
+  use a dark background are the site **footer** and the **admin sidebar/mobile nav**, both
+  `bg-gray-800` (#1F2937). Nothing else, ever, not a modal, drawer, card, or homepage section.
+  Cart drawer, cart page, checkout, and every admin content page must be white.
+- **Text**: near-black (`text-ink`, #111827) for headings and important text, medium-dark gray
+  (`text-gray-500`/`text-gray-600`) for secondary/body text. Never go lighter than `text-gray-500`
+  for meaningful text on a white background (`text-gray-400` is fine only for large decorative
+  icons). On the dark footer/admin sidebar, use white for primary text and `text-gray-300` for
+  muted/inactive text.
+- **Colours** (all defined in `app/globals.css` under `@theme`):
+  - **Primary/CTA** (Add to Basket, Checkout, Sign In, and any primary action button): orange,
+    `coral-500` (#F97316), hover `coral-600` (#EA580C). This is what the `Button` component's
+    `default`/`primary` variant renders. Don't reuse orange for incidental "selected" states
+    (checkboxes, radios, active thumbnails, active nav) — that's blue, see below.
+  - **Brand/link accent**: blue, using Tailwind's stock `blue-600`/`blue-700`/`blue-800` palette
+    (#2563EB / #1D4ED8 / #1E40AF) — these are Tailwind defaults, not custom tokens. Used for the
+    header logo, nav hover/active state, inline links, category eyebrow labels, checked
+    checkboxes/radios, selected thumbnails, and hover backgrounds (`blue-50`/`#EFF6FF`).
+  - **Success/positive** (`success`/`success-light` tokens, emerald): reserved for "In Stock",
+    applied-coupon confirmations, and the free-shipping-progress state. Don't use emerald as a
+    generic accent colour elsewhere, that's blue's job now.
+  - **Warning** (`warning`/`warning-light` tokens, amber #F59E0B): low-stock indicators only.
+  - **Alert/discount** (`alert`/`alert-light` tokens, red #DC2626): error messages, and "Save £X"
+    discount badges/sale pricing (`Badge` `secondary` variant, and the product price itself when a
+    `compare_at_price` is set).
+  - Star ratings are amber (`amber-400`), independent of the above, matching the near-universal
+    gold-star convention.
+- **Fonts**: `Inter` for both headings (`font-heading` / `--font-inter`) and body. Prices and
+  numbers use `tabular-nums` (set globally on `body`). Never use Fraunces, Geist, or Manrope, those
+  belong to other brands under the same operator (Manrope was this brand's old heading font, pre
+  rebrand, don't bring it back).
+- **Shape language**: `rounded-md` on buttons (not pill-shaped, that's the old brand), `rounded-lg`
+  on cards. Icon avatars/circles and badges can still be `rounded-full`. Soft shadows only,
+  `shadow-sm` to `shadow-md`, no custom heavy shadow utilities.
+- **Light mode only.** There is no dark mode toggle in the UI and no `.dark` CSS overrides in
+  `globals.css`; `next-themes` is wired up with `defaultTheme="light"` and `enableSystem={false}`
+  purely so `components/ui/sonner.tsx` has a theme context, it does not change any styling. Don't
+  add `dark:` Tailwind classes or reintroduce `prefers-color-scheme`-based theming.
 - **Header navigation must always be visible without hovering.** This was a real bug once
   (invisible nav text), treat any regression here as critical. Only the Carriers mega menu panel
-  itself is hover-triggered, the nav labels are not.
+  itself is hover-triggered, the nav labels are not. The header also has a persistent, prominent
+  search bar in the centre on `md`+ screens (Chewy-style), collapsing to a toggle icon on mobile.
 
 ## Category architecture
 

@@ -70,7 +70,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-gray-800 text-gray-300">
       <div className="border-b border-gray-700">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
@@ -206,7 +206,10 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-start justify-between gap-2 border-t border-gray-700 pt-6 text-xs text-gray-500 sm:flex-row sm:items-center">
+      </div>
+
+      <div className="border-t border-gray-700 bg-gray-900">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-6 text-xs text-gray-500 sm:flex-row sm:items-center sm:px-6 lg:px-8">
           <p>&copy; {new Date().getFullYear()} Pet Carrier. All rights reserved. Made in the UK.</p>
           <p>pet-carrier.co.uk</p>
         </div>

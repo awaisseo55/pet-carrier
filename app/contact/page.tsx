@@ -18,21 +18,21 @@ export default function ContactPage() {
       <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.2fr]">
         <div className="flex flex-col gap-6">
           <div className="flex items-start gap-3">
-            <Mail className="mt-0.5 size-5 shrink-0 text-emerald-700" />
+            <Mail className="mt-0.5 size-5 shrink-0 text-blue-700" />
             <div>
               <p className="font-medium">Email</p>
               <p className="text-sm text-gray-500">hello@pet-carrier.co.uk</p>
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <MapPin className="mt-0.5 size-5 shrink-0 text-emerald-700" />
+            <MapPin className="mt-0.5 size-5 shrink-0 text-blue-700" />
             <div>
               <p className="font-medium">Based in</p>
               <p className="text-sm text-gray-500">United Kingdom</p>
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <Clock className="mt-0.5 size-5 shrink-0 text-emerald-700" />
+            <Clock className="mt-0.5 size-5 shrink-0 text-blue-700" />
             <div>
               <p className="font-medium">Response time</p>
               <p className="text-sm text-gray-500">We usually reply within one working day.</p>

@@ -42,7 +42,7 @@ export function ProductGallery({ images, title }: { images: string[]; title: str
               onClick={() => setActive(index)}
               className={cn(
                 "relative size-18 shrink-0 overflow-hidden rounded-xl border-2 transition-colors cursor-pointer",
-                active === index ? "border-primary" : "border-transparent"
+                active === index ? "border-blue-600" : "border-transparent"
               )}
               aria-label={`View image ${index + 1}`}
             >

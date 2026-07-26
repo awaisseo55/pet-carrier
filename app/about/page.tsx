@@ -45,21 +45,21 @@ export default function AboutPage() {
 
       <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-3">
         <div className="flex flex-col items-center text-center">
-          <div className="flex size-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+          <div className="flex size-14 items-center justify-center rounded-full bg-blue-100 text-blue-700">
             <Heart className="size-6" />
           </div>
           <h3 className="mt-3 font-heading text-lg font-semibold">Handpicked</h3>
           <p className="mt-1 text-sm text-gray-500">Every product is chosen for genuine comfort and quality.</p>
         </div>
         <div className="flex flex-col items-center text-center">
-          <div className="flex size-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+          <div className="flex size-14 items-center justify-center rounded-full bg-blue-100 text-blue-700">
             <MapPin className="size-6" />
           </div>
           <h3 className="mt-3 font-heading text-lg font-semibold">UK Based</h3>
           <p className="mt-1 text-sm text-gray-500">Packed and dispatched from right here in the UK.</p>
         </div>
         <div className="flex flex-col items-center text-center">
-          <div className="flex size-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+          <div className="flex size-14 items-center justify-center rounded-full bg-blue-100 text-blue-700">
             <PackageCheck className="size-6" />
           </div>
           <h3 className="mt-3 font-heading text-lg font-semibold">Reliable</h3>

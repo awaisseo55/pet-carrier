@@ -44,7 +44,7 @@ export default async function AccountPage() {
           <div className="mt-4 flex flex-col items-center gap-3 rounded-lg border border-dashed border-border bg-gray-100/40 py-14 text-center">
             <Package className="size-8 text-muted-foreground" />
             <p className="text-gray-500">You haven’t placed any orders yet.</p>
-            <Link href="/carriers" className="text-emerald-700 hover:underline">
+            <Link href="/carriers" className="text-blue-700 hover:underline">
               Start shopping
             </Link>
           </div>

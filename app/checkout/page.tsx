@@ -234,7 +234,7 @@ export default function CheckoutPage() {
               {DELIVERY_OPTIONS.map((option) => (
                 <label
                   key={option.value}
-                  className="flex cursor-pointer items-center justify-between rounded-lg border border-border p-4 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50"
+                  className="flex cursor-pointer items-center justify-between rounded-lg border border-border p-4 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50"
                 >
                   <div className="flex items-center gap-3">
                     <input
@@ -242,7 +242,7 @@ export default function CheckoutPage() {
                       name="delivery"
                       checked={deliveryOption === option.value}
                       onChange={() => setDeliveryOption(option.value)}
-                      className="size-4 accent-emerald-600"
+                      className="size-4 accent-blue-600"
                     />
                     <div>
                       <p className="font-medium text-ink">{option.label}</p>
@@ -295,11 +295,11 @@ export default function CheckoutPage() {
               <Checkbox checked={termsAccepted} onCheckedChange={(c) => setTermsAccepted(!!c)} className="mt-0.5" />
               <span>
                 I agree to the{" "}
-                <Link href="/terms" className="text-emerald-700 underline" target="_blank">
+                <Link href="/terms" className="text-blue-700 underline" target="_blank">
                   Terms and Conditions
                 </Link>{" "}
                 and{" "}
-                <Link href="/privacy" className="text-emerald-700 underline" target="_blank">
+                <Link href="/privacy" className="text-blue-700 underline" target="_blank">
                   Privacy Policy
                 </Link>
               </span>

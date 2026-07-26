@@ -50,14 +50,14 @@ export function ProductCard({ product }: { product: Product }) {
           </Badge>
         )}
         {product.stock_status === "low_stock" && (
-          <Badge variant="alert" className="absolute top-3 right-3">
+          <Badge variant="warning" className="absolute top-3 right-3">
             Low stock
           </Badge>
         )}
       </div>
       <div className="flex flex-1 flex-col gap-2 p-4">
         {primaryCategory && (
-          <span className="text-xs font-medium uppercase tracking-wide text-emerald-600">
+          <span className="text-xs font-medium uppercase tracking-wide text-blue-600">
             {primaryCategory.name}
           </span>
         )}

@@ -1,11 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  /* Clean modern e-commerce palette */
-  --color-ink: #1a1a1a;
+  /* Chewy-inspired clean white e-commerce palette. Light mode only, see
+     CLAUDE.md "Design system" for the rationale behind each token. */
+  --color-ink: #111827;
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
   --color-gray-200: #e5e7eb;
@@ -17,6 +16,7 @@
   --color-gray-800: #1f2937;
   --color-gray-900: #111827;
 
+  /* Success / positive signals only (e.g. "In Stock"), not the brand accent. */
   --color-emerald-50: #ecfdf5;
   --color-emerald-100: #d1fae5;
   --color-emerald-200: #a7f3d0;
@@ -28,6 +28,7 @@
   --color-emerald-800: #065f46;
   --color-emerald-900: #064e3b;
 
+  /* Coral/orange: the primary CTA colour (Add to Basket, Checkout, Sign In). */
   --color-coral-50: #fff7ed;
   --color-coral-100: #ffedd5;
   --color-coral-200: #fed7aa;
@@ -43,6 +44,8 @@
   --color-success-light: var(--color-emerald-50);
   --color-alert: #dc2626;
   --color-alert-light: #fef2f2;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fffbeb;
 
   --background: #ffffff;
   --foreground: var(--color-ink);
@@ -50,30 +53,17 @@
   --card-foreground: var(--color-ink);
   --muted: var(--color-gray-50);
   --muted-foreground: var(--color-gray-500);
-  --primary: var(--color-emerald-600);
+  /* Primary = the orange CTA colour, used by Button's default/primary variant. */
+  --primary: var(--color-coral-500);
   --primary-foreground: #ffffff;
-  --secondary: var(--color-coral-500);
-  --secondary-foreground: #ffffff;
+  /* Secondary = the neutral white/bordered button, not a colour block. */
+  --secondary: #ffffff;
+  --secondary-foreground: var(--color-ink);
   --border: var(--color-gray-200);
   --input: var(--color-gray-200);
-  --ring: var(--color-emerald-500);
+  /* Focus/selection ring is brand blue, matching link colour. */
+  --ring: #2563eb;
   --radius: 0.5rem;
-}
-
-.dark {
-  --background: #16181c;
-  --foreground: #f3f4f6;
-  --card: #1f2227;
-  --card-foreground: #f3f4f6;
-  --muted: #23262c;
-  --muted-foreground: #9ca3af;
-  --primary: var(--color-emerald-500);
-  --primary-foreground: #06281f;
-  --secondary: var(--color-coral-500);
-  --secondary-foreground: #2b1206;
-  --border: #2c3037;
-  --input: #2c3037;
-  --ring: var(--color-emerald-400);
 }
 
 @theme inline {
@@ -94,6 +84,8 @@
   --color-success-light: var(--color-success-light);
   --color-alert: var(--color-alert);
   --color-alert-light: var(--color-alert-light);
+  --color-warning: var(--color-warning);
+  --color-warning-light: var(--color-warning-light);
 
   --color-ink: var(--color-ink);
   --color-gray-50: var(--color-gray-50);
@@ -130,7 +122,7 @@
   --color-coral-900: var(--color-coral-900);
 
   --font-sans: var(--font-inter);
-  --font-heading: var(--font-manrope);
+  --font-heading: var(--font-inter);
 }
 
 * {

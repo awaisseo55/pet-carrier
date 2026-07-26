@@ -13,7 +13,7 @@ export default async function AdminProtectedLayout({
       <div className="lg:hidden">
         <AdminMobileNav />
       </div>
-      <aside className="hidden w-56 shrink-0 rounded-lg border border-border bg-card lg:block">
+      <aside className="hidden w-56 shrink-0 rounded-lg bg-gray-800 lg:block">
         <AdminNav />
       </aside>
       <div className="min-w-0 flex-1">{children}</div>

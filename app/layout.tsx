@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { CartProvider } from "@/components/cart/cart-context";
@@ -8,12 +8,6 @@ import { Footer } from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -53,7 +47,7 @@ export default function RootLayout({
     <html
       lang="en-GB"
       suppressHydrationWarning
-      className={`${manrope.variable} ${inter.variable}`}
+      className={inter.variable}
     >
       <head>
         <script

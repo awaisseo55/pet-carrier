@@ -31,14 +31,14 @@ export async function BlogPreview() {
               />
             </div>
             <div className="flex flex-1 flex-col gap-2 p-5">
-              <span className="text-xs font-medium uppercase tracking-wide text-coral-600">
+              <span className="text-xs font-medium uppercase tracking-wide text-blue-600">
                 {post.category}
               </span>
               <h3 className="font-heading text-lg font-semibold leading-snug text-foreground">
                 {post.title}
               </h3>
               <p className="text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>
-              <span className="mt-auto pt-2 text-sm font-medium text-emerald-700">Read more &rarr;</span>
+              <span className="mt-auto pt-2 text-sm font-medium text-blue-700">Read more &rarr;</span>
             </div>
           </Link>
         ))}

@@ -80,7 +80,7 @@ export default function CartPage() {
                       </div>
                       <div className="flex flex-1 flex-col justify-between">
                         <div className="flex items-start justify-between gap-4">
-                          <Link href={`/product/${item.slug}`} className="font-medium hover:text-emerald-700">
+                          <Link href={`/product/${item.slug}`} className="font-medium hover:text-blue-700">
                             {item.title}
                           </Link>
                           <button
@@ -141,7 +141,7 @@ export default function CartPage() {
                       </div>
                       <div className="flex flex-1 items-center justify-between">
                         <div>
-                          <Link href={`/product/${item.slug}`} className="text-sm font-medium hover:text-emerald-700">
+                          <Link href={`/product/${item.slug}`} className="text-sm font-medium hover:text-blue-700">
                             {item.title}
                           </Link>
                           <p className="text-sm text-gray-500">{formatPrice(item.price)}</p>
@@ -149,7 +149,7 @@ export default function CartPage() {
                         <div className="flex gap-3">
                           <button
                             onClick={() => toggleSaveForLater(item.product_id)}
-                            className="text-xs font-medium text-emerald-700 underline cursor-pointer"
+                            className="text-xs font-medium text-blue-700 underline cursor-pointer"
                           >
                             Move to basket
                           </button>
@@ -244,11 +244,11 @@ export default function CartPage() {
 
               <div className="mt-5 flex flex-col gap-2 border-t border-border pt-4 text-xs text-gray-500">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-emerald-600" />
+                  <ShieldCheck className="size-4 text-blue-600" />
                   Secure checkout
                 </div>
                 <div className="flex items-center gap-2">
-                  <Truck className="size-4 text-emerald-600" />
+                  <Truck className="size-4 text-blue-600" />
                   Free UK shipping over £50
                 </div>
               </div>

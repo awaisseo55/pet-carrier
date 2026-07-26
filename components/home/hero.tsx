@@ -39,7 +39,7 @@ export async function Hero() {
               const Icon = BADGE_ICONS[badge] || ShieldCheck;
               return (
                 <div key={badge} className="flex items-center gap-2 text-sm font-medium text-gray-600">
-                  <Icon className="size-4 text-emerald-600" />
+                  <Icon className="size-4 text-blue-600" />
                   {badge}
                 </div>
               );

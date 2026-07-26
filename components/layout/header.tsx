@@ -46,12 +46,24 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="font-heading text-2xl font-extrabold tracking-tight text-ink shrink-0">
+      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
+        <Link href="/" className="font-heading text-2xl font-extrabold tracking-tight text-blue-700 shrink-0">
           Pet Carrier
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1">
+        <form onSubmit={handleSearch} className="hidden flex-1 md:flex">
+          <div className="relative w-full max-w-xl">
+            <Search className="pointer-events-none absolute top-1/2 left-3.5 size-4.5 -translate-y-1/2 text-gray-400" />
+            <Input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search for carriers, strollers or beds"
+              className="rounded-full pl-10"
+            />
+          </div>
+        </form>
+
+        <nav className="hidden lg:flex items-center gap-1 shrink-0">
           <CarriersMegaMenu />
           {navLinks.map((link) => (
             <NavLink key={link.href} href={link.href}>
@@ -60,11 +72,12 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           <Button
             variant="ghost"
             size="icon"
             aria-label="Search"
+            className="md:hidden"
             onClick={() => setSearchOpen((v) => !v)}
           >
             {searchOpen ? <X className="size-5" /> : <Search className="size-5" />}
@@ -77,7 +90,7 @@ export function Header() {
           <Button variant="ghost" size="icon" aria-label="Cart" className="relative" onClick={openCart}>
             <ShoppingBag className="size-5" />
             {itemCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 flex size-4.5 items-center justify-center rounded-full bg-secondary text-[10px] font-semibold text-secondary-foreground">
+              <span className="absolute -top-0.5 -right-0.5 flex size-4.5 items-center justify-center rounded-full bg-primary text-[10px] font-semibold text-primary-foreground">
                 {itemCount}
               </span>
             )}
@@ -95,8 +108,8 @@ export function Header() {
       </div>
 
       {searchOpen && (
-        <div className="border-t border-border px-4 py-3 sm:px-6 lg:px-8">
-          <form onSubmit={handleSearch} className="mx-auto flex max-w-2xl gap-2">
+        <div className="border-t border-border px-4 py-3 sm:px-6 md:hidden">
+          <form onSubmit={handleSearch} className="flex gap-2">
             <Input
               autoFocus
               value={query}
@@ -121,7 +134,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-lg px-2 py-2 text-ink font-medium hover:bg-emerald-50 hover:text-emerald-700"
+              className="rounded-lg px-2 py-2 text-ink font-medium hover:bg-blue-50 hover:text-blue-700"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
