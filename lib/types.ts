@@ -1,5 +1,27 @@
 export type PetType = "dogs" | "cats" | "small-animals" | "birds";
 
+export type Subcategory =
+  | "puppies"
+  | "small-dogs"
+  | "medium-dogs"
+  | "large-dogs"
+  | "kittens"
+  | "adult-cats"
+  | "large-cats"
+  | "rabbits"
+  | "guinea-pigs"
+  | "hamsters"
+  | "ferrets"
+  | "budgies-small-birds"
+  | "parrots-large-birds";
+
+export type TravelType =
+  | "airline-approved"
+  | "car-travel"
+  | "public-transport"
+  | "backpack-hiking"
+  | "vet-visits";
+
 export type StockStatus = "in_stock" | "low_stock" | "out_of_stock";
 
 export interface Product {
@@ -18,6 +40,8 @@ export interface Product {
   images: string[];
   category: PetType;
   pet_type: PetType;
+  subcategory?: Subcategory;
+  travel_types?: TravelType[];
   size_range: string;
   weight_capacity: string;
   brand: string;

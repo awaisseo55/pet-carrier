@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { HERO_IMAGE } from "@/lib/images";
+import { getHeroImageUrl } from "@/lib/placeholders";
 
-export function Hero() {
+export async function Hero() {
+  const { url: heroImageUrl, isCustom } = await getHeroImageUrl();
+
   return (
     <section className="relative overflow-hidden bg-cream">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-20">
@@ -11,8 +13,9 @@ export function Hero() {
           <span className="inline-flex items-center rounded-full bg-terracotta-100 px-4 py-1.5 text-sm font-medium text-terracotta-700">
             Handpicked for happy pets
           </span>
-          <h1 className="mt-5 font-serif text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">
-            Comfortable carriers for your favourite companions
+          <h1 className="mt-5 font-serif text-4xl font-semibold leading-tight text-brown sm:text-5xl lg:text-6xl">
+            Comfortable carriers for your favourite{" "}
+            <span className="text-sage-700">companions</span>
           </h1>
           <p className="mt-5 max-w-xl text-lg text-brown-soft">
             From nervous vet visits to weekend adventures, we curate carriers designed for real
@@ -44,8 +47,12 @@ export function Hero() {
         <div className="order-1 lg:order-2">
           <div className="relative mx-auto aspect-4/5 w-full max-w-md overflow-hidden rounded-[2.5rem] shadow-warm-lg lg:max-w-none">
             <Image
-              src={HERO_IMAGE}
-              alt="A happy small dog resting comfortably inside a stylish pet carrier"
+              src={heroImageUrl}
+              alt={
+                isCustom
+                  ? "Pet Carrier hero image"
+                  : "A pug settled comfortably into a stylish grey pet carrier bed"
+              }
               fill
               priority
               sizes="(min-width: 1024px) 50vw, 90vw"

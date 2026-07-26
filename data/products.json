@@ -27,8 +27,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1444212477490-ca407925329e?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "dogs",
     "pet_type": "dogs",
@@ -53,6 +53,11 @@
         "question": "Is it machine washable?",
         "answer": "The removable interior liner can be machine washed on a gentle cycle. The outer fabric should be wiped clean."
       }
+    ],
+    "subcategory": "small-dogs",
+    "travel_types": [
+      "car-travel",
+      "vet-visits"
     ]
   },
   {
@@ -84,7 +89,7 @@
     "stock_count": 24,
     "images": [
       "https://images.unsplash.com/photo-1444212477490-ca407925329e?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1560807707-8cc77767d783?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "dogs",
     "pet_type": "dogs",
@@ -100,7 +105,12 @@
     "markup_percentage": 40,
     "meta_title": "Rolling Pet Carrier with Wheels for Medium Dogs | Pet Carrier",
     "meta_description": "A wheeled carrier that turns long walks and airport transfers into an easy roll, built for medium-sized dogs.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "medium-dogs",
+    "travel_types": [
+      "car-travel",
+      "public-transport"
+    ]
   },
   {
     "id": "B0DPETC003",
@@ -130,8 +140,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1591768795000-25df3bf6620a?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "dogs",
     "pet_type": "dogs",
@@ -147,7 +157,12 @@
     "markup_percentage": 40,
     "meta_title": "Hard-Shell Travel Crate for Dogs | Pet Carrier",
     "meta_description": "A rigid, well-ventilated travel crate built for car journeys and longer trips away from home.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "large-dogs",
+    "travel_types": [
+      "car-travel",
+      "airline-approved"
+    ]
   },
   {
     "id": "B0DPETC004",
@@ -177,8 +192,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1560807707-8cc77767d783?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1444212477490-ca407925329e?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1591768795000-25df3bf6620a?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1765045952615-9e28d239f053?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "dogs",
     "pet_type": "dogs",
@@ -194,7 +209,12 @@
     "markup_percentage": 40,
     "meta_title": "Backpack Carrier for Small Dogs | Pet Carrier",
     "meta_description": "A hands-free backpack carrier with a bubble window, ideal for city walks, hikes and days out.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "small-dogs",
+    "travel_types": [
+      "backpack-hiking",
+      "public-transport"
+    ]
   },
   {
     "id": "B0DPETC005",
@@ -224,8 +244,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1761614282055-29e039aac354?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1565029400423-ec64047d5f07?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "cats",
     "pet_type": "cats",
@@ -246,6 +266,11 @@
         "question": "Will my cat feel too enclosed?",
         "answer": "The mesh panels keep air moving and let in enough light while still giving a secure, covered feeling that most cats find reassuring."
       }
+    ],
+    "subcategory": "adult-cats",
+    "travel_types": [
+      "vet-visits",
+      "car-travel"
     ]
   },
   {
@@ -276,8 +301,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1601979031925-424e53b6caaa?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1565029400423-ec64047d5f07?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1765182272682-c1e8edf6251e?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "cats",
     "pet_type": "cats",
@@ -293,7 +318,12 @@
     "markup_percentage": 40,
     "meta_title": "Hard-Shell Cat Carrier with Front and Top Entry | Pet Carrier",
     "meta_description": "A sturdy carrier with two entry points, built for vet trips, house moves and longer journeys.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "adult-cats",
+    "travel_types": [
+      "vet-visits",
+      "car-travel"
+    ]
   },
   {
     "id": "B0DPETC007",
@@ -323,8 +353,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1765182272682-c1e8edf6251e?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "cats",
     "pet_type": "cats",
@@ -340,7 +370,11 @@
     "markup_percentage": 40,
     "meta_title": "Cat Sling Carrier for Short Trips | Pet Carrier",
     "meta_description": "A lightweight sling-style carrier that keeps your cat close and calm for quick trips nearby.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "kittens",
+    "travel_types": [
+      "vet-visits"
+    ]
   },
   {
     "id": "B0DPETC008",
@@ -370,8 +404,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1601979031925-424e53b6caaa?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1761614282055-29e039aac354?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "cats",
     "pet_type": "cats",
@@ -387,7 +421,12 @@
     "markup_percentage": 40,
     "meta_title": "Cat Backpack Carrier with Bubble Window | Pet Carrier",
     "meta_description": "A hands-free backpack carrier with a curved viewing window, built for cats who like to watch the world.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "adult-cats",
+    "travel_types": [
+      "backpack-hiking",
+      "public-transport"
+    ]
   },
   {
     "id": "B0DPETC009",
@@ -417,8 +456,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1594149929911-78975a43d4f5?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1658938821244-b2f28b7756eb?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1658938822127-44b96082ddf6?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "small-animals",
     "pet_type": "small-animals",
@@ -434,7 +473,12 @@
     "markup_percentage": 40,
     "meta_title": "Small Pet Carrier for Rabbits and Guinea Pigs | Pet Carrier",
     "meta_description": "A well-ventilated carrier sized for rabbits and guinea pigs, with a hay-friendly base.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "rabbits",
+    "travel_types": [
+      "vet-visits",
+      "car-travel"
+    ]
   },
   {
     "id": "B0DPETC010",
@@ -464,8 +508,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1591946614720-90a587da4a36?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1658938822127-44b96082ddf6?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1612267168669-679c961c5b31?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "small-animals",
     "pet_type": "small-animals",
@@ -481,7 +525,11 @@
     "markup_percentage": 40,
     "meta_title": "Travel Carrier for Hamsters and Small Rodents | Pet Carrier",
     "meta_description": "A compact, secure carrier for hamsters, gerbils and other small rodents on short journeys.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "hamsters",
+    "travel_types": [
+      "vet-visits"
+    ]
   },
   {
     "id": "B0DPETC011",
@@ -511,8 +559,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1594149929911-78975a43d4f5?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1612267168669-679c961c5b31?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "small-animals",
     "pet_type": "small-animals",
@@ -528,7 +576,12 @@
     "markup_percentage": 40,
     "meta_title": "Ventilated Carry Box for Small Animals | Pet Carrier",
     "meta_description": "A sturdy carry box with generous ventilation, suited to a range of small pets and short trips.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "guinea-pigs",
+    "travel_types": [
+      "vet-visits",
+      "car-travel"
+    ]
   },
   {
     "id": "B0DPETC012",
@@ -558,8 +611,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1591946614720-90a587da4a36?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1591561582301-7ce6588cc286?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "small-animals",
     "pet_type": "small-animals",
@@ -575,7 +628,11 @@
     "markup_percentage": 40,
     "meta_title": "Foldable Carrier for Small Animals | Pet Carrier",
     "meta_description": "A lightweight, foldable carrier that packs away flat when it is not needed.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "rabbits",
+    "travel_types": [
+      "car-travel"
+    ]
   },
   {
     "id": "B0DPETC013",
@@ -605,8 +662,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1425421669292-0c3da3b8f529?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "birds",
     "pet_type": "birds",
@@ -622,7 +679,12 @@
     "markup_percentage": 40,
     "meta_title": "Travel Cage for Small Birds | Pet Carrier",
     "meta_description": "A compact travel cage with secure perches, built for short trips with small birds such as budgies and canaries.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "budgies-small-birds",
+    "travel_types": [
+      "car-travel",
+      "vet-visits"
+    ]
   },
   {
     "id": "B0DPETC014",
@@ -652,8 +714,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "birds",
     "pet_type": "birds",
@@ -669,7 +731,11 @@
     "markup_percentage": 40,
     "meta_title": "Soft Carrier Bag for Birds | Pet Carrier",
     "meta_description": "A padded, enclosed carrier bag that keeps small birds calm and shielded from draughts on the move.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "budgies-small-birds",
+    "travel_types": [
+      "vet-visits"
+    ]
   },
   {
     "id": "B0DPETC015",
@@ -699,8 +765,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1425421669292-0c3da3b8f529?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "birds",
     "pet_type": "birds",
@@ -716,7 +782,12 @@
     "markup_percentage": 40,
     "meta_title": "Acrylic Travel Carrier for Parrots | Pet Carrier",
     "meta_description": "A clear-panelled, sturdy carrier built for larger birds such as parrots and cockatiels on longer trips.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "parrots-large-birds",
+    "travel_types": [
+      "car-travel",
+      "vet-visits"
+    ]
   },
   {
     "id": "B0DPETC016",
@@ -746,8 +817,8 @@
     "stock_status": "in_stock",
     "stock_count": 24,
     "images": [
-      "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=1200&q=80&auto=format&fit=crop"
     ],
     "category": "birds",
     "pet_type": "birds",
@@ -763,6 +834,11 @@
     "markup_percentage": 40,
     "meta_title": "Lightweight Bird Carrier with Handle | Pet Carrier",
     "meta_description": "A simple, lightweight carrier for short trips with small pet birds, easy to sling in a bag.",
-    "faqs": []
+    "faqs": [],
+    "subcategory": "budgies-small-birds",
+    "travel_types": [
+      "public-transport",
+      "vet-visits"
+    ]
   }
 ]

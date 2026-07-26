@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/accordion";
 import { getActiveProducts, getProductBySlug, getRelatedProducts } from "@/lib/products";
 import { breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
+import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import { formatPrice } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -90,7 +91,10 @@ export default async function ProductPage({
       </nav>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-        <ProductGallery images={product.images} title={product.title} />
+        <ProductGallery
+          images={product.images.length > 0 ? product.images : [PRODUCT_PLACEHOLDER]}
+          title={product.title}
+        />
 
         <div>
           <span className="text-sm font-medium uppercase tracking-wide text-sage-600">

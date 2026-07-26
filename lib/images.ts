@@ -1,63 +1,65 @@
 /**
  * Curated Unsplash placeholder imagery, used for homepage, category and
- * blog visuals until real lifestyle photography is available. Product
- * images are downloaded from Amazon via the admin panel instead, see
- * lib/amazon.ts and lib/image-pipeline.ts.
+ * blog visuals until real lifestyle photography or admin-uploaded images
+ * are available. Every URL below has been visually verified to actually
+ * show the animal it's used for, not just checked for a 200 response,
+ * after an earlier mismatch (dogs/hamsters showing up under cat/bird
+ * categories, and one image with a competitor's logo visible). See
+ * lib/placeholders.ts for the fallback resolution order (admin upload ->
+ * curated Unsplash -> generic placeholder).
  */
 
 function unsplash(id: string, w = 1200, q = 80) {
   return `https://images.unsplash.com/photo-${id}?w=${w}&q=${q}&auto=format&fit=crop`;
 }
 
-export const HERO_IMAGE = unsplash("1601758228041-f3b2795255f1", 1400);
+// A pug settled into a stylish grey carrier bed with tan leather trim,
+// no visible logos or text.
+export const HERO_IMAGE = unsplash("1591768795000-25df3bf6620a", 1400);
 
 export const CATEGORY_IMAGES = {
   dogs: unsplash("1583512603805-3cc6b41f3edb", 800),
-  cats: unsplash("1543466835-00a7907e9de1", 800),
-  "small-animals": unsplash("1594149929911-78975a43d4f5", 800),
-  birds: unsplash("1425082661705-1834bfd09dca", 800),
+  cats: unsplash("1761614282055-29e039aac354", 800),
+  "small-animals": unsplash("1658938821244-b2f28b7756eb", 800),
+  birds: unsplash("1452570053594-1b985d6ea890", 800),
 } as const;
 
 export const DOG_IMAGES = [
-  unsplash("1601758228041-f3b2795255f1"),
-  unsplash("1583512603805-3cc6b41f3edb"),
-  unsplash("1444212477490-ca407925329e"),
-  unsplash("1560807707-8cc77767d783"),
-  unsplash("1595433707802-6b2626ef1c91"),
-  unsplash("1583511655857-d19b40a7a54e"),
-  unsplash("1552053831-71594a27632d"),
+  unsplash("1583512603805-3cc6b41f3edb"), // french bulldog puppy, yellow background
+  unsplash("1444212477490-ca407925329e"), // three puppies outdoors
+  unsplash("1583511655857-d19b40a7a54e"), // french bulldog puppy, blue background
+  unsplash("1591768795000-25df3bf6620a"), // pug in a stylish carrier bed
+  unsplash("1765045952615-9e28d239f053"), // yorkie peeking out of a carrier
 ];
 
 export const CAT_IMAGES = [
-  unsplash("1543466835-00a7907e9de1"),
-  unsplash("1548199973-03cce0bbc87b"),
-  unsplash("1583337130417-3346a1be7dee"),
-  unsplash("1601979031925-424e53b6caaa"),
-  unsplash("1591561582301-7ce6588cc286"),
+  unsplash("1761614282055-29e039aac354"), // cat in a wheeled carrier
+  unsplash("1565029400423-ec64047d5f07"), // cat resting beside a carrier bag
+  unsplash("1765182272682-c1e8edf6251e"), // cat peeking out of a woven bag
+  unsplash("1595433707802-6b2626ef1c91"), // kitten portrait
 ];
 
 export const SMALL_ANIMAL_IMAGES = [
-  unsplash("1594149929911-78975a43d4f5"),
-  unsplash("1524704796725-9fc3044a58b2"),
-  unsplash("1591946614720-90a587da4a36"),
-  unsplash("1500462918059-b1a0cb512f1d"),
+  unsplash("1658938821244-b2f28b7756eb"), // two guinea pigs eating
+  unsplash("1658938822127-44b96082ddf6"), // two guinea pigs
+  unsplash("1612267168669-679c961c5b31"), // three guinea pigs
+  unsplash("1585110396000-c9ffd4e4b308"), // white rabbit
+  unsplash("1591561582301-7ce6588cc286"), // white rabbit, close up
 ];
 
 export const BIRD_IMAGES = [
-  unsplash("1425082661705-1834bfd09dca"),
-  unsplash("1425421669292-0c3da3b8f529"),
-  unsplash("1452570053594-1b985d6ea890"),
-  unsplash("1444464666168-49d633b86797"),
-  unsplash("1591160690555-5debfba289f0"),
+  unsplash("1452570053594-1b985d6ea890"), // blue and gold macaw
+  unsplash("1444464666168-49d633b86797"), // kingfisher
+  unsplash("1552728089-57bdde30beb3"), // green parakeet
 ];
 
 export const LIFESTYLE_IMAGES = {
-  whyChoose1: unsplash("1595433707802-6b2626ef1c91", 700),
-  whyChoose2: unsplash("1583337130417-3346a1be7dee", 700),
-  whyChoose3: unsplash("1594149929911-78975a43d4f5", 700),
-  newsletter: unsplash("1552053831-71594a27632d", 1200),
-  about: unsplash("1601979031925-424e53b6caaa", 1200),
-  blogFallback: unsplash("1560807707-8cc77767d783", 900),
+  whyChoose1: unsplash("1595433707802-6b2626ef1c91", 700), // kitten
+  whyChoose2: unsplash("1583512603805-3cc6b41f3edb", 700), // dog
+  whyChoose3: unsplash("1658938821244-b2f28b7756eb", 700), // guinea pigs
+  newsletter: unsplash("1552053831-71594a27632d", 1200), // dog with a flower
+  about: unsplash("1565029400423-ec64047d5f07", 1200), // cat resting by a carrier
+  blogFallback: unsplash("1560807707-8cc77767d783", 900), // spaniel puppy
 };
 
 export const IMAGES_BY_PET_TYPE = {

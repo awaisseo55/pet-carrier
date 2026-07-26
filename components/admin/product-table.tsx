@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { formatPrice } from "@/lib/utils";
+import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import type { Product } from "@/lib/types";
 import { toast } from "sonner";
 
@@ -149,7 +150,13 @@ export function ProductTable({ products }: { products: Product[] }) {
                 <td className="p-3">
                   <div className="flex items-center gap-3">
                     <div className="relative size-12 shrink-0 overflow-hidden rounded-lg bg-cream-dark">
-                      <Image src={product.images[0]} alt="" fill sizes="48px" className="object-cover" />
+                      <Image
+                        src={product.images[0] || PRODUCT_PLACEHOLDER}
+                        alt=""
+                        fill
+                        sizes="48px"
+                        className="object-cover"
+                      />
                     </div>
                     <span className="line-clamp-2 max-w-xs font-medium">{product.title}</span>
                   </div>

@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, LogOut, Package, Settings, ShoppingCart } from "lucide-react";
+import { FolderTree, Image as ImageIcon, LayoutDashboard, LogOut, Newspaper, Package, Settings, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
+  { href: "/admin/categories", label: "Categories", icon: FolderTree },
+  { href: "/admin/homepage", label: "Homepage", icon: ImageIcon },
+  { href: "/admin/blog", label: "Blog", icon: Newspaper },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 

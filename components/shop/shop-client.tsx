@@ -16,7 +16,8 @@ import {
 } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { PET_TYPES } from "@/lib/constants";
-import type { PetType, Product } from "@/lib/types";
+import { CATEGORIES, TRAVEL_TYPES } from "@/lib/categories";
+import type { PetType, Product, Subcategory, TravelType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 const PRICE_BANDS = [
@@ -45,6 +46,8 @@ export function ShopClient({
   const initialQuery = searchParams.get("q") ?? "";
 
   const [petTypes, setPetTypes] = React.useState<PetType[]>(lockedCategory ? [lockedCategory] : []);
+  const [subcategories, setSubcategories] = React.useState<Subcategory[]>([]);
+  const [travelTypes, setTravelTypes] = React.useState<TravelType[]>([]);
   const [priceBand, setPriceBand] = React.useState(0);
   const [sort, setSort] = React.useState("featured");
   const [query, setQuery] = React.useState(initialQuery);
@@ -54,10 +57,29 @@ export function ShopClient({
     setPetTypes((prev) => (prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]));
   }
 
+  function toggleSubcategory(value: Subcategory) {
+    setSubcategories((prev) => (prev.includes(value) ? prev.filter((s) => s !== value) : [...prev, value]));
+  }
+
+  function toggleTravelType(value: TravelType) {
+    setTravelTypes((prev) => (prev.includes(value) ? prev.filter((t) => t !== value) : [...prev, value]));
+  }
+
+  const visibleCategories = lockedCategory
+    ? CATEGORIES.filter((c) => c.value === lockedCategory)
+    : petTypes.length > 0
+      ? CATEGORIES.filter((c) => petTypes.includes(c.value))
+      : CATEGORIES;
+
   const filtered = React.useMemo(() => {
     const band = PRICE_BANDS[priceBand];
     let list = products.filter((p) => {
       if (petTypes.length > 0 && !petTypes.includes(p.pet_type)) return false;
+      if (subcategories.length > 0 && (!p.subcategory || !subcategories.includes(p.subcategory))) return false;
+      if (travelTypes.length > 0) {
+        const productTravel = p.travel_types || [];
+        if (!travelTypes.some((t) => productTravel.includes(t))) return false;
+      }
       if (p.price < band.min || p.price > band.max) return false;
       if (query) {
         const q = query.toLowerCase();
@@ -73,7 +95,10 @@ export function ShopClient({
     if (sort === "title") list = [...list].sort((a, b) => a.title.localeCompare(b.title));
 
     return list;
-  }, [products, petTypes, priceBand, query, sort]);
+  }, [products, petTypes, subcategories, travelTypes, priceBand, query, sort]);
+
+  const activeFilterCount =
+    (lockedCategory ? 0 : petTypes.length) + subcategories.length + travelTypes.length + (priceBand > 0 ? 1 : 0);
 
   const filterPanel = (
     <div className="flex flex-col gap-8">
@@ -93,6 +118,48 @@ export function ShopClient({
           </div>
         </div>
       )}
+
+      <div>
+        <h3 className="font-medium text-foreground">Size &amp; Life Stage</h3>
+        <div className="mt-3 flex flex-col gap-4">
+          {visibleCategories.map((category) => (
+            <div key={category.value}>
+              {!lockedCategory && visibleCategories.length > 1 && (
+                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  {category.label}
+                </p>
+              )}
+              <div className="flex flex-col gap-2.5">
+                {category.subcategories.map((sub) => (
+                  <label key={sub.value} className="flex items-center gap-2.5 cursor-pointer">
+                    <Checkbox
+                      checked={subcategories.includes(sub.value)}
+                      onCheckedChange={() => toggleSubcategory(sub.value)}
+                    />
+                    <span className="text-sm">{sub.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 className="font-medium text-foreground">Travel Type</h3>
+        <div className="mt-3 flex flex-col gap-2.5">
+          {TRAVEL_TYPES.map((type) => (
+            <label key={type.value} className="flex items-center gap-2.5 cursor-pointer">
+              <Checkbox
+                checked={travelTypes.includes(type.value)}
+                onCheckedChange={() => toggleTravelType(type.value)}
+              />
+              <span className="text-sm">{type.label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
       <div>
         <h3 className="font-medium text-foreground">Price</h3>
         <div className="mt-3 flex flex-col gap-2.5">
@@ -110,13 +177,29 @@ export function ShopClient({
           ))}
         </div>
       </div>
+
+      {activeFilterCount > 0 && (
+        <button
+          onClick={() => {
+            if (!lockedCategory) setPetTypes([]);
+            setSubcategories([]);
+            setTravelTypes([]);
+            setPriceBand(0);
+          }}
+          className="text-left text-sm font-medium text-sage-700 hover:underline cursor-pointer"
+        >
+          Clear all filters
+        </button>
+      )}
     </div>
   );
 
   return (
-    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[240px_1fr]">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[260px_1fr]">
       <aside className="hidden lg:block">
-        <div className="sticky top-24 rounded-2xl border border-border bg-card p-6">{filterPanel}</div>
+        <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto rounded-2xl border border-border bg-card p-6">
+          {filterPanel}
+        </div>
       </aside>
 
       <div>
@@ -127,9 +210,14 @@ export function ShopClient({
                 <Button variant="outline" size="sm" className="lg:hidden">
                   <SlidersHorizontal className="size-4" />
                   Filters
+                  {activeFilterCount > 0 && (
+                    <span className="ml-1 flex size-5 items-center justify-center rounded-full bg-secondary text-xs text-secondary-foreground">
+                      {activeFilterCount}
+                    </span>
+                  )}
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left">
+              <SheetContent side="left" className="overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>Filters</SheetTitle>
                 </SheetHeader>

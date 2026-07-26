@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -14,12 +15,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { PET_TYPES } from "@/lib/constants";
 import type { Product } from "@/lib/types";
 import { toast } from "sonner";
 
+const MAX_IMAGES = 8;
+
 export function ProductEditForm({ product }: { product: Product }) {
   const router = useRouter();
+  const [images, setImages] = React.useState<string[]>(product.images);
   const [form, setForm] = React.useState({
     title: product.title,
     short_description: product.short_description,
@@ -40,6 +45,10 @@ export function ProductEditForm({ product }: { product: Product }) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
+  function removeImage(index: number) {
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  }
+
   async function handleSave() {
     setSaving(true);
     const res = await fetch(`/api/admin/products/${product.id}`, {
@@ -47,6 +56,7 @@ export function ProductEditForm({ product }: { product: Product }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...form,
+        images,
         pet_type: form.category,
         compare_at_price: form.compare_at_price || null,
         features: form.features.split("\n").filter(Boolean),
@@ -66,15 +76,36 @@ export function ProductEditForm({ product }: { product: Product }) {
   return (
     <div className="rounded-2xl border border-border bg-card p-6">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[200px_1fr]">
-        <div className="flex gap-2 overflow-x-auto lg:flex-col">
-          {product.images.map((img, i) => (
-            <div
-              key={img + i}
-              className="relative size-24 shrink-0 overflow-hidden rounded-xl bg-cream-dark lg:size-full lg:aspect-square"
-            >
-              <Image src={img} alt="" fill sizes="200px" className="object-cover" />
-            </div>
-          ))}
+        <div className="flex flex-col gap-3">
+          <div className="flex gap-2 overflow-x-auto lg:flex-wrap">
+            {images.map((img, i) => (
+              <div
+                key={img + i}
+                className="group relative size-24 shrink-0 overflow-hidden rounded-xl bg-cream-dark"
+              >
+                <Image src={img} alt="" fill sizes="96px" className="object-cover" />
+                <button
+                  type="button"
+                  onClick={() => removeImage(i)}
+                  className="absolute top-1 right-1 flex size-5 items-center justify-center rounded-full bg-brown/70 text-white opacity-0 transition-opacity group-hover:opacity-100"
+                  aria-label="Remove image"
+                >
+                  <X className="size-3" />
+                </button>
+              </div>
+            ))}
+          </div>
+          {images.length < MAX_IMAGES ? (
+            <ImageUploadField
+              type="product"
+              slug={product.amazon_asin}
+              label="Add image"
+              refreshOnSuccess={false}
+              onUploaded={(url) => setImages((prev) => [...prev, url])}
+            />
+          ) : (
+            <p className="text-xs text-muted-foreground">Maximum of {MAX_IMAGES} images reached.</p>
+          )}
         </div>
 
         <div className="flex flex-col gap-4">

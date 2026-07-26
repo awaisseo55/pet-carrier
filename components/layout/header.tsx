@@ -2,11 +2,12 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
+import { ChevronDown, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { useCart } from "@/components/cart/cart-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { NavLink } from "@/components/layout/nav-link";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,6 +36,8 @@ export function Header() {
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const router = useRouter();
+  const pathname = usePathname();
+  const shopActive = pathname.startsWith("/shop");
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -55,9 +58,17 @@ export function Header() {
         <nav className="hidden lg:flex items-center gap-1">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="text-base font-medium rounded-full">
+              <button
+                type="button"
+                className={cn(
+                  "flex items-center gap-1 rounded-full px-4 py-2 text-base font-medium text-brown transition-colors hover:text-sage-700 cursor-pointer",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                  shopActive && "text-sage-700"
+                )}
+              >
                 Shop
-              </Button>
+                <ChevronDown className="size-3.5" />
+              </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               {shopLinks.map((link) => (
@@ -68,9 +79,9 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
           {navLinks.map((link) => (
-            <Button key={link.href} variant="ghost" size="sm" asChild className="text-base font-medium rounded-full">
-              <Link href={link.href}>{link.label}</Link>
-            </Button>
+            <NavLink key={link.href} href={link.href}>
+              {link.label}
+            </NavLink>
           ))}
         </nav>
 
@@ -138,7 +149,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-xl px-2 py-2 hover:bg-muted"
+              className="rounded-xl px-2 py-2 text-brown font-medium hover:bg-sage-50 hover:text-sage-700"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
@@ -149,7 +160,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-xl px-2 py-2 hover:bg-muted"
+              className="rounded-xl px-2 py-2 text-brown font-medium hover:bg-sage-50 hover:text-sage-700"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}

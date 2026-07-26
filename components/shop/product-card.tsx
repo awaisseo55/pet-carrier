@@ -7,11 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-context";
 import { formatPrice } from "@/lib/utils";
+import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import type { Product } from "@/lib/types";
 import { toast } from "sonner";
 
 export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
+  const image = product.images[0] || PRODUCT_PLACEHOLDER;
 
   function handleAdd(e: React.MouseEvent) {
     e.preventDefault();
@@ -20,7 +22,7 @@ export function ProductCard({ product }: { product: Product }) {
       product_id: product.id,
       slug: product.slug,
       title: product.title,
-      image: product.images[0],
+      image,
       price: product.price,
       stock_status: product.stock_status,
     });
@@ -34,7 +36,7 @@ export function ProductCard({ product }: { product: Product }) {
     >
       <div className="relative aspect-square overflow-hidden bg-cream-dark">
         <Image
-          src={product.images[0]}
+          src={image}
           alt={product.title}
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"

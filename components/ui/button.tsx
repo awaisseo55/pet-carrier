@@ -13,9 +13,9 @@ const buttonVariants = cva(
         primary: "bg-primary text-primary-foreground shadow-warm hover:bg-sage-600",
         outline:
           "border-2 border-primary text-primary bg-transparent hover:bg-sage-50",
-        ghost: "hover:bg-muted text-foreground",
+        ghost: "text-brown hover:bg-sage-50 hover:text-sage-700",
         link: "text-primary underline-offset-4 hover:underline rounded-none",
-        subtle: "bg-cream-dark text-foreground hover:bg-sage-100",
+        subtle: "bg-cream-dark text-brown hover:bg-sage-100",
       },
       size: {
         default: "h-11 px-6 py-2 has-[>svg]:px-5",
