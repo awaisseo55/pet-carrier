@@ -13,12 +13,12 @@ export function Newsletter() {
   }
 
   return (
-    <section className="bg-sage-500 py-16">
+    <section className="bg-emerald-500 py-16">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="font-serif text-3xl font-semibold text-white sm:text-4xl">
+        <h2 className="font-heading text-3xl font-semibold text-white sm:text-4xl">
           Get pet care tips and 10% off your first order
         </h2>
-        <p className="mt-3 text-sage-50">
+        <p className="mt-3 text-emerald-50">
           Join our newsletter for seasonal care guides, new arrivals and a welcome discount.
         </p>
         <form onSubmit={handleSubmit} className="mx-auto mt-6 flex max-w-md flex-col gap-3 sm:flex-row">

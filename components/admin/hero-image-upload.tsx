@@ -4,7 +4,7 @@ import { ImageUploadField } from "@/components/admin/image-upload-field";
 
 export function HeroImageUpload({ url, isCustom }: { url: string; isCustom: boolean }) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-5">
+    <div className="rounded-lg border border-border bg-card p-5">
       <ImageUploadField
         type="hero"
         slug="main-hero"

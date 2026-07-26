@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal/legal-page";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Shipping Information",
@@ -42,7 +43,7 @@ export default function ShippingPage() {
       <h2>Where we deliver</h2>
       <p>
         At present we only deliver within the United Kingdom. If you have a specific delivery
-        question, please get in touch via our <a href="/contact">contact page</a>.
+        question, please get in touch via our <Link href="/contact">contact page</Link>.
       </p>
     </LegalPage>
   );

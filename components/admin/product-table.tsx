@@ -96,8 +96,8 @@ export function ProductTable({ products }: { products: Product[] }) {
   return (
     <div>
       {selected.size > 0 && (
-        <div className="mb-4 flex flex-wrap items-center gap-3 rounded-2xl border border-sage-200 bg-sage-50 p-4">
-          <span className="text-sm font-medium text-sage-800">{selected.size} selected</span>
+        <div className="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+          <span className="text-sm font-medium text-emerald-800">{selected.size} selected</span>
           <div className="flex items-center gap-2">
             <Input
               type="number"
@@ -123,7 +123,7 @@ export function ProductTable({ products }: { products: Product[] }) {
         </div>
       )}
 
-      <div className="overflow-x-auto rounded-2xl border border-border bg-card">
+      <div className="overflow-x-auto rounded-lg border border-border bg-card">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border text-left text-muted-foreground">
@@ -143,13 +143,13 @@ export function ProductTable({ products }: { products: Product[] }) {
           </thead>
           <tbody>
             {products.map((product) => (
-              <tr key={product.id} className="border-b border-border last:border-0 hover:bg-cream-dark/30">
+              <tr key={product.id} className="border-b border-border last:border-0 hover:bg-gray-100/30">
                 <td className="p-3">
                   <Checkbox checked={selected.has(product.id)} onCheckedChange={() => toggle(product.id)} />
                 </td>
                 <td className="p-3">
                   <div className="flex items-center gap-3">
-                    <div className="relative size-12 shrink-0 overflow-hidden rounded-lg bg-cream-dark">
+                    <div className="relative size-12 shrink-0 overflow-hidden rounded-lg bg-gray-100">
                       <Image
                         src={product.images[0] || PRODUCT_PLACEHOLDER}
                         alt=""
@@ -161,7 +161,9 @@ export function ProductTable({ products }: { products: Product[] }) {
                     <span className="line-clamp-2 max-w-xs font-medium">{product.title}</span>
                   </div>
                 </td>
-                <td className="p-3 capitalize">{product.category.replace("-", " ")}</td>
+                <td className="p-3 text-sm text-gray-500">
+                  {product.category_slugs.length} categor{product.category_slugs.length === 1 ? "y" : "ies"}
+                </td>
                 <td className="p-3">{formatPrice(product.price)}</td>
                 <td className="p-3 capitalize">{product.stock_status.replace("_", " ")}</td>
                 <td className="p-3">

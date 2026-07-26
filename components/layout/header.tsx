@@ -2,31 +2,29 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
-import { ChevronDown, Menu, Search, ShoppingBag, User, X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { useCart } from "@/components/cart/cart-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { NavLink } from "@/components/layout/nav-link";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { CarriersMegaMenu } from "@/components/layout/carriers-mega-menu";
 import { cn } from "@/lib/utils";
 
-const shopLinks = [
-  { href: "/shop/dogs", label: "Dogs" },
-  { href: "/shop/cats", label: "Cats" },
-  { href: "/shop/small-animals", label: "Small Animals" },
-  { href: "/shop/birds", label: "Birds" },
-  { href: "/shop", label: "View All" },
+const navLinks = [
+  { href: "/strollers", label: "STROLLERS" },
+  { href: "/beds", label: "BEDS" },
+  { href: "/blog", label: "BLOG" },
+  { href: "/about", label: "ABOUT" },
+  { href: "/contact", label: "CONTACT" },
 ];
 
-const navLinks = [
-  { href: "/about", label: "About" },
+const mobileLinks = [
+  { href: "/carriers", label: "Carriers" },
+  { href: "/strollers", label: "Strollers" },
+  { href: "/beds", label: "Beds" },
   { href: "/blog", label: "Blog" },
+  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -36,48 +34,25 @@ export function Header() {
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const router = useRouter();
-  const pathname = usePathname();
-  const shopActive = pathname.startsWith("/shop");
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
     if (query.trim()) {
-      router.push(`/shop?q=${encodeURIComponent(query.trim())}`);
+      router.push(`/carriers?q=${encodeURIComponent(query.trim())}`);
       setSearchOpen(false);
       setQuery("");
     }
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-cream/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-border bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="font-serif text-2xl font-semibold text-sage-700 shrink-0">
+        <Link href="/" className="font-heading text-2xl font-extrabold tracking-tight text-ink shrink-0">
           Pet Carrier
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button
-                type="button"
-                className={cn(
-                  "flex items-center gap-1 rounded-full px-4 py-2 text-base font-medium text-brown transition-colors hover:text-sage-700 cursor-pointer",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                  shopActive && "text-sage-700"
-                )}
-              >
-                Shop
-                <ChevronDown className="size-3.5" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              {shopLinks.map((link) => (
-                <DropdownMenuItem key={link.href} asChild>
-                  <Link href={link.href}>{link.label}</Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <CarriersMegaMenu />
           {navLinks.map((link) => (
             <NavLink key={link.href} href={link.href}>
               {link.label}
@@ -126,7 +101,7 @@ export function Header() {
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search for carriers, e.g. small dog carrier"
+              placeholder="Search for carriers, strollers or beds"
             />
             <Button type="submit" variant="primary">
               Search
@@ -142,25 +117,11 @@ export function Header() {
         )}
       >
         <nav className="flex flex-col gap-1 px-4 py-3">
-          <span className="px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            Shop
-          </span>
-          {shopLinks.map((link) => (
+          {mobileLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-xl px-2 py-2 text-brown font-medium hover:bg-sage-50 hover:text-sage-700"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="my-1 h-px bg-border" />
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="rounded-xl px-2 py-2 text-brown font-medium hover:bg-sage-50 hover:text-sage-700"
+              className="rounded-lg px-2 py-2 text-ink font-medium hover:bg-emerald-50 hover:text-emerald-700"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}

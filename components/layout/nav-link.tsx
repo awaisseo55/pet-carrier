@@ -23,11 +23,9 @@ export function NavLink({
       href={href}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "relative rounded-full px-4 py-2 text-base font-medium text-brown transition-colors",
-        "after:absolute after:left-4 after:right-4 after:bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-sage-600 after:transition-transform after:duration-200",
-        "hover:text-sage-700 hover:after:scale-x-100",
+        "rounded-full px-4 py-2 text-sm font-semibold tracking-wide text-ink transition-colors hover:text-emerald-700",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-        active && "text-sage-700 after:scale-x-100",
+        active && "text-emerald-700",
         className
       )}
     >

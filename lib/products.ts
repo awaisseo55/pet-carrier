@@ -1,7 +1,8 @@
 import "server-only";
 import { promises as fs } from "fs";
 import path from "path";
-import type { PetType, Product } from "./types";
+import type { Product } from "./types";
+import { getHomepageSettings } from "./homepage";
 
 const PRODUCTS_FILE = path.join(process.cwd(), "data", "products.json");
 
@@ -25,13 +26,30 @@ export async function getProductById(id: string): Promise<Product | undefined> {
   return products.find((p) => p.id === id);
 }
 
-export async function getProductsByCategory(category: PetType): Promise<Product[]> {
+export async function getProductsByCategory(categoryPath: string): Promise<Product[]> {
   const products = await getActiveProducts();
-  return products.filter((p) => p.category === category);
+  return products.filter((p) => p.category_slugs.includes(categoryPath));
+}
+
+/** Same as getProductsByCategory but also includes products tagged with any descendant category, so hub pages (e.g. "carriers/dog-carriers") show products from their subcategories too. */
+export async function getProductsByCategoryIncludingDescendants(categoryPath: string): Promise<Product[]> {
+  const products = await getActiveProducts();
+  const prefix = `${categoryPath}/`;
+  return products.filter((p) => p.category_slugs.some((c) => c === categoryPath || c.startsWith(prefix)));
 }
 
 export async function getFeaturedProducts(limit = 6): Promise<Product[]> {
   const products = await getActiveProducts();
+  const homepage = await getHomepageSettings();
+
+  if (homepage.featured_product_id) {
+    const pinned = products.find((p) => p.id === homepage.featured_product_id);
+    if (pinned) {
+      const rest = products.filter((p) => p.id !== pinned.id);
+      return [pinned, ...rest].slice(0, limit);
+    }
+  }
+
   const featured = products.filter((p) => p.is_featured);
   const list = featured.length > 0 ? featured : products;
   return list.slice(0, limit);
@@ -40,7 +58,7 @@ export async function getFeaturedProducts(limit = 6): Promise<Product[]> {
 export async function getRelatedProducts(product: Product, limit = 4): Promise<Product[]> {
   const products = await getActiveProducts();
   return products
-    .filter((p) => p.category === product.category && p.id !== product.id)
+    .filter((p) => p.id !== product.id && p.category_slugs.some((c) => product.category_slugs.includes(c)))
     .slice(0, limit);
 }
 
@@ -52,8 +70,7 @@ export async function searchProducts(query: string): Promise<Product[]> {
     (p) =>
       p.title.toLowerCase().includes(q) ||
       p.short_description.toLowerCase().includes(q) ||
-      p.description.toLowerCase().includes(q) ||
-      p.category.toLowerCase().includes(q)
+      p.description.toLowerCase().includes(q)
   );
 }
 

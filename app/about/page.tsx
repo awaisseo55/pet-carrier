@@ -13,17 +13,17 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="text-center">
-        <h1 className="font-serif text-4xl font-semibold text-foreground">Our Story</h1>
-        <p className="mt-3 text-brown-soft">
+        <h1 className="font-heading text-4xl font-semibold text-foreground">Our Story</h1>
+        <p className="mt-3 text-gray-500">
           A small, UK-based team on a simple mission: help pets travel a little more comfortably.
         </p>
       </div>
 
-      <div className="relative mt-10 aspect-16/9 overflow-hidden rounded-3xl shadow-warm">
+      <div className="relative mt-10 aspect-16/9 overflow-hidden rounded-xl shadow-sm">
         <Image src={LIFESTYLE_IMAGES.about} alt="A contented cat resting in a soft carrier" fill sizes="900px" className="object-cover" />
       </div>
 
-      <div className="mt-10 flex flex-col gap-5 text-brown-soft">
+      <div className="mt-10 flex flex-col gap-5 text-gray-500">
         <p>
           Pet Carrier started with a familiar problem: too many carriers on the market look nice in
           photos but fall apart, wobble, or simply were not designed with real pets in mind. We
@@ -45,25 +45,25 @@ export default function AboutPage() {
 
       <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-3">
         <div className="flex flex-col items-center text-center">
-          <div className="flex size-14 items-center justify-center rounded-full bg-sage-100 text-sage-700">
+          <div className="flex size-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
             <Heart className="size-6" />
           </div>
-          <h3 className="mt-3 font-serif text-lg font-semibold">Handpicked</h3>
-          <p className="mt-1 text-sm text-brown-soft">Every product is chosen for genuine comfort and quality.</p>
+          <h3 className="mt-3 font-heading text-lg font-semibold">Handpicked</h3>
+          <p className="mt-1 text-sm text-gray-500">Every product is chosen for genuine comfort and quality.</p>
         </div>
         <div className="flex flex-col items-center text-center">
-          <div className="flex size-14 items-center justify-center rounded-full bg-sage-100 text-sage-700">
+          <div className="flex size-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
             <MapPin className="size-6" />
           </div>
-          <h3 className="mt-3 font-serif text-lg font-semibold">UK Based</h3>
-          <p className="mt-1 text-sm text-brown-soft">Packed and dispatched from right here in the UK.</p>
+          <h3 className="mt-3 font-heading text-lg font-semibold">UK Based</h3>
+          <p className="mt-1 text-sm text-gray-500">Packed and dispatched from right here in the UK.</p>
         </div>
         <div className="flex flex-col items-center text-center">
-          <div className="flex size-14 items-center justify-center rounded-full bg-sage-100 text-sage-700">
+          <div className="flex size-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
             <PackageCheck className="size-6" />
           </div>
-          <h3 className="mt-3 font-serif text-lg font-semibold">Reliable</h3>
-          <p className="mt-1 text-sm text-brown-soft">Straightforward ordering, honest tracking, real support.</p>
+          <h3 className="mt-3 font-heading text-lg font-semibold">Reliable</h3>
+          <p className="mt-1 text-sm text-gray-500">Straightforward ordering, honest tracking, real support.</p>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { FolderTree, Image as ImageIcon, LayoutDashboard, LogOut, Newspaper, Package, Settings, ShoppingCart } from "lucide-react";
+import { FolderTree, Image as ImageIcon, LayoutDashboard, LogOut, Newspaper, Package, Settings, ShoppingCart, Ticket } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -10,6 +10,7 @@ const links = [
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
   { href: "/admin/categories", label: "Categories", icon: FolderTree },
+  { href: "/admin/coupons", label: "Coupons", icon: Ticket },
   { href: "/admin/homepage", label: "Homepage", icon: ImageIcon },
   { href: "/admin/blog", label: "Blog", icon: Newspaper },
   { href: "/admin/settings", label: "Settings", icon: Settings },
@@ -28,7 +29,7 @@ export function AdminNav() {
   return (
     <nav className="flex h-full flex-col justify-between p-4">
       <div className="flex flex-col gap-1">
-        <Link href="/admin" className="mb-4 px-2 font-serif text-lg font-semibold text-sage-700">
+        <Link href="/admin" className="mb-4 px-2 font-heading text-lg font-semibold text-emerald-700">
           Pet Carrier Admin
         </Link>
         {links.map((link) => {
@@ -39,7 +40,7 @@ export function AdminNav() {
               href={link.href}
               className={cn(
                 "flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
-                active ? "bg-sage-100 text-sage-800" : "text-brown-soft hover:bg-muted"
+                active ? "bg-emerald-100 text-emerald-800" : "text-gray-500 hover:bg-muted"
               )}
             >
               <link.icon className="size-4.5" />
@@ -50,7 +51,7 @@ export function AdminNav() {
       </div>
       <button
         onClick={handleLogout}
-        className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-brown-soft hover:bg-muted cursor-pointer"
+        className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-500 hover:bg-muted cursor-pointer"
       >
         <LogOut className="size-4.5" />
         Sign Out

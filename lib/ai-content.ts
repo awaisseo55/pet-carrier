@@ -1,6 +1,6 @@
 import "server-only";
-import type { PetType } from "./types";
 import type { ScrapedAmazonProduct } from "./amazon";
+import { CATEGORIES } from "./categories";
 
 export interface GeneratedContent {
   title: string;
@@ -10,8 +10,7 @@ export interface GeneratedContent {
   meta_description: string;
   features: string[];
   image_alt_texts: string[];
-  suggested_category: PetType;
-  suggested_pet_type: PetType;
+  suggested_category_slugs: string[];
 }
 
 // TODO: add ANTHROPIC_API_KEY to .env.local to enable AI-rewritten content.
@@ -20,16 +19,37 @@ export interface GeneratedContent {
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const MODEL = "claude-sonnet-5";
 
-function guessPetType(text: string): PetType {
+const ANIMAL_HUB: Record<string, string> = {
+  dog: "carriers/dog-carriers",
+  cat: "carriers/cat-carriers",
+  "small animal": "carriers/small-animal-carriers",
+  bird: "carriers/bird-carriers",
+};
+
+function guessAnimal(text: string): keyof typeof ANIMAL_HUB {
   const lower = text.toLowerCase();
-  if (/\bcat\b|kitten|feline/.test(lower)) return "cats";
-  if (/\bbird\b|parrot|budgie|canary|cockatiel/.test(lower)) return "birds";
-  if (/rabbit|guinea pig|hamster|gerbil|ferret|small animal|rodent/.test(lower)) return "small-animals";
-  return "dogs";
+  if (/\bcat\b|kitten|feline/.test(lower)) return "cat";
+  if (/\bbird\b|parrot|budgie|canary|cockatiel/.test(lower)) return "bird";
+  if (/rabbit|guinea pig|hamster|gerbil|ferret|small animal|rodent/.test(lower)) return "small animal";
+  return "dog";
+}
+
+/** Suggests one or two likely category paths from the product title/text, so the admin has a starting point rather than an empty picker. */
+export function suggestCategorySlugs(text: string): string[] {
+  const lower = text.toLowerCase();
+  const animal = guessAnimal(text);
+  const hub = ANIMAL_HUB[animal];
+
+  const matches = CATEGORIES.filter((c) => c.parentPath === hub).filter((c) => {
+    const slugWords = c.path.split("/").pop()!.replace(/-/g, " ");
+    return lower.includes(slugWords) || slugWords.split(" ").some((w) => w.length > 3 && lower.includes(w));
+  });
+
+  if (matches.length > 0) return matches.slice(0, 2).map((c) => c.path);
+  return [hub];
 }
 
 function fallbackContent(raw: ScrapedAmazonProduct): GeneratedContent {
-  const petType = guessPetType(`${raw.title} ${raw.description}`);
   const cleanTitle = raw.title.replace(/\s+/g, " ").trim();
   const shortTitle = cleanTitle.length > 60 ? `${cleanTitle.slice(0, 57)}...` : cleanTitle;
 
@@ -45,8 +65,7 @@ function fallbackContent(raw: ScrapedAmazonProduct): GeneratedContent {
     meta_description: description.slice(0, 155),
     features: raw.bullets.length > 0 ? raw.bullets : ["Comfortable, secure design", "Built for everyday use"],
     image_alt_texts: raw.images.map((_, i) => `${cleanTitle} - image ${i + 1}`),
-    suggested_category: petType,
-    suggested_pet_type: petType,
+    suggested_category_slugs: suggestCategorySlugs(`${raw.title} ${raw.description}`),
   };
 }
 
@@ -61,7 +80,7 @@ export async function generateProductContent(raw: ScrapedAmazonProduct): Promise
     return fallbackContent(raw);
   }
 
-  const prompt = `You are a copywriter for Pet Carrier, a warm and friendly UK pet carrier brand. Rewrite the following raw Amazon product data into unique, SEO-friendly content. Use British English (colour, favourite, £), a warm and friendly tone, and never use em dashes or health claims. Do not copy the Amazon copy verbatim, write it fresh.
+  const prompt = `You are a copywriter for Pet Carrier, a UK pet product brand selling carriers, strollers and beds. Rewrite the following raw Amazon product data into unique, SEO-friendly content. Use British English (colour, favourite, £), a warm and professional tone, and never use em dashes or health claims. Do not copy the Amazon copy verbatim, write it fresh.
 
 Raw title: ${raw.title}
 Raw price: ${raw.price ? `£${raw.price}` : "unknown"}
@@ -76,9 +95,7 @@ Respond with ONLY a JSON object matching this exact shape, no other text:
   "short_description": "one or two sentence summary, under 160 characters",
   "meta_title": "under 60 characters",
   "meta_description": "under 155 characters",
-  "features": ["5-7 rewritten bullet points"],
-  "suggested_category": "one of: dogs, cats, small-animals, birds",
-  "suggested_pet_type": "same as suggested_category"
+  "features": ["5-7 rewritten bullet points"]
 }`;
 
   try {
@@ -115,8 +132,7 @@ Respond with ONLY a JSON object matching this exact shape, no other text:
       meta_description: parsed.meta_description || parsed.short_description?.slice(0, 155) || "",
       features: Array.isArray(parsed.features) && parsed.features.length > 0 ? parsed.features : raw.bullets,
       image_alt_texts: raw.images.map((_, i) => `${parsed.title || raw.title} - image ${i + 1}`),
-      suggested_category: parsed.suggested_category || guessPetType(raw.title),
-      suggested_pet_type: parsed.suggested_pet_type || parsed.suggested_category || guessPetType(raw.title),
+      suggested_category_slugs: suggestCategorySlugs(`${parsed.title || raw.title} ${raw.description}`),
     };
   } catch (error) {
     console.error("Claude content generation failed, using fallback", error);

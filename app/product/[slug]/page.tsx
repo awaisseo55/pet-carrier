@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -13,8 +14,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { getActiveProducts, getProductBySlug, getRelatedProducts } from "@/lib/products";
-import { breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, faqJsonLd, productJsonLd } from "@/lib/seo";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
+import { getBreadcrumbTrail, getCategoryByPath } from "@/lib/categories";
 import { formatPrice } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -33,10 +35,20 @@ export async function generateMetadata({
   return {
     title: product.meta_title || product.title,
     description: product.meta_description || product.short_description,
+    alternates: { canonical: `/product/${product.slug}` },
     openGraph: {
+      type: "website",
       title: product.title,
       description: product.short_description,
       images: product.images.map((img) => ({ url: img })),
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+    other: {
+      "product:price:amount": product.price.toFixed(2),
+      "product:price:currency": "GBP",
+      "product:availability": product.stock_status === "out_of_stock" ? "out of stock" : "in stock",
     },
   };
 }
@@ -58,13 +70,16 @@ export default async function ProductPage({
 
   const related = await getRelatedProducts(product);
   const stock = stockLabel[product.stock_status];
+  const primaryCategoryPath = product.category_slugs[0];
+  const categoryTrail = primaryCategoryPath ? getBreadcrumbTrail(primaryCategoryPath) : [];
 
   const jsonLd = productJsonLd(product);
   const breadcrumbs = breadcrumbJsonLd([
     { name: "Home", url: "/" },
-    { name: "Shop", url: "/shop" },
+    ...categoryTrail.map((c) => ({ name: c.name, url: `/${c.path}` })),
     { name: product.title, url: `/product/${product.slug}` },
   ]);
+  const faqSchema = product.faqs && product.faqs.length > 0 ? faqJsonLd(product.faqs) : null;
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -73,19 +88,25 @@ export default async function ProductPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
-      <nav className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground">
+      <nav className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
         <Link href="/" className="hover:text-foreground">
           Home
         </Link>
-        <ChevronRight className="size-3.5" />
-        <Link href="/shop" className="hover:text-foreground">
-          Shop
-        </Link>
-        <ChevronRight className="size-3.5" />
-        <Link href={`/shop/${product.category}`} className="capitalize hover:text-foreground">
-          {product.category.replace("-", " ")}
-        </Link>
+        {categoryTrail.map((c) => (
+          <React.Fragment key={c.path}>
+            <ChevronRight className="size-3.5" />
+            <Link href={`/${c.path}`} className="hover:text-foreground">
+              {c.name}
+            </Link>
+          </React.Fragment>
+        ))}
         <ChevronRight className="size-3.5" />
         <span className="text-foreground line-clamp-1">{product.title}</span>
       </nav>
@@ -97,10 +118,12 @@ export default async function ProductPage({
         />
 
         <div>
-          <span className="text-sm font-medium uppercase tracking-wide text-sage-600">
-            {product.pet_type.replace("-", " ")}
-          </span>
-          <h1 className="mt-2 font-serif text-3xl font-semibold text-foreground sm:text-4xl">
+          {primaryCategoryPath && (
+            <span className="text-sm font-medium uppercase tracking-wide text-emerald-600">
+              {getCategoryByPath(primaryCategoryPath)?.name}
+            </span>
+          )}
+          <h1 className="mt-2 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
             {product.title}
           </h1>
 
@@ -114,33 +137,33 @@ export default async function ProductPage({
             <Badge variant={stock.variant}>{stock.label}</Badge>
           </div>
 
-          <p className="mt-4 text-brown-soft">{product.short_description}</p>
+          <p className="mt-4 text-gray-500">{product.short_description}</p>
 
           <div className="mt-6">
             <AddToCart product={product} />
           </div>
 
-          <div className="mt-6 grid grid-cols-1 gap-3 rounded-2xl bg-cream-dark/60 p-4 sm:grid-cols-3">
+          <div className="mt-6 grid grid-cols-1 gap-3 rounded-lg bg-gray-100/60 p-4 sm:grid-cols-3">
             <div className="flex items-center gap-2 text-sm">
-              <Truck className="size-4 shrink-0 text-sage-700" />
+              <Truck className="size-4 shrink-0 text-emerald-700" />
               Free UK shipping over £50
             </div>
             <div className="flex items-center gap-2 text-sm">
-              <RotateCcw className="size-4 shrink-0 text-sage-700" />
+              <RotateCcw className="size-4 shrink-0 text-emerald-700" />
               30-day returns
             </div>
             <div className="flex items-center gap-2 text-sm">
-              <ShieldCheck className="size-4 shrink-0 text-sage-700" />
+              <ShieldCheck className="size-4 shrink-0 text-emerald-700" />
               Secure checkout
             </div>
           </div>
 
           <div className="mt-8">
-            <h2 className="font-serif text-lg font-semibold">Features</h2>
+            <h2 className="font-heading text-lg font-semibold">Features</h2>
             <ul className="mt-3 flex flex-col gap-2">
               {product.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2 text-sm text-brown-soft">
-                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-terracotta-400" />
+                <li key={feature} className="flex items-start gap-2 text-sm text-gray-500">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-coral-400" />
                   {feature}
                 </li>
               ))}
@@ -151,8 +174,8 @@ export default async function ProductPage({
 
       <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <h2 className="font-serif text-2xl font-semibold text-foreground">Description</h2>
-          <div className="mt-4 flex flex-col gap-4 text-brown-soft">
+          <h2 className="font-heading text-2xl font-semibold text-foreground">Description</h2>
+          <div className="mt-4 flex flex-col gap-4 text-gray-500">
             {product.description.split("\n\n").map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
@@ -160,7 +183,7 @@ export default async function ProductPage({
 
           {product.faqs && product.faqs.length > 0 && (
             <div className="mt-10">
-              <h2 className="font-serif text-2xl font-semibold text-foreground">
+              <h2 className="font-heading text-2xl font-semibold text-foreground">
                 Frequently Asked Questions
               </h2>
               <Accordion type="single" collapsible className="mt-4">
@@ -176,8 +199,8 @@ export default async function ProductPage({
         </div>
 
         <div>
-          <h2 className="font-serif text-2xl font-semibold text-foreground">Specifications</h2>
-          <dl className="mt-4 divide-y divide-border rounded-2xl border border-border bg-card">
+          <h2 className="font-heading text-2xl font-semibold text-foreground">Specifications</h2>
+          <dl className="mt-4 divide-y divide-border rounded-lg border border-border bg-card">
             {Object.entries(product.specifications).map(([key, value]) => (
               <div key={key} className="flex justify-between gap-4 px-4 py-3 text-sm">
                 <dt className="text-muted-foreground">{key}</dt>
@@ -189,9 +212,9 @@ export default async function ProductPage({
       </div>
 
       <div className="mt-14">
-        <h2 className="font-serif text-2xl font-semibold text-foreground">Reviews</h2>
-        <div className="mt-4 flex flex-col items-center gap-3 rounded-2xl border border-dashed border-border bg-cream-dark/40 py-12 text-center">
-          <div className="flex gap-1 text-terracotta-300">
+        <h2 className="font-heading text-2xl font-semibold text-foreground">Reviews</h2>
+        <div className="mt-4 flex flex-col items-center gap-3 rounded-lg border border-dashed border-border bg-gray-100/40 py-12 text-center">
+          <div className="flex gap-1 text-coral-300">
             {Array.from({ length: 5 }).map((_, idx) => (
               <Star key={idx} className="size-4 fill-current" />
             ))}
@@ -204,7 +227,7 @@ export default async function ProductPage({
 
       {related.length > 0 && (
         <div className="mt-14">
-          <h2 className="font-serif text-2xl font-semibold text-foreground">You Might Also Like</h2>
+          <h2 className="font-heading text-2xl font-semibold text-foreground">You Might Also Like</h2>
           <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {related.map((item) => (
               <ProductCard key={item.id} product={item} />

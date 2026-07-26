@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal/legal-page";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -31,19 +32,19 @@ export default function TermsPage() {
       <h2>Product descriptions</h2>
       <p>
         We do our best to describe our products accurately, including sizing and materials. Minor
-        variations in colour or packaging may occur. Please see our <a href="/disclaimer">disclaimer</a>{" "}
+        variations in colour or packaging may occur. Please see our <Link href="/disclaimer">disclaimer</Link>{" "}
         for more on how we describe products.
       </p>
 
       <h2>Delivery</h2>
       <p>
-        See our <a href="/shipping">shipping page</a> for delivery times and costs. Risk in goods
+        See our <Link href="/shipping">shipping page</Link> for delivery times and costs. Risk in goods
         passes to you on delivery.
       </p>
 
       <h2>Returns</h2>
       <p>
-        See our <a href="/returns">returns policy</a> for details on returning an item.
+        See our <Link href="/returns">returns policy</Link> for details on returning an item.
       </p>
 
       <h2>Limitation of liability</h2>

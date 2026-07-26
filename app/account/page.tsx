@@ -13,7 +13,8 @@ export const metadata: Metadata = {
 };
 
 const statusLabels: Record<string, string> = {
-  pending: "Pending",
+  pending_payment: "Pending payment",
+  paid: "Paid",
   ordered_from_amazon: "Ordered",
   dispatched: "Dispatched",
   delivered: "Delivered",
@@ -31,26 +32,26 @@ export default async function AccountPage() {
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="font-serif text-3xl font-semibold text-foreground">Hi, {customer.name}</h1>
-          <p className="mt-1 text-brown-soft">{customer.email}</p>
+          <h1 className="font-heading text-3xl font-semibold text-foreground">Hi, {customer.name}</h1>
+          <p className="mt-1 text-gray-500">{customer.email}</p>
         </div>
         <LogoutButton />
       </div>
 
       <div className="mt-10">
-        <h2 className="font-serif text-xl font-semibold">Order History</h2>
+        <h2 className="font-heading text-xl font-semibold">Order History</h2>
         {orders.length === 0 ? (
-          <div className="mt-4 flex flex-col items-center gap-3 rounded-2xl border border-dashed border-border bg-cream-dark/40 py-14 text-center">
+          <div className="mt-4 flex flex-col items-center gap-3 rounded-lg border border-dashed border-border bg-gray-100/40 py-14 text-center">
             <Package className="size-8 text-muted-foreground" />
-            <p className="text-brown-soft">You haven’t placed any orders yet.</p>
-            <Link href="/shop" className="text-sage-700 hover:underline">
+            <p className="text-gray-500">You haven’t placed any orders yet.</p>
+            <Link href="/carriers" className="text-emerald-700 hover:underline">
               Start shopping
             </Link>
           </div>
         ) : (
           <ul className="mt-4 flex flex-col gap-3">
             {orders.map((order) => (
-              <li key={order.id} className="rounded-2xl border border-border bg-card p-5">
+              <li key={order.id} className="rounded-lg border border-border bg-card p-5">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="font-medium">Order #{order.id}</span>
                   <Badge>{statusLabels[order.status]}</Badge>
@@ -70,7 +71,7 @@ export default async function AccountPage() {
       </div>
 
       <div className="mt-10">
-        <h2 className="font-serif text-xl font-semibold">Addresses</h2>
+        <h2 className="font-heading text-xl font-semibold">Addresses</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           Saved addresses will appear here after your first order. For now, addresses are entered
           during checkout.

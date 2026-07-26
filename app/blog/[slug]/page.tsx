@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ChevronRight } from "lucide-react";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/blog";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts();
@@ -46,6 +46,7 @@ export default async function BlogPostPage({
     { name: "Blog", url: "/blog" },
     { name: post.title, url: `/blog/${post.slug}` },
   ]);
+  const article = articleJsonLd(post);
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
@@ -53,6 +54,7 @@ export default async function BlogPostPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }} />
 
       <nav className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground">
         <Link href="/" className="hover:text-foreground">
@@ -64,10 +66,10 @@ export default async function BlogPostPage({
         </Link>
       </nav>
 
-      <span className="text-sm font-medium uppercase tracking-wide text-terracotta-600">
+      <span className="text-sm font-medium uppercase tracking-wide text-coral-600">
         {post.category}
       </span>
-      <h1 className="mt-2 font-serif text-3xl font-semibold text-foreground sm:text-4xl">
+      <h1 className="mt-2 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
         {post.title}
       </h1>
       <p className="mt-3 text-sm text-muted-foreground">
@@ -80,11 +82,11 @@ export default async function BlogPostPage({
         &middot; {post.read_time}
       </p>
 
-      <div className="relative mt-8 aspect-16/9 overflow-hidden rounded-3xl shadow-warm">
+      <div className="relative mt-8 aspect-16/9 overflow-hidden rounded-xl shadow-sm">
         <Image src={post.cover_image} alt={post.title} fill priority sizes="800px" className="object-cover" />
       </div>
 
-      <div className="prose-content mt-8 flex flex-col gap-5 text-brown-soft">
+      <div className="prose-content mt-8 flex flex-col gap-5 text-gray-500">
         {post.content.split("\n\n").map((paragraph, index) => (
           <p key={index}>{paragraph}</p>
         ))}

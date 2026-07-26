@@ -8,12 +8,14 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-context";
 import { formatPrice } from "@/lib/utils";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
+import { getCategoryByPath } from "@/lib/categories";
 import type { Product } from "@/lib/types";
 import { toast } from "sonner";
 
 export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const image = product.images[0] || PRODUCT_PLACEHOLDER;
+  const primaryCategory = product.category_slugs[0] ? getCategoryByPath(product.category_slugs[0]) : undefined;
 
   function handleAdd(e: React.MouseEvent) {
     e.preventDefault();
@@ -32,9 +34,9 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/product/${product.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-warm transition-transform hover:-translate-y-1 hover:shadow-warm-lg"
+      className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg"
     >
-      <div className="relative aspect-square overflow-hidden bg-cream-dark">
+      <div className="relative aspect-square overflow-hidden bg-gray-100">
         <Image
           src={image}
           alt={product.title}
@@ -54,10 +56,12 @@ export function ProductCard({ product }: { product: Product }) {
         )}
       </div>
       <div className="flex flex-1 flex-col gap-2 p-4">
-        <span className="text-xs font-medium uppercase tracking-wide text-sage-600">
-          {product.pet_type.replace("-", " ")}
-        </span>
-        <h3 className="font-serif text-base font-semibold leading-snug text-foreground line-clamp-2">
+        {primaryCategory && (
+          <span className="text-xs font-medium uppercase tracking-wide text-emerald-600">
+            {primaryCategory.name}
+          </span>
+        )}
+        <h3 className="font-heading text-base font-semibold leading-snug text-foreground line-clamp-2">
           {product.title}
         </h3>
         <div className="mt-auto flex items-center justify-between pt-2">

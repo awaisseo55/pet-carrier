@@ -10,7 +10,7 @@ export default async function AdminProtectedLayout({
 
   return (
     <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:px-8">
-      <aside className="hidden w-56 shrink-0 rounded-2xl border border-border bg-card lg:block">
+      <aside className="hidden w-56 shrink-0 rounded-lg border border-border bg-card lg:block">
         <AdminNav />
       </aside>
       <div className="min-w-0 flex-1">{children}</div>

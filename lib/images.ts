@@ -17,7 +17,7 @@ function unsplash(id: string, w = 1200, q = 80) {
 // no visible logos or text.
 export const HERO_IMAGE = unsplash("1591768795000-25df3bf6620a", 1400);
 
-export const CATEGORY_IMAGES = {
+export const SHOP_BY_PET_IMAGES = {
   dogs: unsplash("1583512603805-3cc6b41f3edb", 800),
   cats: unsplash("1761614282055-29e039aac354", 800),
   "small-animals": unsplash("1658938821244-b2f28b7756eb", 800),
@@ -53,6 +53,17 @@ export const BIRD_IMAGES = [
   unsplash("1552728089-57bdde30beb3"), // green parakeet
 ];
 
+export const BED_IMAGES = [
+  unsplash("1759886181832-045d0310ec41"), // two dogs sleeping in a fluffy bed
+  unsplash("1742520660892-3f1143f6aae4"), // dog sleeping on a bed cushion
+];
+
+// No verified Unsplash stroller photo found yet, TODO: replace with a real
+// one once found, or an admin-uploaded photo takes over via lib/placeholders.ts.
+export const STROLLER_IMAGES = [unsplash("1583512603805-3cc6b41f3edb"), unsplash("1761614282055-29e039aac354")];
+
+export const MULTI_PET_IMAGES = [unsplash("1591768795000-25df3bf6620a"), unsplash("1658938821244-b2f28b7756eb")];
+
 export const LIFESTYLE_IMAGES = {
   whyChoose1: unsplash("1595433707802-6b2626ef1c91", 700), // kitten
   whyChoose2: unsplash("1583512603805-3cc6b41f3edb", 700), // dog
@@ -62,9 +73,25 @@ export const LIFESTYLE_IMAGES = {
   blogFallback: unsplash("1560807707-8cc77767d783", 900), // spaniel puppy
 };
 
-export const IMAGES_BY_PET_TYPE = {
+export const SHOP_BY_PET_LOOKUP: Record<keyof typeof SHOP_BY_PET_IMAGES, string[]> = {
   dogs: DOG_IMAGES,
   cats: CAT_IMAGES,
   "small-animals": SMALL_ANIMAL_IMAGES,
   birds: BIRD_IMAGES,
+};
+
+/** Maps a category's `animal` tag (see lib/categories.ts) to a verified image pool. */
+export const IMAGES_BY_ANIMAL: Record<string, string[]> = {
+  dog: DOG_IMAGES,
+  cat: CAT_IMAGES,
+  rabbit: SMALL_ANIMAL_IMAGES,
+  "guinea pig": SMALL_ANIMAL_IMAGES,
+  hamster: SMALL_ANIMAL_IMAGES,
+  ferret: SMALL_ANIMAL_IMAGES,
+  reptile: SMALL_ANIMAL_IMAGES,
+  "small animal": SMALL_ANIMAL_IMAGES,
+  budgie: BIRD_IMAGES,
+  parrot: BIRD_IMAGES,
+  bird: BIRD_IMAGES,
+  "multiple pets": MULTI_PET_IMAGES,
 };

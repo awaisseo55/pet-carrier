@@ -11,8 +11,8 @@ export default async function AdminProductsPage() {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="font-serif text-2xl font-semibold text-foreground">Products</h1>
-          <p className="mt-1 text-brown-soft">{products.length} product(s) in your catalogue.</p>
+          <h1 className="font-heading text-2xl font-semibold text-foreground">Products</h1>
+          <p className="mt-1 text-gray-500">{products.length} product(s) in your catalogue.</p>
         </div>
         <Button variant="default" asChild>
           <Link href="/admin/products/new">

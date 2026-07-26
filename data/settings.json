@@ -1,6 +1,18 @@
 {
+  "store_name": "Pet Carrier",
+  "tagline": "Everything for your pet on the move and at rest",
+  "contact_email": "hello@pet-carrier.co.uk",
+  "contact_phone": "+44 20 1234 5678",
+  "contact_address": "United Kingdom",
+  "social_instagram": "https://www.instagram.com/petcarrieruk",
+  "social_facebook": "https://www.facebook.com/petcarrieruk",
+  "social_tiktok": "https://www.tiktok.com/@petcarrieruk",
   "default_markup_percentage": 40,
   "free_shipping_threshold": 50,
   "standard_shipping_cost": 3.99,
+  "express_shipping_cost": 6.99,
+  "next_day_shipping_cost": 9.99,
+  "vat_rate": 20,
+  "currency": "GBP",
   "admin_notification_email": "hello@pet-carrier.co.uk"
 }

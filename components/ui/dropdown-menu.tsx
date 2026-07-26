@@ -25,7 +25,7 @@ function DropdownMenuContent({
         data-slot="dropdown-menu-content"
         sideOffset={sideOffset}
         className={cn(
-          "bg-card text-card-foreground z-50 min-w-[10rem] overflow-hidden rounded-2xl border border-border p-2 shadow-warm-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+          "bg-card text-card-foreground z-50 min-w-[10rem] overflow-hidden rounded-lg border border-border p-2 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
           className
         )}
         {...props}
@@ -43,7 +43,7 @@ function DropdownMenuItem({
     <DropdownMenuPrimitive.Item
       data-slot="dropdown-menu-item"
       className={cn(
-        "relative flex cursor-pointer items-center gap-2 rounded-xl px-3 py-2 text-sm outline-none select-none hover:bg-sage-50 focus:bg-sage-50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+        "relative flex cursor-pointer items-center gap-2 rounded-xl px-3 py-2 text-sm outline-none select-none hover:bg-emerald-50 focus:bg-emerald-50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         inset && "pl-8",
         className
       )}
@@ -62,7 +62,7 @@ function DropdownMenuCheckboxItem({
     <DropdownMenuPrimitive.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
       className={cn(
-        "relative flex cursor-pointer items-center gap-2 rounded-xl py-2 pr-3 pl-8 text-sm outline-none select-none hover:bg-sage-50 focus:bg-sage-50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+        "relative flex cursor-pointer items-center gap-2 rounded-xl py-2 pr-3 pl-8 text-sm outline-none select-none hover:bg-emerald-50 focus:bg-emerald-50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
       )}
       checked={checked}
@@ -87,7 +87,7 @@ function DropdownMenuRadioItem({
     <DropdownMenuPrimitive.RadioItem
       data-slot="dropdown-menu-radio-item"
       className={cn(
-        "relative flex cursor-pointer items-center gap-2 rounded-xl py-2 pr-3 pl-8 text-sm outline-none select-none hover:bg-sage-50 focus:bg-sage-50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+        "relative flex cursor-pointer items-center gap-2 rounded-xl py-2 pr-3 pl-8 text-sm outline-none select-none hover:bg-emerald-50 focus:bg-emerald-50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
       )}
       {...props}
@@ -161,7 +161,7 @@ function DropdownMenuSubTrigger({
     <DropdownMenuPrimitive.SubTrigger
       data-slot="dropdown-menu-sub-trigger"
       className={cn(
-        "flex cursor-pointer items-center rounded-xl px-3 py-2 text-sm outline-none select-none hover:bg-sage-50 data-[state=open]:bg-sage-50",
+        "flex cursor-pointer items-center rounded-xl px-3 py-2 text-sm outline-none select-none hover:bg-emerald-50 data-[state=open]:bg-emerald-50",
         inset && "pl-8",
         className
       )}
@@ -181,7 +181,7 @@ function DropdownMenuSubContent({
     <DropdownMenuPrimitive.SubContent
       data-slot="dropdown-menu-sub-content"
       className={cn(
-        "bg-card text-card-foreground z-50 min-w-[8rem] overflow-hidden rounded-2xl border border-border p-2 shadow-warm-lg",
+        "bg-card text-card-foreground z-50 min-w-[8rem] overflow-hidden rounded-lg border border-border p-2 shadow-lg",
         className
       )}
       {...props}

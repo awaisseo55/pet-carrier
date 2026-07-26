@@ -16,7 +16,8 @@ import type { Order, OrderStatus } from "@/lib/types";
 import { toast } from "sonner";
 
 const STATUS_OPTIONS: { value: OrderStatus; label: string }[] = [
-  { value: "pending", label: "Pending" },
+  { value: "pending_payment", label: "Pending payment" },
+  { value: "paid", label: "Paid" },
   { value: "ordered_from_amazon", label: "Ordered from Amazon" },
   { value: "dispatched", label: "Dispatched" },
   { value: "delivered", label: "Delivered" },
@@ -54,7 +55,7 @@ export function OrderRow({ order }: { order: Order }) {
   }
 
   return (
-    <tr className="border-b border-border last:border-0 align-top hover:bg-cream-dark/30">
+    <tr className="border-b border-border last:border-0 align-top hover:bg-gray-100/30">
       <td className="p-3 font-medium">#{order.id}</td>
       <td className="p-3">
         <p className="font-medium">{order.customer_name}</p>

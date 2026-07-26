@@ -1,17 +1,17 @@
 # Pet Carrier
 
-A UK e-commerce store for pet carriers (dogs, cats, small animals, birds), built with Next.js 15,
-TypeScript and Tailwind CSS v4. See [`CLAUDE.md`](./CLAUDE.md) for full project rules, design
-system and architecture notes.
+"Everything for your pet on the move and at rest." A UK e-commerce store selling carriers,
+strollers and beds, built with Next.js 15, TypeScript and Tailwind CSS v4. See
+[`CLAUDE.md`](./CLAUDE.md) for full project rules, design system and category architecture.
 
 ## Stack
 
 - Next.js 15 (App Router) + TypeScript
 - Tailwind CSS v4, shadcn/ui-style components, Framer Motion, lucide-react
-- JSON-file data layer under `/data` (products, orders, customers, blog, settings), see
-  `lib/*.ts` for the access functions
-- Stripe Checkout for payments, Resend for transactional email, Claude API for AI content
-  rewriting in the admin's Amazon import flow
+- JSON-file data layer under `/data` (products, orders, customers, categories, homepage, blog,
+  coupons, settings), see `lib/*.ts` for the access functions
+- Stripe Checkout for payments (with coupon support), Resend for transactional email, Claude API
+  for AI content rewriting in the admin's Amazon import flow
 - Deployed on Vercel
 
 ## Getting started
@@ -23,6 +23,17 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+## Site structure
+
+- `/carriers`, `/strollers`, `/beds` and around 70 subcategory pages under them, all real routes
+  generated from `lib/categories.ts` via `app/[section]/[[...path]]/page.tsx`. See `CLAUDE.md` for
+  how to add or edit categories.
+- `/product/[slug]` for individual products.
+- `/cart`, `/checkout` for the shopping flow.
+- `/account`, `/account/login`, `/account/register` for customers.
+- `/blog`, `/blog/[slug]` for content marketing.
+- `/admin` for the store owner, see below.
 
 ## Environment variables
 
@@ -42,21 +53,29 @@ has a safe fallback for local development:
 
 Visit `/admin`, log in with `ADMIN_PASSWORD`. From there:
 
-- **Products → Add from Amazon URL**: paste one or more Amazon UK product URLs (one per line),
-  fetch pulls the title, images, price and description, rewrites the copy with Claude (or a
-  fallback), lets you edit everything, then downloads and processes the images before saving.
-- **Products**: edit, delete, and bulk-update price or stock status for existing products.
+- **Dashboard**: product/category counts, pending orders, revenue, recent orders.
+- **Products**: add from an Amazon URL (auto-fetch, AI rewrite, category suggestions, then edit
+  everything before publishing), or add manually. Edit, delete, bulk price/stock updates, upload
+  extra images per product.
+- **Categories**: all ~70 categories, search and edit any of them, override the generated name,
+  copy, meta tags, FAQs, category image and featured products. Add brand new categories, or remove
+  ones you don't need.
+- **Coupons**: create percentage or fixed-amount discount codes with minimum order value, expiry
+  and usage limits, toggle active/inactive.
+- **Homepage**: hero image, heading, subheading, trust badges and featured product.
+- **Blog**: write and publish posts with a featured image.
 - **Orders**: view orders (created automatically by the Stripe webhook once payments are live),
-  update status, copy Amazon reorder links.
-- **Settings**: default markup percentage, shipping thresholds, notification email.
+  update status (pending payment → paid → ordered from Amazon → dispatched → delivered), copy
+  Amazon reorder links.
+- **Settings**: store details, contact info, social links, VAT rate, currency, default markup
+  percentage, shipping costs for each delivery speed.
 
 ## Data storage
 
-Products, orders, customers, blog posts and settings live as JSON files in `/data`. This keeps
-things simple to inspect and edit while the store is small. All reads/writes go through the
-functions in `lib/products.ts`, `lib/orders.ts`, `lib/customers.ts`, `lib/blog.ts` and
-`lib/settings.ts`, so migrating to Supabase or Postgres later only means rewriting those files, not
-every page that uses them.
+Products, orders, customers, categories, homepage content, blog posts, coupons and settings live
+as JSON files in `/data`. This keeps things simple to inspect and edit while the store is small.
+All reads/writes go through the functions in `lib/*.ts`, so migrating to Supabase or Postgres later
+only means rewriting those files, not every page that uses them.
 
 ## Key scripts
 

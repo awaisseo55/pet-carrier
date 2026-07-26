@@ -7,6 +7,7 @@ export function organizationJsonLd() {
     name: "Pet Carrier",
     url: siteUrl,
     logo: `${siteUrl}/placeholders/logo.png`,
+    description: "Everything for your pet on the move and at rest.",
     sameAs: [
       "https://www.instagram.com/petcarrieruk",
       "https://www.facebook.com/petcarrieruk",
@@ -21,6 +22,23 @@ export function organizationJsonLd() {
   };
 }
 
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Pet Carrier",
+    url: siteUrl,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteUrl}/carriers?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
+
 export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   return {
     "@context": "https://schema.org",
@@ -31,6 +49,89 @@ export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
       name: item.name,
       item: `${siteUrl}${item.url}`,
     })),
+  };
+}
+
+export function faqJsonLd(faqs: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+export function collectionPageJsonLd({
+  name,
+  description,
+  url,
+  itemNames = [],
+}: {
+  name: string;
+  description: string;
+  url: string;
+  itemNames?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name,
+    description,
+    url: `${siteUrl}${url}`,
+    ...(itemNames.length > 0
+      ? {
+          mainEntity: {
+            "@type": "ItemList",
+            itemListElement: itemNames.map((itemName, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: itemName,
+            })),
+          },
+        }
+      : {}),
+  };
+}
+
+export function articleJsonLd(post: {
+  title: string;
+  excerpt: string;
+  cover_image: string;
+  slug: string;
+  author: string;
+  published_at: string;
+  updated_at?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    image: post.cover_image.startsWith("http") ? post.cover_image : `${siteUrl}${post.cover_image}`,
+    datePublished: post.published_at,
+    dateModified: post.updated_at || post.published_at,
+    author: {
+      "@type": "Organization",
+      name: post.author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Pet Carrier",
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/placeholders/logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/blog/${post.slug}`,
+    },
   };
 }
 

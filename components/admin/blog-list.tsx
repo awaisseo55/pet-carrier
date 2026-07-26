@@ -27,17 +27,17 @@ export function BlogList({ posts }: { posts: BlogPost[] }) {
 
   if (posts.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-border bg-cream-dark/40 py-16 text-center text-brown-soft">
+      <div className="rounded-lg border border-dashed border-border bg-gray-100/40 py-16 text-center text-gray-500">
         No blog posts yet.
       </div>
     );
   }
 
   return (
-    <ul className="flex flex-col divide-y divide-border rounded-2xl border border-border bg-card">
+    <ul className="flex flex-col divide-y divide-border rounded-lg border border-border bg-card">
       {posts.map((post) => (
         <li key={post.id} className="flex items-center gap-4 p-4">
-          <div className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-cream-dark">
+          <div className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-gray-100">
             <Image src={post.cover_image} alt="" fill sizes="56px" className="object-cover" />
           </div>
           <div className="flex-1">

@@ -8,16 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { PET_TYPES } from "@/lib/constants";
+import { CategoryPicker } from "@/components/admin/category-picker";
 import { formatPrice } from "@/lib/utils";
-import type { PetType } from "@/lib/types";
 import { toast } from "sonner";
 import type { AmazonFetchPreview } from "@/app/api/admin/amazon/fetch/route";
 
@@ -96,6 +88,10 @@ export function AmazonImport() {
       toast.error("No valid products to save.");
       return;
     }
+    if (validResults.some((r) => r.category_slugs.length === 0)) {
+      toast.error("Choose at least one category for every product before saving.");
+      return;
+    }
 
     setSaving(true);
     try {
@@ -122,7 +118,7 @@ export function AmazonImport() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="rounded-2xl border border-border bg-card p-6">
+      <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
         <Label htmlFor="urls">Amazon UK product URL(s)</Label>
         <p className="mt-1 text-sm text-muted-foreground">
           Paste one URL, or multiple, one per line, to add several products at once.
@@ -133,7 +129,7 @@ export function AmazonImport() {
           onChange={(e) => setUrlsText(e.target.value)}
           rows={4}
           placeholder={"https://www.amazon.co.uk/dp/B0XXXXXXXX\nhttps://www.amazon.co.uk/dp/B0YYYYYYYY"}
-          className="mt-3 w-full rounded-xl border border-input bg-cream px-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="mt-3 w-full rounded-lg border border-input bg-white px-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
         <Button variant="default" className="mt-4" onClick={handleFetch} disabled={fetching}>
           {fetching ? <Loader2 className="size-4 animate-spin" /> : <Sparkles className="size-4" />}
@@ -145,13 +141,13 @@ export function AmazonImport() {
         <div className="flex flex-col gap-6">
           {results.map((result, index) =>
             result.ok ? (
-              <div key={result.amazon_url} className="rounded-2xl border border-border bg-card p-6">
+              <div key={result.amazon_url} className="rounded-lg border border-border bg-card p-6 shadow-sm">
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-[220px_1fr]">
                   <div className="flex gap-2 overflow-x-auto lg:flex-col">
                     {result.images.slice(0, 4).map((img, i) => (
                       <div
                         key={img + i}
-                        className="relative size-24 shrink-0 overflow-hidden rounded-xl bg-cream-dark lg:size-full lg:aspect-square"
+                        className="relative size-24 shrink-0 overflow-hidden rounded-lg bg-gray-100 lg:size-full lg:aspect-square"
                       >
                         <Image src={img} alt="" fill sizes="220px" className="object-cover" unoptimized />
                       </div>
@@ -183,7 +179,7 @@ export function AmazonImport() {
                         value={result.description}
                         onChange={(e) => updateResult(index, { description: e.target.value })}
                         rows={5}
-                        className="mt-1.5 w-full rounded-xl border border-input bg-cream px-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="mt-1.5 w-full rounded-lg border border-input bg-white px-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       />
                     </div>
 
@@ -229,30 +225,7 @@ export function AmazonImport() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                      <div>
-                        <Label>Category / Pet Type</Label>
-                        <Select
-                          value={result.category}
-                          onValueChange={(value) =>
-                            updateResult(index, {
-                              category: value as PetType,
-                              suggested_pet_type: value,
-                            })
-                          }
-                        >
-                          <SelectTrigger className="mt-1.5">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {PET_TYPES.map((type) => (
-                              <SelectItem key={type.value} value={type.value}>
-                                {type.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div>
                         <Label>Size range</Label>
                         <Input
@@ -274,6 +247,18 @@ export function AmazonImport() {
                     </div>
 
                     <div>
+                      <Label>Categories</Label>
+                      <p className="mt-0.5 mb-1.5 text-xs text-muted-foreground">
+                        Pre-selected based on the product title, adjust as needed. A product can belong to several
+                        categories.
+                      </p>
+                      <CategoryPicker
+                        selected={result.category_slugs}
+                        onChange={(paths) => updateResult(index, { category_slugs: paths })}
+                      />
+                    </div>
+
+                    <div>
                       <Label>Features (one per line)</Label>
                       <textarea
                         value={result.features.join("\n")}
@@ -281,7 +266,7 @@ export function AmazonImport() {
                           updateResult(index, { features: e.target.value.split("\n").filter(Boolean) })
                         }
                         rows={4}
-                        className="mt-1.5 w-full rounded-xl border border-input bg-cream px-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="mt-1.5 w-full rounded-lg border border-input bg-white px-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       />
                     </div>
 
@@ -307,7 +292,7 @@ export function AmazonImport() {
             ) : (
               <div
                 key={result.amazon_url}
-                className="flex items-start gap-3 rounded-2xl border border-alert-light bg-alert-light/40 p-5"
+                className="flex items-start gap-3 rounded-lg border border-alert-light bg-alert-light/40 p-5"
               >
                 <AlertTriangle className="mt-0.5 size-5 shrink-0 text-alert" />
                 <div>

@@ -8,10 +8,10 @@ export default function CheckoutCancelPage() {
       <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-alert-light">
         <XCircle className="size-8 text-alert" />
       </div>
-      <h1 className="mt-6 font-serif text-3xl font-semibold text-foreground sm:text-4xl">
+      <h1 className="mt-6 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
         Checkout cancelled
       </h1>
-      <p className="mt-3 text-brown-soft">
+      <p className="mt-3 text-gray-500">
         No payment was taken. Your basket is still waiting for you whenever you’re ready.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -19,7 +19,7 @@ export default function CheckoutCancelPage() {
           <Link href="/cart">Return to Basket</Link>
         </Button>
         <Button variant="outline" asChild>
-          <Link href="/shop">Continue Shopping</Link>
+          <Link href="/carriers">Continue Shopping</Link>
         </Button>
       </div>
     </div>

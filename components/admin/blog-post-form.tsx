@@ -53,7 +53,7 @@ export function BlogPostForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5 rounded-2xl border border-border bg-card p-6">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5 rounded-lg border border-border bg-card p-6">
       <div>
         <Label htmlFor="title">Title</Label>
         <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} required className="mt-1.5" />
@@ -84,7 +84,7 @@ export function BlogPostForm() {
           required
           rows={10}
           placeholder="Separate paragraphs with a blank line."
-          className="mt-1.5 w-full rounded-xl border border-input bg-cream px-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="mt-1.5 w-full rounded-xl border border-input bg-white px-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
 

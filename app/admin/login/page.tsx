@@ -37,13 +37,13 @@ export default function AdminLoginPage() {
 
   return (
     <div className="flex min-h-[70vh] items-center justify-center px-4">
-      <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-8 shadow-warm">
+      <div className="w-full max-w-sm rounded-lg border border-border bg-card p-8 shadow-sm">
         <div className="flex items-center gap-2">
-          <div className="flex size-10 items-center justify-center rounded-full bg-sage-100 text-sage-700">
+          <div className="flex size-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
             <Lock className="size-5" />
           </div>
           <div>
-            <h1 className="font-serif text-xl font-semibold">Admin Access</h1>
+            <h1 className="font-heading text-xl font-semibold">Admin Access</h1>
             <p className="text-sm text-muted-foreground">Pet Carrier control panel</p>
           </div>
         </div>

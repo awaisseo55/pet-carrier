@@ -3,12 +3,12 @@ import { promises as fs } from "fs";
 import path from "path";
 import sharp from "sharp";
 
-const PRODUCTS_DIR = path.join(process.cwd(), "public", "products");
+const PRODUCTS_DIR = path.join(process.cwd(), "public", "uploads", "product");
 
 /**
  * Downloads product images from Amazon, resizes and converts them to WebP,
- * and stores them under /public/products/[asin]/. Returns the public URL
- * paths to reference from the product record.
+ * and stores them under /public/uploads/product/[asin]/. Returns the public
+ * URL paths to reference from the product record.
  */
 export async function downloadAndProcessImages(asin: string, imageUrls: string[]): Promise<string[]> {
   const dir = path.join(PRODUCTS_DIR, asin);
@@ -34,7 +34,7 @@ export async function downloadAndProcessImages(asin: string, imageUrls: string[]
         .webp({ quality: 85 })
         .toFile(path.join(dir, filename));
 
-      results.push(`/products/${asin}/${filename}`);
+      results.push(`/uploads/product/${asin}/${filename}`);
     } catch (error) {
       console.error(`Failed to process image ${i} for ASIN ${asin}`, error);
     }

@@ -19,16 +19,16 @@ export default function CheckoutSuccessPage() {
       <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-success-light">
         <CheckCircle2 className="size-8 text-success" />
       </div>
-      <h1 className="mt-6 font-serif text-3xl font-semibold text-foreground sm:text-4xl">
+      <h1 className="mt-6 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
         Thank you, your order is confirmed
       </h1>
-      <p className="mt-3 text-brown-soft">
+      <p className="mt-3 text-gray-500">
         We’ve sent a confirmation email with your order details. We’re getting things ready to
         dispatch from the UK.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Button variant="primary" asChild>
-          <Link href="/shop">Continue Shopping</Link>
+          <Link href="/carriers">Continue Shopping</Link>
         </Button>
         <Button variant="outline" asChild>
           <Link href="/account">View My Orders</Link>

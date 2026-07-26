@@ -85,7 +85,7 @@ export function ImageUploadField({
     <div className="flex flex-col gap-2">
       <span className="text-sm font-medium text-foreground">{label}</span>
       <div className="flex items-start gap-4">
-        <div className={`relative ${aspect} w-32 shrink-0 overflow-hidden rounded-2xl border border-border bg-cream-dark`}>
+        <div className={`relative ${aspect} w-32 shrink-0 overflow-hidden rounded-lg border border-border bg-gray-100`}>
           {preview ? (
             <Image src={preview} alt="" fill sizes="128px" className="object-cover" />
           ) : (
@@ -112,9 +112,9 @@ export function ImageUploadField({
             {preview ? "Replace image" : "Upload image"}
           </Button>
           {progress !== null && (
-            <div className="h-1.5 w-40 overflow-hidden rounded-full bg-cream-dark">
+            <div className="h-1.5 w-40 overflow-hidden rounded-full bg-gray-100">
               <div
-                className="h-full rounded-full bg-sage-500 transition-all"
+                className="h-full rounded-full bg-emerald-500 transition-all"
                 style={{ width: `${progress}%` }}
               />
             </div>

@@ -1,28 +1,34 @@
 import Link from "next/link";
-import { Package, ShoppingCart, TrendingUp } from "lucide-react";
+import { FolderTree, Package, ShoppingCart, TrendingUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllProducts } from "@/lib/products";
 import { getAllOrders } from "@/lib/orders";
+import { getAllCategoryNodes } from "@/lib/category-store";
 import { formatPrice } from "@/lib/utils";
 
 export default async function AdminDashboardPage() {
-  const [products, orders] = await Promise.all([getAllProducts(), getAllOrders()]);
+  const [products, orders, categories] = await Promise.all([
+    getAllProducts(),
+    getAllOrders(),
+    getAllCategoryNodes(),
+  ]);
   const activeProducts = products.filter((p) => p.is_active).length;
-  const pendingOrders = orders.filter((o) => o.status === "pending").length;
+  const pendingOrders = orders.filter((o) => o.status === "pending_payment").length;
   const revenue = orders
     .filter((o) => o.payment_status === "paid")
     .reduce((sum, o) => sum + o.total, 0);
+  const recentOrders = orders.slice(0, 5);
 
   return (
     <div>
-      <h1 className="font-serif text-2xl font-semibold text-foreground">Dashboard</h1>
-      <p className="mt-1 text-brown-soft">A quick look at your store.</p>
+      <h1 className="font-heading text-2xl font-semibold text-foreground">Dashboard</h1>
+      <p className="mt-1 text-gray-500">A quick look at your store.</p>
 
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex-row items-center justify-between space-y-0 pb-0">
             <CardTitle className="text-sm font-medium text-muted-foreground">Products</CardTitle>
-            <Package className="size-4 text-sage-600" />
+            <Package className="size-4 text-emerald-600" />
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold">{activeProducts}</p>
@@ -31,8 +37,18 @@ export default async function AdminDashboardPage() {
         </Card>
         <Card>
           <CardHeader className="flex-row items-center justify-between space-y-0 pb-0">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Categories</CardTitle>
+            <FolderTree className="size-4 text-emerald-600" />
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-semibold">{categories.length}</p>
+            <p className="text-xs text-muted-foreground">Across carriers, strollers, beds</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex-row items-center justify-between space-y-0 pb-0">
             <CardTitle className="text-sm font-medium text-muted-foreground">Pending Orders</CardTitle>
-            <ShoppingCart className="size-4 text-terracotta-600" />
+            <ShoppingCart className="size-4 text-coral-600" />
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold">{pendingOrders}</p>
@@ -42,7 +58,7 @@ export default async function AdminDashboardPage() {
         <Card>
           <CardHeader className="flex-row items-center justify-between space-y-0 pb-0">
             <CardTitle className="text-sm font-medium text-muted-foreground">Revenue</CardTitle>
-            <TrendingUp className="size-4 text-sage-600" />
+            <TrendingUp className="size-4 text-emerald-600" />
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold">{formatPrice(revenue)}</p>
@@ -54,22 +70,57 @@ export default async function AdminDashboardPage() {
       <div className="mt-8 flex flex-wrap gap-3">
         <Link
           href="/admin/products/new"
-          className="rounded-full bg-secondary px-5 py-2.5 text-sm font-medium text-secondary-foreground shadow-warm hover:bg-terracotta-600"
+          className="rounded-full bg-secondary px-5 py-2.5 text-sm font-medium text-secondary-foreground shadow-sm hover:bg-coral-600"
         >
           Add Product from Amazon URL
         </Link>
         <Link
+          href="/admin/categories"
+          className="rounded-full border-2 border-primary px-5 py-2.5 text-sm font-medium text-primary hover:bg-emerald-50"
+        >
+          Manage Categories
+        </Link>
+        <Link
           href="/admin/orders"
-          className="rounded-full border-2 border-primary px-5 py-2.5 text-sm font-medium text-primary hover:bg-sage-50"
+          className="rounded-full border-2 border-primary px-5 py-2.5 text-sm font-medium text-primary hover:bg-emerald-50"
         >
           View Orders
         </Link>
       </div>
 
-      <div className="mt-8 rounded-2xl border border-dashed border-border bg-cream-dark/40 p-5 text-sm text-muted-foreground">
-        Product and order data currently lives in JSON files under <code>/data</code>. This is easy
-        to inspect and edit by hand for now, and can be migrated to Supabase or Postgres once order
-        volume grows.
+      <div className="mt-8">
+        <h2 className="font-heading text-lg font-semibold text-foreground">Recent Orders</h2>
+        {recentOrders.length === 0 ? (
+          <p className="mt-2 text-sm text-gray-500">No orders yet.</p>
+        ) : (
+          <div className="mt-3 overflow-x-auto rounded-lg border border-border bg-card">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border text-left text-gray-500">
+                  <th className="p-3">Order</th>
+                  <th className="p-3">Customer</th>
+                  <th className="p-3">Total</th>
+                  <th className="p-3">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recentOrders.map((order) => (
+                  <tr key={order.id} className="border-b border-border last:border-0">
+                    <td className="p-3 font-medium">#{order.id}</td>
+                    <td className="p-3">{order.customer_name}</td>
+                    <td className="p-3">{formatPrice(order.total)}</td>
+                    <td className="p-3 capitalize">{order.status.replace(/_/g, " ")}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-8 rounded-lg border border-dashed border-border bg-gray-50 p-5 text-sm text-muted-foreground">
+        Product, category and order data currently lives in JSON files under <code>/data</code>. This is easy to
+        inspect and edit by hand for now, and can be migrated to Supabase or Postgres once order volume grows.
       </div>
     </div>
   );

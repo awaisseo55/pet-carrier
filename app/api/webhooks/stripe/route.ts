@@ -4,6 +4,8 @@ import { stripe } from "@/lib/stripe";
 import { createOrder } from "@/lib/orders";
 import { sendOrderConfirmationEmail, sendOwnerNotificationEmail } from "@/lib/email";
 import { getSettings } from "@/lib/settings";
+import { incrementCouponUsage } from "@/lib/coupons";
+import type { DeliveryOption } from "@/lib/types";
 
 // TODO: add STRIPE_WEBHOOK_SECRET to .env.local. Get it by running
 // `stripe listen --forward-to localhost:3000/api/webhooks/stripe` locally,
@@ -34,23 +36,29 @@ export async function POST(request: Request) {
       const cartItems: { id: string; slug: string; title: string; qty: number; price: number; image: string }[] =
         JSON.parse(session.metadata?.cart_items || "[]");
 
+      const meta = session.metadata || {};
       const settings = await getSettings();
       const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
-      const shippingCost = subtotal >= settings.free_shipping_threshold ? 0 : settings.standard_shipping_cost;
-
-      const shipping = session.collected_information?.shipping_details;
-      const address = shipping?.address;
+      const deliveryOption = (meta.delivery_option as DeliveryOption) || "standard";
+      const shippingCostByOption: Record<DeliveryOption, number> = {
+        standard: subtotal >= settings.free_shipping_threshold ? 0 : settings.standard_shipping_cost,
+        express: settings.express_shipping_cost,
+        next_day: settings.next_day_shipping_cost,
+      };
 
       const order = await createOrder({
         stripe_session_id: session.id,
-        customer_name: shipping?.name || session.customer_details?.name || "Customer",
+        customer_name: meta.customer_name || session.customer_details?.name || "Customer",
         customer_email: session.customer_details?.email || "",
+        customer_phone: meta.customer_phone || undefined,
         shipping_address: {
-          line1: address?.line1 || "",
-          line2: address?.line2 || undefined,
-          city: address?.city || "",
-          postcode: address?.postal_code || "",
-          country: address?.country || "GB",
+          line1: meta.address_line1 || "",
+          line2: meta.address_line2 || undefined,
+          city: meta.city || "",
+          county: meta.county || undefined,
+          postcode: meta.postcode || "",
+          country: meta.country || "GB",
+          delivery_instructions: meta.delivery_instructions || undefined,
         },
         items: cartItems.map((item) => ({
           product_id: item.id,
@@ -61,14 +69,22 @@ export async function POST(request: Request) {
           price: item.price,
           amazon_url: "",
         })),
+        delivery_option: deliveryOption,
+        coupon_code: meta.coupon_code || undefined,
+        discount: meta.discount ? Number(meta.discount) : 0,
         subtotal,
-        shipping_cost: shippingCost,
+        shipping_cost: shippingCostByOption[deliveryOption],
+        vat: meta.vat ? Number(meta.vat) : 0,
         total: (session.amount_total || 0) / 100,
-        status: "pending",
+        status: "paid",
         payment_status: "paid",
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       });
+
+      if (meta.coupon_code) {
+        await incrementCouponUsage(meta.coupon_code);
+      }
 
       await Promise.all([sendOrderConfirmationEmail(order), sendOwnerNotificationEmail(order)]);
     } catch (error) {

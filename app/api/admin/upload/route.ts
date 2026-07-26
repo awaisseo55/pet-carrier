@@ -4,15 +4,19 @@ import path from "path";
 import sharp from "sharp";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { slugify } from "@/lib/utils";
+import { categoryUploadSlug } from "@/lib/placeholders";
 
 const MAX_SIZE_BYTES = 5 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 type UploadType = "category" | "hero" | "blog" | "product";
 
+// Dimensions per the spec: category 1600x900, hero 2000x1200, blog
+// 1200x630, product 1200x1200 (thumbnails are generated on the fly by
+// next/image's optimizer, so we only store the one main size here).
 const RESIZE_CONFIG: Record<UploadType, { width: number; height: number }> = {
-  category: { width: 800, height: 800 },
-  hero: { width: 1600, height: 1200 },
+  category: { width: 1600, height: 900 },
+  hero: { width: 2000, height: 1200 },
   blog: { width: 1200, height: 630 },
   product: { width: 1200, height: 1200 },
 };
@@ -45,16 +49,16 @@ export async function POST(request: Request) {
 
   let destRelative: string;
   if (type === "category") {
-    if (!slug) return NextResponse.json({ error: "Missing category slug." }, { status: 400 });
-    destRelative = `categories/${slugify(slug)}.webp`;
+    if (!slug) return NextResponse.json({ error: "Missing category path." }, { status: 400 });
+    destRelative = `uploads/category/${categoryUploadSlug(slug)}.webp`;
   } else if (type === "hero") {
-    destRelative = "hero/main-hero.webp";
+    destRelative = "uploads/hero/main-hero.webp";
   } else if (type === "blog") {
     if (!slug) return NextResponse.json({ error: "Missing post slug." }, { status: 400 });
-    destRelative = `blog/${slugify(slug)}.webp`;
+    destRelative = `uploads/blog/${slugify(slug)}.webp`;
   } else {
     if (!slug) return NextResponse.json({ error: "Missing product identifier." }, { status: 400 });
-    destRelative = `products/${slugify(slug)}/upload-${Date.now()}.webp`;
+    destRelative = `uploads/product/${slugify(slug)}/upload-${Date.now()}.webp`;
   }
 
   const destPath = path.join(process.cwd(), "public", destRelative);

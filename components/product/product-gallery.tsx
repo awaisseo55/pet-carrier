@@ -19,7 +19,7 @@ export function ProductGallery({ images, title }: { images: string[]; title: str
   return (
     <div className="flex flex-col gap-3">
       <div
-        className="relative aspect-square overflow-hidden rounded-3xl bg-cream-dark shadow-warm"
+        className="relative aspect-square overflow-hidden rounded-xl bg-gray-100 shadow-sm"
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setZooming(true)}
         onMouseLeave={() => setZooming(false)}

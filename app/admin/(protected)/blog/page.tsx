@@ -11,8 +11,8 @@ export default async function AdminBlogPage() {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="font-serif text-2xl font-semibold text-foreground">Blog</h1>
-          <p className="mt-1 text-brown-soft">{posts.length} post(s) published.</p>
+          <h1 className="font-heading text-2xl font-semibold text-foreground">Blog</h1>
+          <p className="mt-1 text-gray-500">{posts.length} post(s) published.</p>
         </div>
         <Button variant="default" asChild>
           <Link href="/admin/blog/new">

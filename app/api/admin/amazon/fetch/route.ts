@@ -23,11 +23,9 @@ export interface AmazonFetchPreview {
   price?: number;
   compare_at_price?: number | null;
   markup_percentage?: number;
-  category?: string;
+  category_slugs?: string[];
   size_range?: string;
   weight_capacity?: string;
-  suggested_category?: string;
-  suggested_pet_type?: string;
 }
 
 export async function POST(request: Request) {
@@ -80,11 +78,9 @@ export async function POST(request: Request) {
         price,
         compare_at_price: null,
         markup_percentage: settings.default_markup_percentage,
-        category: content.suggested_category,
+        category_slugs: content.suggested_category_slugs,
         size_range: "",
         weight_capacity: "",
-        suggested_category: content.suggested_category,
-        suggested_pet_type: content.suggested_pet_type,
       });
     } catch (error) {
       results.push({

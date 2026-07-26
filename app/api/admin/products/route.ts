@@ -17,7 +17,7 @@ interface SaveProductInput {
   price: number;
   compare_at_price?: number | null;
   markup_percentage: number;
-  category: Product["category"];
+  category_slugs: string[];
   size_range: string;
   weight_capacity: string;
   amazon_url: string;
@@ -71,8 +71,7 @@ export async function POST(request: Request) {
       stock_status: "in_stock",
       stock_count: 20,
       images,
-      category: input.category,
-      pet_type: input.category,
+      category_slugs: input.category_slugs,
       size_range: input.size_range || "Standard",
       weight_capacity: input.weight_capacity || "See listing",
       brand: "Pet Carrier",
