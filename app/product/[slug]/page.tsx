@@ -1,0 +1,213 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { ChevronRight, ShieldCheck, RotateCcw, Truck, Star } from "lucide-react";
+import { ProductGallery } from "@/components/product/product-gallery";
+import { AddToCart } from "@/components/product/add-to-cart";
+import { ProductCard } from "@/components/shop/product-card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { getActiveProducts, getProductBySlug, getRelatedProducts } from "@/lib/products";
+import { breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
+import { formatPrice } from "@/lib/utils";
+
+export async function generateStaticParams() {
+  const products = await getActiveProducts();
+  return products.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
+  if (!product) return {};
+  return {
+    title: product.meta_title || product.title,
+    description: product.meta_description || product.short_description,
+    openGraph: {
+      title: product.title,
+      description: product.short_description,
+      images: product.images.map((img) => ({ url: img })),
+    },
+  };
+}
+
+const stockLabel = {
+  in_stock: { label: "In stock", variant: "success" as const },
+  low_stock: { label: "Only a few left", variant: "alert" as const },
+  out_of_stock: { label: "Out of stock", variant: "outline" as const },
+};
+
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
+  if (!product || !product.is_active) notFound();
+
+  const related = await getRelatedProducts(product);
+  const stock = stockLabel[product.stock_status];
+
+  const jsonLd = productJsonLd(product);
+  const breadcrumbs = breadcrumbJsonLd([
+    { name: "Home", url: "/" },
+    { name: "Shop", url: "/shop" },
+    { name: product.title, url: `/product/${product.slug}` },
+  ]);
+
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
+
+      <nav className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground">
+        <Link href="/" className="hover:text-foreground">
+          Home
+        </Link>
+        <ChevronRight className="size-3.5" />
+        <Link href="/shop" className="hover:text-foreground">
+          Shop
+        </Link>
+        <ChevronRight className="size-3.5" />
+        <Link href={`/shop/${product.category}`} className="capitalize hover:text-foreground">
+          {product.category.replace("-", " ")}
+        </Link>
+        <ChevronRight className="size-3.5" />
+        <span className="text-foreground line-clamp-1">{product.title}</span>
+      </nav>
+
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+        <ProductGallery images={product.images} title={product.title} />
+
+        <div>
+          <span className="text-sm font-medium uppercase tracking-wide text-sage-600">
+            {product.pet_type.replace("-", " ")}
+          </span>
+          <h1 className="mt-2 font-serif text-3xl font-semibold text-foreground sm:text-4xl">
+            {product.title}
+          </h1>
+
+          <div className="mt-4 flex items-center gap-3">
+            <span className="text-2xl font-semibold text-foreground">{formatPrice(product.price)}</span>
+            {product.compare_at_price && (
+              <span className="text-lg text-muted-foreground line-through">
+                {formatPrice(product.compare_at_price)}
+              </span>
+            )}
+            <Badge variant={stock.variant}>{stock.label}</Badge>
+          </div>
+
+          <p className="mt-4 text-brown-soft">{product.short_description}</p>
+
+          <div className="mt-6">
+            <AddToCart product={product} />
+          </div>
+
+          <div className="mt-6 grid grid-cols-1 gap-3 rounded-2xl bg-cream-dark/60 p-4 sm:grid-cols-3">
+            <div className="flex items-center gap-2 text-sm">
+              <Truck className="size-4 shrink-0 text-sage-700" />
+              Free UK shipping over £50
+            </div>
+            <div className="flex items-center gap-2 text-sm">
+              <RotateCcw className="size-4 shrink-0 text-sage-700" />
+              30-day returns
+            </div>
+            <div className="flex items-center gap-2 text-sm">
+              <ShieldCheck className="size-4 shrink-0 text-sage-700" />
+              Secure checkout
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <h2 className="font-serif text-lg font-semibold">Features</h2>
+            <ul className="mt-3 flex flex-col gap-2">
+              {product.features.map((feature) => (
+                <li key={feature} className="flex items-start gap-2 text-sm text-brown-soft">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-terracotta-400" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <h2 className="font-serif text-2xl font-semibold text-foreground">Description</h2>
+          <div className="mt-4 flex flex-col gap-4 text-brown-soft">
+            {product.description.split("\n\n").map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+
+          {product.faqs && product.faqs.length > 0 && (
+            <div className="mt-10">
+              <h2 className="font-serif text-2xl font-semibold text-foreground">
+                Frequently Asked Questions
+              </h2>
+              <Accordion type="single" collapsible className="mt-4">
+                {product.faqs.map((faq) => (
+                  <AccordionItem key={faq.question} value={faq.question}>
+                    <AccordionTrigger>{faq.question}</AccordionTrigger>
+                    <AccordionContent>{faq.answer}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          )}
+        </div>
+
+        <div>
+          <h2 className="font-serif text-2xl font-semibold text-foreground">Specifications</h2>
+          <dl className="mt-4 divide-y divide-border rounded-2xl border border-border bg-card">
+            {Object.entries(product.specifications).map(([key, value]) => (
+              <div key={key} className="flex justify-between gap-4 px-4 py-3 text-sm">
+                <dt className="text-muted-foreground">{key}</dt>
+                <dd className="text-right font-medium text-foreground">{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div className="mt-14">
+        <h2 className="font-serif text-2xl font-semibold text-foreground">Reviews</h2>
+        <div className="mt-4 flex flex-col items-center gap-3 rounded-2xl border border-dashed border-border bg-cream-dark/40 py-12 text-center">
+          <div className="flex gap-1 text-terracotta-300">
+            {Array.from({ length: 5 }).map((_, idx) => (
+              <Star key={idx} className="size-4 fill-current" />
+            ))}
+          </div>
+          <p className="text-sm text-muted-foreground">
+            No reviews yet. Be the first to share your experience once your order arrives.
+          </p>
+        </div>
+      </div>
+
+      {related.length > 0 && (
+        <div className="mt-14">
+          <h2 className="font-serif text-2xl font-semibold text-foreground">You Might Also Like</h2>
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+            {related.map((item) => (
+              <ProductCard key={item.id} product={item} />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

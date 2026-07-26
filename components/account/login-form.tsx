@@ -1,0 +1,62 @@
+"use client";
+
+import * as React from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+
+export function LoginForm() {
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    const formData = new FormData(e.currentTarget);
+
+    const res = await fetch("/api/account/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: formData.get("email"),
+        password: formData.get("password"),
+      }),
+    });
+
+    const data = await res.json();
+    setLoading(false);
+
+    if (!res.ok) {
+      toast.error(data.error || "Something went wrong.");
+      return;
+    }
+
+    router.push("/account");
+    router.refresh();
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <div className="flex flex-col gap-1.5">
+        <Label htmlFor="email">Email</Label>
+        <Input id="email" name="email" type="email" required autoComplete="email" />
+      </div>
+      <div className="flex flex-col gap-1.5">
+        <Label htmlFor="password">Password</Label>
+        <Input id="password" name="password" type="password" required autoComplete="current-password" />
+      </div>
+      <Button type="submit" variant="default" size="lg" disabled={loading}>
+        {loading ? "Signing in..." : "Sign In"}
+      </Button>
+      <p className="text-center text-sm text-muted-foreground">
+        New here?{" "}
+        <Link href="/account/register" className="text-sage-700 hover:underline">
+          Create an account
+        </Link>
+      </p>
+    </form>
+  );
+}

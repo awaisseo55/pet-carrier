@@ -1,0 +1,6 @@
+{
+  "default_markup_percentage": 40,
+  "free_shipping_threshold": 50,
+  "standard_shipping_cost": 3.99,
+  "admin_notification_email": "hello@pet-carrier.co.uk"
+}
