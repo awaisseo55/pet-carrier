@@ -25,6 +25,8 @@ const MAX_IMAGES = 8;
 export function ProductEditForm({ product }: { product: Product }) {
   const router = useRouter();
   const [images, setImages] = React.useState<string[]>(product.images);
+  const [imageUrl, setImageUrl] = React.useState("");
+  const [fetchingImage, setFetchingImage] = React.useState(false);
   const [categorySlugs, setCategorySlugs] = React.useState<string[]>(product.category_slugs);
   const [form, setForm] = React.useState({
     title: product.title,
@@ -47,6 +49,26 @@ export function ProductEditForm({ product }: { product: Product }) {
 
   function removeImage(index: number) {
     setImages((prev) => prev.filter((_, i) => i !== index));
+  }
+
+  async function handleFetchImageUrl() {
+    if (!imageUrl.trim()) return;
+    setFetchingImage(true);
+    const res = await fetch(`/api/admin/products/${product.id}/fetch-image`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url: imageUrl.trim() }),
+    });
+    const data = await res.json();
+    setFetchingImage(false);
+
+    if (res.ok) {
+      setImages((prev) => [...prev, data.url]);
+      setImageUrl("");
+      toast.success("Image downloaded and added");
+    } else {
+      toast.error(data.error || "Could not fetch that image");
+    }
   }
 
   async function handleSave() {
@@ -99,14 +121,45 @@ export function ProductEditForm({ product }: { product: Product }) {
               </div>
             ))}
           </div>
+          {images.length === 0 && (
+            <p className="rounded-lg border border-alert-light bg-alert-light px-3 py-2 text-xs text-alert">
+              No images yet. This product will not look right on the site until at least one is added.
+            </p>
+          )}
+
           {images.length < MAX_IMAGES ? (
-            <ImageUploadField
-              type="product"
-              slug={product.amazon_asin}
-              label="Add image"
-              refreshOnSuccess={false}
-              onUploaded={(url) => setImages((prev) => [...prev, url])}
-            />
+            <>
+              <ImageUploadField
+                type="product"
+                slug={product.amazon_asin}
+                label="Upload from computer"
+                refreshOnSuccess={false}
+                onUploaded={(url) => setImages((prev) => [...prev, url])}
+              />
+              <div className="flex flex-col gap-1.5">
+                <Label>Or paste an Amazon image URL</Label>
+                <div className="flex gap-2">
+                  <Input
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    placeholder="https://m.media-amazon.com/images/I/..."
+                    className="h-9"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={handleFetchImageUrl}
+                    disabled={fetchingImage || !imageUrl.trim()}
+                  >
+                    {fetchingImage ? "Fetching..." : "Fetch"}
+                  </Button>
+                </div>
+                <span className="text-xs text-muted-foreground">
+                  We&apos;ll download it and store our own copy, no need to upload manually.
+                </span>
+              </div>
+            </>
           ) : (
             <p className="text-xs text-muted-foreground">Maximum of {MAX_IMAGES} images reached.</p>
           )}

@@ -167,9 +167,12 @@ export function ProductTable({ products }: { products: Product[] }) {
                 <td className="p-3">{formatPrice(product.price)}</td>
                 <td className="p-3 capitalize">{product.stock_status.replace("_", " ")}</td>
                 <td className="p-3">
-                  <Badge variant={product.is_active ? "success" : "outline"}>
-                    {product.is_active ? "Active" : "Draft"}
-                  </Badge>
+                  <div className="flex flex-wrap gap-1.5">
+                    <Badge variant={product.is_active ? "success" : "outline"}>
+                      {product.is_active ? "Active" : "Draft"}
+                    </Badge>
+                    {product.images.length === 0 && <Badge variant="alert">Images needed</Badge>}
+                  </div>
                 </td>
                 <td className="p-3">
                   <div className="flex justify-end gap-2">

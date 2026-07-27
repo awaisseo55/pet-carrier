@@ -65,15 +65,17 @@ export interface ProductImageSet {
  */
 export async function downloadAndProcessProductImageSet(
   id: string,
-  imageUrls: string[]
+  imageUrls: string[],
+  startIndex = 0
 ): Promise<ProductImageSet[]> {
   const dir = path.join(PRODUCTS_DIR, id);
   await fs.mkdir(dir, { recursive: true });
 
   const results: ProductImageSet[] = [];
 
-  for (let i = 0; i < imageUrls.length; i++) {
-    const url = imageUrls[i];
+  for (let offset = 0; offset < imageUrls.length; offset++) {
+    const i = startIndex + offset;
+    const url = imageUrls[offset];
     try {
       const response = await fetch(url, {
         headers: {
