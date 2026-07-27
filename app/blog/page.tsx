@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   description: "Pet care guides, travel tips and buying advice from the Pet Carrier team.",
 };
 
+// Belt-and-braces alongside the on-demand revalidatePath() calls in
+// lib/revalidate.ts (which fire immediately after an admin save).
+export const revalidate = 3600;
+
 export default async function BlogPage() {
   const posts = await getAllBlogPosts();
 

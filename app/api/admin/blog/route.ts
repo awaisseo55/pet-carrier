@@ -3,6 +3,7 @@ import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { createBlogPost, getAllBlogPosts } from "@/lib/blog";
 import { slugify } from "@/lib/utils";
 import { adminErrorResponse } from "@/lib/api-error";
+import { revalidateBlogPaths } from "@/lib/revalidate";
 
 export async function POST(request: Request) {
   if (!(await isAdminAuthenticated())) {
@@ -38,6 +39,7 @@ export async function POST(request: Request) {
       read_time: read_time || "3 min read",
     });
 
+    revalidateBlogPaths(post.slug);
     return NextResponse.json({ post });
   } catch (error) {
     return adminErrorResponse(error, "Could not create blog post.");

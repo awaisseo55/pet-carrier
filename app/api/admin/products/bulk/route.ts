@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { getAllProducts, saveAllProducts } from "@/lib/products";
 import { adminErrorResponse } from "@/lib/api-error";
+import { revalidateProductPaths } from "@/lib/revalidate";
 import type { StockStatus } from "@/lib/types";
 
 interface BulkUpdateInput {
@@ -39,6 +40,8 @@ export async function PATCH(request: Request) {
 
   try {
     await saveAllProducts(updated);
+    const changed = updated.filter((product) => idSet.has(product.id));
+    await Promise.all(changed.map(revalidateProductPaths));
   } catch (error) {
     return adminErrorResponse(error, "Could not save the bulk update.");
   }

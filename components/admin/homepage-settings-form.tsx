@@ -45,7 +45,7 @@ export function HomepageSettingsForm({
     setSaving(false);
 
     if (res.ok) {
-      toast.success("Homepage updated");
+      toast.success("Homepage updated", { description: "Changes will appear on the live site within a few seconds." });
       router.refresh();
     } else {
       const data = await res.json().catch(() => null);

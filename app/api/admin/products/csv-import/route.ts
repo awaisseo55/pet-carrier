@@ -4,6 +4,7 @@ import { processCsvRow, type ProductField } from "@/lib/csv-import";
 import { upsertProduct } from "@/lib/products";
 import { getSettings } from "@/lib/settings";
 import { adminErrorResponse } from "@/lib/api-error";
+import { revalidateProductPaths } from "@/lib/revalidate";
 
 interface ImportRequestBody {
   rows: Record<ProductField, string>[];
@@ -36,6 +37,7 @@ export async function POST(request: Request) {
 
       if (result.ok && result.product) {
         await upsertProduct(result.product);
+        await revalidateProductPaths(result.product);
         imported += 1;
         results.push({ row: result.row, ok: true, title: result.product.title, id: result.product.id });
       } else {

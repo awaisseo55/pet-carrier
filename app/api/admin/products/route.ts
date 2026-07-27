@@ -3,6 +3,7 @@ import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { upsertProduct } from "@/lib/products";
 import { downloadAndProcessImages } from "@/lib/image-pipeline";
 import { adminErrorResponse } from "@/lib/api-error";
+import { revalidateProductPaths } from "@/lib/revalidate";
 import type { Product } from "@/lib/types";
 
 interface SaveProductInput {
@@ -89,6 +90,7 @@ export async function POST(request: Request) {
       };
 
       await upsertProduct(product);
+      await revalidateProductPaths(product);
       saved.push(product);
     }
   } catch (error) {

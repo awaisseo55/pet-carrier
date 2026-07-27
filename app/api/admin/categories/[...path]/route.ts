@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
-import { deleteCategoryNode, saveCategoryOverride } from "@/lib/category-store";
+import { deleteCategoryNode, getCategoryNode, saveCategoryOverride } from "@/lib/category-store";
 import { adminErrorResponse } from "@/lib/api-error";
+import { revalidateCategoryPaths } from "@/lib/revalidate";
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ path: string[] }> }) {
   if (!(await isAdminAuthenticated())) {
@@ -13,7 +14,9 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ pa
   const updates = await request.json();
 
   try {
+    const node = await getCategoryNode(categoryPath);
     await saveCategoryOverride(categoryPath, updates);
+    revalidateCategoryPaths(categoryPath, node?.parentPath);
   } catch (error) {
     return adminErrorResponse(error, "Could not save category.");
   }
@@ -30,7 +33,9 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
   const categoryPath = path.join("/");
 
   try {
+    const node = await getCategoryNode(categoryPath);
     await deleteCategoryNode(categoryPath);
+    revalidateCategoryPaths(categoryPath, node?.parentPath);
   } catch (error) {
     return adminErrorResponse(error, "Could not delete category.");
   }

@@ -3,6 +3,7 @@ import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { addCustomCategory, getCategoryNode } from "@/lib/category-store";
 import { slugify } from "@/lib/utils";
 import { adminErrorResponse } from "@/lib/api-error";
+import { revalidateCategoryPaths } from "@/lib/revalidate";
 import type { CategoryNode, Section } from "@/lib/categories";
 
 export async function POST(request: Request) {
@@ -37,6 +38,7 @@ export async function POST(request: Request) {
 
   try {
     await addCustomCategory(node);
+    revalidateCategoryPaths(node.path, node.parentPath);
   } catch (error) {
     return adminErrorResponse(error, "Could not create category.");
   }

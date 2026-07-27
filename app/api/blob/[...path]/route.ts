@@ -19,15 +19,23 @@ export async function GET(_request: Request, { params }: { params: Promise<{ pat
     return new NextResponse("Not found", { status: 404 });
   }
 
-  const result = await get(pathname, { access: "private" });
-  if (!result || result.statusCode !== 200) {
+  try {
+    const result = await get(pathname, { access: "private" });
+    if (!result || result.statusCode !== 200) {
+      return new NextResponse("Not found", { status: 404 });
+    }
+
+    return new NextResponse(result.stream, {
+      headers: {
+        "Content-Type": result.blob.contentType,
+        "Cache-Control": "public, max-age=60",
+      },
+    });
+  } catch (error) {
+    // Blob not configured (no BLOB_READ_WRITE_TOKEN, e.g. local dev where
+    // images are served straight from /public/uploads instead) or a
+    // transient Blob API error: 404 rather than crashing the request.
+    console.error(`[api/blob] failed to fetch "${pathname}"`, error);
     return new NextResponse("Not found", { status: 404 });
   }
-
-  return new NextResponse(result.stream, {
-    headers: {
-      "Content-Type": result.blob.contentType,
-      "Cache-Control": "public, max-age=60",
-    },
-  });
 }

@@ -5,6 +5,7 @@ import { getAllProducts } from "@/lib/products";
 import { getAllOrders } from "@/lib/orders";
 import { getAllCategoryNodes } from "@/lib/category-store";
 import { formatPrice } from "@/lib/utils";
+import { PublishAllButton } from "@/components/admin/publish-all-button";
 
 export default async function AdminDashboardPage() {
   const [products, orders, categories] = await Promise.all([
@@ -86,6 +87,7 @@ export default async function AdminDashboardPage() {
         >
           View Orders
         </Link>
+        <PublishAllButton />
       </div>
 
       <div className="mt-8">

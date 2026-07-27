@@ -91,7 +91,7 @@ export function ProductEditForm({ product }: { product: Product }) {
     setSaving(false);
 
     if (res.ok) {
-      toast.success("Product updated");
+      toast.success("Product updated", { description: "Changes will appear on the live site within a few seconds." });
       router.push("/admin/products");
       router.refresh();
     } else {

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { deleteProduct, getProductById, upsertProduct } from "@/lib/products";
 import { adminErrorResponse } from "@/lib/api-error";
+import { revalidateProductPaths } from "@/lib/revalidate";
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!(await isAdminAuthenticated())) {
@@ -19,6 +20,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 
   try {
     await upsertProduct(updated);
+    await revalidateProductPaths(updated);
   } catch (error) {
     return adminErrorResponse(error, "Could not save product.");
   }
@@ -32,9 +34,11 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
   }
 
   const { id } = await params;
+  const existing = await getProductById(id);
 
   try {
     await deleteProduct(id);
+    if (existing) await revalidateProductPaths(existing);
   } catch (error) {
     return adminErrorResponse(error, "Could not delete product.");
   }

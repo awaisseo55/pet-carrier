@@ -6,6 +6,10 @@ import { ChevronRight } from "lucide-react";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/blog";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
+// Belt-and-braces alongside the on-demand revalidatePath() calls in
+// lib/revalidate.ts (which fire immediately after an admin save).
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));

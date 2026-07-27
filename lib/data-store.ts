@@ -45,13 +45,19 @@ async function readLocalFile<T>(filename: string): Promise<T> {
 
 const readJsonFileUncached = async <T>(filename: string): Promise<T> => {
   if (USE_BLOB) {
-    const result = await get(`${BLOB_PREFIX}${filename}`, { access: "private", useCache: false });
-    if (result && result.statusCode === 200) {
-      const text = await new Response(result.stream).text();
-      return JSON.parse(text) as T;
+    try {
+      const result = await get(`${BLOB_PREFIX}${filename}`, { access: "private", useCache: false });
+      if (result && result.statusCode === 200) {
+        const text = await new Response(result.stream).text();
+        return JSON.parse(text) as T;
+      }
+      // No blob written yet for this file: seed from the copy bundled in the
+      // deployment, the next write will create the blob.
+    } catch (error) {
+      // Transient Blob API failure: fall back to the (possibly stale)
+      // bundled copy rather than crashing the page.
+      console.error(`[data-store] Blob read failed for "${filename}", falling back to local file`, error);
     }
-    // No blob written yet for this file: seed from the copy bundled in the
-    // deployment, the next write will create the blob.
   }
   return readLocalFile<T>(filename);
 };

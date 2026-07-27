@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { saveHomepageSettings } from "@/lib/homepage";
 import { adminErrorResponse } from "@/lib/api-error";
+import { revalidateHomepage } from "@/lib/revalidate";
 import type { HomepageSettings } from "@/lib/types";
 
 export async function PATCH(request: Request) {
@@ -13,6 +14,7 @@ export async function PATCH(request: Request) {
 
   try {
     await saveHomepageSettings(settings);
+    revalidateHomepage();
   } catch (error) {
     return adminErrorResponse(error, "Could not save homepage settings.");
   }

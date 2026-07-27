@@ -59,7 +59,7 @@ export function ManualProductForm({ initialAmazonUrl = "" }: { initialAmazonUrl?
     setSaving(false);
 
     if (res.ok) {
-      toast.success("Product created");
+      toast.success("Product created", { description: "It will appear on the live site within a few seconds." });
       router.push("/admin/products");
     } else {
       const data = await res.json();

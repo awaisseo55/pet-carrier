@@ -71,7 +71,7 @@ export function CategoryEditForm({
     setSaving(false);
 
     if (res.ok) {
-      toast.success("Category updated");
+      toast.success("Category updated", { description: "Changes will appear on the live site within a few seconds." });
       router.push("/admin/categories");
       router.refresh();
     } else {

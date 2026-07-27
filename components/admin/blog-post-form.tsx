@@ -43,7 +43,7 @@ export function BlogPostForm() {
     setSaving(false);
 
     if (res.ok) {
-      toast.success("Blog post published");
+      toast.success("Blog post published", { description: "It will appear on the live site within a few seconds." });
       router.push("/admin/blog");
       router.refresh();
     } else {

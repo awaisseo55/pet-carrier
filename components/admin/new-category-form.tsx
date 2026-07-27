@@ -38,7 +38,7 @@ export function NewCategoryForm({ nodes }: { nodes: CategoryNode[] }) {
     setSaving(false);
 
     if (res.ok) {
-      toast.success("Category created");
+      toast.success("Category created", { description: "It will appear on the live site within a few seconds." });
       router.push("/admin/categories");
       router.refresh();
     } else {

@@ -18,6 +18,11 @@ import { breadcrumbJsonLd, faqJsonLd, productJsonLd } from "@/lib/seo";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import { getBreadcrumbTrail, getCategoryByPath } from "@/lib/categories";
 import { formatPrice } from "@/lib/utils";
+
+// Belt-and-braces alongside the on-demand revalidatePath() calls in
+// lib/revalidate.ts (which fire immediately after an admin save): a ceiling
+// so pricing/stock is never more than a minute stale even if one is missed.
+export const revalidate = 60;
 import { renderRichText } from "@/lib/markdown-lite";
 
 export async function generateStaticParams() {

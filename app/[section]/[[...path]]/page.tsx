@@ -16,6 +16,11 @@ import { getProductById, getProductsByCategoryIncludingDescendants } from "@/lib
 import { getCategoryImageUrl } from "@/lib/placeholders";
 import { breadcrumbJsonLd, collectionPageJsonLd, faqJsonLd } from "@/lib/seo";
 
+// Belt-and-braces alongside the on-demand revalidatePath() calls in
+// lib/revalidate.ts (which fire immediately after an admin save): a ceiling
+// so the page is never more than 5 minutes stale even if one is ever missed.
+export const revalidate = 300;
+
 function fullPathFrom(section: string, path?: string[]): string {
   return path && path.length > 0 ? `${section}/${path.join("/")}` : section;
 }

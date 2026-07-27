@@ -24,7 +24,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
     });
     setSaving(false);
     if (res.ok) {
-      toast.success("Settings saved");
+      toast.success("Settings saved", { description: "Changes will appear across the site within a few seconds." });
     } else {
       const data = await res.json().catch(() => null);
       toast.error(data?.error || "Could not save settings");

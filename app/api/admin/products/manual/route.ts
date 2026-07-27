@@ -4,6 +4,7 @@ import { getAllProducts, upsertProduct } from "@/lib/products";
 import { slugify } from "@/lib/utils";
 import { nanoid } from "nanoid";
 import { adminErrorResponse } from "@/lib/api-error";
+import { revalidateProductPaths } from "@/lib/revalidate";
 import type { Product } from "@/lib/types";
 
 export async function POST(request: Request) {
@@ -64,6 +65,7 @@ export async function POST(request: Request) {
 
   try {
     await upsertProduct(product);
+    await revalidateProductPaths(product);
   } catch (error) {
     return adminErrorResponse(error, "Could not save product.");
   }
