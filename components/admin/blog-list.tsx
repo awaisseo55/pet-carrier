@@ -21,7 +21,8 @@ export function BlogList({ posts }: { posts: BlogPost[] }) {
       toast.success("Post deleted");
       router.refresh();
     } else {
-      toast.error("Could not delete that post");
+      const data = await res.json().catch(() => null);
+      toast.error(data?.error || "Could not delete that post");
     }
   }
 

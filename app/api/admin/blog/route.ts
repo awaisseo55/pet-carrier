@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { createBlogPost, getAllBlogPosts } from "@/lib/blog";
 import { slugify } from "@/lib/utils";
+import { adminErrorResponse } from "@/lib/api-error";
 
 export async function POST(request: Request) {
   if (!(await isAdminAuthenticated())) {
@@ -24,17 +25,21 @@ export async function POST(request: Request) {
     suffix += 1;
   }
 
-  const post = await createBlogPost({
-    slug,
-    title,
-    excerpt,
-    content,
-    cover_image: cover_image || "",
-    category: category || "Pet Care",
-    author: author || "Pet Carrier Team",
-    published_at: new Date().toISOString(),
-    read_time: read_time || "3 min read",
-  });
+  try {
+    const post = await createBlogPost({
+      slug,
+      title,
+      excerpt,
+      content,
+      cover_image: cover_image || "",
+      category: category || "Pet Care",
+      author: author || "Pet Carrier Team",
+      published_at: new Date().toISOString(),
+      read_time: read_time || "3 min read",
+    });
 
-  return NextResponse.json({ post });
+    return NextResponse.json({ post });
+  } catch (error) {
+    return adminErrorResponse(error, "Could not create blog post.");
+  }
 }

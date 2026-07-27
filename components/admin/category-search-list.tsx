@@ -32,7 +32,8 @@ export function CategorySearchList({
       toast.success("Category deleted");
       router.refresh();
     } else {
-      toast.error("Could not delete that category");
+      const data = await res.json().catch(() => null);
+      toast.error(data?.error || "Could not delete that category");
     }
   }
 

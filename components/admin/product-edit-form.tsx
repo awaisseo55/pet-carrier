@@ -95,7 +95,8 @@ export function ProductEditForm({ product }: { product: Product }) {
       router.push("/admin/products");
       router.refresh();
     } else {
-      toast.error("Could not save changes");
+      const data = await res.json().catch(() => null);
+      toast.error(data?.error || "Could not save changes");
     }
   }
 

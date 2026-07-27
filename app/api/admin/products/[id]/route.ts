@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { deleteProduct, getProductById, upsertProduct } from "@/lib/products";
+import { adminErrorResponse } from "@/lib/api-error";
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!(await isAdminAuthenticated())) {
@@ -15,7 +16,12 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 
   const updates = await request.json();
   const updated = { ...existing, ...updates, id: existing.id, updated_at: new Date().toISOString() };
-  await upsertProduct(updated);
+
+  try {
+    await upsertProduct(updated);
+  } catch (error) {
+    return adminErrorResponse(error, "Could not save product.");
+  }
 
   return NextResponse.json({ product: updated });
 }
@@ -26,7 +32,12 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
   }
 
   const { id } = await params;
-  await deleteProduct(id);
+
+  try {
+    await deleteProduct(id);
+  } catch (error) {
+    return adminErrorResponse(error, "Could not delete product.");
+  }
 
   return NextResponse.json({ ok: true });
 }

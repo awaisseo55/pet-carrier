@@ -25,7 +25,8 @@ export function CouponList({ coupons }: { coupons: Coupon[] }) {
       toast.success(coupon.is_active ? "Coupon deactivated" : "Coupon activated");
       router.refresh();
     } else {
-      toast.error("Could not update coupon");
+      const data = await res.json().catch(() => null);
+      toast.error(data?.error || "Could not update coupon");
     }
   }
 
@@ -38,7 +39,8 @@ export function CouponList({ coupons }: { coupons: Coupon[] }) {
       toast.success("Coupon deleted");
       router.refresh();
     } else {
-      toast.error("Could not delete coupon");
+      const data = await res.json().catch(() => null);
+      toast.error(data?.error || "Could not delete coupon");
     }
   }
 

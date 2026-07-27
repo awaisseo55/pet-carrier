@@ -14,7 +14,16 @@ import { put, list } from "@vercel/blob";
  * as seed data until the first write creates the blob.
  */
 
-const usingBlob = () => !!process.env.BLOB_READ_WRITE_TOKEN;
+const ON_VERCEL = !!process.env.VERCEL;
+const HAS_BLOB_TOKEN = !!process.env.BLOB_READ_WRITE_TOKEN;
+const USE_BLOB = HAS_BLOB_TOKEN;
+
+// Runs once per cold start, shows up in Vercel function logs so a missing
+// BLOB_READ_WRITE_TOKEN in production is obvious instead of surfacing as a
+// confusing "EROFS: read-only file system" error from a failed fs.writeFile.
+console.log(
+  `[data-store] mode=${USE_BLOB ? "blob" : "local-fs"} onVercel=${ON_VERCEL} hasBlobToken=${HAS_BLOB_TOKEN}`
+);
 
 const BLOB_PREFIX = "data/";
 
@@ -34,7 +43,7 @@ async function findBlobUrl(filename: string): Promise<string | undefined> {
 }
 
 const readJsonFileUncached = async <T>(filename: string): Promise<T> => {
-  if (usingBlob()) {
+  if (USE_BLOB) {
     const url = await findBlobUrl(filename);
     if (url) {
       const res = await fetch(url, { cache: "no-store" });
@@ -52,7 +61,7 @@ export const readJsonFile = cache(readJsonFileUncached) as <T>(filename: string)
 export async function writeJsonFile<T>(filename: string, data: T): Promise<void> {
   const body = JSON.stringify(data, null, 2);
 
-  if (usingBlob()) {
+  if (USE_BLOB) {
     await put(`${BLOB_PREFIX}${filename}`, body, {
       access: "public",
       addRandomSuffix: false,
@@ -60,6 +69,14 @@ export async function writeJsonFile<T>(filename: string, data: T): Promise<void>
       contentType: "application/json",
     });
     return;
+  }
+
+  if (ON_VERCEL) {
+    throw new Error(
+      `Cannot save "${filename}": Vercel's filesystem is read-only and no Blob store is configured. ` +
+        `Add a Blob store (Storage tab -> Create Database -> Blob) and connect it to this project so ` +
+        `BLOB_READ_WRITE_TOKEN is set, then redeploy.`
+    );
   }
 
   await fs.writeFile(localPath(filename), body, "utf-8");

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { getAllProducts, saveAllProducts } from "@/lib/products";
+import { adminErrorResponse } from "@/lib/api-error";
 import type { StockStatus } from "@/lib/types";
 
 interface BulkUpdateInput {
@@ -36,7 +37,11 @@ export async function PATCH(request: Request) {
     return next;
   });
 
-  await saveAllProducts(updated);
+  try {
+    await saveAllProducts(updated);
+  } catch (error) {
+    return adminErrorResponse(error, "Could not save the bulk update.");
+  }
 
   return NextResponse.json({ ok: true, updated: ids.length });
 }

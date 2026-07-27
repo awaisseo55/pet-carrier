@@ -3,6 +3,7 @@ import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { getAllProducts, upsertProduct } from "@/lib/products";
 import { slugify } from "@/lib/utils";
 import { nanoid } from "nanoid";
+import { adminErrorResponse } from "@/lib/api-error";
 import type { Product } from "@/lib/types";
 
 export async function POST(request: Request) {
@@ -61,6 +62,11 @@ export async function POST(request: Request) {
     meta_description: body.meta_description || short_description || "",
   };
 
-  await upsertProduct(product);
+  try {
+    await upsertProduct(product);
+  } catch (error) {
+    return adminErrorResponse(error, "Could not save product.");
+  }
+
   return NextResponse.json({ product });
 }

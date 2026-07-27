@@ -49,7 +49,8 @@ export function ProductTable({ products }: { products: Product[] }) {
       toast.success("Product deleted");
       router.refresh();
     } else {
-      toast.error("Could not delete that product");
+      const data = await res.json().catch(() => null);
+      toast.error(data?.error || "Could not delete that product");
     }
   }
 
@@ -71,7 +72,8 @@ export function ProductTable({ products }: { products: Product[] }) {
       setAdjustment("");
       router.refresh();
     } else {
-      toast.error("Could not update prices");
+      const data = await res.json().catch(() => null);
+      toast.error(data?.error || "Could not update prices");
     }
   }
 
@@ -89,7 +91,8 @@ export function ProductTable({ products }: { products: Product[] }) {
       setSelected(new Set());
       router.refresh();
     } else {
-      toast.error("Could not update stock status");
+      const data = await res.json().catch(() => null);
+      toast.error(data?.error || "Could not update stock status");
     }
   }
 

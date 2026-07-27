@@ -40,7 +40,8 @@ export function OrderRow({ order }: { order: Order }) {
       toast.success("Order status updated");
       router.refresh();
     } else {
-      toast.error("Could not update order status");
+      const data = await res.json().catch(() => null);
+      toast.error(data?.error || "Could not update order status");
     }
   }
 

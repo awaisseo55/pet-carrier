@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { addCustomCategory, getCategoryNode } from "@/lib/category-store";
 import { slugify } from "@/lib/utils";
+import { adminErrorResponse } from "@/lib/api-error";
 import type { CategoryNode, Section } from "@/lib/categories";
 
 export async function POST(request: Request) {
@@ -34,6 +35,11 @@ export async function POST(request: Request) {
     kind: "sub",
   };
 
-  await addCustomCategory(node);
+  try {
+    await addCustomCategory(node);
+  } catch (error) {
+    return adminErrorResponse(error, "Could not create category.");
+  }
+
   return NextResponse.json({ category: node });
 }

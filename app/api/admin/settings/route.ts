@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { saveSettings } from "@/lib/settings";
+import { adminErrorResponse } from "@/lib/api-error";
 import type { SiteSettings } from "@/lib/types";
 
 export async function PATCH(request: Request) {
@@ -9,7 +10,12 @@ export async function PATCH(request: Request) {
   }
 
   const settings: SiteSettings = await request.json();
-  await saveSettings(settings);
+
+  try {
+    await saveSettings(settings);
+  } catch (error) {
+    return adminErrorResponse(error, "Could not save settings.");
+  }
 
   return NextResponse.json({ ok: true });
 }

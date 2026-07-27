@@ -26,7 +26,8 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
     if (res.ok) {
       toast.success("Settings saved");
     } else {
-      toast.error("Could not save settings");
+      const data = await res.json().catch(() => null);
+      toast.error(data?.error || "Could not save settings");
     }
   }
 

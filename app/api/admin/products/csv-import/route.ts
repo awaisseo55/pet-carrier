@@ -3,6 +3,7 @@ import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { processCsvRow, type ProductField } from "@/lib/csv-import";
 import { upsertProduct } from "@/lib/products";
 import { getSettings } from "@/lib/settings";
+import { adminErrorResponse } from "@/lib/api-error";
 
 interface ImportRequestBody {
   rows: Record<ProductField, string>[];
@@ -26,19 +27,23 @@ export async function POST(request: Request) {
   const results = [];
   let imported = 0;
 
-  for (let i = 0; i < rows.length; i++) {
-    const result = await processCsvRow(i + 1, rows[i], {
-      defaultMarkupPercentage: settings.default_markup_percentage,
-      useAI,
-    });
+  try {
+    for (let i = 0; i < rows.length; i++) {
+      const result = await processCsvRow(i + 1, rows[i], {
+        defaultMarkupPercentage: settings.default_markup_percentage,
+        useAI,
+      });
 
-    if (result.ok && result.product) {
-      await upsertProduct(result.product);
-      imported += 1;
-      results.push({ row: result.row, ok: true, title: result.product.title, id: result.product.id });
-    } else {
-      results.push({ row: result.row, ok: false, error: result.error });
+      if (result.ok && result.product) {
+        await upsertProduct(result.product);
+        imported += 1;
+        results.push({ row: result.row, ok: true, title: result.product.title, id: result.product.id });
+      } else {
+        results.push({ row: result.row, ok: false, error: result.error });
+      }
     }
+  } catch (error) {
+    return adminErrorResponse(error, "Could not complete the CSV import.");
   }
 
   const skipped = results.length - imported;

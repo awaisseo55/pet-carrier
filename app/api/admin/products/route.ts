@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { upsertProduct } from "@/lib/products";
 import { downloadAndProcessImages } from "@/lib/image-pipeline";
+import { adminErrorResponse } from "@/lib/api-error";
 import type { Product } from "@/lib/types";
 
 interface SaveProductInput {
@@ -37,57 +38,61 @@ export async function POST(request: Request) {
 
   const saved: Product[] = [];
 
-  for (const input of products) {
-    // Images may already be local (re-saving an edited product) or remote
-    // Amazon URLs from the fetch preview step, which we download here.
-    const remoteImages = input.images.filter((img) => img.startsWith("http"));
-    const localImages = input.images.filter((img) => !img.startsWith("http"));
+  try {
+    for (const input of products) {
+      // Images may already be local (re-saving an edited product) or remote
+      // Amazon URLs from the fetch preview step, which we download here.
+      const remoteImages = input.images.filter((img) => img.startsWith("http"));
+      const localImages = input.images.filter((img) => !img.startsWith("http"));
 
-    let downloaded: string[] = [];
-    if (remoteImages.length > 0) {
-      downloaded = await downloadAndProcessImages(input.asin, remoteImages);
+      let downloaded: string[] = [];
+      if (remoteImages.length > 0) {
+        downloaded = await downloadAndProcessImages(input.asin, remoteImages);
+      }
+
+      const images = [...localImages, ...downloaded];
+      if (images.length === 0) {
+        return NextResponse.json(
+          { error: `Could not download any images for "${input.title}". Please try again.` },
+          { status: 502 }
+        );
+      }
+
+      const now = new Date().toISOString();
+      const product: Product = {
+        id: input.asin,
+        slug: input.slug,
+        title: input.title,
+        description: input.description,
+        short_description: input.short_description,
+        features: input.features,
+        specifications: {},
+        price: input.price,
+        compare_at_price: input.compare_at_price || null,
+        sku: `PC-${input.asin}`,
+        stock_status: "in_stock",
+        stock_count: 20,
+        images,
+        category_slugs: input.category_slugs,
+        size_range: input.size_range || "Standard",
+        weight_capacity: input.weight_capacity || "See listing",
+        brand: "Pet Carrier",
+        amazon_asin: input.asin,
+        amazon_url: input.amazon_url,
+        is_active: input.is_active ?? true,
+        is_featured: input.is_featured ?? false,
+        created_at: now,
+        updated_at: now,
+        markup_percentage: input.markup_percentage,
+        meta_title: input.meta_title,
+        meta_description: input.meta_description,
+      };
+
+      await upsertProduct(product);
+      saved.push(product);
     }
-
-    const images = [...localImages, ...downloaded];
-    if (images.length === 0) {
-      return NextResponse.json(
-        { error: `Could not download any images for "${input.title}". Please try again.` },
-        { status: 502 }
-      );
-    }
-
-    const now = new Date().toISOString();
-    const product: Product = {
-      id: input.asin,
-      slug: input.slug,
-      title: input.title,
-      description: input.description,
-      short_description: input.short_description,
-      features: input.features,
-      specifications: {},
-      price: input.price,
-      compare_at_price: input.compare_at_price || null,
-      sku: `PC-${input.asin}`,
-      stock_status: "in_stock",
-      stock_count: 20,
-      images,
-      category_slugs: input.category_slugs,
-      size_range: input.size_range || "Standard",
-      weight_capacity: input.weight_capacity || "See listing",
-      brand: "Pet Carrier",
-      amazon_asin: input.asin,
-      amazon_url: input.amazon_url,
-      is_active: input.is_active ?? true,
-      is_featured: input.is_featured ?? false,
-      created_at: now,
-      updated_at: now,
-      markup_percentage: input.markup_percentage,
-      meta_title: input.meta_title,
-      meta_description: input.meta_description,
-    };
-
-    await upsertProduct(product);
-    saved.push(product);
+  } catch (error) {
+    return adminErrorResponse(error, "Could not save product(s).");
   }
 
   return NextResponse.json({ products: saved });

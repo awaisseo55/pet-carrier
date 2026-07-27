@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { deleteBlogPost, updateBlogPost } from "@/lib/blog";
+import { adminErrorResponse } from "@/lib/api-error";
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!(await isAdminAuthenticated())) {
@@ -9,10 +10,14 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 
   const { id } = await params;
   const updates = await request.json();
-  const post = await updateBlogPost(id, updates);
-  if (!post) return NextResponse.json({ error: "Post not found." }, { status: 404 });
 
-  return NextResponse.json({ post });
+  try {
+    const post = await updateBlogPost(id, updates);
+    if (!post) return NextResponse.json({ error: "Post not found." }, { status: 404 });
+    return NextResponse.json({ post });
+  } catch (error) {
+    return adminErrorResponse(error, "Could not update blog post.");
+  }
 }
 
 export async function DELETE(_request: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -21,6 +26,12 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
   }
 
   const { id } = await params;
-  await deleteBlogPost(id);
+
+  try {
+    await deleteBlogPost(id);
+  } catch (error) {
+    return adminErrorResponse(error, "Could not delete blog post.");
+  }
+
   return NextResponse.json({ ok: true });
 }
