@@ -1,14 +1,10 @@
 import "server-only";
-import { promises as fs } from "fs";
-import path from "path";
 import type { Product } from "./types";
 import { getHomepageSettings } from "./homepage";
-
-const PRODUCTS_FILE = path.join(process.cwd(), "data", "products.json");
+import { readJsonFile, writeJsonFile } from "./data-store";
 
 export async function getAllProducts(): Promise<Product[]> {
-  const raw = await fs.readFile(PRODUCTS_FILE, "utf-8");
-  return JSON.parse(raw) as Product[];
+  return readJsonFile<Product[]>("products.json");
 }
 
 export async function getActiveProducts(): Promise<Product[]> {
@@ -75,7 +71,7 @@ export async function searchProducts(query: string): Promise<Product[]> {
 }
 
 export async function saveAllProducts(products: Product[]): Promise<void> {
-  await fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 2), "utf-8");
+  await writeJsonFile("products.json", products);
 }
 
 export async function upsertProduct(product: Product): Promise<void> {

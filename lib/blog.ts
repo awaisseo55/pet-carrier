@@ -1,18 +1,14 @@
 import "server-only";
-import { promises as fs } from "fs";
-import path from "path";
 import { nanoid } from "nanoid";
 import type { BlogPost } from "./types";
-
-const BLOG_FILE = path.join(process.cwd(), "data", "blog.json");
+import { readJsonFile, writeJsonFile } from "./data-store";
 
 async function getRawPosts(): Promise<BlogPost[]> {
-  const raw = await fs.readFile(BLOG_FILE, "utf-8");
-  return JSON.parse(raw) as BlogPost[];
+  return readJsonFile<BlogPost[]>("blog.json");
 }
 
 async function saveAllBlogPosts(posts: BlogPost[]): Promise<void> {
-  await fs.writeFile(BLOG_FILE, JSON.stringify(posts, null, 2), "utf-8");
+  await writeJsonFile("blog.json", posts);
 }
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {

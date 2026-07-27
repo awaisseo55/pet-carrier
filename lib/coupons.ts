@@ -1,18 +1,14 @@
 import "server-only";
-import { promises as fs } from "fs";
-import path from "path";
 import { nanoid } from "nanoid";
 import type { Coupon } from "./types";
-
-const COUPONS_FILE = path.join(process.cwd(), "data", "coupons.json");
+import { readJsonFile, writeJsonFile } from "./data-store";
 
 export async function getAllCoupons(): Promise<Coupon[]> {
-  const raw = await fs.readFile(COUPONS_FILE, "utf-8");
-  return JSON.parse(raw) as Coupon[];
+  return readJsonFile<Coupon[]>("coupons.json");
 }
 
 async function saveAllCoupons(coupons: Coupon[]): Promise<void> {
-  await fs.writeFile(COUPONS_FILE, JSON.stringify(coupons, null, 2), "utf-8");
+  await writeJsonFile("coupons.json", coupons);
 }
 
 export async function getCouponByCode(code: string): Promise<Coupon | undefined> {

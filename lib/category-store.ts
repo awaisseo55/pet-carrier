@@ -1,8 +1,7 @@
 import "server-only";
-import { promises as fs } from "fs";
-import path from "path";
 import { CATEGORIES, type CategoryNode } from "./categories";
 import type { CategoryOverride } from "./types";
+import { readJsonFile, writeJsonFile } from "./data-store";
 import {
   getFaqs,
   getIntro,
@@ -12,8 +11,6 @@ import {
   getWhyChoose,
 } from "./category-content";
 
-const STORE_FILE = path.join(process.cwd(), "data", "category-content.json");
-
 interface Store {
   overrides: Record<string, CategoryOverride>;
   custom: CategoryNode[];
@@ -21,12 +18,11 @@ interface Store {
 }
 
 async function readStore(): Promise<Store> {
-  const raw = await fs.readFile(STORE_FILE, "utf-8");
-  return JSON.parse(raw) as Store;
+  return readJsonFile<Store>("category-content.json");
 }
 
 async function writeStore(store: Store): Promise<void> {
-  await fs.writeFile(STORE_FILE, JSON.stringify(store, null, 2), "utf-8");
+  await writeJsonFile("category-content.json", store);
 }
 
 /** All categories: the built-in taxonomy plus any admin-added custom ones, minus any admin-deleted ones. */

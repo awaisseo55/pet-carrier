@@ -1,12 +1,9 @@
 import "server-only";
-import { promises as fs } from "fs";
-import path from "path";
 import { randomBytes, scryptSync, timingSafeEqual } from "crypto";
 import { nanoid } from "nanoid";
 import { cookies } from "next/headers";
 import { verifySignedValue } from "./auth";
-
-const CUSTOMERS_FILE = path.join(process.cwd(), "data", "customers.json");
+import { readJsonFile, writeJsonFile } from "./data-store";
 
 export interface Customer {
   id: string;
@@ -32,12 +29,11 @@ function verifyPassword(password: string, stored: string): boolean {
 }
 
 async function getAllCustomers(): Promise<Customer[]> {
-  const raw = await fs.readFile(CUSTOMERS_FILE, "utf-8");
-  return JSON.parse(raw) as Customer[];
+  return readJsonFile<Customer[]>("customers.json");
 }
 
 async function saveAllCustomers(customers: Customer[]): Promise<void> {
-  await fs.writeFile(CUSTOMERS_FILE, JSON.stringify(customers, null, 2), "utf-8");
+  await writeJsonFile("customers.json", customers);
 }
 
 export async function getCustomerByEmail(email: string): Promise<Customer | undefined> {

@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
 import sharp from "sharp";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { slugify } from "@/lib/utils";
 import { categoryUploadSlug } from "@/lib/placeholders";
+import { uploadImageBuffer } from "@/lib/image-store";
 
 const MAX_SIZE_BYTES = 5 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -61,15 +60,14 @@ export async function POST(request: Request) {
     destRelative = `uploads/product/${slugify(slug)}/upload-${Date.now()}.webp`;
   }
 
-  const destPath = path.join(process.cwd(), "public", destRelative);
-  await fs.mkdir(path.dirname(destPath), { recursive: true });
-
+  let url: string;
   try {
-    await sharp(buffer).resize(width, height, { fit: "cover" }).webp({ quality: 88 }).toFile(destPath);
+    const processed = await sharp(buffer).resize(width, height, { fit: "cover" }).webp({ quality: 88 }).toBuffer();
+    url = await uploadImageBuffer(destRelative, processed);
   } catch (error) {
     console.error("Image processing failed", error);
     return NextResponse.json({ error: "Could not process that image." }, { status: 500 });
   }
 
-  return NextResponse.json({ url: `/${destRelative}?v=${Date.now()}` });
+  return NextResponse.json({ url: `${url}${url.includes("?") ? "&" : "?"}v=${Date.now()}` });
 }

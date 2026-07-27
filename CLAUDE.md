@@ -25,7 +25,13 @@ just easy for us to hack on.
   `settings.json`, `homepage.json`, `blog.json`, `coupons.json`, `category-content.json`),
   accessed only through `lib/*.ts` helpers. Never read/write these files directly from a page or
   API route, go through the lib functions so the storage layer can be swapped for
-  Supabase/Postgres later without touching call sites.
+  Supabase/Postgres later without touching call sites. The actual disk I/O for these files is
+  centralised in `lib/data-store.ts`: locally it reads/writes the files in `/data` exactly as
+  before, but on Vercel (whose serverless filesystem is read-only outside `/tmp`) it transparently
+  reads and writes the same JSON through Vercel Blob instead, once `BLOB_READ_WRITE_TOKEN` is set.
+  This keeps the JSON-shaped data model and the `lib/*.ts` call sites unchanged, see
+  `.env.local.example` for setup. Product/category/hero image uploads have the equivalent split in
+  `lib/image-store.ts`.
 - Stripe for payments (Checkout Sessions, redirect flow, discounts applied as one-time Stripe
   coupons), Resend for transactional email, Anthropic Claude for AI content rewriting of Amazon
   listings, cheerio + sharp for the Amazon scrape/image pipeline.
@@ -133,13 +139,13 @@ This is the part most likely to trip up future changes, read carefully.
   2. `lib/ai-content.ts` rewrites the scraped data into original copy via Claude, with a
      rule-based fallback if `ANTHROPIC_API_KEY` is unset or the call fails, and suggests likely
      `category_slugs` from the product title.
-  3. `lib/image-pipeline.ts` downloads and converts images to WebP under
-     `/public/uploads/product/[asin]/` once the admin confirms and saves.
+  3. `lib/image-pipeline.ts` downloads and converts images to WebP, then stores them via
+     `lib/image-store.ts` (`/public/uploads/product/[asin]/` locally, Vercel Blob in production).
 - All admin image uploads (category, hero, blog, product) go through the single
-  `/api/admin/upload` route and land under `/public/uploads/[type]/`, resized and converted to
-  WebP by sharp. `lib/placeholders.ts` resolves the effective image for categories and the hero:
-  admin upload (checked by file mtime, cache-busted) → curated, visually verified Unsplash image →
-  generic placeholder.
+  `/api/admin/upload` route, resized and converted to WebP by sharp, then persisted via
+  `lib/image-store.ts` (same local-vs-Blob split as the data layer above). `lib/placeholders.ts`
+  resolves the effective image for categories and the hero: admin upload (cache-busted) → curated,
+  visually verified Unsplash image → generic placeholder.
 - Cart state lives in React Context + localStorage (`components/cart/cart-context.tsx`), including
   applied coupon and saved-for-later items. Carts are anonymous until checkout.
 - Checkout uses Stripe's hosted Checkout Session (redirect flow), not Stripe Elements. Customer

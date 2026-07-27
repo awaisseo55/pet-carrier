@@ -1,9 +1,6 @@
 import "server-only";
-import { promises as fs } from "fs";
-import path from "path";
 import sharp from "sharp";
-
-const PRODUCTS_DIR = path.join(process.cwd(), "public", "uploads", "product");
+import { uploadImageBuffer } from "./image-store";
 
 // A real browser UA, some source CDNs (including Amazon's) reject requests
 // carrying an obvious bot identifier.
@@ -12,13 +9,11 @@ const BROWSER_USER_AGENT =
 
 /**
  * Downloads product images from Amazon, resizes and converts them to WebP,
- * and stores them under /public/uploads/product/[asin]/. Returns the public
- * URL paths to reference from the product record.
+ * and stores them via lib/image-store.ts (local /public/uploads/product/[asin]/
+ * in dev, Vercel Blob in production). Returns the public URLs to reference
+ * from the product record.
  */
 export async function downloadAndProcessImages(asin: string, imageUrls: string[]): Promise<string[]> {
-  const dir = path.join(PRODUCTS_DIR, asin);
-  await fs.mkdir(dir, { recursive: true });
-
   const results: string[] = [];
 
   for (let i = 0; i < imageUrls.length; i++) {
@@ -34,12 +29,13 @@ export async function downloadAndProcessImages(asin: string, imageUrls: string[]
       const filename = isMain ? "main.webp" : `image-${i}.webp`;
       const size = isMain ? 1200 : 400;
 
-      await sharp(buffer)
+      const processed = await sharp(buffer)
         .resize(size, size, { fit: "cover" })
         .webp({ quality: 85 })
-        .toFile(path.join(dir, filename));
+        .toBuffer();
 
-      results.push(`/uploads/product/${asin}/${filename}`);
+      const imageUrl = await uploadImageBuffer(`uploads/product/${asin}/${filename}`, processed);
+      results.push(imageUrl);
     } catch (error) {
       console.error(`Failed to process image ${i} for ASIN ${asin}`, error);
     }
@@ -59,8 +55,8 @@ export interface ProductImageSet {
 
 /**
  * Richer version of downloadAndProcessImages: for each source URL, generates
- * all three sizes the admin workflow expects (main/thumb/zoom) under
- * /public/uploads/product/[id]/. Used by the Amazon import pipeline and the
+ * all three sizes the admin workflow expects (main/thumb/zoom) via
+ * lib/image-store.ts. Used by the Amazon import pipeline and the
  * product-adding workflow described in docs/PRODUCT-WORKFLOW.md.
  */
 export async function downloadAndProcessProductImageSet(
@@ -68,9 +64,6 @@ export async function downloadAndProcessProductImageSet(
   imageUrls: string[],
   startIndex = 0
 ): Promise<ProductImageSet[]> {
-  const dir = path.join(PRODUCTS_DIR, id);
-  await fs.mkdir(dir, { recursive: true });
-
   const results: ProductImageSet[] = [];
 
   for (let offset = 0; offset < imageUrls.length; offset++) {
@@ -93,25 +86,17 @@ export async function downloadAndProcessProductImageSet(
       const thumbFile = `image-${i}-thumb.webp`;
       const zoomFile = `image-${i}-zoom.webp`;
 
-      await sharp(buffer)
-        .resize(1200, 1200, { fit: "cover" })
-        .webp({ quality: 85 })
-        .toFile(path.join(dir, mainFile));
-
-      await sharp(buffer)
-        .resize(400, 400, { fit: "cover" })
-        .webp({ quality: 80 })
-        .toFile(path.join(dir, thumbFile));
-
-      await sharp(buffer)
+      const mainBuffer = await sharp(buffer).resize(1200, 1200, { fit: "cover" }).webp({ quality: 85 }).toBuffer();
+      const thumbBuffer = await sharp(buffer).resize(400, 400, { fit: "cover" }).webp({ quality: 80 }).toBuffer();
+      const zoomBuffer = await sharp(buffer)
         .resize(2000, 2000, { fit: "inside", withoutEnlargement: true })
         .webp({ quality: 90 })
-        .toFile(path.join(dir, zoomFile));
+        .toBuffer();
 
       results.push({
-        main: `/uploads/product/${id}/${mainFile}`,
-        thumb: `/uploads/product/${id}/${thumbFile}`,
-        zoom: `/uploads/product/${id}/${zoomFile}`,
+        main: await uploadImageBuffer(`uploads/product/${id}/${mainFile}`, mainBuffer),
+        thumb: await uploadImageBuffer(`uploads/product/${id}/${thumbFile}`, thumbBuffer),
+        zoom: await uploadImageBuffer(`uploads/product/${id}/${zoomFile}`, zoomBuffer),
       });
     } catch (error) {
       console.error(`Failed to process image ${i} for ${id}`, error);

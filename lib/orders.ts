@@ -1,14 +1,10 @@
 import "server-only";
-import { promises as fs } from "fs";
-import path from "path";
 import { nanoid } from "nanoid";
 import type { Order, OrderStatus } from "./types";
-
-const ORDERS_FILE = path.join(process.cwd(), "data", "orders.json");
+import { readJsonFile, writeJsonFile } from "./data-store";
 
 export async function getAllOrders(): Promise<Order[]> {
-  const raw = await fs.readFile(ORDERS_FILE, "utf-8");
-  const orders = JSON.parse(raw) as Order[];
+  const orders = await readJsonFile<Order[]>("orders.json");
   return orders.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
 }
 
@@ -23,7 +19,7 @@ export async function getOrderBySessionId(sessionId: string): Promise<Order | un
 }
 
 async function saveAllOrders(orders: Order[]): Promise<void> {
-  await fs.writeFile(ORDERS_FILE, JSON.stringify(orders, null, 2), "utf-8");
+  await writeJsonFile("orders.json", orders);
 }
 
 export async function createOrder(order: Omit<Order, "id">): Promise<Order> {

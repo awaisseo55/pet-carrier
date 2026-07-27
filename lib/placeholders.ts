@@ -1,20 +1,8 @@
 import "server-only";
-import { promises as fs } from "fs";
-import path from "path";
 import type { CategoryNode } from "./categories";
 import { HERO_IMAGE, IMAGES_BY_ANIMAL, BED_IMAGES, STROLLER_IMAGES } from "./images";
 import { getResolvedCategory } from "./category-store";
-
-const PUBLIC_DIR = path.join(process.cwd(), "public");
-
-async function fileVersion(relativePath: string): Promise<number | null> {
-  try {
-    const stats = await fs.stat(path.join(PUBLIC_DIR, relativePath));
-    return Math.floor(stats.mtimeMs);
-  } catch {
-    return null;
-  }
-}
+import { findUploadedImage } from "./image-store";
 
 export function categoryUploadSlug(categoryPath: string): string {
   return categoryPath.replace(/\//g, "-");
@@ -38,9 +26,9 @@ export async function getCategoryImageUrl(
   categoryPath: string
 ): Promise<{ url: string; isCustom: boolean }> {
   const relativePath = `uploads/category/${categoryUploadSlug(categoryPath)}.webp`;
-  const version = await fileVersion(relativePath);
-  if (version !== null) {
-    return { url: `/${relativePath}?v=${version}`, isCustom: true };
+  const uploaded = await findUploadedImage(relativePath);
+  if (uploaded) {
+    return { url: uploaded, isCustom: true };
   }
 
   const resolved = await getResolvedCategory(categoryPath);
@@ -56,9 +44,9 @@ export async function getCategoryImageUrl(
 
 export async function getHeroImageUrl(): Promise<{ url: string; isCustom: boolean }> {
   const relativePath = "uploads/hero/main-hero.webp";
-  const version = await fileVersion(relativePath);
-  if (version !== null) {
-    return { url: `/${relativePath}?v=${version}`, isCustom: true };
+  const uploaded = await findUploadedImage(relativePath);
+  if (uploaded) {
+    return { url: uploaded, isCustom: true };
   }
   return { url: HERO_IMAGE, isCustom: false };
 }
