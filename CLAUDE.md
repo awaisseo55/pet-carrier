@@ -151,6 +151,16 @@ This is the part most likely to trip up future changes, read carefully.
   and server-side at checkout session creation (source of truth), applied to Stripe via a one-time
   `stripe.coupons.create` rather than manipulating line item prices directly.
 
+## Adding products
+
+When the user provides Amazon URL(s) to add as products, follow `docs/PRODUCT-WORKFLOW.md` exactly.
+Try automatic fetching first (`fetchAmazonProductWithFallback` in `lib/amazon.ts`), then fall back to
+requesting manual image URLs only once every automatic method has genuinely failed. **Never use
+Unsplash or any other stock photo site for product images** — a listing must show the actual item
+being sold. Before trusting an ASIN's title, brand or images, verify them against the real Amazon
+page rather than taking supplied copy at face value, a mismatched brand/product on a live listing is
+a trading-standards problem, not just a content bug.
+
 ## Known TODOs (see inline `// TODO:` comments for exact locations)
 
 - `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET`: placeholders, add real
