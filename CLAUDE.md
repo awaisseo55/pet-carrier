@@ -29,7 +29,9 @@ just easy for us to hack on.
   centralised in `lib/data-store.ts`: locally it reads/writes the files in `/data` exactly as
   before, but on Vercel (whose serverless filesystem is read-only outside `/tmp`) it transparently
   reads and writes the same JSON through Vercel Blob instead, once `BLOB_READ_WRITE_TOKEN` is set.
-  This keeps the JSON-shaped data model and the `lib/*.ts` call sites unchanged, see
+  The Blob store is **private** (customer emails, password hashes and order details live in these
+  files and must never be fetchable by URL) via `access: "private"` on every `put`/`get` call, not
+  public. This keeps the JSON-shaped data model and the `lib/*.ts` call sites unchanged, see
   `.env.local.example` for setup. Product/category/hero image uploads have the equivalent split in
   `lib/image-store.ts`.
 - Stripe for payments (Checkout Sessions, redirect flow, discounts applied as one-time Stripe
@@ -143,7 +145,10 @@ This is the part most likely to trip up future changes, read carefully.
      `lib/image-store.ts` (`/public/uploads/product/[asin]/` locally, Vercel Blob in production).
 - All admin image uploads (category, hero, blog, product) go through the single
   `/api/admin/upload` route, resized and converted to WebP by sharp, then persisted via
-  `lib/image-store.ts` (same local-vs-Blob split as the data layer above). `lib/placeholders.ts`
+  `lib/image-store.ts` (same local-vs-Blob split as the data layer above). Since the Blob store is
+  private, image URLs point at `/api/blob/[...path]` (`app/api/blob/[...path]/route.ts`), which
+  authenticates to Blob server-side and streams the file back publicly; that route only ever serves
+  `uploads/` paths, never `data/`, so the JSON data files stay unreachable by URL. `lib/placeholders.ts`
   resolves the effective image for categories and the hero: admin upload (cache-busted) → curated,
   visually verified Unsplash image → generic placeholder.
 - Cart state lives in React Context + localStorage (`components/cart/cart-context.tsx`), including

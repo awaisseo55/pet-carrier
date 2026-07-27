@@ -2,7 +2,7 @@ import "server-only";
 import { promises as fs } from "fs";
 import path from "path";
 import { cache } from "react";
-import { put, list } from "@vercel/blob";
+import { put, get } from "@vercel/blob";
 
 /**
  * Storage backend for the /data/*.json files that lib/products.ts, lib/orders.ts
@@ -12,6 +12,13 @@ import { put, list } from "@vercel/blob";
  * store is connected to the project) writes go to Vercel Blob instead, and
  * reads check Blob first, falling back to the file bundled in the deployment
  * as seed data until the first write creates the blob.
+ *
+ * The Blob store backing this project is private (access can't be changed to
+ * public after creation), which is the correct setting anyway: these files
+ * hold customer emails, password hashes and order details and must never be
+ * fetchable by URL. Reads/writes use `get`/`put` with `access: "private"`,
+ * which authenticates via BLOB_READ_WRITE_TOKEN. Public-facing images are
+ * handled separately in lib/image-store.ts via a proxy route.
  */
 
 const ON_VERCEL = !!process.env.VERCEL;
@@ -36,18 +43,12 @@ async function readLocalFile<T>(filename: string): Promise<T> {
   return JSON.parse(raw) as T;
 }
 
-async function findBlobUrl(filename: string): Promise<string | undefined> {
-  const pathname = `${BLOB_PREFIX}${filename}`;
-  const { blobs } = await list({ prefix: pathname, limit: 1 });
-  return blobs.find((b) => b.pathname === pathname)?.url;
-}
-
 const readJsonFileUncached = async <T>(filename: string): Promise<T> => {
   if (USE_BLOB) {
-    const url = await findBlobUrl(filename);
-    if (url) {
-      const res = await fetch(url, { cache: "no-store" });
-      if (res.ok) return (await res.json()) as T;
+    const result = await get(`${BLOB_PREFIX}${filename}`, { access: "private", useCache: false });
+    if (result && result.statusCode === 200) {
+      const text = await new Response(result.stream).text();
+      return JSON.parse(text) as T;
     }
     // No blob written yet for this file: seed from the copy bundled in the
     // deployment, the next write will create the blob.
@@ -63,7 +64,7 @@ export async function writeJsonFile<T>(filename: string, data: T): Promise<void>
 
   if (USE_BLOB) {
     await put(`${BLOB_PREFIX}${filename}`, body, {
-      access: "public",
+      access: "private",
       addRandomSuffix: false,
       allowOverwrite: true,
       contentType: "application/json",

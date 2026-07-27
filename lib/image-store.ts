@@ -1,14 +1,21 @@
 import "server-only";
 import { promises as fs } from "fs";
 import path from "path";
-import { put, list } from "@vercel/blob";
+import { put, head } from "@vercel/blob";
 
 /**
  * Storage backend for processed product/category/hero images, mirroring
  * lib/data-store.ts. Locally these are written under /public/uploads/ same as
  * before. On Vercel, /public is read-only at runtime, so once
- * BLOB_READ_WRITE_TOKEN is set uploads go to Vercel Blob instead and the
- * returned URL points at Blob's CDN rather than a local path.
+ * BLOB_READ_WRITE_TOKEN is set uploads go to Vercel Blob instead.
+ *
+ * The Blob store is private (can't be changed to public after creation), so
+ * uploaded images aren't fetchable by their raw Blob URL. Instead this
+ * returns a URL under our own /api/blob/[...path] proxy route, which
+ * authenticates to Blob server-side and streams the image back publicly.
+ * That route only ever serves "uploads/" paths, never "data/" (see
+ * lib/data-store.ts), so product/category/hero images are public exactly
+ * like before, while the JSON data files stay private.
  */
 
 const ON_VERCEL = !!process.env.VERCEL;
@@ -28,13 +35,13 @@ export async function uploadImageBuffer(
   contentType = "image/webp"
 ): Promise<string> {
   if (USE_BLOB) {
-    const blob = await put(pathname, buffer, {
-      access: "public",
+    await put(pathname, buffer, {
+      access: "private",
       addRandomSuffix: false,
       allowOverwrite: true,
       contentType,
     });
-    return blob.url;
+    return `/api/blob/${pathname}`;
   }
 
   if (ON_VERCEL) {
@@ -54,9 +61,12 @@ export async function uploadImageBuffer(
 /** Looks up whether an image already exists at `pathname` (admin-uploaded category/hero overrides). Returns a cache-bust-friendly URL if found, otherwise null. */
 export async function findUploadedImage(pathname: string): Promise<string | null> {
   if (USE_BLOB) {
-    const { blobs } = await list({ prefix: pathname, limit: 1 });
-    const blob = blobs.find((b) => b.pathname === pathname);
-    return blob ? `${blob.url}?v=${new Date(blob.uploadedAt).getTime()}` : null;
+    try {
+      const meta = await head(pathname);
+      return `/api/blob/${pathname}?v=${new Date(meta.uploadedAt).getTime()}`;
+    } catch {
+      return null;
+    }
   }
 
   try {
