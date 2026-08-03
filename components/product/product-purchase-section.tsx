@@ -1,0 +1,124 @@
+"use client";
+
+import * as React from "react";
+import { ShieldCheck, RotateCcw, Truck } from "lucide-react";
+import { ProductGallery } from "@/components/product/product-gallery";
+import { AddToCart } from "@/components/product/add-to-cart";
+import { VariantSelector } from "@/components/product/variant-selector";
+import { Badge } from "@/components/ui/badge";
+import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
+import { formatPrice } from "@/lib/utils";
+import { variantPriceRange } from "@/lib/variants";
+import type { PublicProduct, PublicProductVariant } from "@/lib/types";
+
+const stockLabel = {
+  in_stock: { label: "In stock", variant: "success" as const },
+  low_stock: { label: "Only a few left", variant: "warning" as const },
+  out_of_stock: { label: "Out of stock", variant: "outline" as const },
+};
+
+/**
+ * Owns the selected-variant state for the whole purchase area (gallery,
+ * price, stock badge and add-to-cart), since a colour choice needs to swap
+ * the gallery's primary image and a size/colour choice needs to update the
+ * price and SKU added to cart. Kept as one client island rather than three,
+ * so state doesn't need lifting between sibling server-rendered elements.
+ */
+export function ProductPurchaseSection({
+  product,
+  categoryName,
+}: {
+  product: PublicProduct;
+  categoryName: string | null;
+}) {
+  const hasVariants = !!product.hasVariants && !!product.variants && product.variants.length > 0;
+  const [selectedVariant, setSelectedVariant] = React.useState<PublicProductVariant | null>(null);
+
+  const range = hasVariants ? variantPriceRange(product.variants!) : null;
+  const displayPrice = selectedVariant ? selectedVariant.price : (range ? range.low : product.price);
+  const displayCompareAt = selectedVariant ? (selectedVariant.compareAtPrice ?? null) : product.compare_at_price;
+  const showFromPrice = hasVariants && !selectedVariant && range && range.low !== range.high;
+
+  const stockStatus = selectedVariant
+    ? selectedVariant.inStock
+      ? ("in_stock" as const)
+      : ("out_of_stock" as const)
+    : product.stock_status;
+  const stock = stockLabel[stockStatus];
+
+  const galleryImages = React.useMemo(() => {
+    const base = product.images.length > 0 ? product.images : [PRODUCT_PLACEHOLDER];
+    if (selectedVariant?.colourImage) {
+      return [selectedVariant.colourImage, ...base.filter((img) => img !== selectedVariant.colourImage)];
+    }
+    return base;
+  }, [product.images, selectedVariant]);
+
+  return (
+    <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+      <ProductGallery key={selectedVariant?.id ?? "default"} images={galleryImages} title={product.title} />
+
+      <div>
+        {categoryName && (
+          <span className="text-sm font-medium uppercase tracking-wide text-blue-600">{categoryName}</span>
+        )}
+        <h1 className="mt-2 font-heading text-3xl font-semibold text-foreground sm:text-4xl">{product.title}</h1>
+
+        <div className="mt-4 flex items-center gap-3">
+          <span className={`text-2xl font-semibold ${displayCompareAt ? "text-alert" : "text-foreground"}`}>
+            {showFromPrice ? "From " : ""}
+            {formatPrice(displayPrice)}
+          </span>
+          {displayCompareAt && (
+            <span className="text-lg text-muted-foreground line-through">{formatPrice(displayCompareAt)}</span>
+          )}
+          <Badge variant={stock.variant}>{stock.label}</Badge>
+        </div>
+
+        <p className="mt-4 text-gray-500">{product.short_description}</p>
+
+        {hasVariants && (
+          <div className="mt-6">
+            <VariantSelector
+              variants={product.variants!}
+              variantType={product.variantType!}
+              selected={selectedVariant}
+              onSelect={setSelectedVariant}
+            />
+          </div>
+        )}
+
+        <div className="mt-6">
+          <AddToCart product={product} selectedVariant={selectedVariant} />
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-3 rounded-lg bg-gray-100/60 p-4 sm:grid-cols-3">
+          <div className="flex items-center gap-2 text-sm">
+            <Truck className="size-4 shrink-0 text-blue-700" />
+            Free UK shipping over £50
+          </div>
+          <div className="flex items-center gap-2 text-sm">
+            <RotateCcw className="size-4 shrink-0 text-blue-700" />
+            30-day returns
+          </div>
+          <div className="flex items-center gap-2 text-sm">
+            <ShieldCheck className="size-4 shrink-0 text-blue-700" />
+            Secure checkout
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h2 className="font-heading text-lg font-semibold">Features</h2>
+          <ul className="mt-3 flex flex-col gap-2">
+            {product.features.map((feature) => (
+              <li key={feature} className="flex items-start gap-2 text-sm text-gray-500">
+                <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-blue-500" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}

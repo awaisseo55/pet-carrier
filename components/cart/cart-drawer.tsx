@@ -73,7 +73,7 @@ export function CartDrawer() {
 
             <ul className="flex flex-col gap-4">
               {activeItems.map((item) => (
-                <li key={item.product_id} className="flex gap-3">
+                <li key={`${item.product_id}-${item.variant_sku ?? ""}`} className="flex gap-3">
                   <div className="relative size-20 shrink-0 overflow-hidden rounded-lg bg-gray-100">
                     <Image src={item.image} alt={item.title} fill sizes="80px" className="object-cover" />
                   </div>
@@ -85,11 +85,12 @@ export function CartDrawer() {
                     >
                       {item.title}
                     </Link>
+                    {item.variant_label && <span className="text-xs text-gray-500">{item.variant_label}</span>}
                     <span className="text-sm text-gray-500">{formatPrice(item.price)}</span>
                     <div className="mt-1 flex items-center gap-3">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => updateQuantity(item.product_id, item.quantity - 1)}
+                          onClick={() => updateQuantity(item.product_id, item.quantity - 1, item.variant_sku)}
                           className="flex size-7 items-center justify-center rounded-full border border-border hover:bg-gray-50 cursor-pointer"
                           aria-label="Decrease quantity"
                         >
@@ -97,7 +98,7 @@ export function CartDrawer() {
                         </button>
                         <span className="w-6 text-center text-sm">{item.quantity}</span>
                         <button
-                          onClick={() => updateQuantity(item.product_id, item.quantity + 1)}
+                          onClick={() => updateQuantity(item.product_id, item.quantity + 1, item.variant_sku)}
                           className="flex size-7 items-center justify-center rounded-full border border-border hover:bg-gray-50 cursor-pointer"
                           aria-label="Increase quantity"
                         >
@@ -105,7 +106,7 @@ export function CartDrawer() {
                         </button>
                       </div>
                       <button
-                        onClick={() => toggleSaveForLater(item.product_id)}
+                        onClick={() => toggleSaveForLater(item.product_id, item.variant_sku)}
                         className="text-xs text-gray-500 underline hover:text-ink cursor-pointer"
                       >
                         Save for later
@@ -113,7 +114,7 @@ export function CartDrawer() {
                     </div>
                   </div>
                   <button
-                    onClick={() => removeItem(item.product_id)}
+                    onClick={() => removeItem(item.product_id, item.variant_sku)}
                     className="self-start text-gray-500 hover:text-alert cursor-pointer"
                     aria-label="Remove item"
                   >

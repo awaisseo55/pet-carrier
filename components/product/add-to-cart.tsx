@@ -4,27 +4,53 @@ import * as React from "react";
 import { Minus, Plus, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-context";
-import type { PublicProduct } from "@/lib/types";
+import type { PublicProduct, PublicProductVariant } from "@/lib/types";
+import { variantLabel } from "@/lib/variants";
 import { toast } from "sonner";
 
-export function AddToCart({ product }: { product: PublicProduct }) {
+interface AddToCartProps {
+  product: PublicProduct;
+  /** Currently selected variant, or null if the product has variants but none is chosen yet. */
+  selectedVariant?: PublicProductVariant | null;
+}
+
+export function AddToCart({ product, selectedVariant = null }: AddToCartProps) {
   const { addItem } = useCart();
   const [quantity, setQuantity] = React.useState(1);
-  const outOfStock = product.stock_status === "out_of_stock";
+
+  const requiresVariant = !!product.hasVariants;
+  const missingSelection = requiresVariant && !selectedVariant;
+  const outOfStock = selectedVariant ? !selectedVariant.inStock : product.stock_status === "out_of_stock";
+  const disabled = missingSelection || outOfStock;
 
   function handleAdd() {
+    const price = selectedVariant ? selectedVariant.price : product.price;
+    const image = selectedVariant?.colourImage || product.images[0];
+
     addItem(
       {
         product_id: product.id,
         slug: product.slug,
         title: product.title,
-        image: product.images[0],
-        price: product.price,
-        stock_status: product.stock_status,
+        image,
+        price,
+        stock_status: selectedVariant ? (selectedVariant.inStock ? "in_stock" : "out_of_stock") : product.stock_status,
+        variant_sku: selectedVariant?.sku,
+        variant_label: selectedVariant ? variantLabel(selectedVariant) : undefined,
       },
       quantity
     );
     toast.success(`${product.title} added to your basket`);
+  }
+
+  function buttonLabel() {
+    if (missingSelection) {
+      if (product.variantType === "colour") return "Select a colour";
+      if (product.variantType === "size") return "Select a size";
+      return "Select options";
+    }
+    if (outOfStock) return "Out of Stock";
+    return "Add to Basket";
   }
 
   return (
@@ -46,9 +72,9 @@ export function AddToCart({ product }: { product: PublicProduct }) {
           <Plus className="size-4" />
         </button>
       </div>
-      <Button size="lg" variant="default" className="flex-1" onClick={handleAdd} disabled={outOfStock}>
+      <Button size="lg" variant="default" className="flex-1" onClick={handleAdd} disabled={disabled}>
         <ShoppingBag className="size-4" />
-        {outOfStock ? "Out of Stock" : "Add to Basket"}
+        {buttonLabel()}
       </Button>
     </div>
   );

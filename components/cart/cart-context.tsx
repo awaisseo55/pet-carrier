@@ -16,9 +16,9 @@ interface CartContextValue {
   openCart: () => void;
   closeCart: () => void;
   addItem: (item: Omit<CartItem, "quantity">, quantity?: number) => void;
-  removeItem: (productId: string) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
-  toggleSaveForLater: (productId: string) => void;
+  removeItem: (productId: string, variantSku?: string) => void;
+  updateQuantity: (productId: string, quantity: number, variantSku?: string) => void;
+  toggleSaveForLater: (productId: string, variantSku?: string) => void;
   clearCart: () => void;
   itemCount: number;
   subtotal: number;
@@ -68,13 +68,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     else window.localStorage.removeItem(COUPON_STORAGE_KEY);
   }, [coupon, hydrated]);
 
+  // A cart line's real identity is product_id + variant_sku (undefined
+  // variant_sku on both sides counts as a match), so two variants of the
+  // same product stay as separate lines rather than merging quantities.
+  const isSameLine = React.useCallback(
+    (item: Pick<CartItem, "product_id" | "variant_sku">, productId: string, variantSku?: string) =>
+      item.product_id === productId && (item.variant_sku ?? undefined) === (variantSku ?? undefined),
+    []
+  );
+
   const addItem = React.useCallback(
     (item: Omit<CartItem, "quantity">, quantity = 1) => {
       setItems((prev) => {
-        const existing = prev.find((i) => i.product_id === item.product_id);
+        const existing = prev.find((i) => isSameLine(i, item.product_id, item.variant_sku));
         if (existing) {
           return prev.map((i) =>
-            i.product_id === item.product_id
+            isSameLine(i, item.product_id, item.variant_sku)
               ? { ...i, quantity: i.quantity + quantity, saved_for_later: false }
               : i
           );
@@ -83,25 +92,34 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       });
       setIsOpen(true);
     },
-    []
+    [isSameLine]
   );
 
-  const removeItem = React.useCallback((productId: string) => {
-    setItems((prev) => prev.filter((i) => i.product_id !== productId));
-  }, []);
+  const removeItem = React.useCallback(
+    (productId: string, variantSku?: string) => {
+      setItems((prev) => prev.filter((i) => !isSameLine(i, productId, variantSku)));
+    },
+    [isSameLine]
+  );
 
-  const updateQuantity = React.useCallback((productId: string, quantity: number) => {
-    setItems((prev) => {
-      if (quantity <= 0) return prev.filter((i) => i.product_id !== productId);
-      return prev.map((i) => (i.product_id === productId ? { ...i, quantity } : i));
-    });
-  }, []);
+  const updateQuantity = React.useCallback(
+    (productId: string, quantity: number, variantSku?: string) => {
+      setItems((prev) => {
+        if (quantity <= 0) return prev.filter((i) => !isSameLine(i, productId, variantSku));
+        return prev.map((i) => (isSameLine(i, productId, variantSku) ? { ...i, quantity } : i));
+      });
+    },
+    [isSameLine]
+  );
 
-  const toggleSaveForLater = React.useCallback((productId: string) => {
-    setItems((prev) =>
-      prev.map((i) => (i.product_id === productId ? { ...i, saved_for_later: !i.saved_for_later } : i))
-    );
-  }, []);
+  const toggleSaveForLater = React.useCallback(
+    (productId: string, variantSku?: string) => {
+      setItems((prev) =>
+        prev.map((i) => (isSameLine(i, productId, variantSku) ? { ...i, saved_for_later: !i.saved_for_later } : i))
+      );
+    },
+    [isSameLine]
+  );
 
   const clearCart = React.useCallback(() => {
     setItems([]);

@@ -145,7 +145,32 @@ export function productJsonLd(product: {
   sku: string;
   brand: string;
   stock_status: string;
+  variants?: { price: number; sku: string; inStock: boolean }[];
 }) {
+  const offers =
+    product.variants && product.variants.length > 0
+      ? {
+          "@type": "AggregateOffer",
+          url: `${siteUrl}/product/${product.slug}`,
+          priceCurrency: "GBP",
+          lowPrice: Math.min(...product.variants.map((v) => v.price)).toFixed(2),
+          highPrice: Math.max(...product.variants.map((v) => v.price)).toFixed(2),
+          offerCount: product.variants.length,
+          availability: product.variants.some((v) => v.inStock)
+            ? "https://schema.org/InStock"
+            : "https://schema.org/OutOfStock",
+        }
+      : {
+          "@type": "Offer",
+          url: `${siteUrl}/product/${product.slug}`,
+          priceCurrency: "GBP",
+          price: product.price.toFixed(2),
+          availability:
+            product.stock_status === "out_of_stock"
+              ? "https://schema.org/OutOfStock"
+              : "https://schema.org/InStock",
+        };
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -157,16 +182,7 @@ export function productJsonLd(product: {
       "@type": "Brand",
       name: product.brand || "Pet Carrier",
     },
-    offers: {
-      "@type": "Offer",
-      url: `${siteUrl}/product/${product.slug}`,
-      priceCurrency: "GBP",
-      price: product.price.toFixed(2),
-      availability:
-        product.stock_status === "out_of_stock"
-          ? "https://schema.org/OutOfStock"
-          : "https://schema.org/InStock",
-    },
+    offers,
   };
 }
 

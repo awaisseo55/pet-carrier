@@ -74,17 +74,22 @@ export default function CartPage() {
                 )}
                 <ul className="flex flex-col divide-y divide-border rounded-lg border border-border bg-card">
                   {activeItems.map((item) => (
-                    <li key={item.product_id} className="flex gap-4 p-4 sm:p-5">
+                    <li key={`${item.product_id}-${item.variant_sku ?? ""}`} className="flex gap-4 p-4 sm:p-5">
                       <div className="relative size-24 shrink-0 overflow-hidden rounded-lg bg-gray-100">
                         <Image src={item.image} alt={item.title} fill sizes="96px" className="object-cover" />
                       </div>
                       <div className="flex flex-1 flex-col justify-between">
                         <div className="flex items-start justify-between gap-4">
-                          <Link href={`/product/${item.slug}`} className="font-medium hover:text-blue-700">
-                            {item.title}
-                          </Link>
+                          <div>
+                            <Link href={`/product/${item.slug}`} className="font-medium hover:text-blue-700">
+                              {item.title}
+                            </Link>
+                            {item.variant_label && (
+                              <p className="text-sm text-gray-500">{item.variant_label}</p>
+                            )}
+                          </div>
                           <button
-                            onClick={() => removeItem(item.product_id)}
+                            onClick={() => removeItem(item.product_id, item.variant_sku)}
                             className="text-gray-500 hover:text-alert cursor-pointer"
                             aria-label="Remove item"
                           >
@@ -95,7 +100,7 @@ export default function CartPage() {
                           <div className="flex items-center gap-3">
                             <div className="flex items-center gap-2">
                               <button
-                                onClick={() => updateQuantity(item.product_id, item.quantity - 1)}
+                                onClick={() => updateQuantity(item.product_id, item.quantity - 1, item.variant_sku)}
                                 className="flex size-8 items-center justify-center rounded-full border border-border hover:bg-gray-50 cursor-pointer"
                                 aria-label="Decrease quantity"
                               >
@@ -103,7 +108,7 @@ export default function CartPage() {
                               </button>
                               <span className="w-6 text-center">{item.quantity}</span>
                               <button
-                                onClick={() => updateQuantity(item.product_id, item.quantity + 1)}
+                                onClick={() => updateQuantity(item.product_id, item.quantity + 1, item.variant_sku)}
                                 className="flex size-8 items-center justify-center rounded-full border border-border hover:bg-gray-50 cursor-pointer"
                                 aria-label="Increase quantity"
                               >
@@ -111,7 +116,7 @@ export default function CartPage() {
                               </button>
                             </div>
                             <button
-                              onClick={() => toggleSaveForLater(item.product_id)}
+                              onClick={() => toggleSaveForLater(item.product_id, item.variant_sku)}
                               className="text-xs text-gray-500 underline hover:text-ink cursor-pointer"
                             >
                               Save for later
@@ -135,7 +140,7 @@ export default function CartPage() {
                 <h2 className="font-heading text-lg font-semibold text-ink">Saved for Later ({savedItems.length})</h2>
                 <ul className="mt-3 flex flex-col divide-y divide-border rounded-lg border border-border bg-card">
                   {savedItems.map((item) => (
-                    <li key={item.product_id} className="flex gap-4 p-4">
+                    <li key={`${item.product_id}-${item.variant_sku ?? ""}`} className="flex gap-4 p-4">
                       <div className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-gray-100">
                         <Image src={item.image} alt={item.title} fill sizes="64px" className="object-cover" />
                       </div>
@@ -144,17 +149,18 @@ export default function CartPage() {
                           <Link href={`/product/${item.slug}`} className="text-sm font-medium hover:text-blue-700">
                             {item.title}
                           </Link>
+                          {item.variant_label && <p className="text-xs text-gray-500">{item.variant_label}</p>}
                           <p className="text-sm text-gray-500">{formatPrice(item.price)}</p>
                         </div>
                         <div className="flex gap-3">
                           <button
-                            onClick={() => toggleSaveForLater(item.product_id)}
+                            onClick={() => toggleSaveForLater(item.product_id, item.variant_sku)}
                             className="text-xs font-medium text-blue-700 underline cursor-pointer"
                           >
                             Move to basket
                           </button>
                           <button
-                            onClick={() => removeItem(item.product_id)}
+                            onClick={() => removeItem(item.product_id, item.variant_sku)}
                             className="text-xs text-gray-500 underline cursor-pointer"
                           >
                             Remove

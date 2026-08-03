@@ -34,8 +34,16 @@ export async function POST(request: Request) {
     const session = event.data.object as Stripe.Checkout.Session;
 
     try {
-      const cartItems: { id: string; slug: string; title: string; qty: number; price: number; image: string }[] =
-        JSON.parse(session.metadata?.cart_items || "[]");
+      const cartItems: {
+        id: string;
+        slug: string;
+        title: string;
+        qty: number;
+        price: number;
+        image: string;
+        variant_sku?: string;
+        variant_label?: string;
+      }[] = JSON.parse(session.metadata?.cart_items || "[]");
 
       const meta = session.metadata || {};
       const [settings, products] = await Promise.all([getSettings(), getAllProducts()]);
@@ -62,18 +70,29 @@ export async function POST(request: Request) {
           country: meta.country || "GB",
           delivery_instructions: meta.delivery_instructions || undefined,
         },
-        items: cartItems.map((item) => ({
-          product_id: item.id,
-          slug: item.slug,
-          title: item.title,
-          image: item.image,
-          quantity: item.qty,
-          price: item.price,
-          // Looked up server-side from the product record (never from the
-          // client-supplied cart), so this internal fulfilment link is never
-          // exposed to or roundtripped through the customer's browser.
-          amazon_url: productsById.get(item.id)?.amazon_url || "",
-        })),
+        items: cartItems.map((item) => {
+          const product = productsById.get(item.id);
+          const variant = item.variant_sku
+            ? product?.variants?.find((v) => v.sku === item.variant_sku)
+            : undefined;
+          return {
+            product_id: item.id,
+            slug: item.slug,
+            title: item.title,
+            image: item.image,
+            quantity: item.qty,
+            price: item.price,
+            // Looked up server-side from the product (or matching variant)
+            // record, never from the client-supplied cart, so this internal
+            // fulfilment link is never exposed to or roundtripped through
+            // the customer's browser. The variant's own link (if it has one,
+            // e.g. a different Amazon listing per size/colour) takes
+            // priority over the product's general link.
+            amazon_url: variant?.amazonUrl || product?.amazon_url || "",
+            variant_sku: item.variant_sku,
+            variant_label: item.variant_label,
+          };
+        }),
         delivery_option: deliveryOption,
         coupon_code: meta.coupon_code || undefined,
         discount: meta.discount ? Number(meta.discount) : 0,

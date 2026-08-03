@@ -65,10 +65,11 @@ export function OrderRow({ order }: { order: Order }) {
       <td className="p-3">
         <ul className="flex flex-col gap-1">
           {order.items.map((item) => (
-            <li key={item.product_id} className="text-xs">
+            <li key={`${item.product_id}-${item.variant_sku ?? ""}`} className="text-xs">
               <p>
                 {item.quantity} &times; {item.title}
               </p>
+              {item.variant_label && <p className="text-muted-foreground">{item.variant_label}</p>}
               {item.amazon_url ? (
                 <a
                   href={item.amazon_url}

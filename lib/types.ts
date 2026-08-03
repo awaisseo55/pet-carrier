@@ -1,5 +1,29 @@
 export type StockStatus = "in_stock" | "low_stock" | "out_of_stock";
 
+export type VariantType = "size" | "colour" | "size-colour";
+
+export interface ProductVariant {
+  id: string;
+  type: VariantType;
+  size?: string;
+  /** Display label including dimensions, e.g. "M (43x32x30cm)". */
+  sizeLabel?: string;
+  colour?: string;
+  /** Hex colour for a plain swatch, e.g. "#8B8578". Omit to fall back to colourImage or an initial letter. */
+  colourHex?: string;
+  /** Product image for this colour, also swapped in as the gallery's primary image when selected. */
+  colourImage?: string;
+  price: number;
+  compareAtPrice?: number;
+  sku: string;
+  /** Internal fulfilment link for this specific variant, same "never reaches the client" rule as Product.amazon_url. */
+  amazonUrl?: string;
+  inStock: boolean;
+}
+
+/** Variant shape once amazonUrl (an internal fulfilment link) has been stripped for the client, see PublicProduct. */
+export type PublicProductVariant = Omit<ProductVariant, "amazonUrl">;
+
 export interface Product {
   id: string;
   slug: string;
@@ -8,6 +32,7 @@ export interface Product {
   short_description: string;
   features: string[];
   specifications: Record<string, string>;
+  /** For a variant product, this is the lowest variant price ("From £X"). */
   price: number;
   compare_at_price: number | null;
   sku: string;
@@ -29,6 +54,9 @@ export interface Product {
   meta_title?: string;
   meta_description?: string;
   faqs?: { question: string; answer: string }[];
+  hasVariants?: boolean;
+  variantType?: VariantType;
+  variants?: ProductVariant[];
 }
 
 /**
@@ -36,9 +64,12 @@ export interface Product {
  * (product cards, add-to-basket). Anything server-rendered as plain text is
  * already safe, but props passed across a client-component boundary get
  * serialised into the page's RSC payload, so `amazon_url` (our internal
- * fulfilment link, see CLAUDE.md) must never be part of that object.
+ * fulfilment link, see CLAUDE.md) must never be part of that object, and the
+ * same applies to each variant's own amazonUrl.
  */
-export type PublicProduct = Omit<Product, "amazon_url">;
+export type PublicProduct = Omit<Product, "amazon_url" | "variants"> & {
+  variants?: PublicProductVariant[];
+};
 
 export type OrderStatus =
   | "pending_payment"
@@ -58,6 +89,10 @@ export interface OrderItem {
   quantity: number;
   price: number;
   amazon_url: string;
+  /** Set when this line is a specific variant, e.g. "PC-B0GX1PNS8V-XL-GREEN". */
+  variant_sku?: string;
+  /** Human-readable selection, e.g. "Size: L, Colour: Grey", for admin fulfilment. */
+  variant_label?: string;
 }
 
 export interface Order {
@@ -140,6 +175,10 @@ export interface CartItem {
   quantity: number;
   stock_status: StockStatus;
   saved_for_later?: boolean;
+  /** Set when the selected line is a specific variant, e.g. "PC-B0GX1PNS8V-XL-GREEN". Combined with product_id, this is a cart line's real identity, so two variants of the same product are separate lines. */
+  variant_sku?: string;
+  /** Human-readable selection shown in the cart, e.g. "Size: L, Colour: Grey". */
+  variant_label?: string;
 }
 
 export type CouponType = "percentage" | "fixed";

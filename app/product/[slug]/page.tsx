@@ -2,11 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ChevronRight, ShieldCheck, RotateCcw, Truck, Star } from "lucide-react";
-import { ProductGallery } from "@/components/product/product-gallery";
-import { AddToCart } from "@/components/product/add-to-cart";
+import { ChevronRight, Star } from "lucide-react";
+import { ProductPurchaseSection } from "@/components/product/product-purchase-section";
 import { ProductCard } from "@/components/shop/product-card";
-import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
   AccordionContent,
@@ -15,9 +13,9 @@ import {
 } from "@/components/ui/accordion";
 import { getActiveProducts, getProductBySlug, getRelatedProducts, toPublicProduct } from "@/lib/products";
 import { breadcrumbJsonLd, faqJsonLd, productJsonLd } from "@/lib/seo";
-import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import { getBreadcrumbTrail, getCategoryByPath } from "@/lib/categories";
 import { formatPrice } from "@/lib/utils";
+import { distinctSizes } from "@/lib/variants";
 
 // Belt-and-braces alongside the on-demand revalidatePath() calls in
 // lib/revalidate.ts (which fire immediately after an admin save): a ceiling
@@ -64,12 +62,6 @@ export async function generateMetadata({
   };
 }
 
-const stockLabel = {
-  in_stock: { label: "In stock", variant: "success" as const },
-  low_stock: { label: "Only a few left", variant: "warning" as const },
-  out_of_stock: { label: "Out of stock", variant: "outline" as const },
-};
-
 export default async function ProductPage({
   params,
 }: {
@@ -80,7 +72,6 @@ export default async function ProductPage({
   if (!product || !product.is_active) notFound();
 
   const related = await getRelatedProducts(product);
-  const stock = stockLabel[product.stock_status];
   const primaryCategoryPath = product.category_slugs[0];
   const categoryTrail = primaryCategoryPath ? getBreadcrumbTrail(primaryCategoryPath) : [];
 
@@ -122,70 +113,10 @@ export default async function ProductPage({
         <span className="text-foreground line-clamp-1">{product.title}</span>
       </nav>
 
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-        <ProductGallery
-          images={product.images.length > 0 ? product.images : [PRODUCT_PLACEHOLDER]}
-          title={product.title}
-        />
-
-        <div>
-          {primaryCategoryPath && (
-            <span className="text-sm font-medium uppercase tracking-wide text-blue-600">
-              {getCategoryByPath(primaryCategoryPath)?.name}
-            </span>
-          )}
-          <h1 className="mt-2 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
-            {product.title}
-          </h1>
-
-          <div className="mt-4 flex items-center gap-3">
-            <span
-              className={`text-2xl font-semibold ${product.compare_at_price ? "text-alert" : "text-foreground"}`}
-            >
-              {formatPrice(product.price)}
-            </span>
-            {product.compare_at_price && (
-              <span className="text-lg text-muted-foreground line-through">
-                {formatPrice(product.compare_at_price)}
-              </span>
-            )}
-            <Badge variant={stock.variant}>{stock.label}</Badge>
-          </div>
-
-          <p className="mt-4 text-gray-500">{product.short_description}</p>
-
-          <div className="mt-6">
-            <AddToCart product={toPublicProduct(product)} />
-          </div>
-
-          <div className="mt-6 grid grid-cols-1 gap-3 rounded-lg bg-gray-100/60 p-4 sm:grid-cols-3">
-            <div className="flex items-center gap-2 text-sm">
-              <Truck className="size-4 shrink-0 text-blue-700" />
-              Free UK shipping over £50
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <RotateCcw className="size-4 shrink-0 text-blue-700" />
-              30-day returns
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <ShieldCheck className="size-4 shrink-0 text-blue-700" />
-              Secure checkout
-            </div>
-          </div>
-
-          <div className="mt-8">
-            <h2 className="font-heading text-lg font-semibold">Features</h2>
-            <ul className="mt-3 flex flex-col gap-2">
-              {product.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2 text-sm text-gray-500">
-                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-blue-500" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+      <ProductPurchaseSection
+        product={toPublicProduct(product)}
+        categoryName={primaryCategoryPath ? getCategoryByPath(primaryCategoryPath)?.name ?? null : null}
+      />
 
       <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-3">
         <div className="lg:col-span-2">
@@ -212,6 +143,39 @@ export default async function ProductPage({
 
         <div>
           <h2 className="font-heading text-2xl font-semibold text-foreground">Specifications</h2>
+
+          {product.hasVariants &&
+            product.variants &&
+            (product.variantType === "size" || product.variantType === "size-colour") && (
+              <div className="mt-4 overflow-x-auto rounded-lg border border-border">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-gray-50 text-muted-foreground">
+                    <tr>
+                      <th className="px-4 py-2.5 font-medium">Size</th>
+                      <th className="px-4 py-2.5 font-medium">Dimensions</th>
+                      <th className="px-4 py-2.5 text-right font-medium">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    {distinctSizes(product.variants).map(({ size, sizeLabel }) => {
+                      const variant = product.variants!.find((v) => v.size === size);
+                      return (
+                        <tr key={size}>
+                          <td className="px-4 py-2.5 font-medium text-foreground">{size}</td>
+                          <td className="px-4 py-2.5 text-muted-foreground">
+                            {sizeLabel?.replace(`${size} `, "").replace(/[()]/g, "") || "—"}
+                          </td>
+                          <td className="px-4 py-2.5 text-right font-medium text-foreground">
+                            {variant ? formatPrice(variant.price) : "—"}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
           <dl className="mt-4 divide-y divide-border rounded-lg border border-border bg-card">
             {Object.entries(product.specifications).map(([key, value]) => (
               <div key={key} className="flex justify-between gap-4 px-4 py-3 text-sm">

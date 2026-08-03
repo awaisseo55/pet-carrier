@@ -73,7 +73,33 @@ The first URL in the list is always the primary/hero image.
   `CATEGORIES` by `animal`/`descriptor`/`name` keywords found in the scraped title, and fall back to
   the closest hub category rather than leaving `category_slugs` empty.
 
-## 5. Publishing
+## 5. Variants (size and/or colour)
+
+Only use this if the Amazon listing genuinely has sibling ASINs for other sizes/colours (visible as
+swatches/a dropdown on the product page, or discoverable via the page's `dimensionValuesDisplayData`
+JSON). Most listings don't, in which case leave `hasVariants` unset and treat the product as a single
+listing exactly as before, don't invent variants that don't exist.
+
+- Set `hasVariants: true`, `variantType: "size" | "colour" | "size-colour"`, and populate
+  `variants: ProductVariant[]` (see `lib/types.ts`). Each variant needs its own `sku` and `inStock`,
+  and `size`/`sizeLabel` and/or `colour`/`colourHex`/`colourImage` depending on `variantType`.
+- The top-level `price` field becomes the lowest variant price (what the product card and the "From
+  £X" fallback on the product page use before a variant is selected). Leave `compare_at_price` null
+  unless a specific variant has one.
+- Only include a `colourImage` for variants where you have a genuine photo of that colour, the
+  gallery falls back to the product's normal `images[]` otherwise, don't reuse another colour's photo.
+- If you can't verify a real price for every sibling variant (Amazon's fetch can be just as unreliable
+  per-variant as it is per-product, see section 2), it's fine to reuse the one verified variant's price
+  across the others rather than guessing a different number, but never invent stock/price data you
+  haven't seen on the real listing. When in doubt, leave the whole product `is_active: false` until
+  it's verified, same as any other pending listing.
+- `components/product/variant-selector.tsx` renders the size/colour picker on the product page,
+  `components/product/product-purchase-section.tsx` owns the selected-variant state (drives the
+  gallery image, price, stock badge and add-to-cart SKU together), and `lib/variants.ts` has the
+  shared helpers (`variantLabel`, `variantPriceRange`, `distinctSizes`, `distinctColours`). None of
+  these need touching to add a variant product, only the data does.
+
+## 6. Publishing
 
 Call `upsertProduct` from `lib/products.ts` (matches by `id`, so re-running the workflow for the
 same ASIN updates the existing record rather than creating a duplicate). Only set `is_active: true`

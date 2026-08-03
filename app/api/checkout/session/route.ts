@@ -78,9 +78,13 @@ export async function POST(request: Request) {
         price_data: {
           currency: "gbp",
           product_data: {
-            name: item.title,
+            name: item.variant_label ? `${item.title} — ${item.variant_label}` : item.title,
             images: [item.image],
-            metadata: { product_id: item.product_id, slug: item.slug },
+            metadata: {
+              product_id: item.product_id,
+              slug: item.slug,
+              ...(item.variant_sku ? { variant_sku: item.variant_sku } : {}),
+            },
           },
           unit_amount: Math.round(item.price * 100),
         },
@@ -119,7 +123,16 @@ export async function POST(request: Request) {
       cancel_url: `${siteUrl}/checkout/cancel`,
       metadata: {
         cart_items: JSON.stringify(
-          items.map((i) => ({ id: i.product_id, slug: i.slug, title: i.title, qty: i.quantity, price: i.price, image: i.image }))
+          items.map((i) => ({
+            id: i.product_id,
+            slug: i.slug,
+            title: i.title,
+            qty: i.quantity,
+            price: i.price,
+            image: i.image,
+            variant_sku: i.variant_sku,
+            variant_label: i.variant_label,
+          }))
         ),
         customer_name: `${customer.firstName} ${customer.lastName}`.trim(),
         customer_phone: customer.phone || "",

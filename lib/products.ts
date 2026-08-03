@@ -8,10 +8,13 @@ export async function getAllProducts(): Promise<Product[]> {
   return readJsonFile<Product[]>("products.json");
 }
 
-/** Strips the internal `amazon_url` fulfilment link before a product crosses into a public "use client" component. */
+/** Strips the internal `amazon_url` fulfilment link (product-level and per-variant) before a product crosses into a public "use client" component. */
 export function toPublicProduct(product: Product): PublicProduct {
-  const { amazon_url: _amazon_url, ...rest } = product;
-  return rest;
+  const { amazon_url: _amazon_url, variants, ...rest } = product;
+  return {
+    ...rest,
+    variants: variants?.map(({ amazonUrl: _amazonUrl, ...variant }) => variant),
+  };
 }
 
 function asinFromProduct(product: Product): string | null {

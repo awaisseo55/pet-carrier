@@ -55,7 +55,7 @@
     "updated_at": "2026-07-27T13:00:00.000Z",
     "markup_percentage": 0,
     "meta_title": "Feandrea Foldable Travel Crate for Dogs & Cats | Pet Carrier UK",
-    "meta_description": "Feandrea foldable travel crate for dogs 7-11kg and cats. Steel frame, mesh windows, folds flat for storage. \u00a332.99 with fast UK delivery.",
+    "meta_description": "Feandrea foldable travel crate for dogs 7-11kg and cats. Steel frame, mesh windows, folds flat for storage. £32.99 with fast UK delivery.",
     "focus_keyword": "feandrea foldable dog crate",
     "faqs": [
       {
@@ -134,7 +134,7 @@
     "updated_at": "2026-07-27T13:00:00.000Z",
     "markup_percentage": 0,
     "meta_title": "Lionto Foldable Dog Crate for Travel & Car | Pet Carrier UK",
-    "meta_description": "Lionto foldable dog crate, 60 x 42 x 44cm. Steel frame, padded cushion, folds flat for storage. Ideal for car travel and house training. \u00a327.99.",
+    "meta_description": "Lionto foldable dog crate, 60 x 42 x 44cm. Steel frame, padded cushion, folds flat for storage. Ideal for car travel and house training. £27.99.",
     "focus_keyword": "lionto foldable dog crate",
     "faqs": [
       {
@@ -220,13 +220,13 @@
     "slug": "dycietx-soft-sided-foldable-cat-dog-pet-puppy-carrier-bag-portable-pets-travel-carriers-for-cats-dogs-with-shoulder-strap-removable-mat-durable-cat-basket-of-17-lbs-airline-approved-black-m",
     "title": "Dycietx Soft Sided Foldable Cat/Dog/Pet/Puppy Carrier Bag, Portable Pets Travel Carriers For Cats/Dogs With Shoulder Strap & Removable Mat, Durable Cat Basket of 17 lbs Airline Approved(Black, M)",
     "description": "",
-    "short_description": "High Quality Design\uff1aFirm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, which can",
+    "short_description": "High Quality Design：Firm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, which can",
     "features": [
-      "High Quality Design\uff1aFirm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, which can ensure good air circulation and views, make pets have a comfortable and safe travel. It can also be easy for you to check on your pets. There is a front pocket to store pet foods,toys,treats,etc.",
-      "Dimension And Weight\uff1aMade of tear resistant durable fabric.Three easy entrances for pets on the top and front sides. Dimensions: 17 inch/43 cm x 11 inch/28 cm x 11 inch/28 cm (L*W*H), suitable for pets up to 17 lbs/7.7kg. Please don't choose your carrier based on weight only,consider your pet's length and height when choosing a carrier.",
-      "Airline Approved & Safty\uff1aThe pet carrier can be placed under the seats of most airplanes, and comfortably on the seat next to you in a car or bus. It has a non-slip adjustable shoulder strap and padded handle. Can also be fastened to the car seat with a safety belt or shoulder strap to keep your pet safe.",
-      "Easy To Clean And Store\uff1aYou can clean the stains and dirt on the surface with a soft cloth. The soft mat inside the pet carrier is removable and washable. You can take it out and wash it easily to solve all stains.The collapsible design makes it compact ad easy to store.",
-      "Service Guarantees\uff1aOur goal is to provide the best customer service,if you have any questions, please contact us through Amazon,we will reply within 24 hours,until you are satisfied,so that you can order our products without worries."
+      "High Quality Design：Firm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, which can ensure good air circulation and views, make pets have a comfortable and safe travel. It can also be easy for you to check on your pets. There is a front pocket to store pet foods,toys,treats,etc.",
+      "Dimension And Weight：Made of tear resistant durable fabric.Three easy entrances for pets on the top and front sides. Dimensions: 17 inch/43 cm x 11 inch/28 cm x 11 inch/28 cm (L*W*H), suitable for pets up to 17 lbs/7.7kg. Please don't choose your carrier based on weight only,consider your pet's length and height when choosing a carrier.",
+      "Airline Approved & Safty：The pet carrier can be placed under the seats of most airplanes, and comfortably on the seat next to you in a car or bus. It has a non-slip adjustable shoulder strap and padded handle. Can also be fastened to the car seat with a safety belt or shoulder strap to keep your pet safe.",
+      "Easy To Clean And Store：You can clean the stains and dirt on the surface with a soft cloth. The soft mat inside the pet carrier is removable and washable. You can take it out and wash it easily to solve all stains.The collapsible design makes it compact ad easy to store.",
+      "Service Guarantees：Our goal is to provide the best customer service,if you have any questions, please contact us through Amazon,we will reply within 24 hours,until you are satisfied,so that you can order our products without worries."
     ],
     "specifications": {},
     "price": 44.94,
@@ -266,7 +266,7 @@
     "updated_at": "2026-08-02T20:05:31.775Z",
     "markup_percentage": 60,
     "meta_title": "Dycietx Soft Sided Foldable Cat/Dog/Pet/Puppy Carrier Bag...",
-    "meta_description": "High Quality Design\uff1aFirm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, whic"
+    "meta_description": "High Quality Design：Firm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, whic"
   },
   {
     "id": "PC-UH3G4NTI",
@@ -539,10 +539,10 @@
       "Closure": "Quick-release buckle with Velcro adjustment, integrated safety tether",
       "Warranty": "Manufacturer standard"
     },
-    "price": 0,
+    "price": 38.99,
     "compare_at_price": null,
     "sku": "PC-B0GHN65MYN",
-    "stock_status": "out_of_stock",
+    "stock_status": "in_stock",
     "stock_count": 0,
     "images": [
       "/api/blob/uploads/product/B0GHN65MYN/image-0-main.webp",
@@ -560,17 +560,18 @@
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/cat-carriers",
       "carriers/sling-carriers",
-      "carriers/everyday-carriers"
+      "carriers/everyday-carriers",
+      "carriers"
     ],
     "size_range": "Small (L strap size)",
     "weight_capacity": "Not stated by manufacturer",
     "brand": "PAWPUBBY",
     "amazon_asin": "B0GHN65MYN",
     "amazon_url": "https://www.amazon.co.uk/dp/B0GHN65MYN",
-    "is_active": false,
+    "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-04T00:00:00.000Z",
-    "updated_at": "2026-08-04T00:00:00.000Z",
+    "updated_at": "2026-08-03T20:15:37.218Z",
     "markup_percentage": 40,
     "meta_title": "PAWPUBBY Hands-Free Dog Sling, Caramel | Pet Carrier",
     "meta_description": "PAWPUBBY padded hands-free sling carrier for small dogs and kittens. Safety tether, storage pocket. Currently a draft pending price confirmation.",
@@ -618,10 +619,10 @@
       "Closure": "Adjustable buckle strap with collar-clip safety rope",
       "Warranty": "Manufacturer standard"
     },
-    "price": 0,
+    "price": 27.99,
     "compare_at_price": null,
     "sku": "PC-B09WDPGFLD",
-    "stock_status": "out_of_stock",
+    "stock_status": "in_stock",
     "stock_count": 0,
     "images": [
       "/api/blob/uploads/product/B09WDPGFLD/image-0-main.webp",
@@ -646,10 +647,10 @@
     "brand": "Sarsumir",
     "amazon_asin": "B09WDPGFLD",
     "amazon_url": "https://www.amazon.co.uk/dp/B09WDPGFLD",
-    "is_active": false,
+    "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-04T00:00:00.000Z",
-    "updated_at": "2026-08-04T00:00:00.000Z",
+    "updated_at": "2026-08-03T20:16:18.183Z",
     "markup_percentage": 40,
     "meta_title": "Sarsumir Dog & Cat Sling Carrier, Black | Pet Carrier",
     "meta_description": "Sarsumir adjustable sling carrier for small to medium dogs and cats up to 7.5kg. Double-layer fabric, safety rope. Draft pending price confirmation.",
@@ -698,7 +699,7 @@
       "Design": "Reversible, wearable on either side",
       "Warranty": "Manufacturer standard"
     },
-    "price": 0,
+    "price": 33.99,
     "compare_at_price": null,
     "sku": "PC-B0D25HJQ94",
     "stock_status": "out_of_stock",
@@ -727,10 +728,10 @@
     "brand": "Adiwo",
     "amazon_asin": "B0D25HJQ94",
     "amazon_url": "https://www.amazon.co.uk/dp/B0D25HJQ94",
-    "is_active": false,
+    "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-04T00:00:00.000Z",
-    "updated_at": "2026-08-04T00:00:00.000Z",
+    "updated_at": "2026-08-03T20:16:50.345Z",
     "markup_percentage": 40,
     "meta_title": "Adiwo Reversible Dog & Cat Sling Carrier | Pet Carrier",
     "meta_description": "Adiwo reversible hands-free sling carrier for small and medium dogs and cats. Double safety fastening. Draft pending price confirmation.",
@@ -778,10 +779,10 @@
       "Design": "Reversible, crossbody carry",
       "Warranty": "Manufacturer standard"
     },
-    "price": 0,
+    "price": 29.99,
     "compare_at_price": null,
     "sku": "PC-B0F7LKHN96",
-    "stock_status": "out_of_stock",
+    "stock_status": "in_stock",
     "stock_count": 0,
     "images": [
       "/api/blob/uploads/product/B0F7LKHN96/image-0-main.webp",
@@ -806,10 +807,10 @@
     "brand": "Pawaboo",
     "amazon_asin": "B0F7LKHN96",
     "amazon_url": "https://www.amazon.co.uk/dp/B0F7LKHN96",
-    "is_active": false,
+    "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-04T00:00:00.000Z",
-    "updated_at": "2026-08-04T00:00:00.000Z",
+    "updated_at": "2026-08-03T20:17:18.243Z",
     "markup_percentage": 40,
     "meta_title": "Pawaboo Small Dog Sling Carrier, Black | Pet Carrier",
     "meta_description": "Pawaboo reversible crossbody sling carrier for small dogs up to 12lbs. Safety harness, adjustable opening. Draft pending price confirmation.",
