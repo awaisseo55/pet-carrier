@@ -45,6 +45,7 @@ async function readLocalFile<T>(filename: string): Promise<T> {
 
 const readJsonFileUncached = async <T>(filename: string): Promise<T> => {
   if (USE_BLOB) {
+    let neverWritten = false;
     try {
       const result = await get(`${BLOB_PREFIX}${filename}`, { access: "private", useCache: false });
       if (result && result.statusCode === 200) {
@@ -52,12 +53,33 @@ const readJsonFileUncached = async <T>(filename: string): Promise<T> => {
         return JSON.parse(text) as T;
       }
       // No blob written yet for this file: seed from the copy bundled in the
-      // deployment, the next write will create the blob.
+      // deployment.
+      neverWritten = true;
     } catch (error) {
-      // Transient Blob API failure: fall back to the (possibly stale)
-      // bundled copy rather than crashing the page.
+      // Transient Blob API failure (not a "doesn't exist yet" signal): fall
+      // back to the bundled copy for this read without touching Blob, so a
+      // network blip can't be mistaken for an empty store and overwrite
+      // whatever's actually there.
       console.error(`[data-store] Blob read failed for "${filename}", falling back to local file`, error);
     }
+
+    const local = await readLocalFile<T>(filename);
+    if (neverWritten) {
+      // First-ever read of this file: persist the bundled seed data to Blob
+      // so it becomes the durable source of truth immediately, rather than
+      // silently re-reading the bundled copy (which only reflects whatever
+      // was last committed to git) on every request until something else
+      // happens to write this file first.
+      put(`${BLOB_PREFIX}${filename}`, JSON.stringify(local, null, 2), {
+        access: "private",
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        contentType: "application/json",
+      }).catch((error) => {
+        console.error(`[data-store] Failed to auto-seed Blob for "${filename}"`, error);
+      });
+    }
+    return local;
   }
   return readLocalFile<T>(filename);
 };

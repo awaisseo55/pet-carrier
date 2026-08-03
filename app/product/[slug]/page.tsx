@@ -23,6 +23,11 @@ import { formatPrice } from "@/lib/utils";
 // lib/revalidate.ts (which fire immediately after an admin save): a ceiling
 // so pricing/stock is never more than a minute stale even if one is missed.
 export const revalidate = 60;
+// Not actually a behaviour change: Next.js already defaults dynamicParams to
+// true (nothing in this app sets it false), so slugs outside
+// generateStaticParams() already render on demand. Kept explicit so that's
+// obvious without checking the Next.js default.
+export const dynamicParams = true;
 import { renderRichText } from "@/lib/markdown-lite";
 
 export async function generateStaticParams() {

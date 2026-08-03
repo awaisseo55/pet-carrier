@@ -1,72 +1,5 @@
 [
   {
-    "id": "PC-DEMO001",
-    "slug": "premium-multi-purpose-pet-carrier",
-    "title": "Premium Multi-Purpose Pet Carrier for Small to Medium Pets",
-    "description": "This carrier is built to be the one bag that works for almost any trip, whether that's a quick dash to the vet, a weekend visit to family, or a longer day out together. It suits small to medium dogs, cats, rabbits and other similarly sized pets, so it's a genuinely useful option if you have more than one type of pet at home or simply want something versatile.\n\nThe main compartment is generously padded along the base, which takes the edge off bumpy pavements and car journeys alike, while mesh panels on three sides keep air moving so your pet doesn't feel closed in. A top-loading zip opening sits alongside the usual front entry, which makes a real difference when you're trying to settle a nervous pet in without a struggle.\n\nWe've also thought about you, not just your pet. A padded, adjustable shoulder strap and a sturdy top carry handle mean you can switch grips depending on the day, and the whole thing folds flat when it's empty so it doesn't take up much room between trips. The zips are backed with a safety clip, so there's no risk of an unexpected escape mid-journey.\n\nInside, a removable cushioned liner lifts out for washing, which matters more than it sounds once you've had a long car journey or an accident to deal with. The frame keeps its shape even when packed for a longer trip, so your pet always has a stable, level base to settle onto.\n\nThis is a demonstration product listing, added to show how a full product page looks on Pet Carrier. Real products will be added via the admin panel once the store goes live.",
-    "short_description": "A versatile, well-padded carrier suited to small to medium dogs, cats, rabbits and similar pets, with mesh ventilation and a top and front opening.",
-    "features": [
-      "Padded, cushioned base for a comfortable ride",
-      "Mesh panels on three sides for airflow and visibility",
-      "Top-loading zip opening alongside the standard front door",
-      "Adjustable, padded shoulder strap plus a sturdy top handle",
-      "Folds flat for easy storage between trips",
-      "Zips backed with a safety clip to prevent accidental openings",
-      "Removable, machine washable interior liner",
-      "Suits small to medium dogs, cats, rabbits and similar pets"
-    ],
-    "specifications": {
-      "Dimensions": "45 x 28 x 27 cm",
-      "Weight capacity": "Up to 9kg",
-      "Material": "Oxford fabric with mesh panelling",
-      "Colour": "Charcoal grey",
-      "Warranty": "12 month manufacturer warranty"
-    },
-    "price": 49.99,
-    "compare_at_price": 64.99,
-    "sku": "PC-DEMO001",
-    "stock_status": "in_stock",
-    "stock_count": 25,
-    "images": [
-      "https://images.unsplash.com/photo-1761614282055-29e039aac354?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1765045952615-9e28d239f053?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1765182272682-c1e8edf6251e?w=1200&q=80&auto=format&fit=crop"
-    ],
-    "category_slugs": [
-      "carriers/dog-carriers/small-dog-carriers",
-      "carriers/cat-carriers/soft-sided-cat-carriers",
-      "carriers/small-animal-carriers/rabbit-carriers",
-      "carriers/backpack-carriers",
-      "carriers/vet-visit-carriers"
-    ],
-    "size_range": "Small to Medium",
-    "weight_capacity": "Up to 9kg",
-    "brand": "Pet Carrier",
-    "amazon_asin": "DEMO0000001",
-    "amazon_url": "",
-    "is_active": true,
-    "is_featured": true,
-    "created_at": "2026-07-26T00:00:00.000Z",
-    "updated_at": "2026-07-26T00:00:00.000Z",
-    "markup_percentage": 40,
-    "meta_title": "Premium Multi-Purpose Pet Carrier | Pet Carrier",
-    "meta_description": "A versatile, padded carrier for small to medium dogs, cats, rabbits and similar pets. Mesh ventilation, top and front opening. Free UK shipping over \u00a350.",
-    "faqs": [
-      {
-        "question": "Is this carrier suitable for cats and dogs?",
-        "answer": "Yes. It's designed to suit small to medium dogs, cats, rabbits and similarly sized pets up to around 9kg."
-      },
-      {
-        "question": "Can I fit this carrier in a car?",
-        "answer": "Yes, the flat base and compact footprint make it easy to secure on a car seat or footwell for shorter journeys."
-      },
-      {
-        "question": "Is the liner washable?",
-        "answer": "Yes, the interior liner lifts out and can be machine washed on a gentle cycle."
-      }
-    ]
-  },
-  {
     "id": "B082NTP9PJ",
     "slug": "feandrea-foldable-dog-cat-travel-crate-grey",
     "title": "Feandrea Foldable Travel Crate for Dogs and Cats, 60cm, Grey",
@@ -247,10 +180,10 @@
       "Colour": "Green",
       "Use": "Indoor crate, car travel, outdoor pet tent"
     },
-    "price": 0,
+    "price": 49.99,
     "compare_at_price": null,
     "sku": "PC-B0F9DVG6VG",
-    "stock_status": "out_of_stock",
+    "stock_status": "in_stock",
     "stock_count": 0,
     "images": [
       "/uploads/product/B0F9DVG6VG/image-0-main.webp",
@@ -264,27 +197,82 @@
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
       "carriers/dog-carriers",
-      "carriers/car-travel-carriers"
+      "carriers/car-travel-carriers",
+      "carriers",
+      "carriers/dog-carriers/medium-dog-carriers"
     ],
     "size_range": "Small to medium",
     "weight_capacity": "Not stated by manufacturer",
     "brand": "Pecute",
     "amazon_asin": "B0F9DVG6VG",
     "amazon_url": "https://www.amazon.co.uk/dp/B0F9DVG6VG/",
-    "is_active": false,
+    "is_active": true,
     "is_featured": false,
     "created_at": "2026-07-26T22:40:26.972Z",
-    "updated_at": "2026-07-26T22:40:26.972Z",
+    "updated_at": "2026-07-27T21:08:26.801Z",
     "markup_percentage": 0,
     "meta_title": "Pecute Foldable Dog Car Carrier, Green | Pet Carrier UK",
     "meta_description": "Lightweight foldable dog car carrier with steel wire frame, breathable mesh, and secure car fixings. Currently a draft pending price confirmation.",
     "faqs": []
   },
   {
-    "id": "B0DMRX9N63",
-    "slug": "conlun-collapsible-cat-dog-carrier-purple",
+    "id": "B0BVJ6HN4Y",
+    "slug": "dycietx-soft-sided-foldable-cat-dog-pet-puppy-carrier-bag-portable-pets-travel-carriers-for-cats-dogs-with-shoulder-strap-removable-mat-durable-cat-basket-of-17-lbs-airline-approved-black-m",
+    "title": "Dycietx Soft Sided Foldable Cat/Dog/Pet/Puppy Carrier Bag, Portable Pets Travel Carriers For Cats/Dogs With Shoulder Strap & Removable Mat, Durable Cat Basket of 17 lbs Airline Approved(Black, M)",
+    "description": "",
+    "short_description": "High Quality Design\uff1aFirm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, which can",
+    "features": [
+      "High Quality Design\uff1aFirm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, which can ensure good air circulation and views, make pets have a comfortable and safe travel. It can also be easy for you to check on your pets. There is a front pocket to store pet foods,toys,treats,etc.",
+      "Dimension And Weight\uff1aMade of tear resistant durable fabric.Three easy entrances for pets on the top and front sides. Dimensions: 17 inch/43 cm x 11 inch/28 cm x 11 inch/28 cm (L*W*H), suitable for pets up to 17 lbs/7.7kg. Please don't choose your carrier based on weight only,consider your pet's length and height when choosing a carrier.",
+      "Airline Approved & Safty\uff1aThe pet carrier can be placed under the seats of most airplanes, and comfortably on the seat next to you in a car or bus. It has a non-slip adjustable shoulder strap and padded handle. Can also be fastened to the car seat with a safety belt or shoulder strap to keep your pet safe.",
+      "Easy To Clean And Store\uff1aYou can clean the stains and dirt on the surface with a soft cloth. The soft mat inside the pet carrier is removable and washable. You can take it out and wash it easily to solve all stains.The collapsible design makes it compact ad easy to store.",
+      "Service Guarantees\uff1aOur goal is to provide the best customer service,if you have any questions, please contact us through Amazon,we will reply within 24 hours,until you are satisfied,so that you can order our products without worries."
+    ],
+    "specifications": {},
+    "price": 44.94,
+    "compare_at_price": 49.99,
+    "sku": "PC-B0BVJ6HN4Y",
+    "stock_status": "in_stock",
+    "stock_count": 20,
+    "images": [
+      "/api/blob/uploads/product/B0BVJ6HN4Y/main.webp",
+      "/api/blob/uploads/product/B0BVJ6HN4Y/image-1.webp",
+      "/api/blob/uploads/product/B0BVJ6HN4Y/image-2.webp",
+      "/api/blob/uploads/product/B0BVJ6HN4Y/image-3.webp",
+      "/api/blob/uploads/product/B0BVJ6HN4Y/image-4.webp",
+      "/api/blob/uploads/product/B0BVJ6HN4Y/image-5.webp"
+    ],
+    "category_slugs": [
+      "carriers/cat-carriers/kitten-carriers",
+      "carriers/cat-carriers/soft-sided-cat-carriers",
+      "carriers",
+      "carriers/dog-carriers",
+      "carriers/dog-carriers/puppy-carriers",
+      "carriers/dog-carriers/small-dog-carriers",
+      "carriers/cat-carriers",
+      "carriers/cat-carriers/large-cat-carriers",
+      "carriers/dog-carriers/airline-approved-dog-carriers",
+      "carriers/vet-visit-carriers",
+      "carriers/airline-approved-carriers"
+    ],
+    "size_range": "Medium",
+    "weight_capacity": "See listing",
+    "brand": "Pet Carrier",
+    "amazon_asin": "B0BVJ6HN4Y",
+    "amazon_url": "https://www.amazon.co.uk/Foldable-Portable-Carriers-Shoulder-Removable/dp/B0BVJ6HN4Y?crid=ON4YOUO0WYKR&dib=eyJ2IjoiMSJ9.qXrhELnQ0Mn1W-sq8afkphvxbCsztXjn09pzZohHb43SyBHXEvEVyrO5oUG-qVx6xF5wYMr9-6B121yVP5VUCtL-OTBXgcLZtJHH7LibG965YotFlrsHtp0A7EBWWYGJHS7sv8qVZ3Ec4MMKQF2WPF1c7xyL0iuQYLRlMBHgtpqZ0YVY0GsNGPL6gZUYSxWaRJj9TpGu2KTKvKyOekPbS_qKyXGUQvtaKljZHitQOVHcb640bdLaNG8RX83wWeQO5bbjo2exSMOY14DnOBtbfXuS9wV-97iiOm4itKDvlV4.LHr1qNqlDe85WxrrfHqP5ZgkUawIELKxVe0Zv_TZc9g&dib_tag=se&keywords=dog%2Bcarrier&qid=1785700878&sprefix=dog%2Bcarrie%2Caps%2C448&sr=8-6&th=1&linkCode=ll2&tag=petcarrier55-21&linkId=af076ebb30dfa5927f626f9c7b6eedfc&ref_=as_li_ss_tl",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-02T20:05:20.303Z",
+    "updated_at": "2026-08-02T20:05:31.775Z",
+    "markup_percentage": 60,
+    "meta_title": "Dycietx Soft Sided Foldable Cat/Dog/Pet/Puppy Carrier Bag...",
+    "meta_description": "High Quality Design\uff1aFirm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, whic"
+  },
+  {
+    "id": "PC-UH3G4NTI",
+    "slug": "conlun-collapsible-soft-sided-carrier-for-cats-and-small-dogs-purple",
     "title": "Conlun Collapsible Soft-Sided Carrier for Cats and Small Dogs, Purple",
-    "description": "## About the Conlun Collapsible Carrier\n\nThe Conlun Collapsible Carrier is a soft-sided bag-style carrier built for large cats and small to medium dogs up to 10kg. A steel frame inside the polyester body keeps its shape in use, while self-locking zippers mean your pet cannot nudge their way out mid-journey. It is designed for car rides and everyday trips rather than air travel, so it suits owners who need a comfortable, secure carrier for local journeys, [vet visits](/carriers/vet-visit-carriers) and days out.\n\nIt works well as a [cat carrier](/carriers/cat-carriers) for larger breeds who need a bit more room, and as a [small dog carrier](/carriers/dog-carriers/small-dog-carriers) for puppies and smaller adult dogs. Always measure your pet's length, height and weight against the carrier's dimensions before buying, to make sure they will be comfortable inside.\n\n## Key Features\n\n### Self-Locking Zippers and Safety Leash\n\nThe main zippers lock shut so an inquisitive pet cannot work them open from the inside. An internal safety leash clips onto a harness or collar for extra reassurance during the journey.\n\n### Breathable Mesh on Three Sides\n\nMesh panels on three sides and an openable top let fresh air in and give your pet a view out, which helps keep them settled rather than feeling shut away.\n\n### External Storage Pockets\n\nPockets on the outside of the carrier hold small essentials like treats, a lead or waste bags, so you do not need to carry a separate bag for short trips.\n\n### Removable, Washable Base Mat\n\nA soft fleece mat lines the base for comfort and lifts out for hand or machine washing.\n\n### Padded Strap and Carry Handles\n\nCarry it by the top handles or use the adjustable, padded shoulder strap for hands-free trips.\n\n## Who This Carrier Is Best For\n\nThis [carrier](/carriers) suits:\n\n- Large cat breeds who need more room than a standard cat carrier\n- Small to medium dogs and puppies up to around 10kg\n- [Car journeys](/carriers/car-travel-carriers) and [vet visits](/carriers/vet-visit-carriers)\n- Owners who want a [soft-sided carrier](/carriers/soft-sided-carriers) that still holds its shape\n- Everyday errands where a lightweight, foldable carrier is easier to store between trips\n\nThis carrier is not certified for air travel, so it is best kept for car journeys and everyday outings rather than flights.\n\n## Care Instructions\n\nWipe the polyester exterior down with a damp cloth. Remove the fleece base mat to hand wash or machine wash on a gentle cycle, and let it dry fully before folding the carrier away for storage.",
+    "description": "## About the Conlun Collapsible Carrier\n\nThe Conlun Collapsible Carrier is a soft-sided bag-style carrier built for large cats and small to medium dogs up to 10kg. A steel frame inside the polyester body keeps its shape in use, while self-locking zippers mean your pet cannot nudge their way out mid-journey. It is designed for car rides and everyday trips rather than air travel, so it suits owners who need a comfortable, secure carrier for local journeys, vet visits and days out.\n\nIt works well as a carrier for larger cat breeds who need a bit more room, and as a small dog carrier for puppies and smaller adult dogs. Always measure your pet's length, height and weight against the carrier's dimensions before buying, to make sure they will be comfortable inside.\n\n## Key Features\n\n### Self-Locking Zippers and Safety Leash\n\nThe main zippers lock shut so an inquisitive pet cannot work them open from the inside. An internal safety leash clips onto a harness or collar for extra reassurance during the journey.\n\n### Breathable Mesh on Three Sides\n\nMesh panels on three sides and an openable top let fresh air in and give your pet a view out, which helps keep them settled rather than feeling shut away.\n\n### External Storage Pockets\n\nPockets on the outside of the carrier hold small essentials like treats, a lead or waste bags, so you do not need to carry a separate bag for short trips.\n\n### Removable, Washable Base Mat\n\nA soft fleece mat lines the base for comfort and lifts out for hand or machine washing.\n\n### Padded Strap and Carry Handles\n\nCarry it by the top handles or use the adjustable, padded shoulder strap for hands-free trips.\n\n## Who This Carrier Is Best For\n\n- Large cat breeds who need more room than a standard cat carrier\n- Small to medium dogs and puppies up to around 10kg\n- Car journeys and vet visits\n- Owners who want a soft-sided carrier that still holds its shape\n- Everyday errands where a lightweight, foldable carrier is easier to store between trips\n\nThis carrier is not certified for air travel, so it is best kept for car journeys and everyday outings rather than flights.\n\n## Care Instructions\n\nWipe the polyester exterior down with a damp cloth. Remove the fleece base mat to hand wash or machine wash on a gentle cycle, and let it dry fully before folding the carrier away for storage.",
     "short_description": "A collapsible soft-sided carrier for large cats and small to medium dogs up to 10kg, with self-locking zips, mesh windows and an internal safety leash. Folds flat for storage between car journeys, vet visits and everyday trips.",
     "features": [
       "Self-locking zippers with an internal safety leash clip for secure travel",
@@ -295,161 +283,49 @@
       "Collapsible design that folds flat for storage",
       "Suits large cats and small to medium dogs up to 10kg (car travel, not certified for flights)"
     ],
-    "specifications": {
-      "External dimensions": "51cm x 31cm x 31cm",
-      "Suitable for": "Large cats and small to medium dogs up to 10kg",
-      "Material": "Polyester with steel frame",
-      "Colour": "Purple",
-      "Closure": "Self-locking zippers",
-      "Air travel": "Not certified, car and everyday use only"
-    },
-    "price": 0,
+    "specifications": {},
+    "price": 49.99,
     "compare_at_price": null,
-    "sku": "PC-B0DMRX9N63",
+    "sku": "PC-PC-UH3G4NTI",
     "stock_status": "in_stock",
-    "stock_count": 15,
+    "stock_count": 20,
     "images": [
-      "/uploads/product/B0DMRX9N63/image-0-main.webp",
-      "/uploads/product/B0DMRX9N63/image-1-main.webp",
-      "/uploads/product/B0DMRX9N63/image-2-main.webp",
-      "/uploads/product/B0DMRX9N63/image-3-main.webp",
-      "/uploads/product/B0DMRX9N63/image-4-main.webp",
-      "/uploads/product/B0DMRX9N63/image-5-main.webp"
+      "/api/blob/uploads/product/new-product/upload-1785749895868.webp?v=1785749897237",
+      "/api/blob/uploads/product/new-product/upload-1785749932467.webp?v=1785749933190",
+      "/api/blob/uploads/product/new-product/upload-1785749960600.webp?v=1785749961308",
+      "/api/blob/uploads/product/new-product/upload-1785749982538.webp?v=1785749983459",
+      "/api/blob/uploads/product/new-product/upload-1785749999255.webp?v=1785749999893",
+      "/api/blob/uploads/product/new-product/upload-1785750014986.webp?v=1785750015764"
     ],
     "category_slugs": [
-      "carriers/cat-carriers/large-cat-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/cat-carriers/soft-sided-cat-carriers",
       "carriers/soft-sided-carriers",
       "carriers/car-travel-carriers",
-      "carriers/everyday-carriers"
+      "carriers/everyday-carriers",
+      "carriers/dog-carriers",
+      "carriers",
+      "carriers/dog-carriers/puppy-carriers",
+      "carriers/cat-carriers/large-cat-carriers"
     ],
     "size_range": "Up to 10kg (large cats, small to medium dogs)",
     "weight_capacity": "10kg",
-    "brand": "Conlun",
-    "amazon_asin": "B0DMRX9N63",
+    "brand": "Pet Carrier",
+    "amazon_asin": "",
     "amazon_url": "https://www.amazon.co.uk/Conlun-Carrier-Transport-Collapsible-Purple/dp/B0DMRX9N63?_encoding=UTF8&pd_rd_w=XGURm&content-id=amzn1.sym.1ce4d22d-bf48-41db-9836-d346a7a06e53&pf_rd_p=1ce4d22d-bf48-41db-9836-d346a7a06e53&pf_rd_r=R6AYPF8AT44JWGWCG2CN&pd_rd_wg=ptvtz&pd_rd_r=37fea7ea-6b1d-438a-a8c2-0aee62a1d6ba&th=1&linkCode=ll2&tag=petcarrier55-21&linkId=8a222e3e3f42a74bb98152a5dd72a43d&ref_=as_li_ss_tl",
-    "is_active": false,
-    "is_featured": false,
-    "created_at": "2026-08-03T00:00:00.000Z",
-    "updated_at": "2026-08-03T00:00:00.000Z",
-    "markup_percentage": 40,
-    "meta_title": "Conlun Collapsible Cat & Dog Carrier, Purple | Pet Carrier",
-    "meta_description": "Conlun collapsible carrier for large cats and small dogs up to 10kg. Self-locking zips, mesh windows, safety leash, storage pockets. Draft: price TBC.",
-    "faqs": [
-      {
-        "question": "What size pet does this carrier suit?",
-        "answer": "This carrier is designed for large cats and small to medium dogs weighing up to around 10kg. Measure your pet's length, height and weight before ordering to make sure they will be comfortable inside."
-      },
-      {
-        "question": "Is this carrier approved for air travel?",
-        "answer": "No, this carrier is designed for car journeys and everyday trips. It is not certified as in-cabin airline luggage."
-      },
-      {
-        "question": "Does it fold flat for storage?",
-        "answer": "Yes, the collapsible design folds down for easy storage in a car boot or cupboard between trips."
-      },
-      {
-        "question": "Is the base mat washable?",
-        "answer": "Yes, the fleece base mat lifts out and can be hand washed or machine washed on a gentle cycle. Let it dry fully before folding the carrier away."
-      },
-      {
-        "question": "How does the internal safety leash work?",
-        "answer": "A short leash inside the carrier clips onto your pet's harness or collar, giving extra reassurance that they stay settled even when the zip is opened."
-      },
-      {
-        "question": "Can I carry it as a shoulder bag?",
-        "answer": "Yes, it comes with a padded, adjustable shoulder strap as well as top carry handles, so you can choose whichever is more comfortable."
-      }
-    ]
-  },
-  {
-    "id": "B0DRP2F54D",
-    "slug": "morpilot-airline-approved-cat-carrier-grey",
-    "title": "Morpilot Airline Approved Soft-Sided Cat Carrier, TSA Certified, Grey",
-    "description": "## About the Morpilot Airline Approved Carrier\n\nThe Morpilot Airline Approved Carrier is a soft-sided, TSA-sized carrier built for small cats and similarly sized small pets. It is designed to travel with you by car, train or plane, although we always recommend checking your specific airline's current pet carrier policy before you fly, since requirements do vary between airlines.\n\nRoughly 40% of the carrier's surface is breathable mesh, giving your cat a clear view out and plenty of airflow, which helps keep anxious pets calmer on the move. A removable, washable mat lines the base, and the whole carrier folds flat when you are not using it.\n\nThis [cat carrier](/carriers/cat-carriers) suits owners looking for an [airline-approved carrier](/carriers/airline-approved-carriers) that is just as practical for everyday trips as it is for travel days.\n\n## Key Features\n\n### Breathable Mesh Design\n\nWith mesh covering around 40% of the carrier, your cat gets a clear view and steady airflow, which helps reduce stress in unfamiliar surroundings.\n\n### Reinforced, Durable Fabric\n\nThe body is made from reinforced snow silk fabric with durable mesh panels, built to withstand regular use on longer journeys.\n\n### Secure Clasp Fastenings\n\nA sturdy clasp keeps the carrier securely closed, giving you peace of mind that your cat cannot push their way out.\n\n### Removable, Washable Mat\n\nA soft, cuddly mat lines the base and lifts out for easy hand or machine washing.\n\n### Adjustable Carry Strap\n\nAn adjustable shoulder strap makes it comfortable to carry hands-free through an airport, station or car park.\n\n## Who This Carrier Is Best For\n\nThis carrier suits:\n\n- Small cats and similarly sized small pets, up to around 6kg\n- Owners planning [air travel](/carriers/airline-approved-carriers) with their cat, subject to checking the airline's own size and weight rules\n- [Car and train journeys](/carriers/car-travel-carriers), thanks to the adjustable strap and collapsible design\n- Anxious cats who settle better with a good view out through mesh panels\n- Owners who want a [soft-sided carrier](/carriers/soft-sided-carriers) that is light enough to carry all day\n\n## Care Instructions\n\nWipe the exterior fabric down with a damp cloth as needed. Remove the base mat to hand wash or machine wash on a gentle cycle, and leave everything to dry fully before folding the carrier away for storage.",
-    "short_description": "A TSA-certified, airline-approved soft-sided carrier for small cats, with a 40% mesh design for airflow and visibility, a removable washable mat and an adjustable carry strap. Suited to car, train and plane journeys.",
-    "features": [
-      "TSA-sized, airline-approved carrier for small cats and small pets",
-      "Around 40% mesh coverage for airflow and an easy view out",
-      "Reinforced snow silk fabric with durable mesh panels",
-      "Sturdy clasp fastening to prevent escapes",
-      "Removable, washable base mat",
-      "Adjustable shoulder strap for hands-free carrying",
-      "Collapsible design that folds flat for storage"
-    ],
-    "specifications": {
-      "External dimensions": "40cm x 26cm x 28cm",
-      "Suitable for": "Small cats and small pets, up to approx. 6kg",
-      "Material": "Reinforced snow silk fabric and mesh",
-      "Colour": "Grey",
-      "Closure": "Sturdy clasp fastening",
-      "Airline approved": "TSA-sized, always confirm with your airline before flying"
-    },
-    "price": 24.01,
-    "compare_at_price": null,
-    "sku": "PC-B0DRP2F54D",
-    "stock_status": "in_stock",
-    "stock_count": 20,
-    "images": [
-      "/uploads/product/B0DRP2F54D/image-0-main.webp",
-      "/uploads/product/B0DRP2F54D/image-1-main.webp",
-      "/uploads/product/B0DRP2F54D/image-2-main.webp",
-      "/uploads/product/B0DRP2F54D/image-3-main.webp",
-      "/uploads/product/B0DRP2F54D/image-4-main.webp",
-      "/uploads/product/B0DRP2F54D/image-5-main.webp"
-    ],
-    "category_slugs": [
-      "carriers/cat-carriers/airline-approved-cat-carriers",
-      "carriers/cat-carriers/soft-sided-cat-carriers",
-      "carriers/small-animal-carriers",
-      "carriers/airline-approved-carriers",
-      "carriers/soft-sided-carriers"
-    ],
-    "size_range": "Small (up to approx. 6kg)",
-    "weight_capacity": "6kg",
-    "brand": "Morpilot",
-    "amazon_asin": "B0DRP2F54D",
-    "amazon_url": "https://www.amazon.co.uk/Morpilot-Soft-Sided-Removable-Certified-Lightweight/dp/B0DRP2F54D?_encoding=UTF8&pd_rd_w=XGURm&content-id=amzn1.sym.1ce4d22d-bf48-41db-9836-d346a7a06e53&pf_rd_p=1ce4d22d-bf48-41db-9836-d346a7a06e53&pf_rd_r=R6AYPF8AT44JWGWCG2CN&pd_rd_wg=ptvtz&pd_rd_r=37fea7ea-6b1d-438a-a8c2-0aee62a1d6ba&th=1&linkCode=ll2&tag=petcarrier55-21&linkId=bf13751ecc22880f74c80ab1b27528ea&ref_=as_li_ss_tl",
     "is_active": true,
     "is_featured": false,
-    "created_at": "2026-08-03T00:00:00.000Z",
-    "updated_at": "2026-08-03T00:00:00.000Z",
-    "markup_percentage": 40,
-    "meta_title": "Morpilot Airline Approved Cat Carrier, Grey | Pet Carrier",
-    "meta_description": "Morpilot TSA-sized airline-approved cat carrier. Breathable mesh, washable mat, adjustable strap. For car, train and plane travel. UK delivery.",
-    "faqs": [
-      {
-        "question": "Is this carrier really airline approved?",
-        "answer": "It is built to TSA-friendly dimensions for small pets, but airline carry-on rules vary and change, so please check your specific airline's current pet policy before you travel."
-      },
-      {
-        "question": "What size pet does it suit?",
-        "answer": "It suits small cats and similarly sized small pets up to roughly 6kg. Check your pet's measurements against the carrier's internal dimensions before buying."
-      },
-      {
-        "question": "Is the mat washable?",
-        "answer": "Yes, the base mat is removable and can be hand washed or machine washed on a gentle cycle."
-      },
-      {
-        "question": "Can I use this for car or train journeys?",
-        "answer": "Yes, it is just as practical for car and train travel as it is for flights, thanks to the adjustable strap and secure clasp fastening."
-      },
-      {
-        "question": "What is the carrier made from?",
-        "answer": "The body is made from reinforced snow silk fabric with durable mesh panels, with a sturdy clasp to keep it securely closed."
-      },
-      {
-        "question": "Does it fold away for storage?",
-        "answer": "Yes, the collapsible design folds flat, so it is easy to store between trips."
-      }
-    ]
+    "created_at": "2026-08-03T09:50:21.803Z",
+    "updated_at": "2026-08-03T10:18:00.260Z",
+    "markup_percentage": 0,
+    "meta_title": "Conlun Collapsible Soft-Sided Carrier for Cats and Small Dogs, Purple | Pet Carrier",
+    "meta_description": "A collapsible soft-sided carrier for large cats and small to medium dogs up to 10kg, with self-locking zips, mesh windows and an internal safety leash. Folds flat for storage between car journeys, vet visits and everyday trips."
   },
   {
-    "id": "B07917CCFD",
-    "slug": "donyer-power-airline-approved-cat-carrier-blue",
+    "id": "PC-CF4XFOIR",
+    "slug": "donyer-power-airline-approved-under-seat-cat-carrier-blue",
     "title": "DONYER POWER Airline Approved Under-Seat Cat Carrier, Blue",
-    "description": "## About the DONYER POWER Under-Seat Carrier\n\nThe DONYER POWER Under-Seat Carrier is a soft-sided tote-style carrier designed to fit under an aeroplane seat, making it a practical choice for small cats travelling by air, alongside car and everyday trips. As with any airline-approved carrier, always check your specific airline's current size and weight rules before you fly.\n\nMesh panels across the top and sides let your cat see out and keep air moving, while a zip opening on each side makes it easy to settle your pet in or lift them out. A safety belt buckle lets you secure the carrier with a normal vehicle seatbelt for car journeys.\n\nThis [cat carrier](/carriers/cat-carriers) suits small cats and similarly sized small pets who need a lightweight, [soft-sided](/carriers/soft-sided-carriers) option for [travel days](/carriers/airline-approved-carriers) and [car trips](/carriers/car-travel-carriers) alike.\n\n## Key Features\n\n### Under-Seat Airline Sizing\n\nSized to fit under most aeroplane seats, making it a practical choice for cabin travel with a small cat, subject to your airline's own carry-on pet policy.\n\n### Mesh Top and Sides\n\nGenerous mesh panelling across the top and sides keeps your cat cool, gives them a view out, and helps ease anxiety during the journey.\n\n### Two-Sided Access\n\nZip openings on both sides make it straightforward to get your cat in and out without a struggle.\n\n### Vehicle Seatbelt Buckle\n\nA safety belt buckle allows the carrier to be restrained using a standard car seatbelt, keeping it steady on car journeys.\n\n### Lightweight, Water-Resistant Build\n\nMade from durable, lightweight nylon and mesh materials that fold away easily when not in use.\n\n## Who This Carrier Is Best For\n\nThis carrier suits:\n\n- Small cats and similarly sized small pets, up to around 4kg\n- Owners flying with their cat in the cabin, subject to checking the airline's own size and weight limits\n- [Car journeys](/carriers/car-travel-carriers), thanks to the seatbelt buckle attachment\n- Cats who settle better with plenty of mesh ventilation and a view out\n- Owners who want a lightweight carrier that folds flat between trips\n\n## Care Instructions\n\nWipe the nylon exterior down with a damp cloth. Allow the carrier to air dry fully before folding it away, to avoid any musty smell developing in storage.",
+    "description": "## About the DONYER POWER Under-Seat Carrier\n\nThe DONYER POWER Under-Seat Carrier is a soft-sided tote-style carrier designed to fit under an aeroplane seat, making it a practical choice for small cats travelling by air, alongside car and everyday trips. As with any airline-approved carrier, always check your specific airline's current size and weight rules before you fly.\n\nMesh panels across the top and sides let your cat see out and keep air moving, while a zip opening on each side makes it easy to settle your pet in or lift them out. A safety belt buckle lets you secure the carrier with a normal vehicle seatbelt for car journeys.\n\nThis carrier suits small cats and similarly sized small pets who need a lightweight, soft-sided option for travel days and car trips alike.\n\n## Key Features\n\n### Under-Seat Airline Sizing\n\nSized to fit under most aeroplane seats, making it a practical choice for cabin travel with a small cat, subject to your airline's own carry-on pet policy.\n\n### Mesh Top and Sides\n\nGenerous mesh panelling across the top and sides keeps your cat cool, gives them a view out, and helps ease anxiety during the journey.\n\n### Two-Sided Access\n\nZip openings on both sides make it straightforward to get your cat in and out without a struggle.\n\n### Vehicle Seatbelt Buckle\n\nA safety belt buckle allows the carrier to be restrained using a standard car seatbelt, keeping it steady on car journeys.\n\n### Lightweight, Water-Resistant Build\n\nMade from durable, lightweight nylon and mesh materials that fold away easily when not in use.\n\n## Who This Carrier Is Best For\n\n- Small cats and similarly sized small pets, up to around 4kg\n- Owners flying with their cat in the cabin, subject to checking the airline's own size and weight limits\n- Car journeys, thanks to the seatbelt buckle attachment\n- Cats who settle better with plenty of mesh ventilation and a view out\n- Owners who want a lightweight carrier that folds flat between trips\n\n## Care Instructions\n\nWipe the nylon exterior down with a damp cloth. Allow the carrier to air dry fully before folding it away, to avoid any musty smell developing in storage.",
     "short_description": "A lightweight, under-seat airline-sized carrier for small cats, with mesh top and sides, two-sided zip access and a seatbelt buckle for secure car travel. Folds flat for easy storage.",
     "features": [
       "Sized to fit under most aeroplane seats for cabin travel with a small cat",
@@ -459,72 +335,43 @@
       "Lightweight, durable nylon and mesh construction",
       "Folds flat for storage between trips"
     ],
-    "specifications": {
-      "External dimensions": "47cm x 24cm x 33cm (18.5\" x 9.6\" x 13\")",
-      "Suitable for": "Small cats and small pets, up to approx. 4kg",
-      "Material": "Nylon and mesh",
-      "Colour": "Blue",
-      "Closure": "Dual side zips with seatbelt buckle attachment",
-      "Airline approved": "Under-seat sized, always confirm with your airline before flying"
-    },
-    "price": 0,
+    "specifications": {},
+    "price": 49.99,
     "compare_at_price": null,
-    "sku": "PC-B07917CCFD",
+    "sku": "PC-PC-CF4XFOIR",
     "stock_status": "in_stock",
-    "stock_count": 15,
+    "stock_count": 20,
     "images": [
-      "/uploads/product/B07917CCFD/image-0-main.webp",
-      "/uploads/product/B07917CCFD/image-1-main.webp",
-      "/uploads/product/B07917CCFD/image-2-main.webp",
-      "/uploads/product/B07917CCFD/image-3-main.webp",
-      "/uploads/product/B07917CCFD/image-4-main.webp",
-      "/uploads/product/B07917CCFD/image-5-main.webp"
+      "/api/blob/uploads/product/new-product/upload-1785750706029.webp?v=1785750706872",
+      "/api/blob/uploads/product/new-product/upload-1785750720286.webp?v=1785750721000",
+      "/api/blob/uploads/product/new-product/upload-1785750733463.webp?v=1785750734188",
+      "/api/blob/uploads/product/new-product/upload-1785750747739.webp?v=1785750748604",
+      "/api/blob/uploads/product/new-product/upload-1785750775227.webp?v=1785750776162",
+      "/api/blob/uploads/product/new-product/upload-1785750791655.webp?v=1785750792817"
     ],
     "category_slugs": [
       "carriers/cat-carriers/airline-approved-cat-carriers",
       "carriers/cat-carriers/soft-sided-cat-carriers",
       "carriers/airline-approved-carriers",
       "carriers/car-travel-carriers",
-      "carriers/soft-sided-carriers"
+      "carriers/soft-sided-carriers",
+      "carriers",
+      "carriers/dog-carriers/puppy-carriers",
+      "carriers/cat-carriers",
+      "carriers/cat-carriers/kitten-carriers"
     ],
     "size_range": "Extra small (up to approx. 4kg)",
     "weight_capacity": "4kg",
-    "brand": "DONYER POWER",
-    "amazon_asin": "B07917CCFD",
+    "brand": "Pet Carrier",
+    "amazon_asin": "",
     "amazon_url": "https://www.amazon.co.uk/DONYER-POWER-Carrier-Approved-Backpack/dp/B07917CCFD/?_encoding=UTF8&pd_rd_w=XGURm&content-id=amzn1.sym.1ce4d22d-bf48-41db-9836-d346a7a06e53&pf_rd_p=1ce4d22d-bf48-41db-9836-d346a7a06e53&pf_rd_r=R6AYPF8AT44JWGWCG2CN&pd_rd_wg=ptvtz&pd_rd_r=37fea7ea-6b1d-438a-a8c2-0aee62a1d6ba&ref_=pd_hp_d_r_atf_EU_CML_IM_M&th=1",
-    "is_active": false,
+    "is_active": true,
     "is_featured": false,
-    "created_at": "2026-08-03T00:00:00.000Z",
-    "updated_at": "2026-08-03T00:00:00.000Z",
-    "markup_percentage": 40,
-    "meta_title": "DONYER POWER Under-Seat Cat Carrier, Blue | Pet Carrier",
-    "meta_description": "DONYER POWER under-seat airline-sized cat carrier. Mesh top and sides, seatbelt buckle, lightweight nylon build. Draft: price TBC.",
-    "faqs": [
-      {
-        "question": "What size pet does this carrier suit?",
-        "answer": "It is designed for small cats and similarly sized small pets up to around 4kg. Check your pet's measurements against the carrier's dimensions before ordering."
-      },
-      {
-        "question": "Is this carrier approved for air travel?",
-        "answer": "It is sized to fit under most aeroplane seats, but airline carry-on pet policies vary and change, so please check with your specific airline before you fly."
-      },
-      {
-        "question": "Can it be secured in a car?",
-        "answer": "Yes, a safety belt buckle lets you attach the carrier to a standard vehicle seatbelt for steady car journeys."
-      },
-      {
-        "question": "How do I get my cat in and out?",
-        "answer": "The carrier has zip openings on both sides, so you can settle your cat in or lift them out from whichever side is easiest."
-      },
-      {
-        "question": "What is the carrier made from?",
-        "answer": "It is made from durable, lightweight nylon with mesh panels across the top and sides for airflow."
-      },
-      {
-        "question": "Does it fold away for storage?",
-        "answer": "Yes, it folds flat when not in use, making it easy to store between trips."
-      }
-    ]
+    "created_at": "2026-08-03T10:02:15.302Z",
+    "updated_at": "2026-08-03T10:19:51.564Z",
+    "markup_percentage": 0,
+    "meta_title": "DONYER POWER Airline Approved Under-Seat Cat Carrier, Blue | Pet Carrier",
+    "meta_description": "A lightweight, under-seat airline-sized carrier for small cats, with mesh top and sides, two-sided zip access and a seatbelt buckle for secure car travel. Folds flat for easy storage."
   },
   {
     "id": "B0DY3XTVMD",
