@@ -2,27 +2,21 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { ZoomIn } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ImageLightbox } from "@/components/product/image-lightbox";
 
 export function ProductGallery({ images, title }: { images: string[]; title: string }) {
   const [active, setActive] = React.useState(0);
-  const [zoomStyle, setZoomStyle] = React.useState<React.CSSProperties>({});
-  const [zooming, setZooming] = React.useState(false);
-
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setZoomStyle({ transformOrigin: `${x}% ${y}%` });
-  }
+  const [lightboxOpen, setLightboxOpen] = React.useState(false);
 
   return (
     <div className="flex flex-col gap-3">
-      <div
-        className="relative aspect-square overflow-hidden rounded-xl bg-gray-100 shadow-sm"
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setZooming(true)}
-        onMouseLeave={() => setZooming(false)}
+      <button
+        type="button"
+        onClick={() => setLightboxOpen(true)}
+        aria-label="Open full-size image"
+        className="group relative aspect-square cursor-zoom-in overflow-hidden rounded-xl bg-gray-100 shadow-sm"
       >
         <Image
           src={images[active]}
@@ -30,10 +24,12 @@ export function ProductGallery({ images, title }: { images: string[]; title: str
           fill
           priority
           sizes="(min-width: 1024px) 45vw, 90vw"
-          className={cn("object-cover transition-transform duration-300", zooming && "scale-150")}
-          style={zoomStyle}
+          className="object-cover"
         />
-      </div>
+        <span className="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-white/90 text-foreground opacity-0 shadow-sm transition-opacity group-hover:opacity-100">
+          <ZoomIn className="size-4" />
+        </span>
+      </button>
       {images.length > 1 && (
         <div className="flex gap-3">
           {images.map((img, index) => (
@@ -51,6 +47,15 @@ export function ProductGallery({ images, title }: { images: string[]; title: str
           ))}
         </div>
       )}
+
+      <ImageLightbox
+        images={images}
+        title={title}
+        isOpen={lightboxOpen}
+        index={active}
+        onClose={() => setLightboxOpen(false)}
+        onIndexChange={setActive}
+      />
     </div>
   );
 }

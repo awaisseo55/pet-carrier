@@ -21,8 +21,8 @@ export async function FeaturedProduct() {
         href={`/product/${product.slug}`}
         className="mt-10 grid grid-cols-1 items-center gap-8 overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-shadow hover:shadow-md lg:grid-cols-2"
       >
-        <div className="relative aspect-square lg:aspect-auto lg:h-full lg:min-h-[360px]">
-          <Image src={image} alt={product.title} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+        <div className="relative flex aspect-square items-center justify-center bg-white p-8 lg:aspect-auto lg:h-full lg:min-h-[360px]">
+          <Image src={image} alt={product.title} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-contain" />
         </div>
         <div className="p-8 lg:p-12">
           {product.compare_at_price && (
