@@ -55,7 +55,7 @@
     "updated_at": "2026-07-27T13:00:00.000Z",
     "markup_percentage": 0,
     "meta_title": "Feandrea Foldable Travel Crate for Dogs & Cats | Pet Carrier UK",
-    "meta_description": "Feandrea foldable travel crate for dogs 7-11kg and cats. Steel frame, mesh windows, folds flat for storage. £32.99 with fast UK delivery.",
+    "meta_description": "Feandrea foldable travel crate for dogs 7-11kg and cats. Steel frame, mesh windows, folds flat for storage. \u00a332.99 with fast UK delivery.",
     "focus_keyword": "feandrea foldable dog crate",
     "faqs": [
       {
@@ -134,7 +134,7 @@
     "updated_at": "2026-07-27T13:00:00.000Z",
     "markup_percentage": 0,
     "meta_title": "Lionto Foldable Dog Crate for Travel & Car | Pet Carrier UK",
-    "meta_description": "Lionto foldable dog crate, 60 x 42 x 44cm. Steel frame, padded cushion, folds flat for storage. Ideal for car travel and house training. £27.99.",
+    "meta_description": "Lionto foldable dog crate, 60 x 42 x 44cm. Steel frame, padded cushion, folds flat for storage. Ideal for car travel and house training. \u00a327.99.",
     "focus_keyword": "lionto foldable dog crate",
     "faqs": [
       {
@@ -220,13 +220,13 @@
     "slug": "dycietx-soft-sided-foldable-cat-dog-pet-puppy-carrier-bag-portable-pets-travel-carriers-for-cats-dogs-with-shoulder-strap-removable-mat-durable-cat-basket-of-17-lbs-airline-approved-black-m",
     "title": "Dycietx Soft Sided Foldable Cat/Dog/Pet/Puppy Carrier Bag, Portable Pets Travel Carriers For Cats/Dogs With Shoulder Strap & Removable Mat, Durable Cat Basket of 17 lbs Airline Approved(Black, M)",
     "description": "",
-    "short_description": "High Quality Design：Firm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, which can",
+    "short_description": "High Quality Design\uff1aFirm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, which can",
     "features": [
-      "High Quality Design：Firm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, which can ensure good air circulation and views, make pets have a comfortable and safe travel. It can also be easy for you to check on your pets. There is a front pocket to store pet foods,toys,treats,etc.",
-      "Dimension And Weight：Made of tear resistant durable fabric.Three easy entrances for pets on the top and front sides. Dimensions: 17 inch/43 cm x 11 inch/28 cm x 11 inch/28 cm (L*W*H), suitable for pets up to 17 lbs/7.7kg. Please don't choose your carrier based on weight only,consider your pet's length and height when choosing a carrier.",
-      "Airline Approved & Safty：The pet carrier can be placed under the seats of most airplanes, and comfortably on the seat next to you in a car or bus. It has a non-slip adjustable shoulder strap and padded handle. Can also be fastened to the car seat with a safety belt or shoulder strap to keep your pet safe.",
-      "Easy To Clean And Store：You can clean the stains and dirt on the surface with a soft cloth. The soft mat inside the pet carrier is removable and washable. You can take it out and wash it easily to solve all stains.The collapsible design makes it compact ad easy to store.",
-      "Service Guarantees：Our goal is to provide the best customer service,if you have any questions, please contact us through Amazon,we will reply within 24 hours,until you are satisfied,so that you can order our products without worries."
+      "High Quality Design\uff1aFirm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, which can ensure good air circulation and views, make pets have a comfortable and safe travel. It can also be easy for you to check on your pets. There is a front pocket to store pet foods,toys,treats,etc.",
+      "Dimension And Weight\uff1aMade of tear resistant durable fabric.Three easy entrances for pets on the top and front sides. Dimensions: 17 inch/43 cm x 11 inch/28 cm x 11 inch/28 cm (L*W*H), suitable for pets up to 17 lbs/7.7kg. Please don't choose your carrier based on weight only,consider your pet's length and height when choosing a carrier.",
+      "Airline Approved & Safty\uff1aThe pet carrier can be placed under the seats of most airplanes, and comfortably on the seat next to you in a car or bus. It has a non-slip adjustable shoulder strap and padded handle. Can also be fastened to the car seat with a safety belt or shoulder strap to keep your pet safe.",
+      "Easy To Clean And Store\uff1aYou can clean the stains and dirt on the surface with a soft cloth. The soft mat inside the pet carrier is removable and washable. You can take it out and wash it easily to solve all stains.The collapsible design makes it compact ad easy to store.",
+      "Service Guarantees\uff1aOur goal is to provide the best customer service,if you have any questions, please contact us through Amazon,we will reply within 24 hours,until you are satisfied,so that you can order our products without worries."
     ],
     "specifications": {},
     "price": 44.94,
@@ -266,7 +266,7 @@
     "updated_at": "2026-08-02T20:05:31.775Z",
     "markup_percentage": 60,
     "meta_title": "Dycietx Soft Sided Foldable Cat/Dog/Pet/Puppy Carrier Bag...",
-    "meta_description": "High Quality Design：Firm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, whic"
+    "meta_description": "High Quality Design\uff1aFirm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, whic"
   },
   {
     "id": "PC-UH3G4NTI",
@@ -511,9 +511,9 @@
     "amazon_asin": "B0GX1PNS8V",
     "amazon_url": "https://www.amazon.co.uk/dp/B0GX1PNS8V",
     "is_active": true,
-    "is_featured": false,
+    "is_featured": true,
     "created_at": "2026-08-03T00:00:00.000Z",
-    "updated_at": "2026-08-03T19:55:18.619Z",
+    "updated_at": "2026-08-03T20:46:04.622Z",
     "markup_percentage": 40,
     "meta_title": "Pecute XL Cat & Dog Carrier, Green | Pet Carrier",
     "meta_description": "Pecute extra large carrier for cats and small dogs. Steel frame, panoramic windows, escape-proof zips. Currently a draft pending stock confirmation.",
@@ -596,6 +596,107 @@
         "question": "Is there anywhere to keep my phone or keys?",
         "answer": "Yes, there is a storage pocket built into the shoulder strap, sized for a phone, keys or treats."
       }
+    ],
+    "hasVariants": true,
+    "variantType": "size-colour",
+    "variants": [
+      {
+        "id": "B0GHN65MYN",
+        "type": "size-colour",
+        "price": 38.99,
+        "sku": "PC-B0GHN65MYN",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GHN65MYN",
+        "inStock": true,
+        "size": "L",
+        "sizeLabel": "L (Longer Padded Strap)",
+        "colour": "Caramel",
+        "colourHex": "#B08968",
+        "colourImage": "/api/blob/uploads/product/B0GHN65MYN/image-0-main.webp"
+      },
+      {
+        "id": "B0GHN5MTHR",
+        "type": "size-colour",
+        "price": 38.99,
+        "sku": "PC-B0GHN5MTHR",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GHN5MTHR",
+        "inStock": true,
+        "size": "M",
+        "sizeLabel": "M",
+        "colour": "Caramel",
+        "colourHex": "#B08968"
+      },
+      {
+        "id": "B0GHNNX22Y",
+        "type": "size-colour",
+        "price": 38.99,
+        "sku": "PC-B0GHNNX22Y",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GHNNX22Y",
+        "inStock": true,
+        "size": "L",
+        "sizeLabel": "L (Longer Padded Strap)",
+        "colour": "Apricot",
+        "colourHex": "#FBCEB1"
+      },
+      {
+        "id": "B0GHN6RNQH",
+        "type": "size-colour",
+        "price": 38.99,
+        "sku": "PC-B0GHN6RNQH",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GHN6RNQH",
+        "inStock": true,
+        "size": "M",
+        "sizeLabel": "M",
+        "colour": "Apricot",
+        "colourHex": "#FBCEB1"
+      },
+      {
+        "id": "B0GHN4CQGZ",
+        "type": "size-colour",
+        "price": 38.99,
+        "sku": "PC-B0GHN4CQGZ",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GHN4CQGZ",
+        "inStock": true,
+        "size": "L",
+        "sizeLabel": "L (Longer Padded Strap)",
+        "colour": "Dark Grey",
+        "colourHex": "#4A4A4A"
+      },
+      {
+        "id": "B0GHN8DCDW",
+        "type": "size-colour",
+        "price": 38.99,
+        "sku": "PC-B0GHN8DCDW",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GHN8DCDW",
+        "inStock": true,
+        "size": "M",
+        "sizeLabel": "M",
+        "colour": "Dark Grey",
+        "colourHex": "#4A4A4A"
+      },
+      {
+        "id": "B0GHN6MBJC",
+        "type": "size-colour",
+        "price": 38.99,
+        "sku": "PC-B0GHN6MBJC",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GHN6MBJC",
+        "inStock": true,
+        "size": "L",
+        "sizeLabel": "L (Longer Padded Strap)",
+        "colour": "Light Grey",
+        "colourHex": "#D3D3D3"
+      },
+      {
+        "id": "B0GHN57H22",
+        "type": "size-colour",
+        "price": 38.99,
+        "sku": "PC-B0GHN57H22",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GHN57H22",
+        "inStock": true,
+        "size": "M",
+        "sizeLabel": "M",
+        "colour": "Light Grey",
+        "colourHex": "#D3D3D3"
+      }
     ]
   },
   {
@@ -675,6 +776,51 @@
         "question": "Is this suitable for cats?",
         "answer": "Yes, it is designed for small to medium cats as well as dogs, provided your pet is comfortable being carried in a sling."
       }
+    ],
+    "hasVariants": true,
+    "variantType": "colour",
+    "variants": [
+      {
+        "id": "B09WDPGFLD",
+        "type": "colour",
+        "price": 27.99,
+        "sku": "PC-B09WDPGFLD",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B09WDPGFLD",
+        "inStock": true,
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "colourImage": "/api/blob/uploads/product/B09WDPGFLD/image-0-main.webp"
+      },
+      {
+        "id": "B0C7BQ7ZLG",
+        "type": "colour",
+        "price": 27.99,
+        "sku": "PC-B0C7BQ7ZLG",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0C7BQ7ZLG",
+        "inStock": true,
+        "colour": "Blue",
+        "colourHex": "#4A6FA5"
+      },
+      {
+        "id": "B0C7BSCXD5",
+        "type": "colour",
+        "price": 27.99,
+        "sku": "PC-B0C7BSCXD5",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0C7BSCXD5",
+        "inStock": true,
+        "colour": "Green",
+        "colourHex": "#4B5D3A"
+      },
+      {
+        "id": "B09WDQZGXL",
+        "type": "colour",
+        "price": 27.99,
+        "sku": "PC-B09WDQZGXL",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B09WDQZGXL",
+        "inStock": true,
+        "colour": "Grey",
+        "colourHex": "#808080"
+      }
     ]
   },
   {
@@ -702,7 +848,7 @@
     "price": 33.99,
     "compare_at_price": null,
     "sku": "PC-B0D25HJQ94",
-    "stock_status": "out_of_stock",
+    "stock_status": "in_stock",
     "stock_count": 0,
     "images": [
       "/api/blob/uploads/product/B0D25HJQ94/image-0-main.webp",
@@ -731,7 +877,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-04T00:00:00.000Z",
-    "updated_at": "2026-08-03T20:16:50.345Z",
+    "updated_at": "2026-08-03T20:44:23.650Z",
     "markup_percentage": 40,
     "meta_title": "Adiwo Reversible Dog & Cat Sling Carrier | Pet Carrier",
     "meta_description": "Adiwo reversible hands-free sling carrier for small and medium dogs and cats. Double safety fastening. Draft pending price confirmation.",
@@ -755,6 +901,91 @@
       {
         "question": "How do I clean this sling?",
         "answer": "Spot clean with a damp cloth for everyday marks, check the care label before machine washing, and let it dry fully before folding away."
+      }
+    ],
+    "hasVariants": true,
+    "variantType": "colour",
+    "variants": [
+      {
+        "id": "B0D25HJQ94",
+        "type": "colour",
+        "price": 33.99,
+        "sku": "PC-B0D25HJQ94",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0D25HJQ94",
+        "inStock": true,
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "colourImage": "/api/blob/uploads/product/B0D25HJQ94/image-0-main.webp"
+      },
+      {
+        "id": "B0FWCHVRWJ",
+        "type": "colour",
+        "price": 33.99,
+        "sku": "PC-B0FWCHVRWJ",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0FWCHVRWJ",
+        "inStock": true,
+        "colour": "Black with Label",
+        "colourHex": "#1A1A1A"
+      },
+      {
+        "id": "B0FWCF7X54",
+        "type": "colour",
+        "price": 33.99,
+        "sku": "PC-B0FWCF7X54",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0FWCF7X54",
+        "inStock": true,
+        "colour": "Black without Label",
+        "colourHex": "#1A1A1A"
+      },
+      {
+        "id": "B0DFYKFKN6",
+        "type": "colour",
+        "price": 33.99,
+        "sku": "PC-B0DFYKFKN6",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DFYKFKN6",
+        "inStock": true,
+        "colour": "Corrugated Grey",
+        "colourHex": "#8C8C8C"
+      },
+      {
+        "id": "B0FWCLNWV2",
+        "type": "colour",
+        "price": 33.99,
+        "sku": "PC-B0FWCLNWV2",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0FWCLNWV2",
+        "inStock": true,
+        "colour": "Gray without Label",
+        "colourHex": "#9E9E9E"
+      },
+      {
+        "id": "B0DFYLZ8XH",
+        "type": "colour",
+        "price": 33.99,
+        "sku": "PC-B0DFYLZ8XH",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DFYLZ8XH",
+        "inStock": true,
+        "colour": "Grey",
+        "colourHex": "#808080"
+      },
+      {
+        "id": "B0D25KRXZD",
+        "type": "colour",
+        "price": 33.99,
+        "sku": "PC-B0D25KRXZD",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0D25KRXZD",
+        "inStock": true,
+        "colour": "Navy Blue",
+        "colourHex": "#1B2A4A"
+      },
+      {
+        "id": "B0FWCHM251",
+        "type": "colour",
+        "price": 33.99,
+        "sku": "PC-B0FWCHM251",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0FWCHM251",
+        "inStock": true,
+        "colour": "Pure White",
+        "colourHex": "#F5F5F5"
       }
     ]
   },
@@ -834,6 +1065,131 @@
       {
         "question": "Is this sling reversible?",
         "answer": "Yes, it has a double-sided usable design, so you can wear it either way round."
+      }
+    ],
+    "hasVariants": true,
+    "variantType": "colour",
+    "variants": [
+      {
+        "id": "B0F7LKHN96",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0F7LKHN96",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0F7LKHN96",
+        "inStock": true,
+        "colour": "Dark Black",
+        "colourHex": "#0D0D0D",
+        "colourImage": "/api/blob/uploads/product/B0F7LKHN96/image-0-main.webp"
+      },
+      {
+        "id": "B0DW95FTF7",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0DW95FTF7",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DW95FTF7",
+        "inStock": true,
+        "colour": "Blue",
+        "colourHex": "#4A6FA5"
+      },
+      {
+        "id": "B0GT9K56ZX",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0GT9K56ZX",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GT9K56ZX",
+        "inStock": true,
+        "colour": "Dark Gray",
+        "colourHex": "#3D3D3D"
+      },
+      {
+        "id": "B0DWF3KZNW",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0DWF3KZNW",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DWF3KZNW",
+        "inStock": true,
+        "colour": "Flowers + Grey",
+        "colourHex": "#A9A9A9"
+      },
+      {
+        "id": "B0FVFJR6WX",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0FVFJR6WX",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0FVFJR6WX",
+        "inStock": true,
+        "colour": "Khaki",
+        "colourHex": "#C3B091"
+      },
+      {
+        "id": "B0H8NBZ1QC",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0H8NBZ1QC",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0H8NBZ1QC",
+        "inStock": true,
+        "colour": "Magenta",
+        "colourHex": "#C2185B"
+      },
+      {
+        "id": "B0H8NLH7LX",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0H8NLH7LX",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0H8NLH7LX",
+        "inStock": true,
+        "colour": "Pink Daisy",
+        "colourHex": "#F8BBD0"
+      },
+      {
+        "id": "B0H2CHFPNN",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0H2CHFPNN",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0H2CHFPNN",
+        "inStock": true,
+        "colour": "Purple",
+        "colourHex": "#6A0DAD"
+      },
+      {
+        "id": "B0GL7X9NDG",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0GL7X9NDG",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GL7X9NDG",
+        "inStock": true,
+        "colour": "Purple Daisy",
+        "colourHex": "#9B59B6"
+      },
+      {
+        "id": "B0D6RCZJ5F",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0D6RCZJ5F",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0D6RCZJ5F",
+        "inStock": true,
+        "colour": "Rose Red",
+        "colourHex": "#C21E56"
+      },
+      {
+        "id": "B0H8N5414X",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0H8N5414X",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0H8N5414X",
+        "inStock": true,
+        "colour": "Sapphire Blue",
+        "colourHex": "#0F52BA"
+      },
+      {
+        "id": "B0G2L8KLHC",
+        "type": "colour",
+        "price": 29.99,
+        "sku": "PC-B0G2L8KLHC",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0G2L8KLHC",
+        "inStock": true,
+        "colour": "Solid Black",
+        "colourHex": "#000000"
       }
     ]
   }
