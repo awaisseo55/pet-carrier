@@ -1,10 +1,42 @@
 import "server-only";
-import type { Product } from "./types";
+import type { Product, PublicProduct } from "./types";
 import { getHomepageSettings } from "./homepage";
 import { readJsonFile, writeJsonFile } from "./data-store";
+import { extractAsin } from "./amazon";
 
 export async function getAllProducts(): Promise<Product[]> {
   return readJsonFile<Product[]>("products.json");
+}
+
+/** Strips the internal `amazon_url` fulfilment link before a product crosses into a public "use client" component. */
+export function toPublicProduct(product: Product): PublicProduct {
+  const { amazon_url: _amazon_url, ...rest } = product;
+  return rest;
+}
+
+function asinFromProduct(product: Product): string | null {
+  if (product.amazon_asin) return product.amazon_asin.toUpperCase();
+  if (product.amazon_url) return extractAsin(product.amazon_url);
+  return null;
+}
+
+/**
+ * Finds an existing product sourced from the same Amazon listing, matching
+ * on ASIN (extracted from either the stored amazon_url or amazon_asin field)
+ * so tracking-parameter differences between two URLs for the same product
+ * don't cause a false negative. Used to block duplicate creation across every
+ * admin product-creation entry point (manual, Amazon fetch, bulk URLs, CSV).
+ */
+export async function findProductByAsin(asin: string): Promise<Product | undefined> {
+  const normalized = asin.toUpperCase();
+  const products = await getAllProducts();
+  return products.find((p) => asinFromProduct(p) === normalized);
+}
+
+export async function findProductByAmazonUrl(url: string): Promise<Product | undefined> {
+  const asin = extractAsin(url);
+  if (!asin) return undefined;
+  return findProductByAsin(asin);
 }
 
 export async function getActiveProducts(): Promise<Product[]> {

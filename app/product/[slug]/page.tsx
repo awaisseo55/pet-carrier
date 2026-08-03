@@ -13,7 +13,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { getActiveProducts, getProductBySlug, getRelatedProducts } from "@/lib/products";
+import { getActiveProducts, getProductBySlug, getRelatedProducts, toPublicProduct } from "@/lib/products";
 import { breadcrumbJsonLd, faqJsonLd, productJsonLd } from "@/lib/seo";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import { getBreadcrumbTrail, getCategoryByPath } from "@/lib/categories";
@@ -150,7 +150,7 @@ export default async function ProductPage({
           <p className="mt-4 text-gray-500">{product.short_description}</p>
 
           <div className="mt-6">
-            <AddToCart product={product} />
+            <AddToCart product={toPublicProduct(product)} />
           </div>
 
           <div className="mt-6 grid grid-cols-1 gap-3 rounded-lg bg-gray-100/60 p-4 sm:grid-cols-3">
@@ -237,7 +237,7 @@ export default async function ProductPage({
           <h2 className="font-heading text-2xl font-semibold text-foreground">You Might Also Like</h2>
           <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {related.map((item) => (
-              <ProductCard key={item.id} product={item} />
+              <ProductCard key={item.id} product={toPublicProduct(item)} />
             ))}
           </div>
         </div>

@@ -38,6 +38,7 @@ export function ProductEditForm({ product }: { product: Product }) {
     weight_capacity: product.weight_capacity,
     stock_status: product.stock_status,
     features: product.features.join("\n"),
+    amazon_url: product.amazon_url,
     is_active: product.is_active,
     is_featured: product.is_featured ?? false,
   });
@@ -256,6 +257,19 @@ export function ProductEditForm({ product }: { product: Product }) {
               rows={4}
               className="mt-1.5 w-full rounded-lg border border-input bg-white px-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
+          </div>
+
+          <div>
+            <Label>Amazon Source URL</Label>
+            <Input
+              value={form.amazon_url}
+              onChange={(e) => update("amazon_url", e.target.value)}
+              placeholder="https://www.amazon.co.uk/dp/..."
+              className="mt-1.5"
+            />
+            <p className="mt-1 text-xs text-muted-foreground">
+              Internal only, used to reorder stock from Amazon when a sale comes in. Never shown on the public site.
+            </p>
           </div>
 
           <div className="flex gap-6">

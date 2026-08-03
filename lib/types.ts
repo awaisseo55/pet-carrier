@@ -31,6 +31,15 @@ export interface Product {
   faqs?: { question: string; answer: string }[];
 }
 
+/**
+ * The shape of a product as it may ever reach a public "use client" component
+ * (product cards, add-to-basket). Anything server-rendered as plain text is
+ * already safe, but props passed across a client-component boundary get
+ * serialised into the page's RSC payload, so `amazon_url` (our internal
+ * fulfilment link, see CLAUDE.md) must never be part of that object.
+ */
+export type PublicProduct = Omit<Product, "amazon_url">;
+
 export type OrderStatus =
   | "pending_payment"
   | "paid"

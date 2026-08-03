@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { X } from "lucide-react";
+import { AlertTriangle, X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { CategoryPicker } from "@/components/admin/category-picker";
 import { toast } from "sonner";
+
+interface DuplicateWarning {
+  message: string;
+  existingProductId: string;
+}
 
 const MAX_IMAGES = 8;
 
@@ -29,6 +35,7 @@ export function ManualProductForm({ initialAmazonUrl = "" }: { initialAmazonUrl?
   const [amazonUrl, setAmazonUrl] = React.useState(initialAmazonUrl);
   const [isActive, setIsActive] = React.useState(true);
   const [saving, setSaving] = React.useState(false);
+  const [duplicateWarning, setDuplicateWarning] = React.useState<DuplicateWarning | null>(null);
 
   const uploadSlug = title ? title : "new-product";
 
@@ -37,6 +44,7 @@ export function ManualProductForm({ initialAmazonUrl = "" }: { initialAmazonUrl?
       toast.error("Fill in the title, description, price, at least one image and one category.");
       return;
     }
+    setDuplicateWarning(null);
     setSaving(true);
     const res = await fetch("/api/admin/products/manual", {
       method: "POST",
@@ -63,12 +71,30 @@ export function ManualProductForm({ initialAmazonUrl = "" }: { initialAmazonUrl?
       router.push("/admin/products");
     } else {
       const data = await res.json();
+      if (res.status === 409 && data.existingProductId) {
+        setDuplicateWarning({ message: data.error, existingProductId: data.existingProductId });
+      }
       toast.error(data.error || "Could not create product");
     }
   }
 
   return (
     <div className="flex flex-col gap-6">
+      {duplicateWarning && (
+        <div className="flex items-start gap-3 rounded-lg border border-alert-light bg-alert-light/40 p-5">
+          <AlertTriangle className="mt-0.5 size-5 shrink-0 text-alert" />
+          <div>
+            <p className="font-medium text-foreground">{duplicateWarning.message}</p>
+            <Link
+              href={`/admin/products/${duplicateWarning.existingProductId}/edit`}
+              className="mt-1 inline-block text-sm font-medium text-blue-700 hover:underline"
+            >
+              Edit the existing product instead &rarr;
+            </Link>
+          </div>
+        </div>
+      )}
+
       <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
         <Label>Images</Label>
         <div className="mt-2 flex flex-wrap gap-2">
@@ -149,13 +175,16 @@ export function ManualProductForm({ initialAmazonUrl = "" }: { initialAmazonUrl?
             <CategoryPicker selected={categorySlugs} onChange={setCategorySlugs} />
           </div>
           <div>
-            <Label>Amazon URL (for reordering)</Label>
+            <Label>Amazon Source URL</Label>
             <Input
               value={amazonUrl}
               onChange={(e) => setAmazonUrl(e.target.value)}
               placeholder="https://www.amazon.co.uk/dp/..."
               className="mt-1.5"
             />
+            <p className="mt-1 text-xs text-muted-foreground">
+              Internal only, used to reorder stock from Amazon when a sale comes in. Never shown on the public site.
+            </p>
           </div>
           <label className="flex items-center gap-2 text-sm cursor-pointer">
             <Checkbox checked={isActive} onCheckedChange={(c) => setIsActive(!!c)} />

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
-import { getAllProducts, upsertProduct } from "@/lib/products";
+import { findProductByAmazonUrl, getAllProducts, upsertProduct } from "@/lib/products";
 import { slugify } from "@/lib/utils";
 import { nanoid } from "nanoid";
 import { adminErrorResponse } from "@/lib/api-error";
@@ -20,6 +20,19 @@ export async function POST(request: Request) {
       { error: "Title, description, price, at least one image and one category are required." },
       { status: 400 }
     );
+  }
+
+  if (body.amazon_url) {
+    const duplicate = await findProductByAmazonUrl(body.amazon_url);
+    if (duplicate) {
+      return NextResponse.json(
+        {
+          error: `A product from this Amazon listing already exists: "${duplicate.title}".`,
+          existingProductId: duplicate.id,
+        },
+        { status: 409 }
+      );
+    }
   }
 
   const products = await getAllProducts();

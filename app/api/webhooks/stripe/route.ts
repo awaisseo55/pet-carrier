@@ -5,6 +5,7 @@ import { createOrder } from "@/lib/orders";
 import { sendOrderConfirmationEmail, sendOwnerNotificationEmail } from "@/lib/email";
 import { getSettings } from "@/lib/settings";
 import { incrementCouponUsage } from "@/lib/coupons";
+import { getAllProducts } from "@/lib/products";
 import type { DeliveryOption } from "@/lib/types";
 
 // TODO: add STRIPE_WEBHOOK_SECRET to .env.local. Get it by running
@@ -37,7 +38,8 @@ export async function POST(request: Request) {
         JSON.parse(session.metadata?.cart_items || "[]");
 
       const meta = session.metadata || {};
-      const settings = await getSettings();
+      const [settings, products] = await Promise.all([getSettings(), getAllProducts()]);
+      const productsById = new Map(products.map((p) => [p.id, p]));
       const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
       const deliveryOption = (meta.delivery_option as DeliveryOption) || "standard";
       const shippingCostByOption: Record<DeliveryOption, number> = {
@@ -67,7 +69,10 @@ export async function POST(request: Request) {
           image: item.image,
           quantity: item.qty,
           price: item.price,
-          amazon_url: "",
+          // Looked up server-side from the product record (never from the
+          // client-supplied cart), so this internal fulfilment link is never
+          // exposed to or roundtripped through the customer's browser.
+          amazon_url: productsById.get(item.id)?.amazon_url || "",
         })),
         delivery_option: deliveryOption,
         coupon_code: meta.coupon_code || undefined,

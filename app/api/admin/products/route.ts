@@ -1,10 +1,17 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
-import { upsertProduct } from "@/lib/products";
+import { findProductByAsin, upsertProduct } from "@/lib/products";
 import { downloadAndProcessImages } from "@/lib/image-pipeline";
 import { adminErrorResponse } from "@/lib/api-error";
 import { revalidateProductPaths } from "@/lib/revalidate";
 import type { Product } from "@/lib/types";
+
+interface SaveProductError {
+  amazon_url: string;
+  error: string;
+  duplicate?: boolean;
+  existing_product_id?: string;
+}
 
 interface SaveProductInput {
   asin: string;
@@ -38,9 +45,21 @@ export async function POST(request: Request) {
   }
 
   const saved: Product[] = [];
+  const errors: SaveProductError[] = [];
 
   try {
     for (const input of products) {
+      const duplicate = await findProductByAsin(input.asin);
+      if (duplicate) {
+        errors.push({
+          amazon_url: input.amazon_url,
+          error: `A product from this Amazon listing already exists: "${duplicate.title}".`,
+          duplicate: true,
+          existing_product_id: duplicate.id,
+        });
+        continue;
+      }
+
       // Images may already be local (re-saving an edited product) or remote
       // Amazon URLs from the fetch preview step, which we download here.
       const remoteImages = input.images.filter((img) => img.startsWith("http"));
@@ -97,5 +116,5 @@ export async function POST(request: Request) {
     return adminErrorResponse(error, "Could not save product(s).");
   }
 
-  return NextResponse.json({ products: saved });
+  return NextResponse.json({ products: saved, errors });
 }

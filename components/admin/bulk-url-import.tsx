@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { AlertTriangle, CheckCircle2, Copy, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -13,6 +14,8 @@ interface Outcome {
   ok: boolean;
   title?: string;
   error?: string;
+  duplicate?: boolean;
+  existingProductId?: string;
 }
 
 export function BulkUrlImport({ onAddManually }: { onAddManually: (url: string) => void }) {
@@ -78,6 +81,15 @@ export function BulkUrlImport({ onAddManually }: { onAddManually: (url: string) 
           for (const product of saveData.products) {
             newOutcomes.push({ url: product.amazon_url, ok: true, title: product.title });
           }
+          for (const e of saveData.errors || []) {
+            newOutcomes.push({
+              url: e.amazon_url,
+              ok: false,
+              error: e.error,
+              duplicate: e.duplicate,
+              existingProductId: e.existing_product_id,
+            });
+          }
         } else {
           for (const p of toSave) {
             newOutcomes.push({ url: p.amazon_url, ok: false, error: saveData.error || "Could not save" });
@@ -87,7 +99,13 @@ export function BulkUrlImport({ onAddManually }: { onAddManually: (url: string) 
 
       for (const p of previews) {
         if (!p.ok) {
-          newOutcomes.push({ url: p.amazon_url, ok: false, error: p.error });
+          newOutcomes.push({
+            url: p.amazon_url,
+            ok: false,
+            error: p.error,
+            duplicate: p.duplicate,
+            existingProductId: p.existing_product_id,
+          });
         }
       }
 
@@ -165,13 +183,21 @@ export function BulkUrlImport({ onAddManually }: { onAddManually: (url: string) 
                   <p className="text-xs text-alert">{o.error}</p>
                 </div>
                 <div className="flex shrink-0 gap-2">
-                  <Button size="sm" variant="outline" onClick={() => copyUrl(o.url)}>
-                    <Copy className="size-3.5" />
-                    Copy
-                  </Button>
-                  <Button size="sm" variant="default" onClick={() => onAddManually(o.url)}>
-                    Add manually
-                  </Button>
+                  {o.duplicate && o.existingProductId ? (
+                    <Button size="sm" variant="default" asChild>
+                      <Link href={`/admin/products/${o.existingProductId}/edit`}>Edit existing</Link>
+                    </Button>
+                  ) : (
+                    <>
+                      <Button size="sm" variant="outline" onClick={() => copyUrl(o.url)}>
+                        <Copy className="size-3.5" />
+                        Copy
+                      </Button>
+                      <Button size="sm" variant="default" onClick={() => onAddManually(o.url)}>
+                        Add manually
+                      </Button>
+                    </>
+                  )}
                 </div>
               </li>
             ))}

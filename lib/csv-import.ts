@@ -2,8 +2,9 @@ import "server-only";
 import type { CategoryNode, Section } from "./categories";
 import { addCustomCategory, getAllCategoryNodes } from "./category-store";
 import { downloadAndProcessImages } from "./image-pipeline";
-import { calculatePriceFromMarkup, getAllProducts } from "./products";
+import { calculatePriceFromMarkup, findProductByAsin, getAllProducts } from "./products";
 import { generateProductContent } from "./ai-content";
+import { extractAsin } from "./amazon";
 import { slugify } from "./utils";
 import { nanoid } from "nanoid";
 import type { Product } from "./types";
@@ -73,6 +74,7 @@ export interface CsvRowResult {
   row: number;
   ok: boolean;
   error?: string;
+  existingProductId?: string;
   product?: Product;
 }
 
@@ -94,6 +96,26 @@ export async function processCsvRow(
   const rawPrice = parseFloat((data.price || "").replace(/[^0-9.]/g, ""));
   if (!rawPrice || Number.isNaN(rawPrice)) {
     return { row: rowIndex, ok: false, error: "Missing or invalid price" };
+  }
+
+  // Same duplicate check as every other creation entry point: resolve an
+  // ASIN from either the Amazon URL column or a SKU column that already
+  // holds a raw ASIN, and block if it matches an existing product.
+  const csvAsin = data.amazon_url
+    ? extractAsin(data.amazon_url)
+    : data.sku?.trim() && /^[A-Z0-9]{10}$/i.test(data.sku.trim())
+      ? data.sku.trim().toUpperCase()
+      : null;
+  if (csvAsin) {
+    const duplicate = await findProductByAsin(csvAsin);
+    if (duplicate) {
+      return {
+        row: rowIndex,
+        ok: false,
+        error: `A product from this Amazon listing already exists: "${duplicate.title}".`,
+        existingProductId: duplicate.id,
+      };
+    }
   }
 
   const imageUrls = [data.main_image, data.image_2, data.image_3, data.image_4, data.image_5, data.image_6]

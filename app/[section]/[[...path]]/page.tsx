@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/accordion";
 import { CATEGORIES, type Section } from "@/lib/categories";
 import { getBreadcrumbNodes, getChildNodes, getRelatedNodes, getResolvedCategory } from "@/lib/category-store";
-import { getProductById, getProductsByCategoryIncludingDescendants } from "@/lib/products";
+import { getProductById, getProductsByCategoryIncludingDescendants, toPublicProduct } from "@/lib/products";
 import { getCategoryImageUrl } from "@/lib/placeholders";
 import { breadcrumbJsonLd, collectionPageJsonLd, faqJsonLd } from "@/lib/seo";
 
@@ -163,7 +163,7 @@ export default async function CategoryPage({
         {orderedProducts.length > 0 ? (
           <div className="mt-4 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {orderedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.id} product={toPublicProduct(product)} />
             ))}
           </div>
         ) : (

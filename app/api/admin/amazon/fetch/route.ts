@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
-import { scrapeAmazonProduct } from "@/lib/amazon";
+import { extractAsin, scrapeAmazonProduct } from "@/lib/amazon";
 import { generateProductContent } from "@/lib/ai-content";
 import { getSettings } from "@/lib/settings";
-import { calculatePriceFromMarkup, getAllProducts } from "@/lib/products";
+import { calculatePriceFromMarkup, findProductByAsin, getAllProducts } from "@/lib/products";
 import { slugify } from "@/lib/utils";
 
 export interface AmazonFetchPreview {
@@ -11,6 +11,8 @@ export interface AmazonFetchPreview {
   asin?: string;
   amazon_url: string;
   error?: string;
+  duplicate?: boolean;
+  existing_product_id?: string;
   title?: string;
   slug?: string;
   description?: string;
@@ -46,6 +48,21 @@ export async function POST(request: Request) {
   for (const rawUrl of urls) {
     const url = rawUrl.trim();
     if (!url) continue;
+
+    const asin = extractAsin(url);
+    if (asin) {
+      const duplicate = await findProductByAsin(asin);
+      if (duplicate) {
+        results.push({
+          ok: false,
+          amazon_url: url,
+          error: `A product from this Amazon listing already exists: "${duplicate.title}".`,
+          duplicate: true,
+          existing_product_id: duplicate.id,
+        });
+        continue;
+      }
+    }
 
     try {
       const scraped = await scrapeAmazonProduct(url);

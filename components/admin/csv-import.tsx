@@ -24,6 +24,7 @@ interface RowResult {
   title?: string;
   id?: string;
   error?: string;
+  existingProductId?: string;
 }
 
 type Step = "upload" | "mapping" | "importing" | "results";
@@ -166,7 +167,20 @@ export function CsvImport() {
                     .map((r) => (
                       <tr key={r.row} className="border-b border-border last:border-0">
                         <td className="p-2">Row {r.row}</td>
-                        <td className="p-2 text-alert">{r.error}</td>
+                        <td className="p-2 text-alert">
+                          {r.error}
+                          {r.existingProductId && (
+                            <>
+                              {" "}
+                              <Link
+                                href={`/admin/products/${r.existingProductId}/edit`}
+                                className="font-medium text-blue-700 hover:underline"
+                              >
+                                Edit existing product &rarr;
+                              </Link>
+                            </>
+                          )}
+                        </td>
                       </tr>
                     ))}
                 </tbody>

@@ -41,7 +41,12 @@ export async function POST(request: Request) {
         imported += 1;
         results.push({ row: result.row, ok: true, title: result.product.title, id: result.product.id });
       } else {
-        results.push({ row: result.row, ok: false, error: result.error });
+        results.push({
+          row: result.row,
+          ok: false,
+          error: result.error,
+          existingProductId: result.existingProductId,
+        });
       }
     }
   } catch (error) {

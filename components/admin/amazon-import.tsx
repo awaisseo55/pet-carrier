@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AlertTriangle, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,7 +14,10 @@ import { formatPrice } from "@/lib/utils";
 import { toast } from "sonner";
 import type { AmazonFetchPreview } from "@/app/api/admin/amazon/fetch/route";
 
-interface EditablePreview extends Required<Omit<AmazonFetchPreview, "error" | "ok" | "asin" | "amazon_price">> {
+interface EditablePreview
+  extends Required<
+    Omit<AmazonFetchPreview, "error" | "ok" | "asin" | "amazon_price" | "duplicate" | "existing_product_id">
+  > {
   ok: true;
   asin: string;
   amazon_price: number | null;
@@ -21,7 +25,9 @@ interface EditablePreview extends Required<Omit<AmazonFetchPreview, "error" | "o
   is_featured: boolean;
 }
 
-type ResultItem = EditablePreview | { ok: false; amazon_url: string; error: string };
+type ResultItem =
+  | EditablePreview
+  | { ok: false; amazon_url: string; error: string; duplicate?: boolean; existing_product_id?: string };
 
 export function AmazonImport() {
   const router = useRouter();
@@ -105,7 +111,25 @@ export function AmazonImport() {
         toast.error(data.error || "Could not save products.");
         return;
       }
-      toast.success(`Saved ${data.products.length} product(s)`);
+      const duplicateUrls = new Set<string>((data.errors || []).map((e: { amazon_url: string }) => e.amazon_url));
+      if (data.products.length > 0) toast.success(`Saved ${data.products.length} product(s)`);
+      if (duplicateUrls.size > 0) {
+        toast.error(
+          `${duplicateUrls.size} product(s) were skipped as duplicates of an existing product and were not saved.`
+        );
+        setResults((prev) =>
+          prev.map((r) =>
+            r.ok && duplicateUrls.has(r.amazon_url)
+              ? {
+                  ok: false,
+                  amazon_url: r.amazon_url,
+                  error: "Already saved as an existing product, could not save again.",
+                }
+              : r
+          )
+        );
+        return;
+      }
       router.push("/admin/products");
     } catch {
       toast.error("Something went wrong saving products.");
@@ -298,9 +322,18 @@ export function AmazonImport() {
                 <div>
                   <p className="font-medium text-foreground">{result.amazon_url}</p>
                   <p className="mt-1 text-sm text-alert">{result.error}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    You can add this product manually from the Products page instead.
-                  </p>
+                  {result.duplicate && result.existing_product_id ? (
+                    <Link
+                      href={`/admin/products/${result.existing_product_id}/edit`}
+                      className="mt-1 inline-block text-sm font-medium text-blue-700 hover:underline"
+                    >
+                      Edit the existing product instead &rarr;
+                    </Link>
+                  ) : (
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      You can add this product manually from the Products page instead.
+                    </p>
+                  )}
                 </div>
               </div>
             )

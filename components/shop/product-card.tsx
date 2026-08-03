@@ -9,10 +9,10 @@ import { useCart } from "@/components/cart/cart-context";
 import { formatPrice } from "@/lib/utils";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import { getCategoryByPath } from "@/lib/categories";
-import type { Product } from "@/lib/types";
+import type { PublicProduct } from "@/lib/types";
 import { toast } from "sonner";
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({ product }: { product: PublicProduct }) {
   const { addItem } = useCart();
   const image = product.images[0] || PRODUCT_PLACEHOLDER;
   const primaryCategory = product.category_slugs[0] ? getCategoryByPath(product.category_slugs[0]) : undefined;

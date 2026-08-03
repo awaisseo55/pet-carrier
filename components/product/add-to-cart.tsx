@@ -4,10 +4,10 @@ import * as React from "react";
 import { Minus, Plus, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-context";
-import type { Product } from "@/lib/types";
+import type { PublicProduct } from "@/lib/types";
 import { toast } from "sonner";
 
-export function AddToCart({ product }: { product: Product }) {
+export function AddToCart({ product }: { product: PublicProduct }) {
   const { addItem } = useCart();
   const [quantity, setQuantity] = React.useState(1);
   const outOfStock = product.stock_status === "out_of_stock";

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { Copy } from "lucide-react";
+import { Copy, ExternalLink } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -63,10 +63,25 @@ export function OrderRow({ order }: { order: Order }) {
         <p className="text-xs text-muted-foreground">{order.customer_email}</p>
       </td>
       <td className="p-3">
-        <ul className="flex flex-col gap-0.5">
+        <ul className="flex flex-col gap-1">
           {order.items.map((item) => (
             <li key={item.product_id} className="text-xs">
-              {item.quantity} &times; {item.title}
+              <p>
+                {item.quantity} &times; {item.title}
+              </p>
+              {item.amazon_url ? (
+                <a
+                  href={item.amazon_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-0.5 inline-flex items-center gap-1 text-blue-700 hover:underline"
+                >
+                  <ExternalLink className="size-3" />
+                  Amazon source link
+                </a>
+              ) : (
+                <span className="mt-0.5 inline-block text-muted-foreground">No Amazon source link on record</span>
+              )}
             </li>
           ))}
         </ul>
