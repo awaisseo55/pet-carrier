@@ -17,7 +17,8 @@ import {
 } from "@/components/ui/select";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { CategoryPicker } from "@/components/admin/category-picker";
-import type { Product } from "@/lib/types";
+import { VariantEditor } from "@/components/admin/variant-editor";
+import type { Product, ProductVariant, VariantType } from "@/lib/types";
 import { toast } from "sonner";
 
 const MAX_IMAGES = 8;
@@ -28,6 +29,15 @@ export function ProductEditForm({ product }: { product: Product }) {
   const [imageUrl, setImageUrl] = React.useState("");
   const [fetchingImage, setFetchingImage] = React.useState(false);
   const [categorySlugs, setCategorySlugs] = React.useState<string[]>(product.category_slugs);
+  const [variantState, setVariantState] = React.useState<{
+    hasVariants: boolean;
+    variantType: VariantType;
+    variants: ProductVariant[];
+  }>({
+    hasVariants: product.hasVariants ?? false,
+    variantType: product.variantType ?? "colour",
+    variants: product.variants ?? [],
+  });
   const [form, setForm] = React.useState({
     title: product.title,
     short_description: product.short_description,
@@ -77,16 +87,41 @@ export function ProductEditForm({ product }: { product: Product }) {
       toast.error("Choose at least one category.");
       return;
     }
+    if (variantState.hasVariants) {
+      const incomplete = variantState.variants.some((v) => !v.sku.trim() || v.price <= 0);
+      if (incomplete) {
+        toast.error("Every variant needs a SKU and a price greater than £0.");
+        return;
+      }
+    }
+
+    // The product's own price is what product cards and the "From £X"
+    // fallback (before a variant is picked) use, so keep it in sync with
+    // the cheapest variant rather than leaving it stale.
+    const priceOverride = variantState.hasVariants
+      ? Math.min(...variantState.variants.map((v) => v.price))
+      : form.price;
+
     setSaving(true);
     const res = await fetch(`/api/admin/products/${product.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...form,
+        price: priceOverride,
         images,
         category_slugs: categorySlugs,
         compare_at_price: form.compare_at_price || null,
         features: form.features.split("\n").filter(Boolean),
+        // hasVariants/variants sent as real values (never undefined) even
+        // when cleared, since the PATCH route does a shallow
+        // {...existing, ...updates} merge and an undefined field (dropped
+        // entirely by JSON.stringify) would silently leave old variant data
+        // in place instead of clearing it. variantType is left stale-but-inert
+        // when variants is empty, every read site requires both to be set.
+        hasVariants: variantState.hasVariants,
+        variantType: variantState.variantType,
+        variants: variantState.hasVariants ? variantState.variants : [],
       }),
     });
     setSaving(false);
@@ -226,6 +261,22 @@ export function ProductEditForm({ product }: { product: Product }) {
                 </SelectContent>
               </Select>
             </div>
+          </div>
+
+          <div>
+            <Label>Variants</Label>
+            <p className="mt-0.5 mb-1.5 text-xs text-muted-foreground">
+              {variantState.hasVariants
+                ? "The Price field above is overridden by the lowest variant price on save."
+                : "Optional. Only turn this on if the product genuinely has different sizes or colours to choose from."}
+            </p>
+            <VariantEditor
+              hasVariants={variantState.hasVariants}
+              variantType={variantState.variantType}
+              variants={variantState.variants}
+              productImages={images}
+              onChange={setVariantState}
+            />
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
