@@ -28,12 +28,20 @@ just easy for us to hack on.
   Supabase/Postgres later without touching call sites. The actual disk I/O for these files is
   centralised in `lib/data-store.ts`: locally it reads/writes the files in `/data` exactly as
   before, but on Vercel (whose serverless filesystem is read-only outside `/tmp`) it transparently
-  reads and writes the same JSON through Vercel Blob instead, once `BLOB_READ_WRITE_TOKEN` is set.
-  The Blob store is **private** (customer emails, password hashes and order details live in these
-  files and must never be fetchable by URL) via `access: "private"` on every `put`/`get` call, not
-  public. This keeps the JSON-shaped data model and the `lib/*.ts` call sites unchanged, see
-  `.env.local.example` for setup. Product/category/hero image uploads have the equivalent split in
-  `lib/image-store.ts`.
+  reads and writes the same JSON through **Cloudflare R2** instead (S3-compatible, via
+  `@aws-sdk/client-s3`, see `lib/r2-client.ts`), once the R2 env vars are set. **Never use
+  `@vercel/blob`**, that store was retired in favour of R2's much larger free tier. Storage is
+  split across **two R2 buckets** on the same account: `R2_DATA_BUCKET_NAME` has no public access
+  enabled and holds the `/data/*.json` files (customer emails, password hashes and order details
+  live in these and must never be fetchable by URL, reads/writes go through authenticated
+  `GetObjectCommand`/`PutObjectCommand` only), and `R2_BUCKET_NAME` has its public dev URL enabled
+  and holds product/category/hero images only, served directly as
+  `${NEXT_PUBLIC_R2_PUBLIC_URL}/<key>` with no proxy route. **Never write anything containing
+  customer data to `R2_BUCKET_NAME`** or enable public access on `R2_DATA_BUCKET_NAME`, that would
+  make it fetchable by anyone who guesses the key. This keeps the JSON-shaped data model and the
+  `lib/*.ts` call sites unchanged, see `.env.local.example` for setup. Product/category/hero image
+  uploads have the equivalent split in `lib/image-store.ts`. Never write to the local filesystem
+  when running on Vercel, it's read-only outside `/tmp`.
 - Stripe for payments (Checkout Sessions, redirect flow, discounts applied as one-time Stripe
   coupons), Resend for transactional email, Anthropic Claude for AI content rewriting of Amazon
   listings, cheerio + sharp for the Amazon scrape/image pipeline.
@@ -142,15 +150,15 @@ This is the part most likely to trip up future changes, read carefully.
      rule-based fallback if `ANTHROPIC_API_KEY` is unset or the call fails, and suggests likely
      `category_slugs` from the product title.
   3. `lib/image-pipeline.ts` downloads and converts images to WebP, then stores them via
-     `lib/image-store.ts` (`/public/uploads/product/[asin]/` locally, Vercel Blob in production).
+     `lib/image-store.ts` (`/public/uploads/product/[asin]/` locally, the public R2 bucket in
+     production).
 - All admin image uploads (category, hero, blog, product) go through the single
   `/api/admin/upload` route, resized and converted to WebP by sharp, then persisted via
-  `lib/image-store.ts` (same local-vs-Blob split as the data layer above). Since the Blob store is
-  private, image URLs point at `/api/blob/[...path]` (`app/api/blob/[...path]/route.ts`), which
-  authenticates to Blob server-side and streams the file back publicly; that route only ever serves
-  `uploads/` paths, never `data/`, so the JSON data files stay unreachable by URL. `lib/placeholders.ts`
-  resolves the effective image for categories and the hero: admin upload (cache-busted) → curated,
-  visually verified Unsplash image → generic placeholder.
+  `lib/image-store.ts` (same local-vs-R2 split as the data layer above). Images are uploaded to
+  `R2_BUCKET_NAME`, which has public access enabled, so the resulting URL is
+  `${NEXT_PUBLIC_R2_PUBLIC_URL}/<key>` directly, no proxy route. `lib/placeholders.ts` resolves the
+  effective image for categories and the hero: admin upload (cache-busted) → curated, visually
+  verified Unsplash image → generic placeholder.
 - Cart state lives in React Context + localStorage (`components/cart/cart-context.tsx`), including
   applied coupon and saved-for-later items. Carts are anonymous until checkout.
 - Checkout uses Stripe's hosted Checkout Session (redirect flow), not Stripe Elements. Customer

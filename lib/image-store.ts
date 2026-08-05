@@ -1,30 +1,25 @@
 import "server-only";
 import { promises as fs } from "fs";
 import path from "path";
-import { put, head } from "@vercel/blob";
+import { PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
+import { r2Client, R2_BUCKET, R2_PUBLIC_URL, HAS_R2_CREDENTIALS } from "./r2-client";
 
 /**
  * Storage backend for processed product/category/hero images, mirroring
  * lib/data-store.ts. Locally these are written under /public/uploads/ same as
- * before. On Vercel, /public is read-only at runtime, so once
- * BLOB_READ_WRITE_TOKEN is set uploads go to Vercel Blob instead.
+ * before. On Vercel, /public is read-only at runtime, so once R2 credentials
+ * are set uploads go to the public R2_BUCKET instead.
  *
- * The Blob store is private (can't be changed to public after creation), so
- * uploaded images aren't fetchable by their raw Blob URL. Instead this
- * returns a URL under our own /api/blob/[...path] proxy route, which
- * authenticates to Blob server-side and streams the image back publicly.
- * That route only ever serves "uploads/" paths, never "data/" (see
- * lib/data-store.ts), so product/category/hero images are public exactly
- * like before, while the JSON data files stay private.
+ * Unlike lib/data-store.ts's bucket, R2_BUCKET has its public dev URL
+ * enabled, so uploaded images are served directly from
+ * NEXT_PUBLIC_R2_PUBLIC_URL, no proxy route needed. Never put anything
+ * containing customer data in this bucket, use R2_DATA_BUCKET for that.
  */
 
 const ON_VERCEL = !!process.env.VERCEL;
-const HAS_BLOB_TOKEN = !!process.env.BLOB_READ_WRITE_TOKEN;
-const USE_BLOB = HAS_BLOB_TOKEN;
+const USE_R2 = HAS_R2_CREDENTIALS;
 
-console.log(
-  `[image-store] mode=${USE_BLOB ? "blob" : "local-fs"} onVercel=${ON_VERCEL} hasBlobToken=${HAS_BLOB_TOKEN}`
-);
+console.log(`[image-store] mode=${USE_R2 ? "r2" : "local-fs"} onVercel=${ON_VERCEL}`);
 
 const PUBLIC_DIR = path.join(process.cwd(), "public");
 
@@ -34,21 +29,23 @@ export async function uploadImageBuffer(
   buffer: Buffer,
   contentType = "image/webp"
 ): Promise<string> {
-  if (USE_BLOB) {
-    await put(pathname, buffer, {
-      access: "private",
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      contentType,
-    });
-    return `/api/blob/${pathname}`;
+  if (USE_R2) {
+    await r2Client.send(
+      new PutObjectCommand({
+        Bucket: R2_BUCKET,
+        Key: pathname,
+        Body: buffer,
+        ContentType: contentType,
+      })
+    );
+    return `${R2_PUBLIC_URL}/${pathname}`;
   }
 
   if (ON_VERCEL) {
     throw new Error(
-      `Cannot upload "${pathname}": Vercel's filesystem is read-only and no Blob store is configured. ` +
-        `Add a Blob store (Storage tab -> Create Database -> Blob) and connect it to this project so ` +
-        `BLOB_READ_WRITE_TOKEN is set, then redeploy.`
+      `Cannot upload "${pathname}": Vercel's filesystem is read-only and no R2 store is configured. ` +
+        `Set R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME and NEXT_PUBLIC_R2_PUBLIC_URL ` +
+        `in the project's environment variables, then redeploy.`
     );
   }
 
@@ -60,10 +57,11 @@ export async function uploadImageBuffer(
 
 /** Looks up whether an image already exists at `pathname` (admin-uploaded category/hero overrides). Returns a cache-bust-friendly URL if found, otherwise null. */
 export async function findUploadedImage(pathname: string): Promise<string | null> {
-  if (USE_BLOB) {
+  if (USE_R2) {
     try {
-      const meta = await head(pathname);
-      return `/api/blob/${pathname}?v=${new Date(meta.uploadedAt).getTime()}`;
+      const meta = await r2Client.send(new HeadObjectCommand({ Bucket: R2_BUCKET, Key: pathname }));
+      const v = meta.LastModified ? meta.LastModified.getTime() : Date.now();
+      return `${R2_PUBLIC_URL}/${pathname}?v=${v}`;
     } catch {
       return null;
     }
