@@ -14,11 +14,11 @@
       "Doubles as a car crate, camping den or occasional indoor spot"
     ],
     "specifications": {
-      "External dimensions": "60cm x 42cm x 42cm",
-      "Folded size": "60cm x 42cm x 8cm (approx.)",
-      "Suitable for": "Dogs 7-11kg, cats",
+      "Available sizes": "S (60x42x42cm), M (70x52x52cm), L (81x58x58cm), XL (91x63x63cm), XXL (102x69x69cm)",
+      "Suitable for (approximate guide)": "S/M for cats and dogs up to approx. 11kg, L/XL up to approx. 20kg, XXL up to approx. 30kg. Always check dimensions against your pet's size",
+      "Folded depth": "Approx. 8cm when folded flat, footprint matches the size selected",
       "Material": "Steel frame, 600D Oxford fabric, faux fleece mat",
-      "Colour": "Grey"
+      "Available colours": "Grey, Smoke Grey, Black, Dark Blue, Beige"
     },
     "price": 32.99,
     "compare_at_price": 39.99,
@@ -32,7 +32,11 @@
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-3-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-4-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-5-main.webp",
-      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-6-main.webp"
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-6-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-7-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-8-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-9-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-10-main.webp"
     ],
     "category_slugs": [
       "carriers/dog-carriers/small-dog-carriers",
@@ -44,39 +48,243 @@
       "carriers/vet-visit-carriers",
       "carriers/car-travel-carriers"
     ],
-    "size_range": "Small to medium (7-11kg)",
-    "weight_capacity": "11kg",
+    "size_range": "S to XXL",
+    "weight_capacity": "Approximately 7kg to 30kg depending on size selected",
     "brand": "Feandrea",
     "amazon_asin": "B082NTP9PJ",
     "amazon_url": "https://www.amazon.co.uk/dp/B082NTP9PJ/",
     "is_active": true,
     "is_featured": true,
     "created_at": "2026-07-27T13:00:00.000Z",
-    "updated_at": "2026-07-27T13:00:00.000Z",
+    "updated_at": "2026-08-06T19:35:38.515Z",
     "markup_percentage": 0,
     "meta_title": "Feandrea Foldable Travel Crate for Dogs & Cats | Pet Carrier UK",
     "meta_description": "Feandrea foldable travel crate for dogs 7-11kg and cats. Steel frame, mesh windows, folds flat for storage. £32.99 with fast UK delivery.",
     "focus_keyword": "feandrea foldable dog crate",
     "faqs": [
       {
-        "question": "What size dog does this crate suit?",
-        "answer": "This crate is designed for dogs weighing roughly 7 to 11kg, such as Toy Poodles, Corgis and French Bulldogs. Measure your dog's length and height before ordering to check they will be comfortable inside."
+        "question": "Is this carrier suitable for cats?",
+        "answer": "Yes, cats who like a bit of extra room settle well in this crate, particularly the smaller sizes."
       },
       {
-        "question": "Can I use it for a cat?",
-        "answer": "Yes, cats settle well in this crate. Its open, airy design with mesh windows suits cats who find hard-sided box carriers a bit too enclosed."
+        "question": "What size dog fits in each size?",
+        "answer": "As a rough guide, S and M suit dogs up to around 11kg, L and XL suit dogs up to around 20kg, and XXL suits dogs up to around 30kg. Always measure your dog and compare against the exact dimensions before ordering, since breed shape varies."
       },
       {
-        "question": "Does it fold away?",
-        "answer": "Yes, once unclipped from its steel frame the crate folds flat to around 60cm x 42cm x 8cm for storage in a car boot or cupboard."
+        "question": "Can this be used for car travel?",
+        "answer": "Yes, its steel frame keeps its shape well for car journeys, and it packs flat again afterwards for storage."
       },
       {
-        "question": "Is the base mat washable?",
-        "answer": "The base mat lifts out for easy spot cleaning. Wipe with a damp cloth and let it dry fully before folding the crate away."
+        "question": "How do I clean this crate?",
+        "answer": "The base mat is removable for spot cleaning or a gentle wash. Wipe the frame and fabric with a damp cloth."
       },
       {
-        "question": "Is this carrier airline approved?",
-        "answer": "No, this crate is designed for car travel, home use and short trips such as vet visits. It is not certified for use as in-cabin airline luggage."
+        "question": "Which colours and sizes are available?",
+        "answer": "This crate comes in Grey, Smoke Grey, Black, Dark Blue and Beige, across five sizes from S to XXL. Not every colour is available in every size, check the selector on this page for what's currently in stock."
+      },
+      {
+        "question": "Does it fold flat for storage?",
+        "answer": "Yes, it collapses down to roughly 8cm deep regardless of size, so it stores easily between trips."
+      }
+    ],
+    "hasVariants": true,
+    "variantType": "size-colour",
+    "variants": [
+      {
+        "id": "B082NZLL81",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (70 cm L x 52 cm W x 52 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B082NZLL81",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B082NZLL81",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-0-main.webp"
+      },
+      {
+        "id": "B0CNG2JZCV",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (60 cm L x 42 cm W x 42 cm H)",
+        "colour": "Smoke Grey",
+        "colourHex": "#6E6E6E",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B0CNG2JZCV",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0CNG2JZCV",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-7-main.webp"
+      },
+      {
+        "id": "B01FLQZ2FK",
+        "type": "size-colour",
+        "size": "XXL",
+        "sizeLabel": "XXL (102 cm L x 69 cm W x 69 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B01FLQZ2FK",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01FLQZ2FK",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-8-main.webp"
+      },
+      {
+        "id": "B01FLQYWEC",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (60 cm L x 42 cm W x 42 cm H)",
+        "colour": "Dark Blue",
+        "colourHex": "#1E3A5F",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B01FLQYWEC",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01FLQYWEC",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-9-main.webp"
+      },
+      {
+        "id": "B00TI06FJS",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (70 cm L x 52 cm W x 52 cm H)",
+        "colour": "Dark Blue",
+        "colourHex": "#1E3A5F",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B00TI06FJS",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00TI06FJS",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-9-main.webp"
+      },
+      {
+        "id": "B00TI0V2XC",
+        "type": "size-colour",
+        "size": "XL",
+        "sizeLabel": "XL (91 cm L x 63 cm W x 63 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B00TI0V2XC",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00TI0V2XC",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-8-main.webp"
+      },
+      {
+        "id": "B00X3K76T2",
+        "type": "size-colour",
+        "size": "XXL",
+        "sizeLabel": "XXL (102 cm L x 69 cm W x 69 cm H)",
+        "colour": "Beige",
+        "colourHex": "#E8DCC8",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B00X3K76T2",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00X3K76T2",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-10-main.webp"
+      },
+      {
+        "id": "B01FLQZA20",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "L (81 cm L x 58 cm W x 58 cm H)",
+        "colour": "Dark Blue",
+        "colourHex": "#1E3A5F",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B01FLQZA20",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01FLQZA20",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-9-main.webp"
+      },
+      {
+        "id": "B082NTP9PJ",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (60 cm L x 42 cm W x 42 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B082NTP9PJ",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B082NTP9PJ",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-0-main.webp"
+      },
+      {
+        "id": "B015FNAQ32",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (60 cm L x 42 cm W x 42 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B015FNAQ32",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B015FNAQ32",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-8-main.webp"
+      },
+      {
+        "id": "B00X3F5OB4",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (70 cm L x 52 cm W x 52 cm H)",
+        "colour": "Beige",
+        "colourHex": "#E8DCC8",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B00X3F5OB4",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00X3F5OB4",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-10-main.webp"
+      },
+      {
+        "id": "B0BL94SFX5",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "L (81 cm L x 58 cm W x 58 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B0BL94SFX5",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0BL94SFX5",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-0-main.webp"
+      },
+      {
+        "id": "B01B1CFT3I",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "L (81 cm L x 58 cm W x 58 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B01B1CFT3I",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01B1CFT3I",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-8-main.webp"
+      },
+      {
+        "id": "B00TI06FKM",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (70 cm L x 52 cm W x 52 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 32.99,
+        "compareAtPrice": 39.99,
+        "sku": "PC-B00TI06FKM",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00TI06FKM",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-8-main.webp"
       }
     ]
   },
@@ -95,11 +303,11 @@
       "Suits house training, as pups tend to avoid soiling their sleeping area"
     ],
     "specifications": {
-      "External dimensions": "60cm x 42cm x 44cm",
+      "Available sizes": "S (50x34x36cm), M (60x42x44cm), L (70x52x50cm), XL (82x58x58cm), XXL (90x61x65cm), XXXL (101x69x70cm)",
+      "Suitable for (approximate guide)": "S for cats and small dogs up to approx. 8kg, M/L up to approx. 20kg, XL/XXL up to approx. 30kg, XXXL for larger dogs up to approx. 35kg. Always check dimensions against your pet's size",
       "Material": "Cotton/polyester fabric, stainless steel frame",
       "Cushion": "Removable, padded reclining cushion",
-      "Special features": "Collapsible, lightweight, padded",
-      "Colour": "Grey"
+      "Available colours": "Grey, Black, Beige, Blue, Red, Dark Red, Dark Blue"
     },
     "price": 27.99,
     "compare_at_price": 34.99,
@@ -113,7 +321,13 @@
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-3-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-4-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-5-main.webp",
-      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-6-main.webp"
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-6-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-7-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-8-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-9-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-10-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-11-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-12-main.webp"
     ],
     "category_slugs": [
       "carriers/dog-carriers/small-dog-carriers",
@@ -123,39 +337,467 @@
       "carriers/vet-visit-carriers",
       "carriers/car-travel-carriers"
     ],
-    "size_range": "Small to medium",
-    "weight_capacity": "10-15kg (approx. for this size)",
+    "size_range": "S to XXXL",
+    "weight_capacity": "Approximately 5kg to 35kg depending on size selected",
     "brand": "Lionto",
     "amazon_asin": "B0C7QH52D2",
     "amazon_url": "https://www.amazon.co.uk/lionto-Transport-Foldable-Small-Animal/dp/B0C7QH52D2",
     "is_active": true,
     "is_featured": true,
     "created_at": "2026-07-27T13:00:00.000Z",
-    "updated_at": "2026-07-27T13:00:00.000Z",
+    "updated_at": "2026-08-06T19:40:28.830Z",
     "markup_percentage": 0,
     "meta_title": "Lionto Foldable Dog Crate for Travel & Car | Pet Carrier UK",
     "meta_description": "Lionto foldable dog crate, 60 x 42 x 44cm. Steel frame, padded cushion, folds flat for storage. Ideal for car travel and house training. £27.99.",
     "focus_keyword": "lionto foldable dog crate",
     "faqs": [
       {
-        "question": "What size dog suits this crate?",
-        "answer": "This particular 60cm x 42cm x 44cm size suits small to medium dogs. Lionto sells this crate design in several sizes, so measure your dog and check the dimensions carefully before ordering."
+        "question": "Is this carrier suitable for cats?",
+        "answer": "Yes, particularly the smaller S and M sizes, which give cats a snug, secure space with a padded cushion."
       },
       {
-        "question": "Can I use it in the car?",
-        "answer": "Yes, the steel-framed design keeps its shape during car journeys and the carry handle makes it easy to move in and out of the boot or back seat."
+        "question": "What size dog fits in each size?",
+        "answer": "As a rough guide, S suits cats and small dogs up to around 8kg, M and L suit dogs up to around 20kg, XL and XXL up to around 30kg, and XXXL suits larger dogs up to around 35kg. Always measure your dog against the exact dimensions first."
       },
       {
-        "question": "Is the cushion removable?",
-        "answer": "Yes, the reclining cushion has a removable cover so you can freshen it up between uses."
+        "question": "Can this be used for car travel?",
+        "answer": "Yes, the stainless steel frame keeps its shape well for car journeys, and the crate folds flat again afterwards."
       },
       {
-        "question": "Does it fold flat?",
-        "answer": "Yes, the crate collapses flat for storage when it is not in use."
+        "question": "How do I clean this crate?",
+        "answer": "The padded cushion is removable for a wash. Wipe the frame and outer fabric with a damp cloth for everyday marks."
       },
       {
-        "question": "Is this crate suitable for small animals like rabbits?",
-        "answer": "This crate is designed and sized for dogs. If you need a carrier specifically for rabbits or guinea pigs, take a look at our small animal carriers instead."
+        "question": "Which colours and sizes are available?",
+        "answer": "This crate comes in Grey, Black, Beige, Blue, Red, Dark Red and Dark Blue, across six sizes from S to XXXL. Not every colour is available in every size, check the selector on this page for current stock."
+      },
+      {
+        "question": "Does it fold flat for storage?",
+        "answer": "Yes, the frame collapses down for compact storage between trips, regardless of which size you choose."
+      }
+    ],
+    "hasVariants": true,
+    "variantType": "size-colour",
+    "variants": [
+      {
+        "id": "B00W0G748S",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "L (70 cm L x 52 cm W x 50 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G748S",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G748S",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-7-main.webp"
+      },
+      {
+        "id": "B0C7QLCG7G",
+        "type": "size-colour",
+        "size": "XL",
+        "sizeLabel": "XL (82 cm L x 58 cm W x 58 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B0C7QLCG7G",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0C7QLCG7G",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-0-main.webp"
+      },
+      {
+        "id": "B01IN3MVMK",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (50 cm L x 34 cm W x 36 cm H)",
+        "colour": "Beige",
+        "colourHex": "#E8DCC8",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B01IN3MVMK",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01IN3MVMK",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-8-main.webp"
+      },
+      {
+        "id": "B00W0G7474",
+        "type": "size-colour",
+        "size": "XXL",
+        "sizeLabel": "XXL (90 cm L x 61 cm W x 65 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G7474",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G7474",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-7-main.webp"
+      },
+      {
+        "id": "B00W0G744M",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (60 cm L x 42 cm W x 44 cm H)",
+        "colour": "Blue",
+        "colourHex": "#3B6EA5",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G744M",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G744M",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-9-main.webp"
+      },
+      {
+        "id": "B0C7QMKR28",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (50 cm L x 34 cm W x 36 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B0C7QMKR28",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0C7QMKR28",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-0-main.webp"
+      },
+      {
+        "id": "B01IN3MVIO",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (60 cm L x 42 cm W x 44 cm H)",
+        "colour": "Red",
+        "colourHex": "#B22222",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B01IN3MVIO",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01IN3MVIO",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-10-main.webp"
+      },
+      {
+        "id": "B00W0G74CO",
+        "type": "size-colour",
+        "size": "XL",
+        "sizeLabel": "XL (82 cm L x 58 cm W x 58 cm H)",
+        "colour": "Blue",
+        "colourHex": "#3B6EA5",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G74CO",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G74CO",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-9-main.webp"
+      },
+      {
+        "id": "B01IN3MXG4",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (60 cm L x 42 cm W x 44 cm H)",
+        "colour": "Beige",
+        "colourHex": "#E8DCC8",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B01IN3MXG4",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01IN3MXG4",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-8-main.webp"
+      },
+      {
+        "id": "B01IN3N16K",
+        "type": "size-colour",
+        "size": "XL",
+        "sizeLabel": "XL (82 cm L x 58 cm W x 58 cm H)",
+        "colour": "Beige",
+        "colourHex": "#E8DCC8",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B01IN3N16K",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01IN3N16K",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-8-main.webp"
+      },
+      {
+        "id": "B0C7QH52D2",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (60 cm L x 42 cm W x 44 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B0C7QH52D2",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0C7QH52D2",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-0-main.webp"
+      },
+      {
+        "id": "B01H8SZDBW",
+        "type": "size-colour",
+        "size": "XL",
+        "sizeLabel": "XL (82 cm L x 58 cm W x 58 cm H)",
+        "colour": "dark red",
+        "colourHex": "#5C1A1A",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B01H8SZDBW",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01H8SZDBW",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-11-main.webp"
+      },
+      {
+        "id": "B01IN3MZ6M",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "L (70 cm L x 52 cm W x 50 cm H)",
+        "colour": "Beige",
+        "colourHex": "#E8DCC8",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B01IN3MZ6M",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01IN3MZ6M",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-8-main.webp"
+      },
+      {
+        "id": "B01IN3N2W8",
+        "type": "size-colour",
+        "size": "XXL",
+        "sizeLabel": "XXL (90 cm L x 61 cm W x 65 cm H)",
+        "colour": "Beige",
+        "colourHex": "#E8DCC8",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B01IN3N2W8",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01IN3N2W8",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-8-main.webp"
+      },
+      {
+        "id": "B00W0G7442",
+        "type": "size-colour",
+        "size": "XXXL",
+        "sizeLabel": "XXXL (101 cm L x 69 cm W x 70 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G7442",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G7442",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-7-main.webp"
+      },
+      {
+        "id": "B00W0G747O",
+        "type": "size-colour",
+        "size": "XL",
+        "sizeLabel": "XL (82 cm L x 58 cm W x 58 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G747O",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G747O",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-7-main.webp"
+      },
+      {
+        "id": "B0C7QKQ23B",
+        "type": "size-colour",
+        "size": "XXL",
+        "sizeLabel": "XXL (90 cm L x 61 cm W x 65 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B0C7QKQ23B",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0C7QKQ23B",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-0-main.webp"
+      },
+      {
+        "id": "B0C7QMM2BF",
+        "type": "size-colour",
+        "size": "XXXL",
+        "sizeLabel": "XXXL (101 cm L x 69 cm W x 70 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B0C7QMM2BF",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0C7QMM2BF",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-0-main.webp"
+      },
+      {
+        "id": "B00PJ5ZVD2",
+        "type": "size-colour",
+        "size": "XXL",
+        "sizeLabel": "XXL (90 cm L x 61 cm W x 65 cm H)",
+        "colour": "Red",
+        "colourHex": "#B22222",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00PJ5ZVD2",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00PJ5ZVD2",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-10-main.webp"
+      },
+      {
+        "id": "B00W0G743S",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (50 cm L x 34 cm W x 36 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G743S",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G743S",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-7-main.webp"
+      },
+      {
+        "id": "B00W0G7488",
+        "type": "size-colour",
+        "size": "XXL",
+        "sizeLabel": "XXL (90 cm L x 61 cm W x 65 cm H)",
+        "colour": "Blue",
+        "colourHex": "#3B6EA5",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G7488",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G7488",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-9-main.webp"
+      },
+      {
+        "id": "B00W0G747Y",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "L (70 cm L x 52 cm W x 50 cm H)",
+        "colour": "Blue",
+        "colourHex": "#3B6EA5",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G747Y",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G747Y",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-9-main.webp"
+      },
+      {
+        "id": "B00W0G746A",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (60 cm L x 42 cm W x 44 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G746A",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G746A",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-7-main.webp"
+      },
+      {
+        "id": "B01IN3MTEU",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (50 cm L x 34 cm W x 36 cm H)",
+        "colour": "Red",
+        "colourHex": "#B22222",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B01IN3MTEU",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01IN3MTEU",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-10-main.webp"
+      },
+      {
+        "id": "B01IN3N4TE",
+        "type": "size-colour",
+        "size": "XXXL",
+        "sizeLabel": "XXXL (101 cm L x 69 cm W x 70 cm H)",
+        "colour": "Beige",
+        "colourHex": "#E8DCC8",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B01IN3N4TE",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01IN3N4TE",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-8-main.webp"
+      },
+      {
+        "id": "B0C7QKP2Z9",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "L (70 cm L x 52 cm W x 50 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B0C7QKP2Z9",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0C7QKP2Z9",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-0-main.webp"
+      },
+      {
+        "id": "B00PJ5XQC0",
+        "type": "size-colour",
+        "size": "XXXL",
+        "sizeLabel": "XXXL (101 cm L x 69 cm W x 70 cm H)",
+        "colour": "Red",
+        "colourHex": "#B22222",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00PJ5XQC0",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00PJ5XQC0",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-10-main.webp"
+      },
+      {
+        "id": "B00W0G746K",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (50 cm L x 34 cm W x 36 cm H)",
+        "colour": "darkblue",
+        "colourHex": "#1E3A5F",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G746K",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G746K",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-12-main.webp"
+      },
+      {
+        "id": "B01H8QN4SI",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "L (70 cm L x 52 cm W x 50 cm H)",
+        "colour": "Red",
+        "colourHex": "#B22222",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B01H8QN4SI",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B01H8QN4SI",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-10-main.webp"
+      },
+      {
+        "id": "B00W0G748I",
+        "type": "size-colour",
+        "size": "XXXL",
+        "sizeLabel": "XXXL (101 cm L x 69 cm W x 70 cm H)",
+        "colour": "Blue",
+        "colourHex": "#3B6EA5",
+        "price": 27.99,
+        "compareAtPrice": 34.99,
+        "sku": "PC-B00W0G748I",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B00W0G748I",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-9-main.webp"
       }
     ]
   },
@@ -174,10 +816,11 @@
       "Folds flat for storage when not in use"
     ],
     "specifications": {
-      "Internal dimensions": "61cm x 45cm x 52cm",
-      "Weight when empty": "2.6kg (5.7lbs)",
+      "Available sizes": "S (50x38x43cm), M (61x45x52cm), L (69x52x52cm)",
+      "Suitable for (approximate guide)": "S for cats and small dogs up to approx. 8kg, M up to approx. 15kg, L up to approx. 20kg. Always check dimensions against your pet's size",
+      "Weight when empty": "From 2.6kg (5.7lbs), varies slightly by size",
       "Frame": "Steel wire with PP honeycomb panels",
-      "Colour": "Green",
+      "Available colours": "Green, Green (Expandable), Grey, Grey (Expandable)",
       "Use": "Indoor crate, car travel, outdoor pet tent"
     },
     "price": 49.99,
@@ -192,7 +835,10 @@
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-3-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-4-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-5-main.webp",
-      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-6-main.webp"
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-6-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-7-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-8-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-9-main.webp"
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
@@ -201,19 +847,152 @@
       "carriers",
       "carriers/dog-carriers/medium-dog-carriers"
     ],
-    "size_range": "Small to medium",
-    "weight_capacity": "Not stated by manufacturer",
+    "size_range": "S to L",
+    "weight_capacity": "Approximately 8kg to 20kg depending on size selected",
     "brand": "Pecute",
     "amazon_asin": "B0F9DVG6VG",
     "amazon_url": "https://www.amazon.co.uk/dp/B0F9DVG6VG/",
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-07-26T22:40:26.972Z",
-    "updated_at": "2026-07-27T21:08:26.801Z",
+    "updated_at": "2026-08-06T19:42:26.408Z",
     "markup_percentage": 0,
     "meta_title": "Pecute Foldable Dog Car Carrier, Green | Pet Carrier UK",
     "meta_description": "Lightweight foldable dog car carrier with steel wire frame, breathable mesh, and secure car fixings. Currently a draft pending price confirmation.",
-    "faqs": []
+    "faqs": [
+      {
+        "question": "Is this carrier suitable for cats?",
+        "answer": "Yes, particularly the S size, which gives cats and small dogs a snug, secure crate."
+      },
+      {
+        "question": "What size dog fits in each size?",
+        "answer": "As a rough guide, S suits cats and small dogs up to around 8kg, M suits dogs up to around 15kg, and L suits dogs up to around 20kg. Always measure your dog against the exact dimensions first."
+      },
+      {
+        "question": "What does the 'Expandable' colour option mean?",
+        "answer": "Some colour options include an expandable panel for extra space inside the crate. Check the product images for that option to see the expanded shape."
+      },
+      {
+        "question": "How do I clean this crate?",
+        "answer": "Wipe the honeycomb panels and steel frame with a damp cloth. Avoid submerging the frame fully in water."
+      },
+      {
+        "question": "Which colours and sizes are available?",
+        "answer": "This crate comes in Green, Green (Expandable), Grey and Grey (Expandable), across three sizes from S to L. Check the selector on this page for current stock."
+      },
+      {
+        "question": "Can this be used outdoors?",
+        "answer": "Yes, it doubles as an indoor crate, a car travel carrier, and an outdoor pet tent thanks to its sturdy frame and panels."
+      }
+    ],
+    "hasVariants": true,
+    "variantType": "size-colour",
+    "variants": [
+      {
+        "id": "B0G4QBL14L",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (50 cm L x 38 cm W x 43 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 49.99,
+        "sku": "PC-B0G4QBL14L",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0G4QBL14L",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-8-main.webp"
+      },
+      {
+        "id": "B0F4XSMTHX",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (61 cm L x 45 cm W x 52 cm H)",
+        "colour": "Green(Expandable)",
+        "colourHex": "#5C8A5C",
+        "price": 49.99,
+        "sku": "PC-B0F4XSMTHX",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0F4XSMTHX",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-7-main.webp"
+      },
+      {
+        "id": "B0G4QC1TK9",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (50 cm L x 38 cm W x 43 cm H)",
+        "colour": "Green",
+        "colourHex": "#4A7A4A",
+        "price": 49.99,
+        "sku": "PC-B0G4QC1TK9",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0G4QC1TK9",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-0-main.webp"
+      },
+      {
+        "id": "B0DL4KPWBX",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (61 cm L x 45 cm W x 52 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 49.99,
+        "sku": "PC-B0DL4KPWBX",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DL4KPWBX",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-8-main.webp"
+      },
+      {
+        "id": "B0F9DVG6VG",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "L (69 cm L x 52 cm W x 52 cm H)",
+        "colour": "Green",
+        "colourHex": "#4A7A4A",
+        "price": 49.99,
+        "sku": "PC-B0F9DVG6VG",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0F9DVG6VG",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-0-main.webp"
+      },
+      {
+        "id": "B0F9DZFYMG",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "L (69 cm L x 52 cm W x 52 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 49.99,
+        "sku": "PC-B0F9DZFYMG",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0F9DZFYMG",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-8-main.webp"
+      },
+      {
+        "id": "B0F4XS7BY4",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (61 cm L x 45 cm W x 52 cm H)",
+        "colour": "Grey(Expandable)",
+        "colourHex": "#909090",
+        "price": 49.99,
+        "sku": "PC-B0F4XS7BY4",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0F4XS7BY4",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-9-main.webp"
+      },
+      {
+        "id": "B0DL4KFG3Z",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (61 cm L x 45 cm W x 52 cm H)",
+        "colour": "Green",
+        "colourHex": "#4A7A4A",
+        "price": 49.99,
+        "sku": "PC-B0DL4KFG3Z",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DL4KFG3Z",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-0-main.webp"
+      }
+    ]
   },
   {
     "id": "B0BVJ6HN4Y",
@@ -228,7 +1007,10 @@
       "Easy To Clean And Store：You can clean the stains and dirt on the surface with a soft cloth. The soft mat inside the pet carrier is removable and washable. You can take it out and wash it easily to solve all stains.The collapsible design makes it compact ad easy to store.",
       "Service Guarantees：Our goal is to provide the best customer service,if you have any questions, please contact us through Amazon,we will reply within 24 hours,until you are satisfied,so that you can order our products without worries."
     ],
-    "specifications": {},
+    "specifications": {
+      "Available sizes": "Medium, Large",
+      "Available colours": "Black, Grey"
+    },
     "price": 44.94,
     "compare_at_price": 49.99,
     "sku": "PC-B0BVJ6HN4Y",
@@ -242,7 +1024,8 @@
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0BVJ6HN4Y/image-4.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0BVJ6HN4Y/image-5.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0BVJ6HN4Y/image-6.webp",
-      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0BVJ6HN4Y/image-7.webp"
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0BVJ6HN4Y/image-7.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0BVJ6HN4Y/image-8-main.webp"
     ],
     "category_slugs": [
       "carriers/cat-carriers/kitten-carriers",
@@ -257,7 +1040,7 @@
       "carriers/vet-visit-carriers",
       "carriers/airline-approved-carriers"
     ],
-    "size_range": "Medium",
+    "size_range": "Medium to Large",
     "weight_capacity": "See listing",
     "brand": "Pet Carrier",
     "amazon_asin": "B0BVJ6HN4Y",
@@ -265,10 +1048,76 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-02T20:05:20.303Z",
-    "updated_at": "2026-08-02T20:05:31.775Z",
+    "updated_at": "2026-08-06T19:43:41.321Z",
     "markup_percentage": 60,
     "meta_title": "Dycietx Soft Sided Foldable Cat/Dog/Pet/Puppy Carrier Bag...",
-    "meta_description": "High Quality Design：Firm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, whic"
+    "meta_description": "High Quality Design：Firm cage construction and wooden support board maintain good spatial stability and shape. Breathable mesh windows on three sides, whic",
+    "hasVariants": true,
+    "variantType": "size-colour",
+    "variants": [
+      {
+        "id": "B0DBV4P9T4",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "Large",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0BVJ6HN4Y/image-8-main.webp",
+        "price": 44.94,
+        "compareAtPrice": 49.99,
+        "sku": "PC-B0DBV4P9T4",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DBV4P9T4",
+        "inStock": true
+      },
+      {
+        "id": "B0BVJ6HN4Y",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "Medium",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0BVJ6HN4Y/image-0-main.webp",
+        "price": 44.94,
+        "compareAtPrice": 49.99,
+        "sku": "PC-B0BVJ6HN4Y",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0BVJ6HN4Y",
+        "inStock": true
+      },
+      {
+        "id": "B0DBQJ24FP",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "Medium",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0BVJ6HN4Y/image-8-main.webp",
+        "price": 44.94,
+        "compareAtPrice": 49.99,
+        "sku": "PC-B0DBQJ24FP",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DBQJ24FP",
+        "inStock": true
+      },
+      {
+        "id": "B0BVJ6N2KD",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "Large",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0BVJ6HN4Y/image-0-main.webp",
+        "price": 44.94,
+        "compareAtPrice": 49.99,
+        "sku": "PC-B0BVJ6N2KD",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0BVJ6N2KD",
+        "inStock": true
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Which colours and sizes are available?",
+        "answer": "This carrier is available in Black and Grey, each in Medium and Large sizes. Check the selector on this page for current stock."
+      }
+    ]
   },
   {
     "id": "PC-UH3G4NTI",
@@ -285,7 +1134,11 @@
       "Collapsible design that folds flat for storage",
       "Suits large cats and small to medium dogs up to 10kg (car travel, not certified for flights)"
     ],
-    "specifications": {},
+    "specifications": {
+      "Available sizes": "S (43x28x28cm), M (51x31x31cm)",
+      "Suitable for (approximate guide)": "S for cats and small dogs up to approx. 7kg, M up to approx. 10kg. Always check dimensions against your pet's size",
+      "Available colours": "Blue, Purple, Turquoise, Black, Green, Grey"
+    },
     "price": 49.99,
     "compare_at_price": null,
     "sku": "PC-PC-UH3G4NTI",
@@ -297,7 +1150,12 @@
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DMRX9N63/image-2-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DMRX9N63/image-3-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DMRX9N63/image-4-main.webp",
-      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DMRX9N63/image-5-main.webp"
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DMRX9N63/image-5-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-6-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-7-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-8-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-9-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-10-main.webp"
     ],
     "category_slugs": [
       "carriers/dog-carriers/small-dog-carriers",
@@ -310,18 +1168,196 @@
       "carriers/dog-carriers/puppy-carriers",
       "carriers/cat-carriers/large-cat-carriers"
     ],
-    "size_range": "Up to 10kg (large cats, small to medium dogs)",
-    "weight_capacity": "10kg",
+    "size_range": "S to M",
+    "weight_capacity": "Approximately 7kg to 10kg depending on size selected",
     "brand": "Pet Carrier",
     "amazon_asin": "",
     "amazon_url": "https://www.amazon.co.uk/Conlun-Carrier-Transport-Collapsible-Purple/dp/B0DMRX9N63?_encoding=UTF8&pd_rd_w=XGURm&content-id=amzn1.sym.1ce4d22d-bf48-41db-9836-d346a7a06e53&pf_rd_p=1ce4d22d-bf48-41db-9836-d346a7a06e53&pf_rd_r=R6AYPF8AT44JWGWCG2CN&pd_rd_wg=ptvtz&pd_rd_r=37fea7ea-6b1d-438a-a8c2-0aee62a1d6ba&th=1&linkCode=ll2&tag=petcarrier55-21&linkId=8a222e3e3f42a74bb98152a5dd72a43d&ref_=as_li_ss_tl",
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-03T09:50:21.803Z",
-    "updated_at": "2026-08-03T10:18:00.260Z",
+    "updated_at": "2026-08-06T19:46:30.956Z",
     "markup_percentage": 0,
     "meta_title": "Conlun Collapsible Soft-Sided Carrier for Cats and Small Dogs, Purple | Pet Carrier",
-    "meta_description": "A collapsible soft-sided carrier for large cats and small to medium dogs up to 10kg, with self-locking zips, mesh windows and an internal safety leash. Folds flat for storage between car journeys, vet visits and everyday trips."
+    "meta_description": "A collapsible soft-sided carrier for large cats and small to medium dogs up to 10kg, with self-locking zips, mesh windows and an internal safety leash. Folds flat for storage between car journeys, vet visits and everyday trips.",
+    "hasVariants": true,
+    "variantType": "size-colour",
+    "variants": [
+      {
+        "id": "B0DMRRW2BM",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (51 cm L x 31 cm W x 31 cm H)",
+        "colour": "Blue",
+        "colourHex": "#3B6EA5",
+        "price": 49.99,
+        "sku": "PC-B0DMRRW2BM",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DMRRW2BM",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-6-main.webp"
+      },
+      {
+        "id": "B0DMRWTT48",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (43 cm L x 28 cm W x 28 cm H)",
+        "colour": "Purple",
+        "colourHex": "#6A4C93",
+        "price": 49.99,
+        "sku": "PC-B0DMRWTT48",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DMRWTT48",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-0-main.webp"
+      },
+      {
+        "id": "B0G64J46TL",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (43 cm L x 28 cm W x 28 cm H)",
+        "colour": "Turquoise",
+        "colourHex": "#30D5C8",
+        "price": 49.99,
+        "sku": "PC-B0G64J46TL",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0G64J46TL",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-7-main.webp"
+      },
+      {
+        "id": "B0DMS9WNVD",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (43 cm L x 28 cm W x 28 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 49.99,
+        "sku": "PC-B0DMS9WNVD",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DMS9WNVD",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-8-main.webp"
+      },
+      {
+        "id": "B0FWXXPXDV",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (43 cm L x 28 cm W x 28 cm H)",
+        "colour": "Green",
+        "colourHex": "#4A7A4A",
+        "price": 49.99,
+        "sku": "PC-B0FWXXPXDV",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0FWXXPXDV",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-9-main.webp"
+      },
+      {
+        "id": "B0DMS3TGCW",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (51 cm L x 31 cm W x 31 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 49.99,
+        "sku": "PC-B0DMS3TGCW",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DMS3TGCW",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-10-main.webp"
+      },
+      {
+        "id": "B0FSRKLWHD",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (43 cm L x 28 cm W x 28 cm H)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "price": 49.99,
+        "sku": "PC-B0FSRKLWHD",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0FSRKLWHD",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-10-main.webp"
+      },
+      {
+        "id": "B0DMSCPGV4",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "S (43 cm L x 28 cm W x 28 cm H)",
+        "colour": "Blue",
+        "colourHex": "#3B6EA5",
+        "price": 49.99,
+        "sku": "PC-B0DMSCPGV4",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DMSCPGV4",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-6-main.webp"
+      },
+      {
+        "id": "B0DMRRW2BK",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (51 cm L x 31 cm W x 31 cm H)",
+        "colour": "Green",
+        "colourHex": "#4A7A4A",
+        "price": 49.99,
+        "sku": "PC-B0DMRRW2BK",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DMRRW2BK",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-9-main.webp"
+      },
+      {
+        "id": "B0DMRX9N63",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (51 cm L x 31 cm W x 31 cm H)",
+        "colour": "Purple",
+        "colourHex": "#6A4C93",
+        "price": 49.99,
+        "sku": "PC-B0DMRX9N63",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DMRX9N63",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-0-main.webp"
+      },
+      {
+        "id": "B0DMRNJFPS",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (51 cm L x 31 cm W x 31 cm H)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "price": 49.99,
+        "sku": "PC-B0DMRNJFPS",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DMRNJFPS",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-8-main.webp"
+      },
+      {
+        "id": "B0G64FJCNC",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (51 cm L x 31 cm W x 31 cm H)",
+        "colour": "Turquoise",
+        "colourHex": "#30D5C8",
+        "price": 49.99,
+        "sku": "PC-B0G64FJCNC",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0G64FJCNC",
+        "inStock": true,
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-UH3G4NTI/image-7-main.webp"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is this carrier suitable for cats?",
+        "answer": "Yes, this collapsible soft-sided carrier suits cats and small dogs, particularly in the smaller S size."
+      },
+      {
+        "question": "What size fits my pet?",
+        "answer": "As a rough guide, S suits cats and small dogs up to around 7kg, and M suits pets up to around 10kg. Always measure your pet against the exact dimensions first."
+      },
+      {
+        "question": "Which colours and sizes are available?",
+        "answer": "This carrier comes in Blue, Purple, Turquoise, Black, Green and Grey, in two sizes. Check the selector on this page for current stock."
+      },
+      {
+        "question": "Does it collapse for storage?",
+        "answer": "Yes, it folds flat for compact storage between trips."
+      }
+    ]
   },
   {
     "id": "PC-CF4XFOIR",
@@ -337,7 +1373,10 @@
       "Lightweight, durable nylon and mesh construction",
       "Folds flat for storage between trips"
     ],
-    "specifications": {},
+    "specifications": {
+      "Available sizes": "Small, Medium, Regular (sizing varies slightly by colour)",
+      "Available colours": "Black, Blue, Pink"
+    },
     "price": 49.99,
     "compare_at_price": null,
     "sku": "PC-PC-CF4XFOIR",
@@ -349,7 +1388,9 @@
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B07917CCFD/image-2-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B07917CCFD/image-3-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B07917CCFD/image-4-main.webp",
-      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B07917CCFD/image-5-main.webp"
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B07917CCFD/image-5-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-CF4XFOIR/image-6-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-CF4XFOIR/image-7-main.webp"
     ],
     "category_slugs": [
       "carriers/cat-carriers/airline-approved-cat-carriers",
@@ -362,7 +1403,7 @@
       "carriers/cat-carriers",
       "carriers/cat-carriers/kitten-carriers"
     ],
-    "size_range": "Extra small (up to approx. 4kg)",
+    "size_range": "Small to Regular",
     "weight_capacity": "4kg",
     "brand": "Pet Carrier",
     "amazon_asin": "",
@@ -370,10 +1411,98 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-03T10:02:15.302Z",
-    "updated_at": "2026-08-03T10:19:51.564Z",
+    "updated_at": "2026-08-06T19:47:53.496Z",
     "markup_percentage": 0,
     "meta_title": "DONYER POWER Airline Approved Under-Seat Cat Carrier, Blue | Pet Carrier",
-    "meta_description": "A lightweight, under-seat airline-sized carrier for small cats, with mesh top and sides, two-sided zip access and a seatbelt buckle for secure car travel. Folds flat for easy storage."
+    "meta_description": "A lightweight, under-seat airline-sized carrier for small cats, with mesh top and sides, two-sided zip access and a seatbelt buckle for secure car travel. Folds flat for easy storage.",
+    "hasVariants": true,
+    "variantType": "size-colour",
+    "variants": [
+      {
+        "id": "B07S29LXQ7",
+        "type": "size-colour",
+        "size": "R",
+        "sizeLabel": "Regular",
+        "colour": "Pink",
+        "colourHex": "#E75480",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-CF4XFOIR/image-7-main.webp",
+        "price": 49.99,
+        "sku": "PC-B07S29LXQ7",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B07S29LXQ7",
+        "inStock": true
+      },
+      {
+        "id": "B07RX3V1LN",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "Small",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-CF4XFOIR/image-6-main.webp",
+        "price": 49.99,
+        "sku": "PC-B07RX3V1LN",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B07RX3V1LN",
+        "inStock": true
+      },
+      {
+        "id": "B07RZ4512D",
+        "type": "size-colour",
+        "size": "S",
+        "sizeLabel": "Small",
+        "colour": "Blue",
+        "colourHex": "#3B6EA5",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-CF4XFOIR/image-0-main.webp",
+        "price": 49.99,
+        "sku": "PC-B07RZ4512D",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B07RZ4512D",
+        "inStock": true
+      },
+      {
+        "id": "B07917CCFD",
+        "type": "size-colour",
+        "size": "R",
+        "sizeLabel": "Regular",
+        "colour": "Blue",
+        "colourHex": "#3B6EA5",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-CF4XFOIR/image-0-main.webp",
+        "price": 49.99,
+        "sku": "PC-B07917CCFD",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B07917CCFD",
+        "inStock": true
+      },
+      {
+        "id": "B07917N14Z",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "Medium",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-CF4XFOIR/image-6-main.webp",
+        "price": 49.99,
+        "sku": "PC-B07917N14Z",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B07917N14Z",
+        "inStock": true
+      },
+      {
+        "id": "B079178RRZ",
+        "type": "size-colour",
+        "size": "R",
+        "sizeLabel": "Regular",
+        "colour": "Pink",
+        "colourHex": "#E75480",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/PC-CF4XFOIR/image-7-main.webp",
+        "price": 49.99,
+        "sku": "PC-B079178RRZ",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B079178RRZ",
+        "inStock": true
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Which colours and sizes are available?",
+        "answer": "This under-seat carrier comes in Black, Blue and Pink. Available sizes vary slightly by colour, check the selector on this page for current stock."
+      }
+    ]
   },
   {
     "id": "B0DY3XTVMD",
@@ -390,10 +1519,11 @@
       "Folds flat for storage, with a front pocket for essentials"
     ],
     "specifications": {
-      "External dimensions": "approximately 43cm x 28cm x 28cm (17\" x 11\" x 11\")",
-      "Weight capacity": "up to approximately 7.3kg (16lbs)",
+      "External dimensions": "Medium: approximately 43cm x 28cm x 28cm (17\" x 11\" x 11\"). Large: bigger overall, exact dimensions not listed, contact us to confirm before ordering if it's critical",
+      "Weight capacity": "Medium: up to approximately 7.3kg (16lbs). Large: suits somewhat bigger pets, check with us if unsure",
       "Material": "Steel frame with wooden support board, mesh panelling, fabric exterior",
-      "Colour": "Grey",
+      "Available colours": "Grey, Black",
+      "Available sizes": "Medium, Large",
       "Airline approved": "Sized to fit under most aeroplane seats, always confirm with your airline before flying",
       "Closure": "Zip closures with adjustable shoulder strap and car seatbelt attachment"
     },
@@ -410,7 +1540,8 @@
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DY3XTVMD/image-4-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DY3XTVMD/image-5-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DY3XTVMD/image-6-main.webp",
-      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DY3XTVMD/image-7-main.webp"
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DY3XTVMD/image-7-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DY3XTVMD/image-8-main.webp"
     ],
     "category_slugs": [
       "carriers/dog-carriers/small-dog-carriers",
@@ -421,7 +1552,7 @@
       "carriers/airline-approved-carriers",
       "carriers/car-travel-carriers"
     ],
-    "size_range": "Small (up to approx. 7.3kg)",
+    "size_range": "Medium to Large",
     "weight_capacity": "7.3kg (16lbs)",
     "brand": "DPWEION",
     "amazon_asin": "B0DY3XTVMD",
@@ -429,18 +1560,18 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-03T00:00:00.000Z",
-    "updated_at": "2026-08-03T00:00:00.000Z",
+    "updated_at": "2026-08-06T19:49:01.218Z",
     "markup_percentage": 40,
     "meta_title": "DPWEION Foldable Pet Carrier, Grey | Pet Carrier",
     "meta_description": "DPWEION foldable soft-sided carrier for cats and small dogs up to 7.3kg. Mesh windows, washable pad, car seatbelt attachment. Fast UK delivery.",
     "faqs": [
       {
         "question": "Is this carrier suitable for both cats and small dogs?",
-        "answer": "Yes, it is designed to suit cats and small dogs up to around 7.3kg (16lbs). It is worth checking your pet's length and height as well as their weight before ordering."
+        "answer": "Yes, it is designed to suit cats and small dogs up to around 7.3kg (16lbs) in the Medium size, with the Large size suited to somewhat bigger pets. It is worth checking your pet's length and height as well as their weight before ordering."
       },
       {
         "question": "What size pet fits in this carrier?",
-        "answer": "The carrier measures approximately 43cm x 28cm x 28cm internally and suits pets up to around 7.3kg (16lbs)."
+        "answer": "The Medium size measures approximately 43cm x 28cm x 28cm internally and suits pets up to around 7.3kg (16lbs). The Large size gives extra room for bigger pets."
       },
       {
         "question": "Can this carrier be used for car journeys?",
@@ -457,6 +1588,66 @@
       {
         "question": "Does it fold flat for storage?",
         "answer": "Yes, the carrier folds down flat when not in use, making it easy to store in a cupboard or car boot."
+      },
+      {
+        "question": "Which colours and sizes are available?",
+        "answer": "This carrier comes in Grey and Black, each in Medium and Large. Check the selector on this page for current stock."
+      }
+    ],
+    "hasVariants": true,
+    "variantType": "size-colour",
+    "variants": [
+      {
+        "id": "B0DY43KTN2",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "Large",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DY3XTVMD/image-0-main.webp",
+        "price": 50.53,
+        "sku": "PC-B0DY43KTN2",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DY43KTN2",
+        "inStock": true
+      },
+      {
+        "id": "B0DY3XTVMD",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "Medium (approx. 43cm x 28cm x 28cm)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DY3XTVMD/image-0-main.webp",
+        "price": 50.53,
+        "sku": "PC-B0DY3XTVMD",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DY3XTVMD",
+        "inStock": true
+      },
+      {
+        "id": "B0DV3RPTMZ",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "Medium (approx. 43cm x 28cm x 28cm)",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DY3XTVMD/image-8-main.webp",
+        "price": 50.53,
+        "sku": "PC-B0DV3RPTMZ",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DV3RPTMZ",
+        "inStock": true
+      },
+      {
+        "id": "B0DYJTLMY1",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "Large",
+        "colour": "Black",
+        "colourHex": "#1A1A1A",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0DY3XTVMD/image-8-main.webp",
+        "price": 50.53,
+        "sku": "PC-B0DYJTLMY1",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0DYJTLMY1",
+        "inStock": true
       }
     ]
   },
@@ -475,10 +1666,11 @@
       "Dual clear panoramic windows"
     ],
     "specifications": {
-      "External dimensions": "approximately 55cm x 38cm x 35cm (XL)",
-      "Weight when empty": "approximately 2.44kg",
+      "External dimensions": "M: 43x32x30cm, L: 46x36x34cm, XL: 55x38x35cm",
+      "Weight when empty": "Approximately 2.44kg for XL, slightly less for M and L",
       "Material": "Steel wire frame, double-layer nylon mesh, fabric exterior",
-      "Colour": "Green",
+      "Available colours": "Green (M, XL only), Grey (M, L, XL)",
+      "Available sizes": "M, L, XL",
       "Closure": "Automatic safety lock zips with internal safety leash",
       "Warranty": "Manufacturer standard"
     },
@@ -495,7 +1687,8 @@
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0GX1PNS8V/image-4-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0GX1PNS8V/image-5-main.webp",
       "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0GX1PNS8V/image-6-main.webp",
-      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0GX1PNS8V/image-7-main.webp"
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0GX1PNS8V/image-7-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0GX1PNS8V/image-8-main.webp"
     ],
     "category_slugs": [
       "carriers/cat-carriers/large-cat-carriers",
@@ -507,7 +1700,7 @@
       "carriers/car-travel-carriers",
       "carriers"
     ],
-    "size_range": "Extra large (large cats, small to medium dogs)",
+    "size_range": "M to XL",
     "weight_capacity": "",
     "brand": "Pecute",
     "amazon_asin": "B0GX1PNS8V",
@@ -515,11 +1708,93 @@
     "is_active": true,
     "is_featured": true,
     "created_at": "2026-08-03T00:00:00.000Z",
-    "updated_at": "2026-08-03T20:46:04.622Z",
+    "updated_at": "2026-08-06T19:50:53.271Z",
     "markup_percentage": 40,
     "meta_title": "Pecute XL Cat & Dog Carrier, Green | Pet Carrier",
     "meta_description": "Pecute extra large carrier for cats and small dogs. Steel frame, panoramic windows, escape-proof zips. Currently a draft pending stock confirmation.",
-    "faqs": []
+    "faqs": [
+      {
+        "question": "Which colours and sizes are available?",
+        "answer": "This carrier comes in Green and Grey. Green is available in M and XL, while Grey is available in M, L and XL. Check the selector on this page for current stock."
+      },
+      {
+        "question": "What size fits my pet?",
+        "answer": "M measures approximately 43x32x30cm, L is 46x36x34cm, and XL is 55x38x35cm. Measure your pet and compare against these dimensions before ordering."
+      },
+      {
+        "question": "Is this carrier secure?",
+        "answer": "Yes, it uses automatic safety lock zips along with an internal safety leash that clips to your pet's harness or collar."
+      }
+    ],
+    "hasVariants": true,
+    "variantType": "size-colour",
+    "variants": [
+      {
+        "id": "B0GLXS6GZR",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (43cm x 32cm x 30cm)",
+        "colour": "Green",
+        "colourHex": "#4A7A4A",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0GX1PNS8V/image-0-main.webp",
+        "price": 49.99,
+        "sku": "PC-B0GLXS6GZR",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GLXS6GZR",
+        "inStock": true
+      },
+      {
+        "id": "B0GXKFDXM2",
+        "type": "size-colour",
+        "size": "XL",
+        "sizeLabel": "XL (55cm x 38cm x 35cm)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0GX1PNS8V/image-8-main.webp",
+        "price": 49.99,
+        "sku": "PC-B0GXKFDXM2",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GXKFDXM2",
+        "inStock": true
+      },
+      {
+        "id": "B0GX1PNS8V",
+        "type": "size-colour",
+        "size": "XL",
+        "sizeLabel": "XL (55cm x 38cm x 35cm)",
+        "colour": "Green",
+        "colourHex": "#4A7A4A",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0GX1PNS8V/image-0-main.webp",
+        "price": 49.99,
+        "sku": "PC-B0GX1PNS8V",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GX1PNS8V",
+        "inStock": true
+      },
+      {
+        "id": "B0GLXPYFP2",
+        "type": "size-colour",
+        "size": "M",
+        "sizeLabel": "M (43cm x 32cm x 30cm)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0GX1PNS8V/image-8-main.webp",
+        "price": 49.99,
+        "sku": "PC-B0GLXPYFP2",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GLXPYFP2",
+        "inStock": true
+      },
+      {
+        "id": "B0GX1HQDNR",
+        "type": "size-colour",
+        "size": "L",
+        "sizeLabel": "L (46cm x 36cm x 34cm)",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0GX1PNS8V/image-8-main.webp",
+        "price": 49.99,
+        "sku": "PC-B0GX1HQDNR",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0GX1HQDNR",
+        "inStock": true
+      }
+    ]
   },
   {
     "id": "B0GHN65MYN",
@@ -1301,8 +2576,8 @@
       "Includes": "Folding travel bowl and removable cushion",
       "Brand": "Morpilot"
     },
-    "price": 99.99,
-    "compare_at_price": 129.99,
+    "price": 54.99,
+    "compare_at_price": null,
     "sku": "PC-B07MGH27ZS",
     "stock_status": "in_stock",
     "stock_count": 50,
@@ -1332,7 +2607,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-06T15:40:35.603Z",
-    "updated_at": "2026-08-06T15:42:21.286Z",
+    "updated_at": "2026-08-06T16:32:25.041Z",
     "markup_percentage": 40,
     "meta_title": "Morpilot Soft Pet Carrier Bag, Grey | Pet Carrier UK",
     "meta_description": "Morpilot soft carrier for cats and small dogs up to 7kg, with mesh ventilation and a folding travel bowl included. Fast UK delivery.",
@@ -1361,7 +2636,10 @@
         "question": "Is the carrier stable, or does it sag?",
         "answer": "It has a support board built into the base, which keeps the carrier's shape and stops it from collapsing once your pet is inside."
       }
-    ]
+    ],
+    "hasVariants": false,
+    "variantType": "colour",
+    "variants": []
   },
   {
     "id": "PC-HSMQNA3Z",
@@ -1385,8 +2663,8 @@
       "Entry points": "Front and back",
       "Brand": "Pet Carrier"
     },
-    "price": 99.99,
-    "compare_at_price": 129.99,
+    "price": 29.99,
+    "compare_at_price": null,
     "sku": "PC-B0DV3R9K31",
     "stock_status": "in_stock",
     "stock_count": 50,
@@ -1416,7 +2694,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-06T15:42:41.877Z",
-    "updated_at": "2026-08-06T15:44:23.783Z",
+    "updated_at": "2026-08-06T16:31:59.612Z",
     "markup_percentage": 40,
     "meta_title": "Soft Sided Foldable Pet Carrier, Black | Pet Carrier UK",
     "meta_description": "Sturdy soft carrier for cats and small dogs up to 10kg, with mesh windows on all sides and front and back entry. Fast UK delivery.",
@@ -1445,7 +2723,10 @@
         "question": "Does it have more than one entry point?",
         "answer": "Yes, it has both a front and a back entrance, which makes it easier to get your pet in and out compared with a single-opening carrier."
       }
-    ]
+    ],
+    "hasVariants": false,
+    "variantType": "colour",
+    "variants": []
   },
   {
     "id": "PC-CHUBKOIQ",
@@ -1469,8 +2750,8 @@
       "Frame": "5mm steel wire with honeycomb board base",
       "Brand": "Pecute"
     },
-    "price": 99.99,
-    "compare_at_price": 129.99,
+    "price": 44.99,
+    "compare_at_price": null,
     "sku": "PC-B0F52LKQ61",
     "stock_status": "in_stock",
     "stock_count": 50,
@@ -1499,7 +2780,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-06T15:44:43.074Z",
-    "updated_at": "2026-08-06T15:46:42.351Z",
+    "updated_at": "2026-08-06T16:31:26.037Z",
     "markup_percentage": 40,
     "meta_title": "Pecute Cat Carrier with Hidden Partition | Pet Carrier UK",
     "meta_description": "Pecute carrier for cats and kittens under 5kg, with a reinforced steel frame and a two-zone open and enclosed layout. Fast UK delivery.",
@@ -1528,7 +2809,10 @@
         "question": "Is it hard to get my cat in and out?",
         "answer": "It has lockable zip entry points, and there's an internal adjustable strap that clips to your cat's harness or collar for added security."
       }
-    ]
+    ],
+    "hasVariants": false,
+    "variantType": "colour",
+    "variants": []
   },
   {
     "id": "PC-IVOGMMVP",
@@ -1552,8 +2836,8 @@
       "Storage": "Three pockets",
       "Brand": "Pet Carrier"
     },
-    "price": 99.99,
-    "compare_at_price": 129.99,
+    "price": 59.99,
+    "compare_at_price": 79.99,
     "sku": "PC-B09B9PRMN7",
     "stock_status": "in_stock",
     "stock_count": 50,
@@ -1582,7 +2866,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-06T15:47:04.790Z",
-    "updated_at": "2026-08-06T15:48:55.878Z",
+    "updated_at": "2026-08-06T16:30:46.626Z",
     "markup_percentage": 40,
     "meta_title": "Drawstring Head-Out Dog Backpack Carrier | Pet Carrier UK",
     "meta_description": "Front-worn dog backpack carrier with a head and legs-out drawstring design and mesh sides for airflow. For small dogs and puppies. Fast UK delivery.",
@@ -1611,6 +2895,9 @@
         "question": "Does it have storage for essentials?",
         "answer": "Yes, there are three separate pockets for water, treats, poo bags and other walk essentials."
       }
-    ]
+    ],
+    "hasVariants": false,
+    "variantType": "colour",
+    "variants": []
   }
 ]
