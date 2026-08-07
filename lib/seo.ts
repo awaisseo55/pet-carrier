@@ -135,18 +135,25 @@ export function articleJsonLd(post: {
   };
 }
 
-export function productJsonLd(product: {
-  title: string;
-  short_description: string;
-  images: string[];
-  slug: string;
-  price: number;
-  compare_at_price?: number | null;
-  sku: string;
-  brand: string;
-  stock_status: string;
-  variants?: { price: number; sku: string; inStock: boolean }[];
-}) {
+export function productJsonLd(
+  product: {
+    title: string;
+    short_description: string;
+    images: string[];
+    slug: string;
+    price: number;
+    compare_at_price?: number | null;
+    sku: string;
+    brand: string;
+    stock_status: string;
+    variants?: { price: number; sku: string; inStock: boolean }[];
+  },
+  ratings?: {
+    averageRating: number;
+    reviewCount: number;
+    reviews: { rating: number; authorName: string; createdAt: string; body: string }[];
+  }
+) {
   const offers =
     product.variants && product.variants.length > 0
       ? {
@@ -171,6 +178,8 @@ export function productJsonLd(product: {
               : "https://schema.org/InStock",
         };
 
+  const hasRatings = !!ratings && ratings.reviewCount > 0;
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -183,6 +192,28 @@ export function productJsonLd(product: {
       name: product.brand || "Pet Carrier",
     },
     offers,
+    ...(hasRatings && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: ratings!.averageRating.toFixed(1),
+        reviewCount: ratings!.reviewCount,
+        bestRating: "5",
+        worstRating: "1",
+      },
+      review: ratings!.reviews.slice(0, 5).map((r) => ({
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: r.rating,
+        },
+        author: {
+          "@type": "Person",
+          name: r.authorName,
+        },
+        datePublished: r.createdAt,
+        reviewBody: r.body,
+      })),
+    }),
   };
 }
 

@@ -13,6 +13,7 @@ import {
   Package,
   Settings,
   ShoppingCart,
+  Star,
   Ticket,
   X,
 } from "lucide-react";
@@ -24,6 +25,7 @@ const links = [
   { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
   { href: "/admin/categories", label: "Categories", icon: FolderTree },
   { href: "/admin/coupons", label: "Coupons", icon: Ticket },
+  { href: "/admin/reviews", label: "Reviews", icon: Star },
   { href: "/admin/homepage", label: "Homepage", icon: ImageIcon },
   { href: "/admin/blog", label: "Blog", icon: Newspaper },
   { href: "/admin/settings", label: "Settings", icon: Settings },

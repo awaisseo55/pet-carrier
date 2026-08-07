@@ -2,9 +2,10 @@ import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ChevronRight, Star } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { ProductPurchaseSection } from "@/components/product/product-purchase-section";
 import { ProductCard } from "@/components/shop/product-card";
+import { ReviewsSection } from "@/components/product/reviews-section";
 import {
   Accordion,
   AccordionContent,
@@ -16,6 +17,7 @@ import { breadcrumbJsonLd, faqJsonLd, productJsonLd } from "@/lib/seo";
 import { getBreadcrumbTrail, getCategoryByPath } from "@/lib/categories";
 import { formatPrice } from "@/lib/utils";
 import { distinctSizes } from "@/lib/variants";
+import { calculateRatingStats, getApprovedReviewsByProduct, toPublicReview } from "@/lib/reviews";
 
 // Belt-and-braces alongside the on-demand revalidatePath() calls in
 // lib/revalidate.ts (which fire immediately after an admin save): a ceiling
@@ -75,7 +77,23 @@ export default async function ProductPage({
   const primaryCategoryPath = product.category_slugs[0];
   const categoryTrail = primaryCategoryPath ? getBreadcrumbTrail(primaryCategoryPath) : [];
 
-  const jsonLd = productJsonLd(product);
+  const approvedReviews = await getApprovedReviewsByProduct(product.id);
+  const ratingStats = calculateRatingStats(approvedReviews);
+  const REVIEWS_PAGE_SIZE = 10;
+  const publicReviews = approvedReviews.map(toPublicReview);
+  const firstPageReviews = publicReviews.slice(0, REVIEWS_PAGE_SIZE);
+  const reviewsHasMore = publicReviews.length > REVIEWS_PAGE_SIZE;
+
+  const jsonLd = productJsonLd(product, {
+    averageRating: ratingStats.averageRating,
+    reviewCount: ratingStats.reviewCount,
+    reviews: approvedReviews.map((r) => ({
+      rating: r.rating,
+      authorName: r.authorName,
+      createdAt: r.createdAt,
+      body: r.body,
+    })),
+  });
   const breadcrumbs = breadcrumbJsonLd([
     { name: "Home", url: "/" },
     ...categoryTrail.map((c) => ({ name: c.name, url: `/${c.path}` })),
@@ -188,17 +206,13 @@ export default async function ProductPage({
       </div>
 
       <div className="mt-14">
-        <h2 className="font-heading text-2xl font-semibold text-foreground">Reviews</h2>
-        <div className="mt-4 flex flex-col items-center gap-3 rounded-lg border border-dashed border-border bg-gray-100/40 py-12 text-center">
-          <div className="flex gap-1 text-amber-400">
-            {Array.from({ length: 5 }).map((_, idx) => (
-              <Star key={idx} className="size-4 fill-current" />
-            ))}
-          </div>
-          <p className="text-sm text-muted-foreground">
-            No reviews yet. Be the first to share your experience once your order arrives.
-          </p>
-        </div>
+        <ReviewsSection
+          productId={product.id}
+          productSlug={product.slug}
+          initialReviews={firstPageReviews}
+          initialStats={ratingStats}
+          initialHasMore={reviewsHasMore}
+        />
       </div>
 
       {related.length > 0 && (

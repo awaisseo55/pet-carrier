@@ -197,6 +197,44 @@ export interface Coupon {
   created_at: string;
 }
 
+export type ReviewStatus = "approved" | "pending" | "rejected";
+
+export interface Review {
+  id: string;
+  productId: string;
+  productSlug: string;
+  rating: number; // 1-5
+  title?: string;
+  body: string;
+  authorName: string; // "Anonymous" if the reviewer chose that option
+  authorEmail: string; // stored but never displayed publicly
+  images: string[]; // R2 public URLs
+  isVerified: boolean;
+  isAnonymous: boolean;
+  helpfulCount: number;
+  createdAt: string; // ISO date
+  status: ReviewStatus;
+  /** SHA-256 of the submitting IP, internal only, used for the 1-review-per-IP-per-product-per-hour rate limit. Never sent to the client. */
+  ipHash?: string;
+}
+
+/** Review shape once authorEmail and ipHash (internal-only fields) have been stripped for public display, same pattern as PublicProduct. */
+export type PublicReview = Omit<Review, "authorEmail" | "ipHash">;
+
+export interface RatingBreakdown {
+  5: number;
+  4: number;
+  3: number;
+  2: number;
+  1: number;
+}
+
+export interface ProductRatingStats {
+  averageRating: number;
+  reviewCount: number;
+  ratingBreakdown: RatingBreakdown;
+}
+
 export interface CategoryOverride {
   path: string;
   name?: string;
