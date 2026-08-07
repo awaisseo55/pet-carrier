@@ -58,7 +58,7 @@ export function ProductPurchaseSection({
     <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
       <ProductGallery key={selectedVariant?.id ?? "default"} images={galleryImages} title={product.title} />
 
-      <div>
+      <div className="min-w-0">
         {categoryName && (
           <span className="text-sm font-medium uppercase tracking-wide text-blue-600">{categoryName}</span>
         )}

@@ -11,7 +11,7 @@ export function ProductGallery({ images, title }: { images: string[]; title: str
   const [lightboxOpen, setLightboxOpen] = React.useState(false);
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex w-full min-w-0 flex-col gap-3 overflow-hidden">
       <button
         type="button"
         onClick={() => setLightboxOpen(true)}
@@ -31,7 +31,7 @@ export function ProductGallery({ images, title }: { images: string[]; title: str
         </span>
       </button>
       {images.length > 1 && (
-        <div className="flex gap-3">
+        <div className="scrollbar-thin flex w-full max-w-full gap-3 overflow-x-auto pb-1">
           {images.map((img, index) => (
             <button
               key={img + index}
