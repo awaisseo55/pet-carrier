@@ -56,6 +56,53 @@ just easy for us to hack on.
   stress". Products are carriers, strollers and beds, not medical devices.
 - AI-generated product copy must be rewritten, not copied from Amazon. See `lib/ai-content.ts`.
 
+## Product description formatting
+
+Product descriptions are stored as markdown-lite text in `data/products.json` and rendered by
+`lib/markdown-lite.tsx` (`renderRichText`), a small hand-rolled parser, not `react-markdown` or
+`@tailwindcss/typography`. It splits on blank lines, so **every heading line must be followed by a
+blank line before its paragraph text**, e.g.:
+
+```
+### Sturdy Frame with a Wooden Support Board
+
+A reinforced cage structure keeps its shape...
+```
+
+not `### Sturdy Frame with a Wooden Support Board\nA reinforced cage structure...` on one line,
+which the old block-splitter used to merge into a single bold `<h3>` (heading text and paragraph
+concatenated). `renderRichText` now also defensively splits off only the first line of a heading
+block as the heading even if a stray single newline slips in, but always author new descriptions
+with a full blank line after every `##`/`###` heading regardless.
+
+- H2 sections (`## `, e.g. "Key Features and Benefits") render as prominent section headings.
+- H3 subsections under a `## Key Features` block (`### `) render as visually distinct feature
+  titles, on their own line, with clear spacing above and below, never as inline bold text merged
+  into the following paragraph.
+- Never rely on CSS alone to fix heading/paragraph merging, if a heading and its text run together
+  it's almost always a missing blank line in the stored markdown, not a styling bug.
+
+## Internal linking
+
+Product descriptions link to category pages inline as `[anchor text](/carriers/...)`, rendered by
+`lib/markdown-lite.tsx`. There is no automated link-generation logic in the codebase, links are
+authored directly into the description text, so these rules apply whenever writing or editing
+product copy:
+
+- Anchor text must contain the keyword that describes the destination category, e.g. link "dog
+  sling" (not "hands-free") to `/carriers/dog-carriers/dog-slings`, "small dogs" to
+  `/carriers/dog-carriers/small-dog-carriers`, "vet visits" to `/carriers/vet-visit-carriers`,
+  "rabbit carrier" to `/carriers/small-animal-carriers/rabbit-carriers`. A short, natural
+  descriptor that matches the category's distinguishing word(s) is fine (`"small dogs"`, `"car
+  travel"`), it does not need to spell out "carrier" every time.
+- Never link generic words or persona phrases ("your pet", "these", "here", "cat owners", a bare
+  "carrier"/"hands-free" that names a feature rather than the destination) to a specific category
+  page. Linking a single generic word like "carrier" to the top-level `/carriers` hub is fine,
+  since that word is the hub's own keyword; it is not fine for a specific subcategory.
+- If the destination's keyword doesn't appear naturally in the sentence, skip the link rather than
+  force it onto the wrong word, a small rewrite to work the keyword in naturally is preferable to
+  either forcing a mismatched anchor or leaving the paragraph unlinked.
+
 ## Design system (do not deviate without asking)
 
 Rebuilt 2026-07 to match Chewy.com's clean white e-commerce aesthetic: white backgrounds

@@ -1,0 +1,23 @@
+{
+  "name": "Pet Carrier",
+  "short_name": "Pet Carrier",
+  "description": "Everything for your pet on the move and at rest. Carriers, strollers and beds for dogs, cats, small animals and birds.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#2563EB",
+  "background_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

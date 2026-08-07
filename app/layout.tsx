@@ -29,13 +29,27 @@ export const metadata: Metadata = {
     locale: "en_GB",
     siteName: "Pet Carrier",
     url: siteUrl,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Pet Carrier — comfortable carriers for every companion",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/og-image.png"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({

@@ -47,8 +47,9 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-white">
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="font-heading text-2xl font-extrabold tracking-tight text-blue-700 shrink-0">
-          Pet Carrier
+        <Link href="/" className="shrink-0">
+          {/* eslint-disable-next-line @next/next/no-img-element -- vector logo, no benefit from next/image raster optimization */}
+          <img src="/logo.svg" alt="Pet Carrier" width={160} height={48} className="h-10 w-auto" />
         </Link>
 
         <form onSubmit={handleSearch} className="hidden flex-1 md:flex">

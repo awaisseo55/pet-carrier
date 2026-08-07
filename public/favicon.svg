@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Pet Carrier">
+  <title>Pet Carrier</title>
+  <rect width="512" height="512" rx="96" fill="#2563EB" />
+  <g transform="translate(56,56)">
+    <!-- paw print peeking out of the carrier bag -->
+    <ellipse cx="200" cy="110" rx="42" ry="38" fill="white" />
+    <ellipse cx="138" cy="62" rx="20" ry="26" fill="white" />
+    <ellipse cx="200" cy="40" rx="20" ry="28" fill="white" />
+    <ellipse cx="262" cy="62" rx="20" ry="26" fill="white" />
+    <!-- bag handle -->
+    <path d="M110 160 C110 60 290 60 290 160" stroke="white" stroke-width="26" stroke-linecap="round" fill="none" />
+    <!-- bag body -->
+    <rect x="40" y="150" width="320" height="230" rx="54" stroke="white" stroke-width="26" fill="none" />
+    <!-- bag closure line -->
+    <line x1="40" y1="232" x2="360" y2="232" stroke="white" stroke-width="16" stroke-linecap="round" />
+  </g>
+</svg>
