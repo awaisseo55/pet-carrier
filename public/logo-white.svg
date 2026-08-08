@@ -1,17 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none" role="img" aria-label="Pet Carrier">
   <title>Pet Carrier</title>
-  <g transform="translate(4,4)">
-    <!-- paw print peeking out of the carrier bag -->
-    <ellipse cx="26" cy="14.5" rx="5" ry="4.5" fill="white" />
-    <ellipse cx="17.5" cy="8.5" rx="2.4" ry="3.1" fill="white" />
-    <ellipse cx="26" cy="5.5" rx="2.4" ry="3.3" fill="white" />
-    <ellipse cx="34.5" cy="8.5" rx="2.4" ry="3.1" fill="white" />
+  <g transform="translate(4,6)">
     <!-- bag handle -->
-    <path d="M15 21 C15 7 37 7 37 21" stroke="white" stroke-width="3.5" stroke-linecap="round" />
+    <path d="M12 18 C12 2 36 2 36 18" stroke="white" stroke-width="3.4" stroke-linecap="round" />
     <!-- bag body -->
-    <rect x="5" y="19" width="42" height="30" rx="7" stroke="white" stroke-width="3.5" fill="none" />
-    <!-- bag closure line -->
-    <line x1="5" y1="30" x2="47" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" />
+    <rect x="2" y="16" width="44" height="30" rx="8" stroke="white" stroke-width="3.4" fill="none" />
+    <!-- mesh window -->
+    <rect x="10" y="22" width="28" height="20" rx="4" stroke="white" stroke-width="2" fill="none" />
+    <!-- mesh grid dots -->
+    <circle cx="14" cy="26" r="1.4" fill="white" />
+    <circle cx="34" cy="26" r="1.4" fill="white" />
+    <circle cx="14" cy="38" r="1.4" fill="white" />
+    <circle cx="34" cy="38" r="1.4" fill="white" />
+    <!-- dog ears -->
+    <polygon points="17,29 19,22 23,28" fill="white" />
+    <polygon points="31,29 29,22 25,28" fill="white" />
+    <!-- dog head peeking through window -->
+    <circle cx="24" cy="33" r="6" fill="white" />
   </g>
   <text x="64" y="39" font-family="Inter, -apple-system, 'Segoe UI', sans-serif" font-size="27" font-weight="700" letter-spacing="-0.5" fill="white">Pet Carrier</text>
 </svg>

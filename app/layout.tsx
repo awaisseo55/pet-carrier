@@ -46,10 +46,20 @@ export const metadata: Metadata = {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
   },
   manifest: "/manifest.json",
+  verification: {
+    google: "Xm5CVKVsQ9gUGZCYm0Jo0Tg-9xse4KGvx_WYuQkAO2E",
+  },
+};
+
+export const viewport = {
+  themeColor: "#2563EB",
 };
 
 export default function RootLayout({
