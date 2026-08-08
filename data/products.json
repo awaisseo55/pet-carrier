@@ -286,6 +286,29 @@
         "inStock": true,
         "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B082NTP9PJ/image-8-main.webp"
       }
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": [
+      "grey",
+      "black",
+      "blue",
+      "beige"
     ]
   },
   {
@@ -799,6 +822,28 @@
         "inStock": true,
         "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0C7QH52D2/image-9-main.webp"
       }
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": [
+      "black",
+      "grey",
+      "beige",
+      "blue",
+      "red"
     ]
   },
   {
@@ -992,6 +1037,25 @@
         "inStock": true,
         "colourImage": "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0F9DVG6VG/image-0-main.webp"
       }
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium"
+    ],
+    "styles": [
+      "car-compatible",
+      "rolling",
+      "foldable"
+    ],
+    "useCases": [
+      "car-travel",
+      "hiking-outdoor"
+    ],
+    "colours": [
+      "grey",
+      "green"
     ]
   },
   {
@@ -1117,6 +1181,29 @@
         "question": "Which colours and sizes are available?",
         "answer": "This carrier is available in Black and Grey, each in Medium and Large sizes. Check the selector on this page for current stock."
       }
+    ],
+    "petTypes": [
+      "cats",
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "large"
+    ],
+    "styles": [
+      "airline-approved",
+      "foldable",
+      "car-compatible",
+      "soft-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "airline-travel",
+      "car-travel"
+    ],
+    "colours": [
+      "grey",
+      "black"
     ]
   },
   {
@@ -1357,6 +1444,32 @@
         "question": "Does it collapse for storage?",
         "answer": "Yes, it folds flat for compact storage between trips."
       }
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "large",
+      "medium"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "car-travel",
+      "everyday-use",
+      "airline-travel"
+    ],
+    "colours": [
+      "blue",
+      "purple",
+      "black",
+      "green",
+      "grey"
     ]
   },
   {
@@ -1502,6 +1615,28 @@
         "question": "Which colours and sizes are available?",
         "answer": "This under-seat carrier comes in Black, Blue and Pink. Available sizes vary slightly by colour, check the selector on this page for current stock."
       }
+    ],
+    "petTypes": [
+      "cats",
+      "dogs"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "airline-approved",
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "car-travel",
+      "airline-travel"
+    ],
+    "colours": [
+      "pink",
+      "black",
+      "blue"
     ]
   },
   {
@@ -1649,6 +1784,28 @@
         "amazonUrl": "https://www.amazon.co.uk/dp/B0DYJTLMY1",
         "inStock": true
       }
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "airline-approved",
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "car-travel",
+      "airline-travel"
+    ],
+    "colours": [
+      "grey",
+      "black"
     ]
   },
   {
@@ -1794,6 +1951,26 @@
         "amazonUrl": "https://www.amazon.co.uk/dp/B0GX1HQDNR",
         "inStock": true
       }
+    ],
+    "petTypes": [
+      "cats",
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "large"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible"
+    ],
+    "useCases": [
+      "car-travel",
+      "hiking-outdoor"
+    ],
+    "colours": [
+      "green",
+      "grey"
     ]
   },
   {
@@ -1974,6 +2151,23 @@
         "colour": "Light Grey",
         "colourHex": "#D3D3D3"
       }
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "sling"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": [
+      "brown",
+      "grey"
     ]
   },
   {
@@ -2098,6 +2292,26 @@
         "colour": "Grey",
         "colourHex": "#808080"
       }
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "sling"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": [
+      "black",
+      "blue",
+      "green",
+      "grey"
     ]
   },
   {
@@ -2264,6 +2478,29 @@
         "colour": "Pure White",
         "colourHex": "#F5F5F5"
       }
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "sling",
+      "foldable",
+      "hard-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "everyday-use"
+    ],
+    "colours": [
+      "black",
+      "grey",
+      "blue",
+      "white"
     ]
   },
   {
@@ -2468,6 +2705,28 @@
         "colour": "Solid Black",
         "colourHex": "#000000"
       }
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "sling",
+      "soft-sided"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": [
+      "black",
+      "blue",
+      "grey",
+      "pink",
+      "purple",
+      "red"
     ]
   },
   {
@@ -2552,6 +2811,28 @@
         "question": "Does it come with a strap?",
         "answer": "Yes, it includes an adjustable shoulder strap plus two connecting loop handles, which can also be used to secure the carrier with a car seatbelt."
       }
+    ],
+    "petTypes": [
+      "cats",
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "airline-approved",
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel",
+      "airline-travel"
+    ],
+    "colours": [
+      "grey"
     ]
   },
   {
@@ -2639,7 +2920,29 @@
     ],
     "hasVariants": false,
     "variantType": "colour",
-    "variants": []
+    "variants": [],
+    "petTypes": [
+      "cats",
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "airline-approved",
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel",
+      "airline-travel"
+    ],
+    "colours": [
+      "grey"
+    ]
   },
   {
     "id": "PC-HSMQNA3Z",
@@ -2726,7 +3029,28 @@
     ],
     "hasVariants": false,
     "variantType": "colour",
-    "variants": []
+    "variants": [],
+    "petTypes": [
+      "cats",
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "airline-approved",
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "car-travel",
+      "airline-travel"
+    ],
+    "colours": [
+      "black"
+    ]
   },
   {
     "id": "PC-CHUBKOIQ",
@@ -2812,7 +3136,25 @@
     ],
     "hasVariants": false,
     "variantType": "colour",
-    "variants": []
+    "variants": [],
+    "petTypes": [
+      "cats"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel",
+      "everyday-use"
+    ],
+    "colours": [
+      "green"
+    ]
   },
   {
     "id": "PC-IVOGMMVP",
@@ -2898,7 +3240,21 @@
     ],
     "hasVariants": false,
     "variantType": "colour",
-    "variants": []
+    "variants": [],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "backpack"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B07QJFRNQ9",
@@ -2968,7 +3324,22 @@
         "question": "How long can my pet stay in the sling?",
         "answer": "For short to medium trips such as walks and errands it's comfortable, but for longer outings we'd suggest breaks to let your pet stretch, particularly for very young or older pets."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "medium"
+    ],
+    "styles": [
+      "sling",
+      "soft-sided"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0GTQH1RBQ",
@@ -3038,7 +3409,22 @@
         "question": "How long can my pet stay in the sling?",
         "answer": "For short to medium trips such as walks and errands it's comfortable, but for longer outings we'd suggest breaks to let your pet stretch, particularly for very young or older pets."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "sling"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0CRYPG4XN",
@@ -3107,7 +3493,22 @@
         "question": "How long can my pet stay in the sling?",
         "answer": "For short to medium trips such as walks and errands it's comfortable, but for longer outings we'd suggest breaks to let your pet stretch, particularly for very young or older pets."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "sling",
+      "soft-sided"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B08Y5RD2SZ",
@@ -3176,7 +3577,22 @@
         "question": "How long can my pet stay in the sling?",
         "answer": "For short to medium trips such as walks and errands it's comfortable, but for longer outings we'd suggest breaks to let your pet stretch, particularly for very young or older pets."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "medium"
+    ],
+    "styles": [
+      "sling",
+      "soft-sided"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0DFYKFKN6",
@@ -3246,7 +3662,22 @@
         "question": "How long can my pet stay in the sling?",
         "answer": "For short to medium trips such as walks and errands it's comfortable, but for longer outings we'd suggest breaks to let your pet stretch, particularly for very young or older pets."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "sling"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0D25KRXZD",
@@ -3316,7 +3747,22 @@
         "question": "How long can my pet stay in the sling?",
         "answer": "For short to medium trips such as walks and errands it's comfortable, but for longer outings we'd suggest breaks to let your pet stretch, particularly for very young or older pets."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "sling"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B09FL3Y56Z",
@@ -3383,7 +3829,20 @@
         "question": "How long can my pet stay in the sling?",
         "answer": "For short to medium trips such as walks and errands it's comfortable, but for longer outings we'd suggest breaks to let your pet stretch, particularly for very young or older pets."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "sling"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0GHN5MTHR",
@@ -3452,7 +3911,22 @@
         "question": "How long can my pet stay in the sling?",
         "answer": "For short to medium trips such as walks and errands it's comfortable, but for longer outings we'd suggest breaks to let your pet stretch, particularly for very young or older pets."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "sling"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0BRNC4VH8",
@@ -3521,7 +3995,21 @@
         "question": "How long can my pet stay in the sling?",
         "answer": "For short to medium trips such as walks and errands it's comfortable, but for longer outings we'd suggest breaks to let your pet stretch, particularly for very young or older pets."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "sling"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0D1CB5CSL",
@@ -3590,7 +4078,24 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0DKF9R1TB",
@@ -3660,7 +4165,24 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium",
+      "extra-large"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B00KIQFLUK",
@@ -3730,7 +4252,24 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0H1K7MTLL",
@@ -3796,7 +4335,23 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0D9YDBMB4",
@@ -3866,7 +4421,22 @@
         "question": "How long can my pet stay in the sling?",
         "answer": "For short to medium trips such as walks and errands it's comfortable, but for longer outings we'd suggest breaks to let your pet stretch, particularly for very young or older pets."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "medium"
+    ],
+    "styles": [
+      "sling",
+      "soft-sided"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0D6YY6D1S",
@@ -3934,7 +4504,23 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "hard-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0DZ2MYML9",
@@ -4005,7 +4591,24 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "large"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B075NLRJ76",
@@ -4073,7 +4676,25 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "large"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "foldable",
+      "hard-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0BB2F45D2",
@@ -4142,7 +4763,24 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B000AYYOUS",
@@ -4203,7 +4841,22 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "large"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B00L46CGLK",
@@ -4270,7 +4923,21 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "hard-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0H86HZDGL",
@@ -4338,7 +5005,21 @@
         "question": "Is the backpack machine washable?",
         "answer": "The outer fabric can typically be spot cleaned; check the care label for this specific listing before attempting a full wash."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "medium"
+    ],
+    "styles": [
+      "backpack"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B09ZSN56QW",
@@ -4408,7 +5089,23 @@
         "question": "Is the backpack machine washable?",
         "answer": "The outer fabric can typically be spot cleaned; check the care label for this specific listing before attempting a full wash."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "backpack",
+      "foldable"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0DJHRWTL9",
@@ -4477,7 +5174,22 @@
         "question": "Is the backpack machine washable?",
         "answer": "The outer fabric can typically be spot cleaned; check the care label for this specific listing before attempting a full wash."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "backpack"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B09KM8FGGQ",
@@ -4546,7 +5258,21 @@
         "question": "Is the backpack machine washable?",
         "answer": "The outer fabric can typically be spot cleaned; check the care label for this specific listing before attempting a full wash."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "backpack"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0FM3C8RP1",
@@ -4616,7 +5342,22 @@
         "question": "Is the backpack machine washable?",
         "answer": "The outer fabric can typically be spot cleaned; check the care label for this specific listing before attempting a full wash."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "backpack"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0FNMP2WWJ",
@@ -4684,7 +5425,21 @@
         "question": "Is the backpack machine washable?",
         "answer": "The outer fabric can typically be spot cleaned; check the care label for this specific listing before attempting a full wash."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium",
+      "large"
+    ],
+    "styles": [
+      "backpack"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0FF9P39Z8",
@@ -4752,7 +5507,21 @@
         "question": "Is the backpack machine washable?",
         "answer": "The outer fabric can typically be spot cleaned; check the care label for this specific listing before attempting a full wash."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "medium"
+    ],
+    "styles": [
+      "backpack"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0GFVLMKSX",
@@ -4821,7 +5590,22 @@
         "question": "Is the backpack machine washable?",
         "answer": "The outer fabric can typically be spot cleaned; check the care label for this specific listing before attempting a full wash."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "large",
+      "extra-large"
+    ],
+    "styles": [
+      "backpack",
+      "soft-sided"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0GVYKGMGB",
@@ -4888,7 +5672,21 @@
         "question": "Is the backpack machine washable?",
         "answer": "The outer fabric can typically be spot cleaned; check the care label for this specific listing before attempting a full wash."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "large"
+    ],
+    "styles": [
+      "backpack",
+      "foldable"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B0GRV9NGKN",
@@ -4956,7 +5754,21 @@
         "question": "Is the backpack machine washable?",
         "answer": "The outer fabric can typically be spot cleaned; check the care label for this specific listing before attempting a full wash."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium",
+      "large"
+    ],
+    "styles": [
+      "backpack"
+    ],
+    "useCases": [
+      "everyday-use"
+    ],
+    "colours": []
   },
   {
     "id": "B07D5FTGP7",
@@ -5019,7 +5831,22 @@
         "question": "How do I clean it?",
         "answer": "Wipe the exterior down with a damp cloth and mild soap, and check any removable padding for machine wash instructions."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium"
+    ],
+    "styles": [
+      "airline-approved",
+      "hard-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "airline-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0H69VQDVQ",
@@ -5090,7 +5917,24 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "large"
+    ],
+    "styles": [
+      "car-compatible",
+      "rolling",
+      "soft-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0C6CP39FX",
@@ -5157,7 +6001,22 @@
         "question": "How do I clean it?",
         "answer": "Wipe the exterior down with a damp cloth and mild soap, and check any removable padding for machine wash instructions."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium",
+      "large"
+    ],
+    "styles": [
+      "airline-approved"
+    ],
+    "useCases": [
+      "vet-visits",
+      "airline-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0973BFCPT",
@@ -5227,7 +6086,24 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "large"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B083WKGVBB",
@@ -5295,7 +6171,24 @@
         "question": "Is it suitable for vet visits and car travel?",
         "answer": "Yes, the fold-flat design and carry handles make it easy to bring along to the vet or load into a car for longer trips."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "large"
+    ],
+    "styles": [
+      "soft-sided",
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0D97VJK5W",
@@ -5363,7 +6256,22 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium",
+      "large"
+    ],
+    "styles": [
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0DK57L7QF",
@@ -5431,7 +6339,22 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "large",
+      "extra-large"
+    ],
+    "styles": [
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B08TXJRPC5",
@@ -5502,7 +6425,23 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "large"
+    ],
+    "styles": [
+      "car-compatible",
+      "soft-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0CR1LK95B",
@@ -5570,6 +6509,23 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium",
+      "large"
+    ],
+    "styles": [
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": [
+      "grey"
     ]
   },
   {
@@ -5641,7 +6597,23 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0FQJ9W7TX",
@@ -5711,7 +6683,23 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "large"
+    ],
+    "styles": [
+      "car-compatible",
+      "soft-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B07JBH4MQV",
@@ -5780,7 +6768,21 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium"
+    ],
+    "styles": [
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0C7YY2BDB",
@@ -5850,7 +6852,24 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "car-compatible",
+      "foldable",
+      "soft-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0CHW3DL45",
@@ -5916,6 +6935,21 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [],
+    "styles": [
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": [
+      "black",
+      "orange"
     ]
   },
   {
@@ -5986,7 +7020,23 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "large",
+      "extra-large"
+    ],
+    "styles": [
+      "car-compatible",
+      "hard-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0DDK7NTSD",
@@ -6056,7 +7106,22 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "small",
+      "medium"
+    ],
+    "styles": [
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0GTVQDKQ2",
@@ -6125,7 +7190,23 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium",
+      "large"
+    ],
+    "styles": [
+      "car-compatible",
+      "foldable"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0F89ZZZ9Z",
@@ -6195,7 +7276,23 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "medium",
+      "large"
+    ],
+    "styles": [
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0FJYMC1BL",
@@ -6264,7 +7361,21 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs"
+    ],
+    "petSizes": [
+      "medium"
+    ],
+    "styles": [
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0FXQQDSVH",
@@ -6332,7 +7443,22 @@
         "question": "What size dog is this suitable for?",
         "answer": "Check the weight capacity listed above against your dog's current weight before ordering."
       }
-    ]
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "car-compatible"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": []
   },
   {
     "id": "B0DJDH99H5",
@@ -6455,6 +7581,26 @@
         "amazonUrl": "https://www.amazon.co.uk/dp/B0DG5YGGWZ",
         "inStock": true
       }
+    ],
+    "petTypes": [
+      "dogs",
+      "cats"
+    ],
+    "petSizes": [
+      "medium"
+    ],
+    "styles": [
+      "car-compatible",
+      "foldable",
+      "soft-sided"
+    ],
+    "useCases": [
+      "vet-visits",
+      "car-travel"
+    ],
+    "colours": [
+      "grey",
+      "black"
     ]
   }
 ]

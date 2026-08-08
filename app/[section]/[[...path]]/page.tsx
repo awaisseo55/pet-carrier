@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowRight, ChevronRight, PackageSearch } from "lucide-react";
-import { ProductCard } from "@/components/shop/product-card";
+import { CategoryFilters } from "@/components/category/CategoryFilters";
 import {
   Accordion,
   AccordionContent,
@@ -161,10 +161,8 @@ export default async function CategoryPage({
       <div className="mt-10">
         <h2 className="font-heading text-xl font-semibold text-foreground">Shop {resolved.name}</h2>
         {orderedProducts.length > 0 ? (
-          <div className="mt-4 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-            {orderedProducts.map((product) => (
-              <ProductCard key={product.id} product={toPublicProduct(product)} />
-            ))}
+          <div className="mt-4">
+            <CategoryFilters products={orderedProducts.map(toPublicProduct)} />
           </div>
         ) : (
           <div className="mt-4 flex flex-col items-center gap-3 rounded-lg border border-dashed border-border bg-gray-50 py-16 text-center">

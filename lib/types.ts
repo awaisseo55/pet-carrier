@@ -61,6 +61,17 @@ export interface Product {
   averageRating?: number;
   reviewCount?: number;
   ratingBreakdown?: RatingBreakdown;
+  /**
+   * Category filter facets. Optional: when unset, lib/product-facets.ts
+   * infers them on read from category_slugs, title, specifications and
+   * variants, so older products filter correctly without a data migration.
+   * Set explicitly here only when inference would get it wrong.
+   */
+  petTypes?: string[];
+  petSizes?: string[];
+  styles?: string[];
+  useCases?: string[];
+  colours?: string[];
 }
 
 /**
