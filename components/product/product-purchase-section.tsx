@@ -5,6 +5,7 @@ import { ShieldCheck, RotateCcw, Truck } from "lucide-react";
 import { ProductGallery } from "@/components/product/product-gallery";
 import { AddToCart } from "@/components/product/add-to-cart";
 import { VariantSelector } from "@/components/product/variant-selector";
+import { RatingSummary } from "@/components/product/rating-summary";
 import { Badge } from "@/components/ui/badge";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import { formatPrice } from "@/lib/utils";
@@ -63,6 +64,8 @@ export function ProductPurchaseSection({
           <span className="text-sm font-medium uppercase tracking-wide text-blue-600">{categoryName}</span>
         )}
         <h1 className="mt-2 font-heading text-3xl font-semibold text-foreground sm:text-4xl">{product.title}</h1>
+
+        <RatingSummary averageRating={product.averageRating ?? 0} reviewCount={product.reviewCount ?? 0} />
 
         <div className="mt-4 flex items-center gap-3">
           <span className={`text-2xl font-semibold ${displayCompareAt ? "text-alert" : "text-foreground"}`}>

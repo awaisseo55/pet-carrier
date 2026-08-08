@@ -3,6 +3,7 @@ import { createHash } from "crypto";
 import { nanoid } from "nanoid";
 import type { ProductRatingStats, PublicReview, RatingBreakdown, Review, ReviewStatus } from "./types";
 import { readJsonFile, writeJsonFile } from "./data-store";
+import { updateProductRatingStats } from "./products";
 
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 review per IP per product per hour
 
@@ -155,4 +156,11 @@ export function calculateRatingStats(reviews: Review[]): ProductRatingStats {
 export async function getProductRatingStats(productId: string): Promise<ProductRatingStats> {
   const reviews = await getApprovedReviewsByProduct(productId);
   return calculateRatingStats(reviews);
+}
+
+/** Recomputes a product's aggregate rating from its approved reviews and caches the result on the product record. Call after any review create, status change, or delete. */
+export async function syncProductRatingStats(productId: string): Promise<ProductRatingStats> {
+  const stats = await getProductRatingStats(productId);
+  await updateProductRatingStats(productId, stats);
+  return stats;
 }

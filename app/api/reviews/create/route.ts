@@ -9,6 +9,7 @@ import {
   createReview,
   hashIp,
   isRateLimited,
+  syncProductRatingStats,
   toPublicReview,
 } from "@/lib/reviews";
 import { revalidatePath } from "next/cache";
@@ -133,6 +134,7 @@ export async function POST(request: Request) {
     ipHash,
   });
 
+  await syncProductRatingStats(product.id);
   revalidatePath(`/product/${product.slug}`);
 
   return NextResponse.json({ ok: true, review: toPublicReview(review) });

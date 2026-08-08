@@ -57,6 +57,10 @@ export interface Product {
   hasVariants?: boolean;
   variantType?: VariantType;
   variants?: ProductVariant[];
+  /** Cached aggregate review stats, kept in sync by lib/reviews.ts's syncProductRatingStats whenever a review is created, its status changes, or it's deleted. Undefined until the first review event (or the one-time scripts/backfill-review-ratings.mjs run). */
+  averageRating?: number;
+  reviewCount?: number;
+  ratingBreakdown?: RatingBreakdown;
 }
 
 /**

@@ -1,5 +1,5 @@
 import "server-only";
-import type { Product, PublicProduct } from "./types";
+import type { Product, ProductRatingStats, PublicProduct } from "./types";
 import { getHomepageSettings } from "./homepage";
 import { readJsonFile, writeJsonFile } from "./data-store";
 import { extractAsin } from "./amazon";
@@ -117,6 +117,17 @@ export async function upsertProduct(product: Product): Promise<void> {
   } else {
     products.push(product);
   }
+  await saveAllProducts(products);
+}
+
+/** Patches just the cached rating fields on a product, called by lib/reviews.ts's syncProductRatingStats after any review create/status-change/delete so product listings never need to recompute aggregates from the full reviews list on read. */
+export async function updateProductRatingStats(productId: string, stats: ProductRatingStats): Promise<void> {
+  const products = await getAllProducts();
+  const product = products.find((p) => p.id === productId);
+  if (!product) return;
+  product.averageRating = stats.averageRating;
+  product.reviewCount = stats.reviewCount;
+  product.ratingBreakdown = stats.ratingBreakdown;
   await saveAllProducts(products);
 }
 

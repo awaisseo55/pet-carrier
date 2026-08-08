@@ -6,6 +6,7 @@ import { ShoppingBag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-context";
+import { RatingSummary } from "@/components/product/rating-summary";
 import { formatPrice } from "@/lib/utils";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import { getCategoryByPath } from "@/lib/categories";
@@ -64,6 +65,7 @@ export function ProductCard({ product }: { product: PublicProduct }) {
         <h3 className="font-heading text-base font-semibold leading-snug text-foreground line-clamp-2">
           {product.title}
         </h3>
+        <RatingSummary averageRating={product.averageRating ?? 0} reviewCount={product.reviewCount ?? 0} variant="compact" />
         <div className="mt-auto flex items-center justify-between pt-2">
           <div className="flex items-baseline gap-2">
             <span className="text-lg font-semibold text-foreground">{formatPrice(product.price)}</span>

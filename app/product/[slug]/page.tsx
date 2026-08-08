@@ -17,7 +17,8 @@ import { breadcrumbJsonLd, faqJsonLd, productJsonLd } from "@/lib/seo";
 import { getBreadcrumbTrail, getCategoryByPath } from "@/lib/categories";
 import { formatPrice } from "@/lib/utils";
 import { distinctSizes } from "@/lib/variants";
-import { calculateRatingStats, getApprovedReviewsByProduct, toPublicReview } from "@/lib/reviews";
+import { getApprovedReviewsByProduct, toPublicReview } from "@/lib/reviews";
+import type { ProductRatingStats } from "@/lib/types";
 
 // Belt-and-braces alongside the on-demand revalidatePath() calls in
 // lib/revalidate.ts (which fire immediately after an admin save): a ceiling
@@ -78,7 +79,15 @@ export default async function ProductPage({
   const categoryTrail = primaryCategoryPath ? getBreadcrumbTrail(primaryCategoryPath) : [];
 
   const approvedReviews = await getApprovedReviewsByProduct(product.id);
-  const ratingStats = calculateRatingStats(approvedReviews);
+  // Aggregate numbers come from the cached fields on the product record
+  // (kept in sync by lib/reviews.ts's syncProductRatingStats on every review
+  // create/status-change/delete), not recalculated from the full reviews
+  // list on every page load.
+  const ratingStats: ProductRatingStats = {
+    averageRating: product.averageRating ?? 0,
+    reviewCount: product.reviewCount ?? 0,
+    ratingBreakdown: product.ratingBreakdown ?? { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 },
+  };
   const REVIEWS_PAGE_SIZE = 10;
   const publicReviews = approvedReviews.map(toPublicReview);
   const firstPageReviews = publicReviews.slice(0, REVIEWS_PAGE_SIZE);
@@ -205,7 +214,7 @@ export default async function ProductPage({
         </div>
       </div>
 
-      <div className="mt-14">
+      <div id="reviews" className="mt-14 scroll-mt-24">
         <ReviewsSection
           productId={product.id}
           productSlug={product.slug}

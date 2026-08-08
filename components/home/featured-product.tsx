@@ -4,6 +4,7 @@ import { getFeaturedProducts } from "@/lib/products";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { RatingSummary } from "@/components/product/rating-summary";
 import { formatPrice } from "@/lib/utils";
 
 export async function FeaturedProduct() {
@@ -31,6 +32,12 @@ export async function FeaturedProduct() {
             </Badge>
           )}
           <h3 className="font-heading text-2xl font-semibold text-ink sm:text-3xl">{product.title}</h3>
+          <RatingSummary
+            averageRating={product.averageRating ?? 0}
+            reviewCount={product.reviewCount ?? 0}
+            variant="compact"
+            className="mt-1.5"
+          />
           <p className="mt-3 text-gray-600">{product.short_description}</p>
           <div className="mt-5 flex items-baseline gap-3">
             <span className="text-2xl font-semibold text-ink">{formatPrice(product.price)}</span>
