@@ -5,16 +5,13 @@
  * rendering. No server-only dependency: this runs entirely client-side.
  */
 import { getProductFacets, PRICE_RANGE_OPTIONS, RATING_OPTIONS } from "./product-facets";
-import { slugify } from "./utils";
 import type { PublicProduct } from "./types";
 
 export interface ActiveFilters {
   pet: string[];
   size: string[];
   style: string[];
-  use: string[];
   colour: string[];
-  brand: string[];
   price: string | null;
   rating: string | null;
   sale: boolean;
@@ -23,7 +20,7 @@ export interface ActiveFilters {
   sort: string;
 }
 
-export type MultiFilterKey = "pet" | "size" | "style" | "use" | "colour" | "brand";
+export type MultiFilterKey = "pet" | "size" | "style" | "colour";
 export type SingleFilterKey = "price" | "rating";
 export type SectionKey = MultiFilterKey | SingleFilterKey | "sale" | "stock";
 
@@ -31,9 +28,7 @@ export const DEFAULT_FILTERS: ActiveFilters = {
   pet: [],
   size: [],
   style: [],
-  use: [],
   colour: [],
-  brand: [],
   price: null,
   rating: null,
   sale: false,
@@ -46,9 +41,7 @@ export function hasActiveFilters(filters: ActiveFilters): boolean {
     filters.pet.length > 0 ||
     filters.size.length > 0 ||
     filters.style.length > 0 ||
-    filters.use.length > 0 ||
     filters.colour.length > 0 ||
-    filters.brand.length > 0 ||
     filters.price !== null ||
     filters.rating !== null ||
     filters.sale ||
@@ -61,9 +54,7 @@ export function activeFilterCount(filters: ActiveFilters): number {
     filters.pet.length +
     filters.size.length +
     filters.style.length +
-    filters.use.length +
     filters.colour.length +
-    filters.brand.length +
     (filters.price ? 1 : 0) +
     (filters.rating ? 1 : 0) +
     (filters.sale ? 1 : 0) +
@@ -80,9 +71,7 @@ export function fromSearchParams(searchParams: URLSearchParams): ActiveFilters {
     pet: list("pet"),
     size: list("size"),
     style: list("style"),
-    use: list("use"),
     colour: list("colour"),
-    brand: list("brand"),
     price: searchParams.get("price"),
     rating: searchParams.get("rating"),
     sale: searchParams.get("sale") === "true",
@@ -96,9 +85,7 @@ export function toSearchParams(filters: ActiveFilters): URLSearchParams {
   if (filters.pet.length) sp.set("pet", filters.pet.join(","));
   if (filters.size.length) sp.set("size", filters.size.join(","));
   if (filters.style.length) sp.set("style", filters.style.join(","));
-  if (filters.use.length) sp.set("use", filters.use.join(","));
   if (filters.colour.length) sp.set("colour", filters.colour.join(","));
-  if (filters.brand.length) sp.set("brand", filters.brand.join(","));
   if (filters.price) sp.set("price", filters.price);
   if (filters.rating) sp.set("rating", filters.rating);
   if (filters.sale) sp.set("sale", "true");
@@ -132,9 +119,7 @@ export function productMatchesFilters(product: PublicProduct, filters: ActiveFil
   if (exclude !== "pet" && filters.pet.length && !filters.pet.some((v) => facets.petTypes.includes(v))) return false;
   if (exclude !== "size" && filters.size.length && !filters.size.some((v) => facets.petSizes.includes(v))) return false;
   if (exclude !== "style" && filters.style.length && !filters.style.some((v) => facets.styles.includes(v))) return false;
-  if (exclude !== "use" && filters.use.length && !filters.use.some((v) => facets.useCases.includes(v))) return false;
   if (exclude !== "colour" && filters.colour.length && !filters.colour.some((v) => facets.colours.includes(v))) return false;
-  if (exclude !== "brand" && filters.brand.length && !filters.brand.includes(slugify(product.brand))) return false;
 
   if (exclude !== "price" && filters.price) {
     const range = PRICE_RANGE_OPTIONS.find((r) => r.value === filters.price);

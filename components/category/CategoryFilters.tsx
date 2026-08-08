@@ -14,7 +14,6 @@ import {
   PET_TYPE_OPTIONS,
   PET_SIZE_OPTIONS,
   STYLE_OPTIONS,
-  USE_CASE_OPTIONS,
   PRICE_RANGE_OPTIONS,
   RATING_OPTIONS,
   COLOUR_SWATCHES,
@@ -37,7 +36,6 @@ import {
   type SectionKey,
   type SingleFilterKey,
 } from "@/lib/product-filters";
-import { slugify } from "@/lib/utils";
 import type { PublicProduct } from "@/lib/types";
 
 // Below this many products in the category, filtering isn't worth the UI
@@ -139,31 +137,19 @@ export function CategoryFilters({ products }: CategoryFiltersProps) {
       .sort((a, b) => a.label.localeCompare(b.label));
   }, [products]);
 
-  const brandOptions: FilterOption[] = useMemo(() => {
-    const seen = new Map<string, string>();
-    products.forEach((p) => {
-      if (p.brand) seen.set(slugify(p.brand), p.brand);
-    });
-    return [...seen.entries()]
-      .map(([value, label]) => ({ value, label }))
-      .sort((a, b) => a.label.localeCompare(b.label));
-  }, [products]);
-
   const sectionCounts = useCallback(
     (filters: ActiveFilters) => ({
       pet: countOptions(products, filters, "pet", PET_TYPE_OPTIONS, (p) => getProductFacets(p).petTypes),
       size: countOptions(products, filters, "size", PET_SIZE_OPTIONS, (p) => getProductFacets(p).petSizes),
       style: countOptions(products, filters, "style", STYLE_OPTIONS, (p) => getProductFacets(p).styles),
-      use: countOptions(products, filters, "use", USE_CASE_OPTIONS, (p) => getProductFacets(p).useCases),
       colour: countOptions(products, filters, "colour", colourOptions, (p) => getProductFacets(p).colours),
-      brand: countOptions(products, filters, "brand", brandOptions, (p) => [slugify(p.brand)]),
       price: countOptions(products, filters, "price", PRICE_RANGE_OPTIONS, (p) => {
         const bucket = priceBucketFor(p.price);
         return bucket ? [bucket] : [];
       }),
       rating: countOptions(products, filters, "rating", RATING_OPTIONS, (p) => ratingBucketsFor(p.averageRating ?? 0)),
     }),
-    [products, colourOptions, brandOptions]
+    [products, colourOptions]
   );
 
   const desktopCounts = useMemo(() => sectionCounts(appliedFilters), [sectionCounts, appliedFilters]);
@@ -190,9 +176,7 @@ export function CategoryFilters({ products }: CategoryFiltersProps) {
     addAll("pet", PET_TYPE_OPTIONS);
     addAll("size", PET_SIZE_OPTIONS);
     addAll("style", STYLE_OPTIONS);
-    addAll("use", USE_CASE_OPTIONS);
     addAll("colour", colourOptions);
-    addAll("brand", brandOptions);
     if (filters.price) {
       const option = PRICE_RANGE_OPTIONS.find((o) => o.value === filters.price);
       if (option) pills.push({ key: "price", label: option.label });
@@ -238,13 +222,6 @@ export function CategoryFilters({ products }: CategoryFiltersProps) {
           selected={filters.style}
           onToggle={(v) => onToggleMulti("style", v)}
         />
-        <FilterSection
-          title="Use Case"
-          options={USE_CASE_OPTIONS}
-          counts={counts.use}
-          selected={filters.use}
-          onToggle={(v) => onToggleMulti("use", v)}
-        />
         {colourOptions.length > 0 && (
           <FilterSection
             title="Colour"
@@ -270,15 +247,6 @@ export function CategoryFilters({ products }: CategoryFiltersProps) {
           selected={filters.price ? [filters.price] : []}
           onToggle={(v) => onToggleSingle("price", v)}
         />
-        {brandOptions.length > 0 && (
-          <FilterSection
-            title="Brand"
-            options={brandOptions}
-            counts={counts.brand}
-            selected={filters.brand}
-            onToggle={(v) => onToggleMulti("brand", v)}
-          />
-        )}
         <FilterSection
           title="Rating"
           options={RATING_OPTIONS}

@@ -70,7 +70,6 @@ export interface Product {
   petTypes?: string[];
   petSizes?: string[];
   styles?: string[];
-  useCases?: string[];
   colours?: string[];
 }
 

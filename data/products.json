@@ -300,10 +300,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": [
       "grey",
       "black",
@@ -834,10 +830,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": [
       "black",
       "grey",
@@ -1049,10 +1041,6 @@
       "rolling",
       "foldable"
     ],
-    "useCases": [
-      "car-travel",
-      "hiking-outdoor"
-    ],
     "colours": [
       "grey",
       "green"
@@ -1195,11 +1183,6 @@
       "foldable",
       "car-compatible",
       "soft-sided"
-    ],
-    "useCases": [
-      "vet-visits",
-      "airline-travel",
-      "car-travel"
     ],
     "colours": [
       "grey",
@@ -1459,11 +1442,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "car-travel",
-      "everyday-use",
-      "airline-travel"
-    ],
     "colours": [
       "blue",
       "purple",
@@ -1628,10 +1606,6 @@
       "soft-sided",
       "car-compatible",
       "foldable"
-    ],
-    "useCases": [
-      "car-travel",
-      "airline-travel"
     ],
     "colours": [
       "pink",
@@ -1799,10 +1773,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "car-travel",
-      "airline-travel"
-    ],
     "colours": [
       "grey",
       "black"
@@ -1963,10 +1933,6 @@
     "styles": [
       "soft-sided",
       "car-compatible"
-    ],
-    "useCases": [
-      "car-travel",
-      "hiking-outdoor"
     ],
     "colours": [
       "green",
@@ -2162,9 +2128,6 @@
     "styles": [
       "sling"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": [
       "brown",
       "grey"
@@ -2303,9 +2266,6 @@
     ],
     "styles": [
       "sling"
-    ],
-    "useCases": [
-      "everyday-use"
     ],
     "colours": [
       "black",
@@ -2491,10 +2451,6 @@
       "sling",
       "foldable",
       "hard-sided"
-    ],
-    "useCases": [
-      "vet-visits",
-      "everyday-use"
     ],
     "colours": [
       "black",
@@ -2717,9 +2673,6 @@
       "sling",
       "soft-sided"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": [
       "black",
       "blue",
@@ -2826,11 +2779,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel",
-      "airline-travel"
-    ],
     "colours": [
       "grey"
     ]
@@ -2934,11 +2882,6 @@
       "soft-sided",
       "car-compatible",
       "foldable"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel",
-      "airline-travel"
     ],
     "colours": [
       "grey"
@@ -3044,10 +2987,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "car-travel",
-      "airline-travel"
-    ],
     "colours": [
       "black"
     ]
@@ -3146,11 +3085,6 @@
     "styles": [
       "soft-sided",
       "car-compatible"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel",
-      "everyday-use"
     ],
     "colours": [
       "green"
@@ -3251,9 +3185,6 @@
     "styles": [
       "backpack"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -3335,9 +3266,6 @@
     "styles": [
       "sling",
       "soft-sided"
-    ],
-    "useCases": [
-      "everyday-use"
     ],
     "colours": []
   },
@@ -3421,9 +3349,6 @@
     "styles": [
       "sling"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -3505,9 +3430,6 @@
       "sling",
       "soft-sided"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -3588,9 +3510,6 @@
     "styles": [
       "sling",
       "soft-sided"
-    ],
-    "useCases": [
-      "everyday-use"
     ],
     "colours": []
   },
@@ -3674,9 +3593,6 @@
     "styles": [
       "sling"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -3759,9 +3675,6 @@
     "styles": [
       "sling"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -3838,9 +3751,6 @@
     ],
     "styles": [
       "sling"
-    ],
-    "useCases": [
-      "everyday-use"
     ],
     "colours": []
   },
@@ -3923,9 +3833,6 @@
     "styles": [
       "sling"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -4005,9 +3912,6 @@
     ],
     "styles": [
       "sling"
-    ],
-    "useCases": [
-      "everyday-use"
     ],
     "colours": []
   },
@@ -4090,10 +3994,6 @@
       "soft-sided",
       "car-compatible",
       "foldable"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": []
   },
@@ -4178,10 +4078,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -4265,10 +4161,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -4346,10 +4238,6 @@
     "styles": [
       "soft-sided",
       "car-compatible"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": []
   },
@@ -4433,9 +4321,6 @@
       "sling",
       "soft-sided"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -4515,10 +4400,6 @@
       "soft-sided",
       "car-compatible",
       "hard-sided"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": []
   },
@@ -4604,10 +4485,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -4689,10 +4566,6 @@
       "car-compatible",
       "foldable",
       "hard-sided"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": []
   },
@@ -4776,10 +4649,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -4851,10 +4720,6 @@
     "styles": [
       "soft-sided",
       "car-compatible"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": []
   },
@@ -4932,10 +4797,6 @@
       "soft-sided",
       "car-compatible",
       "hard-sided"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": []
   },
@@ -5015,9 +4876,6 @@
     ],
     "styles": [
       "backpack"
-    ],
-    "useCases": [
-      "everyday-use"
     ],
     "colours": []
   },
@@ -5102,9 +4960,6 @@
       "backpack",
       "foldable"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -5186,9 +5041,6 @@
     "styles": [
       "backpack"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -5268,9 +5120,6 @@
     ],
     "styles": [
       "backpack"
-    ],
-    "useCases": [
-      "everyday-use"
     ],
     "colours": []
   },
@@ -5354,9 +5203,6 @@
     "styles": [
       "backpack"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -5436,9 +5282,6 @@
     "styles": [
       "backpack"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -5517,9 +5360,6 @@
     ],
     "styles": [
       "backpack"
-    ],
-    "useCases": [
-      "everyday-use"
     ],
     "colours": []
   },
@@ -5602,9 +5442,6 @@
       "backpack",
       "soft-sided"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -5682,9 +5519,6 @@
     "styles": [
       "backpack",
       "foldable"
-    ],
-    "useCases": [
-      "everyday-use"
     ],
     "colours": []
   },
@@ -5765,9 +5599,6 @@
     "styles": [
       "backpack"
     ],
-    "useCases": [
-      "everyday-use"
-    ],
     "colours": []
   },
   {
@@ -5841,10 +5672,6 @@
     "styles": [
       "airline-approved",
       "hard-sided"
-    ],
-    "useCases": [
-      "vet-visits",
-      "airline-travel"
     ],
     "colours": []
   },
@@ -5930,10 +5757,6 @@
       "rolling",
       "soft-sided"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -6011,10 +5834,6 @@
     ],
     "styles": [
       "airline-approved"
-    ],
-    "useCases": [
-      "vet-visits",
-      "airline-travel"
     ],
     "colours": []
   },
@@ -6099,10 +5918,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -6184,10 +5999,6 @@
       "car-compatible",
       "foldable"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -6267,10 +6078,6 @@
     "styles": [
       "car-compatible"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -6349,10 +6156,6 @@
     ],
     "styles": [
       "car-compatible"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": []
   },
@@ -6437,10 +6240,6 @@
       "car-compatible",
       "soft-sided"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -6519,10 +6318,6 @@
     ],
     "styles": [
       "car-compatible"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": [
       "grey"
@@ -6609,10 +6404,6 @@
     "styles": [
       "car-compatible"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -6695,10 +6486,6 @@
       "car-compatible",
       "soft-sided"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -6777,10 +6564,6 @@
     ],
     "styles": [
       "car-compatible"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": []
   },
@@ -6865,10 +6648,6 @@
       "foldable",
       "soft-sided"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -6942,10 +6721,6 @@
     "petSizes": [],
     "styles": [
       "car-compatible"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": [
       "black",
@@ -7032,10 +6807,6 @@
       "car-compatible",
       "hard-sided"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -7117,10 +6888,6 @@
     "styles": [
       "car-compatible"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -7201,10 +6968,6 @@
     "styles": [
       "car-compatible",
       "foldable"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": []
   },
@@ -7288,10 +7051,6 @@
     "styles": [
       "car-compatible"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -7371,10 +7130,6 @@
     "styles": [
       "car-compatible"
     ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
-    ],
     "colours": []
   },
   {
@@ -7453,10 +7208,6 @@
     ],
     "styles": [
       "car-compatible"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": []
   },
@@ -7593,10 +7344,6 @@
       "car-compatible",
       "foldable",
       "soft-sided"
-    ],
-    "useCases": [
-      "vet-visits",
-      "car-travel"
     ],
     "colours": [
       "grey",

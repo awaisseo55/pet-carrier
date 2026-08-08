@@ -1,12 +1,12 @@
 /**
- * Category filter facets (pet type, size, style, use case, colour) for the
- * product filter sidebar/drawer. A product can set these explicitly on its
- * record, but most don't need to: getProductFacets() infers them from
- * category_slugs (via CATEGORIES' own `animal`/`name` metadata), title,
- * specifications and variants, the same "derive from existing structured
- * data" approach lib/category-content.ts uses for category copy. Pure
- * functions, no server-only dependency, so this is safe to import from
- * client filter components as well as server pages.
+ * Category filter facets (pet type, size, style, colour) for the product
+ * filter sidebar/drawer. A product can set these explicitly on its record,
+ * but most don't need to: getProductFacets() infers them from category_slugs
+ * (via CATEGORIES' own `animal`/`name` metadata), title, specifications and
+ * variants, the same "derive from existing structured data" approach
+ * lib/category-content.ts uses for category copy. Pure functions, no
+ * server-only dependency, so this is safe to import from client filter
+ * components as well as server pages.
  */
 import { getCategoryByPath } from "./categories";
 import type { Product, PublicProduct } from "./types";
@@ -23,7 +23,6 @@ type FacetProduct = Pick<
   | "petTypes"
   | "petSizes"
   | "styles"
-  | "useCases"
   | "colours"
 >;
 
@@ -63,15 +62,6 @@ export const STYLE_OPTIONS: FilterOption[] = [
   { value: "foldable", label: "Foldable / Collapsible" },
   { value: "airline-approved", label: "Airline Approved" },
   { value: "car-compatible", label: "Car Compatible" },
-];
-
-export const USE_CASE_OPTIONS: FilterOption[] = [
-  { value: "vet-visits", label: "Vet Visits" },
-  { value: "car-travel", label: "Car Travel" },
-  { value: "airline-travel", label: "Airline Travel" },
-  { value: "public-transport", label: "Public Transport" },
-  { value: "hiking-outdoor", label: "Hiking / Outdoor" },
-  { value: "everyday-use", label: "Everyday Use" },
 ];
 
 export const PRICE_RANGE_OPTIONS: { value: string; label: string; min: number; max: number }[] = [
@@ -226,29 +216,6 @@ function inferStyles(product: FacetProduct): string[] {
   return [...found];
 }
 
-const USE_CASE_CATEGORY_MAP: { test: RegExp; value: string }[] = [
-  { test: /vet-visit-carriers/, value: "vet-visits" },
-  { test: /car-travel-carriers|dog-car-carriers/, value: "car-travel" },
-  { test: /airline-approved/, value: "airline-travel" },
-  { test: /hiking-pet-carriers|hiking-dog-carriers/, value: "hiking-outdoor" },
-  { test: /everyday-carriers/, value: "everyday-use" },
-];
-
-function inferUseCases(product: FacetProduct): string[] {
-  const found = new Set<string>();
-  const haystack = product.category_slugs.join(" ");
-  for (const { test, value } of USE_CASE_CATEGORY_MAP) {
-    if (test.test(haystack)) found.add(value);
-  }
-  const t = textOf(product);
-  if (/vet/.test(t)) found.add("vet-visits");
-  if (/car seat|booster|car travel|car carrier/.test(t)) found.add("car-travel");
-  if (/airline|iata|flight/.test(t)) found.add("airline-travel");
-  if (/hik(e|ing)|outdoor|trail/.test(t)) found.add("hiking-outdoor");
-  if (found.size === 0) found.add("everyday-use");
-  return [...found];
-}
-
 function inferColours(product: FacetProduct): string[] {
   const found = new Set<string>();
   if (product.variants) {
@@ -270,7 +237,6 @@ export interface ResolvedFacets {
   petTypes: string[];
   petSizes: string[];
   styles: string[];
-  useCases: string[];
   colours: string[];
 }
 
@@ -280,7 +246,6 @@ export function getProductFacets(product: FacetProduct): ResolvedFacets {
     petTypes: product.petTypes?.length ? product.petTypes : inferPetTypes(product),
     petSizes: product.petSizes?.length ? product.petSizes : inferPetSizes(product),
     styles: product.styles?.length ? product.styles : inferStyles(product),
-    useCases: product.useCases?.length ? product.useCases : inferUseCases(product),
     colours: product.colours?.length ? product.colours : inferColours(product),
   };
 }
