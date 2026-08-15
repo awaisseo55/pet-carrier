@@ -2175,7 +2175,10 @@
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/cat-carriers",
       "carriers/sling-carriers",
-      "carriers/everyday-carriers"
+      "carriers/everyday-carriers",
+      "carriers",
+      "carriers/cat-carriers/cat-slings",
+      "carriers/cat-carriers/large-cat-carriers"
     ],
     "size_range": "Small to medium (up to approx. 7.5kg)",
     "weight_capacity": "7.5kg",
@@ -2185,7 +2188,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-04T00:00:00.000Z",
-    "updated_at": "2026-08-03T20:16:18.183Z",
+    "updated_at": "2026-08-09T17:52:14.545Z",
     "markup_percentage": 40,
     "meta_title": "Sarsumir Dog & Cat Sling Carrier, Black | Pet Carrier",
     "meta_description": "Sarsumir adjustable sling carrier for small to medium dogs and cats up to 7.5kg. Double-layer fabric, safety rope. Draft pending price confirmation.",
@@ -3628,7 +3631,11 @@
       "carriers/sling-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/cat-carriers"
+      "carriers/cat-carriers",
+      "carriers/dog-carriers/puppy-carriers",
+      "carriers/cat-carriers/cat-slings",
+      "carriers/cat-carriers/large-cat-carriers",
+      "carriers/cat-carriers/kitten-carriers"
     ],
     "size_range": "medium",
     "weight_capacity": "7.5kg",
@@ -3638,7 +3645,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-08T20:07:01.040Z",
-    "updated_at": "2026-08-08T20:07:01.040Z",
+    "updated_at": "2026-08-09T17:53:25.841Z",
     "markup_percentage": 0,
     "meta_title": "Adiwo Dog Carrier Bag Dog Sling | Pet Carrier UK",
     "meta_description": "Adiwo Dog Carrier Bag Dog Sling from £34.99. Free UK delivery available. Shop now at Pet Carrier.",
@@ -3675,7 +3682,10 @@
     "styles": [
       "sling"
     ],
-    "colours": []
+    "colours": [],
+    "hasVariants": false,
+    "variantType": "colour",
+    "variants": []
   },
   {
     "id": "B09FL3Y56Z",
@@ -3867,7 +3877,11 @@
       "carriers/sling-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/cat-carriers"
+      "carriers/cat-carriers",
+      "carriers",
+      "carriers/cat-carriers/large-cat-carriers",
+      "carriers/cat-carriers/cat-slings",
+      "carriers/cat-carriers/kitten-carriers"
     ],
     "size_range": "small",
     "weight_capacity": "0.48kg",
@@ -3877,7 +3891,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-08-08T20:07:01.040Z",
-    "updated_at": "2026-08-08T20:07:01.040Z",
+    "updated_at": "2026-08-09T17:52:50.131Z",
     "markup_percentage": 0,
     "meta_title": "ALLSOPETS Dog Carrier Sling for Small | Pet Carrier UK",
     "meta_description": "ALLSOPETS Dog Carrier Sling for Small Dogs and Cats from £51.99. Free UK delivery available. Shop now at Pet Carrier.",
@@ -3913,7 +3927,10 @@
     "styles": [
       "sling"
     ],
-    "colours": []
+    "colours": [],
+    "hasVariants": false,
+    "variantType": "colour",
+    "variants": []
   },
   {
     "id": "B0D1CB5CSL",
@@ -7348,6 +7365,94 @@
     "colours": [
       "grey",
       "black"
+    ]
+  },
+  {
+    "id": "B0FVW4CZPN",
+    "slug": "zuisfau-portable-bird-carrier-perch-pp-tray-grey",
+    "title": "Zuisfau Portable Bird Carrier with Perch & PP Tray, Grey",
+    "description": "## About the Zuisfau Portable Bird Carrier\n\nThe Zuisfau Portable Bird Carrier is a soft-sided, fully transparent carrier built for short trips with [budgies](/carriers/bird-carriers/budgie-travel-cages), cockatiels and other small birds. A 360° clear panel design means your bird can see out on every side, which helps them stay settled during the journey, while you get a full view in to check on them without having to open the carrier.\n\nIt comes with a removable perch and a hygienic PP tray fitted in the base, so your bird has somewhere familiar to stand and mess is easy to clean up afterwards. The carrier folds flat when it's not in use, making it simple to store between vet visits or trips away.\n\n## Key Features and Benefits\n\n### Hygienic, Easy-Wipe PP Tray\n\nA lightweight polypropylene tray sits in the base instead of a metal one, so there's nothing to rust and mess wipes away in seconds, keeping the carrier fresh between uses.\n\n### Calming 360° Panoramic View\n\nClear panelling on every side lets your bird see their surroundings rather than feeling shut in, while giving you an easy view in to check on them at a glance.\n\n### Lightweight and Collapsible\n\nBreathable mesh sections keep air moving inside the carrier, and the whole thing folds down flat in seconds, so it's easy to store at home or tuck into the car boot.\n\n### Suits a Range of Small Pets\n\nAs well as budgies and cockatiels, it's a secure option for other small companions like [hamsters](/carriers/small-animal-carriers/hamster-carriers) and [guinea pigs](/carriers/small-animal-carriers/guinea-pig-carriers), and comes with an adjustable shoulder strap for hands-free carrying.\n\n### Secure Side Opening\n\nA wide side opening makes it easy to get your pet in and out, and the zip fastenings keep them safely inside once it's closed.\n\n## Who This Carrier Is Best For\n\nThe Zuisfau Portable Bird Carrier suits:\n\n- Budgies, cockatiels and other small pet birds\n- Owners taking their bird on [vet visits](/carriers/vet-visit-carriers) or short outings\n- Hamsters and guinea pigs needing a secure, well-ventilated carrier\n- Anyone who wants a carrier that folds flat for easy storage\n\n## Care Instructions\n\nWipe the PP tray clean with a damp cloth after each use, and let it dry fully before putting it back in the carrier. The fabric and mesh sections can be spot cleaned as needed; leave the carrier to air dry fully before folding it away for storage.",
+    "short_description": "A lightweight, collapsible bird carrier with a 360° clear view, wipe-clean PP tray and included perch, ideal for budgies, cockatiels and other small pets.",
+    "features": [
+      "Hygienic PP tray in the base, durable and easy to wipe clean, no rusting like a metal tray",
+      "360° clear panelling gives a calming full view out, and lets you check on your pet at a glance",
+      "Lightweight with breathable mesh sections, folds flat in seconds for easy storage",
+      "Suits budgies, cockatiels and other small birds, as well as hamsters and guinea pigs",
+      "Wide side opening with secure zip fastenings, plus an adjustable shoulder strap for hands-free carrying"
+    ],
+    "specifications": {
+      "Brand": "Zuisfau",
+      "Material": "Nylon, Polypropylene (PP)",
+      "Dimensions": "35 x 24 x 21cm",
+      "Colour": "Grey",
+      "Suitable For": "Budgies, cockatiels and other small birds; also hamsters and guinea pigs",
+      "Includes": "Perch and PP tray"
+    },
+    "price": 13.99,
+    "compare_at_price": null,
+    "sku": "PC-B0FVW4CZPN",
+    "stock_status": "in_stock",
+    "images": [
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0FVW4CZPN/image-0-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0FVW4CZPN/image-1-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0FVW4CZPN/image-2-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0FVW4CZPN/image-3-main.webp",
+      "https://pub-0adbb09447954ccfb5c0018cb2ab9619.r2.dev/uploads/product/B0FVW4CZPN/image-4-main.webp"
+    ],
+    "category_slugs": [
+      "carriers/bird-carriers/budgie-travel-cages",
+      "carriers/small-animal-carriers/hamster-carriers",
+      "carriers/small-animal-carriers/guinea-pig-carriers",
+      "carriers/vet-visit-carriers"
+    ],
+    "size_range": "One size (35 x 24 x 21cm)",
+    "weight_capacity": "Not stated by manufacturer",
+    "brand": "Zuisfau",
+    "amazon_asin": "B0FVW4CZPN",
+    "amazon_url": "https://www.amazon.co.uk/dp/B0FVW4CZPN",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-15T00:00:00.000Z",
+    "updated_at": "2026-08-15T00:00:00.000Z",
+    "markup_percentage": 0,
+    "meta_title": "Zuisfau Portable Bird Carrier with Perch | Pet Carrier UK",
+    "meta_description": "Zuisfau Portable Bird Carrier with Perch & PP Tray, Grey. 360° clear view, lightweight and collapsible. £13.99 with fast UK delivery.",
+    "faqs": [
+      {
+        "question": "Which pets is this carrier suitable for?",
+        "answer": "It's designed for budgies, cockatiels and other small pet birds, and is also a secure option for hamsters and guinea pigs."
+      },
+      {
+        "question": "Does it come with a perch?",
+        "answer": "Yes, a perch is included, along with a removable PP tray fitted in the base."
+      },
+      {
+        "question": "Can my bird see out of the carrier?",
+        "answer": "Yes, the carrier has clear panelling on every side, giving a full 360° view out to help keep your bird settled during the journey."
+      },
+      {
+        "question": "How do I clean the tray?",
+        "answer": "Wipe the PP tray with a damp cloth after use and let it dry fully before putting it back in the carrier."
+      },
+      {
+        "question": "Does it fold flat for storage?",
+        "answer": "Yes, the carrier collapses down in seconds, making it easy to store at home or in the car boot between trips."
+      }
+    ],
+    "petTypes": [
+      "birds",
+      "hamsters",
+      "guinea-pigs"
+    ],
+    "petSizes": [
+      "small"
+    ],
+    "styles": [
+      "soft-sided",
+      "foldable"
+    ],
+    "colours": [
+      "grey"
     ]
   }
 ]
