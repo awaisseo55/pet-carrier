@@ -113,4 +113,8 @@ image URL referenced anywhere in `data/products.json`, including `images[]` and
 `variants[].colourImage`, against the hostnames configured in `next.config.ts`. A prior incomplete
 Vercel Blob → R2 migration left a stale `/api/blob/...` URL sitting only in `variants[0].colourImage`
 on four products, invisible unless you specifically check the nested field, so don't rely on
-spot-checking `images[]` alone.
+spot-checking `images[]` alone. See CLAUDE.md's "Product images: rules to prevent broken images"
+section for the full list of failure modes this project has actually hit and the strict rules that
+now prevent each one, in particular: never bulk-change image hostnames without checking Vercel's
+Image Optimization quota, and never trust a page's `200` status as proof its images loaded, check
+the actual image request status codes.

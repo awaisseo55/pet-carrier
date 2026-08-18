@@ -18,14 +18,15 @@ const nextConfig: NextConfig = {
     // layout, it just serves the original file instead of proxying through
     // /_next/image.
     unoptimized: true,
-    // R2's object responses carry no Cache-Control header, so without this
-    // Next falls back to its 60s default and re-fetches every image variant
-    // from the origin every minute. R2's public *.r2.dev dev URL (see
-    // lib/r2-client.ts) is rate-limited and not meant for production
-    // traffic, so keep this long since product images change rarely and are
-    // cache-busted with a ?v= query string on re-upload anyway (see
-    // lib/image-store.ts findUploadedImage).
-    minimumCacheTTL: 2678400, // 31 days
+    // remotePatterns has no effect on runtime behaviour while `unoptimized`
+    // is true above (Next only enforces it when proxying through
+    // /_next/image), kept anyway as a source-of-truth allowlist and because
+    // scripts/check-image-domains.mjs reads it. If `unoptimized` is ever
+    // removed, re-add `minimumCacheTTL` (a long value, e.g. 31 days) before
+    // doing so: R2 responses carry no Cache-Control header, so Next would
+    // otherwise default to a 60s cache and re-fetch every image variant from
+    // the origin every minute. See CLAUDE.md "Product images" section for
+    // the full history of why this is configured this way.
     remotePatterns: [
       {
         protocol: "https",
