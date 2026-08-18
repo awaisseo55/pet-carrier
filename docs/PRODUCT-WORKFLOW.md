@@ -105,3 +105,12 @@ Call `upsertProduct` from `lib/products.ts` (matches by `id`, so re-running the 
 same ASIN updates the existing record rather than creating a duplicate). Only set `is_active: true`
 once real images and a title exist, if either automatic fetching stage genuinely failed, leave the
 product inactive and marked as needing manual completion per section 2.
+
+## 7. Before pushing: validate image hostnames
+
+Run `npm run check:images` before pushing any change that touches product data. It checks every
+image URL referenced anywhere in `data/products.json`, including `images[]` and
+`variants[].colourImage`, against the hostnames configured in `next.config.ts`. A prior incomplete
+Vercel Blob → R2 migration left a stale `/api/blob/...` URL sitting only in `variants[0].colourImage`
+on four products, invisible unless you specifically check the nested field, so don't rely on
+spot-checking `images[]` alone.

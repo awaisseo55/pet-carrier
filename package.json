@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:images": "node scripts/check-image-domains.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1104.0",

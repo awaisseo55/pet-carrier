@@ -42,6 +42,25 @@ just easy for us to hack on.
   `lib/*.ts` call sites unchanged, see `.env.local.example` for setup. Product/category/hero image
   uploads have the equivalent split in `lib/image-store.ts`. Never write to the local filesystem
   when running on Vercel, it's read-only outside `/tmp`.
+- **`NEXT_PUBLIC_R2_PUBLIC_URL` is currently Cloudflare's free `pub-<hash>.r2.dev` dev subdomain**,
+  which Cloudflare documents as rate-limited and not intended for production traffic. `next/image`'s
+  server-side optimiser re-fetches every `srcset` width from this origin on every cache miss, so it
+  generates far more origin requests than a plain `<img>` tag ever would, and can trip the rate
+  limit under real traffic, which looks exactly like broken product images on first load that then
+  render fine once clicked into (a plain `<img>`, e.g. the lightbox in
+  `components/product/image-lightbox.tsx`, only needs one request per image). `next.config.ts` sets
+  `images.minimumCacheTTL` to 31 days to cut down on repeat origin fetches as a mitigation, but the
+  real fix is attaching a proper custom domain to the R2 bucket in the Cloudflare dashboard (the
+  domain doesn't need to move its nameservers to Cloudflare for this, a single CNAME record for the
+  image subdomain is enough) and pointing `NEXT_PUBLIC_R2_PUBLIC_URL` at that instead before relying
+  on this for real production traffic. `next.config.ts`'s `images.remotePatterns` derives its R2
+  entry from this same env var, so switching it is a one-line change with no other code to update.
+  Run `npm run check:images` before pushing product changes, it cross-checks every image URL
+  hostname referenced in `data/products.json` (including nested `variants[].colourImage`, not just
+  the top-level `images[]` array, a past incomplete Vercel Blob → R2 migration left four products
+  with a dead `/api/blob/...` `colourImage` that nothing else would have caught) against
+  `next.config.ts`'s configured hostnames, and warns if the R2 URL is still on the `.r2.dev` dev
+  subdomain.
 - Stripe for payments (Checkout Sessions, redirect flow, discounts applied as one-time Stripe
   coupons), Resend for transactional email, Anthropic Claude for AI content rewriting of Amazon
   listings, cheerio + sharp for the Amazon scrape/image pipeline.
