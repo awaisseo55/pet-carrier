@@ -71,12 +71,13 @@ export function collectionPageJsonLd({
   name,
   description,
   url,
-  itemNames = [],
+  items = [],
 }: {
   name: string;
   description: string;
   url: string;
-  itemNames?: string[];
+  /** Each item's own page, so the ItemList points somewhere rather than just naming products. */
+  items?: { name: string; url: string }[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -84,14 +85,15 @@ export function collectionPageJsonLd({
     name,
     description,
     url: `${siteUrl}${url}`,
-    ...(itemNames.length > 0
+    ...(items.length > 0
       ? {
           mainEntity: {
             "@type": "ItemList",
-            itemListElement: itemNames.map((itemName, index) => ({
+            itemListElement: items.map((item, index) => ({
               "@type": "ListItem",
               position: index + 1,
-              name: itemName,
+              name: item.name,
+              url: `${siteUrl}${item.url}`,
             })),
           },
         }

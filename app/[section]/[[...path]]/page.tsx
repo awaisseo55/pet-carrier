@@ -96,11 +96,19 @@ export default async function CategoryPage({
     name: resolved.name,
     description: resolved.metaDescription,
     url: `/${fullPath}`,
-    itemNames: orderedProducts.map((p) => p.title),
+    items: orderedProducts.map((p) => ({ name: p.title, url: `/product/${p.slug}` })),
   });
   const faqSchema = faqJsonLd(resolved.faqs);
 
   const sectionLabels: Record<Section, string> = { carriers: "Carriers", strollers: "Strollers", beds: "Beds" };
+
+  // Only a short opening paragraph sits above the product grid; the rest of
+  // the intro (buying considerations, "who this suits" etc.) reads better
+  // once someone has already seen what's on offer, so it moves below the
+  // grid alongside Why Choose/Sizing Guide rather than delaying the products.
+  const introBlocks = resolved.intro.trim().split(/\n\s*\n/);
+  const shortIntro = introBlocks[0] ?? "";
+  const restIntro = introBlocks.slice(1).join("\n\n");
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -135,7 +143,7 @@ export default async function CategoryPage({
         </div>
       </div>
 
-      <div className="mt-6 flex flex-col gap-4 text-gray-600">{renderRichText(resolved.intro)}</div>
+      <div className="mt-4 max-w-3xl text-gray-600">{renderRichText(shortIntro)}</div>
 
       {children.length > 0 && (
         <div className="mt-10">
@@ -175,6 +183,13 @@ export default async function CategoryPage({
           </div>
         )}
       </div>
+
+      {restIntro && (
+        <div className="mt-12 max-w-3xl">
+          <h2 className="font-heading text-xl font-semibold text-foreground">More About {resolved.name}</h2>
+          <div className="mt-3 flex flex-col gap-4 text-gray-600">{renderRichText(restIntro)}</div>
+        </div>
+      )}
 
       <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div>
