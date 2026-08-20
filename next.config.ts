@@ -51,6 +51,20 @@ const nextConfig: NextConfig = {
         : []),
     ],
   },
+  async redirects() {
+    return [
+      // "By Style" / "By Use" category rename to pet-specific SEO slugs (2026-08).
+      { source: "/carriers/airline-approved-carriers", destination: "/carriers/pet-airline-approved-carriers", permanent: true },
+      { source: "/carriers/backpack-carriers", destination: "/carriers/pet-backpack-carriers", permanent: true },
+      { source: "/carriers/rolling-carriers", destination: "/carriers/pet-rolling-carriers", permanent: true },
+      { source: "/carriers/sling-carriers", destination: "/carriers/pet-sling-carriers", permanent: true },
+      { source: "/carriers/hard-sided-carriers", destination: "/carriers/pet-hard-sided-carriers", permanent: true },
+      { source: "/carriers/soft-sided-carriers", destination: "/carriers/pet-soft-sided-carriers", permanent: true },
+      { source: "/carriers/vet-visit-carriers", destination: "/carriers/pet-carriers-for-vet-visits", permanent: true },
+      { source: "/carriers/car-travel-carriers", destination: "/carriers/pet-car-travel-carriers", permanent: true },
+      { source: "/carriers/everyday-carriers", destination: "/carriers/everyday-pet-carriers", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

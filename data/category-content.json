@@ -1,5 +1,310 @@
 {
-  "overrides": {},
+  "overrides": {
+    "carriers/pet-airline-approved-carriers": {
+      "path": "carriers/pet-airline-approved-carriers",
+      "meta_title": "Airline Approved Pet Carriers | Pet Carrier UK",
+      "meta_description": "Shop airline approved pet carriers for dogs, cats and small pets. Meets in-cabin size requirements for most major airlines. Free UK delivery.",
+      "intro": "Flying with a pet means working within strict cabin rules, and airlines are specific about what they'll allow under the seat in front of you. An airline approved carrier is built to those constraints from the outset: correct external dimensions, a design low enough to slide beneath a standard economy seat, and enough mesh panelling to satisfy crew doing a visual check before take-off. It's less about the pet being small enough and more about the carrier itself meeting a spec, which is why a general-purpose bag that looks about the right size can still get turned away at the gate.\n\n### Who This Is Best For\n\nThis range suits anyone with a confirmed cabin booking for a cat, small dog or other pet travelling in-cabin rather than in the hold. It's particularly useful if you fly with the same airline regularly and already know their exact size limits, since you can match the carrier to that spec rather than guessing. First-time cabin travellers tend to do better with solid, structured sides rather than something that flexes underfoot during turbulence. If you're after a size built around a smaller breed, our [airline approved dog carrier](/carriers/dog-carriers/airline-approved-dog-carriers) range and [airline approved cat carrier](/carriers/cat-carriers/airline-approved-cat-carriers) range are sized and shaped for those pets individually.\n\n### What to Look For\n\n- **Confirmed dimensions against your airline, not just \"cabin size\" claims.** Every airline sets its own limits, and a carrier marketed generically as cabin-friendly can still be a few centimetres over what a specific airline allows.\n- **A low, flat profile that slides under the seat without forcing.** Extra height at the top of a carrier is often the first thing that causes a problem at check-in.\n- **Mesh ventilation on at least two sides.** Cabin air can get warm on a full flight, so your pet needs proper airflow, not a single small vent.\n- **A secure, lockable zip.** Airport handling is busy, and a closure that can't be fixed shut is a real risk during boarding.\n\nEvery carrier below lists its exact external dimensions so you can check it against your airline's published allowance before you buy, rather than after. Have a browse through the range, and if you're flying with a nervous flyer, the sizing and buying guide further down this page goes into a bit more detail on what tends to work best in the cabin.",
+      "faqs": [
+        {
+          "question": "Will this carrier definitely be accepted by my airline?",
+          "answer": "Airlines set their own size and weight limits, which can differ even between two carriers with similar external dimensions. Always check your specific airline's current pet policy and confirmed dimensions before you fly, since policies do change from time to time."
+        },
+        {
+          "question": "Can my pet travel in the cabin with me?",
+          "answer": "That depends on your airline's own pet policy, your pet's weight, and the destination's import rules, not on the carrier alone. Contact your airline directly to confirm eligibility before booking, ideally as early as possible since many airlines cap the number of pets allowed in the cabin per flight."
+        },
+        {
+          "question": "Does the carrier need to fit fully under the seat?",
+          "answer": "Yes, in almost all cases. Crew will typically ask to see the carrier slide fully under the seat in front of you before take-off, so check the carrier's height as well as its footprint against your airline's limits."
+        },
+        {
+          "question": "What's the weight limit for an airline approved carrier?",
+          "answer": "This varies by product and is listed individually on each item's specification. Bear in mind that most airlines also set their own combined weight limit for the pet and carrier together, so check both figures."
+        },
+        {
+          "question": "Can I use the same carrier for car journeys and vet visits too?",
+          "answer": "Yes, most airline approved carriers work equally well for car travel and vet appointments thanks to their structured shape and secure closures. Just check it still suits your pet comfortably for everyday use, since it's built to a specific size spec first."
+        }
+      ]
+    },
+    "carriers/pet-backpack-carriers": {
+      "path": "carriers/pet-backpack-carriers",
+      "meta_title": "Pet Backpack Carriers for Dogs & Cats | Pet Carrier UK",
+      "meta_description": "Hands-free pet backpack carriers for dogs, cats and small animals. Great for hiking, city walks and days out. Free UK delivery over £50.",
+      "intro": "A backpack carrier moves the weight of your pet off one shoulder and onto both, which makes a real difference on longer outings where a sling or a hand-held bag starts to feel like hard work after twenty minutes. Instead of a strap digging in on one side, the load sits across your back the way a hiking rucksack does, leaving both hands free for a lead, a coffee, or simply your own balance on uneven ground. It's the format most owners reach for once a trip stops being a quick errand and turns into a proper outing.\n\n### Who This Is Best For\n\nBackpack carriers suit owners covering real distance on foot, whether that's a weekend woodland walk, a busy train platform, or a full day out where a hand-held carrier would start to ache. They also work well for cats and small dogs that settle better facing forward with a view out, rather than tucked against your chest where they can't see much. If you're carrying a lighter cat or toy breed for shorter trips around town, our [cat backpack carrier](/carriers/cat-carriers/cat-backpack-carriers) range is built around that lower weight and a more compact frame, while the [dog backpack carrier](/carriers/dog-carriers/dog-backpack-carriers) range covers a wider spread of dog sizes and sturdier support structures.\n\n### What to Look For\n\n- **Weight distribution across a padded hip belt, not just the shoulders.** A frame that transfers some load to your hips makes a genuine difference over an hour or more of walking.\n- **Ventilation panels around the pet compartment.** Your pet is riding close to your back, which generates warmth, so mesh sides matter more here than on a stationary carrier.\n- **A clearly stated maximum weight limit.** Backpack frames are only rated to carry so much before the stitching and straps are put under real strain, so check this against your pet's actual weight, not their breed's average.\n- **A secure inner tether or harness clip**, so your pet can't climb or jump free mid-walk.\n\nIf your usual days out involve a fair bit of walking, a backpack carrier is likely to be the most comfortable option in this range for both of you. Take a look through what's available below, sized from compact cat-friendly frames through to larger structures built for bigger dogs, and check the weight limit and ventilation details on each listing before deciding.",
+      "faqs": [
+        {
+          "question": "What's the maximum weight a backpack carrier can hold?",
+          "answer": "This varies by product and is listed on each individual listing. Always check the weight limit against your pet's actual current weight rather than an estimate, since backpack frames are only rated to carry so much safely."
+        },
+        {
+          "question": "Will my pet be comfortable riding on my back?",
+          "answer": "Comfort depends on a properly fitted harness inside the carrier and a padded hip belt on the bag itself, both worth checking before buying. A pet that's used to being handled generally settles into a backpack carrier without much fuss."
+        },
+        {
+          "question": "Can I use a backpack carrier for hiking?",
+          "answer": "Yes, backpack carriers are one of the most practical formats for hiking thanks to the hands-free design and weight distribution across both shoulders. For longer or more technical routes, our dedicated hiking pet carrier range is also worth a look."
+        },
+        {
+          "question": "How is a backpack carrier different from a sling?",
+          "answer": "A backpack distributes weight across both shoulders and a hip belt, making it better suited to longer trips, while a sling holds your pet closer to your body on one shoulder, which some pets find more reassuring for shorter journeys."
+        },
+        {
+          "question": "Are backpack carriers suitable for cats?",
+          "answer": "Yes, many cats travel well in a backpack carrier, particularly designs with a forward-facing viewing panel. Our cat backpack carrier range is sized specifically around typical cat weights and dimensions."
+        }
+      ]
+    },
+    "carriers/pet-rolling-carriers": {
+      "path": "carriers/pet-rolling-carriers",
+      "meta_title": "Rolling Pet Carriers with Wheels | Pet Carrier UK",
+      "meta_description": "Wheeled pet carriers for easy airport transfers and long walks without the strain of carrying. Suitable for dogs, cats and small pets.",
+      "intro": "Not every pet enjoys being carried, and not every owner wants to hold onto several kilograms of dog or cat for an entire afternoon. A carrier with wheels solves both problems at once: your pet still travels enclosed and secure, but the weight runs along the ground on a set of wheels rather than through your arms or shoulders. It's a format that comes into its own on long airport concourses, station platforms, and any trip where you'd otherwise be swapping a heavy carrier from hand to hand.\n\n### Who This Is Best For\n\nWheeled carriers suit heavier dogs and cats where lifting isn't practical for an extended period, and they're a genuine help for owners managing a bad back, a long airport transfer, or simply a lot of luggage at the same time as a pet. They also make sense for older or larger dogs who are happy to sit rather than walk for an entire journey but are too big to comfortably carry by hand. For a dog specifically, our [rolling dog carrier](/carriers/dog-carriers/rolling-dog-carriers) range covers a spread of sizes built around this exact use, with a telescopic handle and a stable wheel base.\n\n### What to Look For\n\n- **Wheel size and construction.** Small, hard plastic wheels can struggle on gravel or uneven pavements, while slightly larger rubberised wheels roll more smoothly and quietly.\n- **A telescopic handle at a comfortable height**, so you're not stooping to pull it along, particularly over a longer distance like an airport terminal.\n- **Total weight capacity including the carrier itself**, since a wheeled unit is naturally heavier than an equivalent soft-sided bag before your pet even gets in.\n- **Stability when stationary.** A carrier that tips over easily when left standing isn't practical at a check-in queue or a busy platform.\n\nIf carrying isn't realistic for your pet's size or for your own comfort over a longer trip, a wheeled carrier is worth a proper look. Browse the range below, and check both the wheel base and the maximum load rating against your pet's actual weight, since that's usually the detail that matters most here.",
+      "faqs": [
+        {
+          "question": "How much weight can a wheeled pet carrier hold?",
+          "answer": "This is listed individually on each product and includes both your pet's weight and anything else you might be carrying inside. Check the stated capacity carefully rather than assuming it matches a similar-looking soft-sided carrier."
+        },
+        {
+          "question": "Are wheeled carriers allowed on planes?",
+          "answer": "Some are, depending on their folded dimensions and your airline's specific policy, but many wheeled carriers are designed primarily for ground transport such as airports and train stations rather than in-cabin use. Check our airline approved pet carriers range if cabin travel is your main need."
+        },
+        {
+          "question": "Do the wheels work on rough ground?",
+          "answer": "This depends on the wheel size and material, which varies between products. Larger, rubberised wheels generally cope better with gravel or uneven pavements than small hard plastic castors."
+        },
+        {
+          "question": "Can the handle be adjusted for height?",
+          "answer": "Most wheeled carriers in this range have a telescopic handle with two or three height settings, though this is worth checking on the individual product page since it varies by model."
+        },
+        {
+          "question": "Is a wheeled carrier heavier than a normal one?",
+          "answer": "Yes, generally. The wheels, axle and reinforced base add weight compared with an equivalent soft-sided bag, worth factoring in if you'll sometimes need to carry it without rolling it, such as up a flight of stairs."
+        }
+      ]
+    },
+    "carriers/pet-sling-carriers": {
+      "path": "carriers/pet-sling-carriers",
+      "meta_title": "Pet Sling Carriers for Small Dogs & Cats | Pet Carrier UK",
+      "meta_description": "Comfortable sling carriers that keep small pets close to you. Ideal for nervous animals, puppies and kittens. Free UK delivery.",
+      "intro": "A sling carrier holds your pet close against your body, supported by a single wide strap worn across one shoulder or across the chest. That closeness is the whole point: for a small, lighter animal, being held snugly against a warm, moving body tends to feel far more reassuring than sitting inside a rigid box a little further away from you. It's a format built around comfort and contact rather than maximum capacity, which is why it suits smaller, lighter pets rather than anything with real bulk or weight.\n\n### Who This Is Best For\n\nSlings work particularly well for young puppies and kittens who are still getting used to the world, older pets who tend to prefer close physical contact over an open carrier, and any small pet on a short trip where being enclosed in a full carrier feels unnecessary. They're less suited to long walks, since the weight sits on one side of your body rather than being distributed, and they're not built for pets who wriggle a lot or try to climb out. Our [dog sling](/carriers/dog-carriers/dog-slings) range is shaped and padded for dogs specifically, while the [cat sling](/carriers/cat-carriers/cat-slings) range uses a slightly different support shape suited to how cats prefer to sit or curl up.\n\n### What to Look For\n\n- **A wide, padded strap rather than a thin one.** All the weight runs through this single strap, so a narrow one will dig in far faster than a properly padded design.\n- **Breathable fabric against your pet's body**, since they're held close to you with limited airflow compared with an open carrier.\n- **An adjustable strap length**, so the sling sits at a comfortable height for your own build rather than one fixed position.\n- **A secure closure or zip opening**, so a wriggly pet can't slip out unexpectedly mid-carry.\n\nA sling won't suit every pet or every trip, but for a small animal who's happiest held close, it's often the calmest option in this range. Have a look through what's available below, and check the maximum weight guidance on each listing carefully, since slings are generally rated for lighter pets than a backpack or hand-held carrier.",
+      "faqs": [
+        {
+          "question": "What size pet is a sling suitable for?",
+          "answer": "Slings are generally rated for smaller, lighter pets, typically puppies, kittens, cats and small dog breeds. Check the specific weight limit on each listing, since this varies more between sling products than with other carrier styles."
+        },
+        {
+          "question": "Which shoulder should the sling sit on?",
+          "answer": "Most slings are designed to be worn across the body, with the strap over one shoulder and the pouch resting at your opposite hip, though some can be adjusted to either side depending on your preference."
+        },
+        {
+          "question": "Can a sling be used for a wriggly pet?",
+          "answer": "Slings work best for pets who are used to being handled and tend to settle once held close. A pet who consistently tries to climb out may be better suited to a fully enclosed carrier with a secure zip."
+        },
+        {
+          "question": "Are slings suitable for puppies?",
+          "answer": "Yes, many owners use a sling specifically for young puppies who are still adjusting to new environments, since being held close against you is often a comfortable option at that age."
+        },
+        {
+          "question": "How do I clean a sling carrier?",
+          "answer": "Most slings have a removable, washable liner or panel. Check the specific care label on the product, since materials vary between machine washable fabric and options that need hand washing."
+        }
+      ]
+    },
+    "carriers/pet-hard-sided-carriers": {
+      "path": "carriers/pet-hard-sided-carriers",
+      "meta_title": "Hard-Sided Pet Carriers | Pet Carrier UK",
+      "meta_description": "Durable hard-sided carriers offering extra protection for dogs, cats and small pets. Ideal for car travel and vet visits.",
+      "intro": "A hard-sided carrier keeps its shape no matter how it's handled, thanks to a rigid outer shell rather than fabric walls that flex and fold. That structure matters most when a carrier is being lifted in and out of a car boot, stacked with other luggage, or carried through a busy space where a bump or a knock is genuinely likely. Where a soft-sided bag can crumple under pressure, a hard-sided carrier holds its internal space steady, keeping your pet in a stable, unchanging space throughout the journey.\n\n### Who This Is Best For\n\nThis construction tends to suit pets travelling regularly by car, owners who need to stack a carrier alongside other luggage without worrying about it losing shape, and anyone whose pet is prone to pawing or scratching at the sides, since a rigid shell holds up better to that than fabric does over time. It's also a sensible choice if your pet does better in a slightly firmer, more contained space rather than one that shifts as they move. Our [hard-sided cat carrier](/carriers/cat-carriers/hard-sided-cat-carriers) range is built to this same rigid-shell design, sized specifically for cats rather than larger dogs.\n\n### What to Look For\n\n- **Impact resistance of the shell material.** Better hard-sided carriers use a moulded plastic that flexes slightly under pressure rather than cracking outright.\n- **Ventilation built into the shell itself**, usually as grille panels on multiple sides, since a solid shell needs deliberately engineered airflow that fabric carriers get more naturally.\n- **Easy-clean interior surfaces.** One advantage of a hard shell is that it wipes down properly rather than needing a full wash, worth checking on the specific product.\n- **Secure clip or latch fastenings** rather than a simple zip, since these tend to hold up better under repeated use.\n\nIf durability and a stable shape matter more to you than folding the carrier flat for storage, this is the range to start with. Browse the options below, and check the ventilation panel layout on each one, since airflow is the detail hard-sided designs most often get wrong if it hasn't been properly thought through.",
+      "faqs": [
+        {
+          "question": "Are hard-sided carriers heavier than soft-sided ones?",
+          "answer": "Generally yes, since the rigid shell adds weight compared with fabric construction. This is usually worth it for the extra protection and structure, particularly for car travel, but it's a fair trade-off to weigh up against a lighter soft-sided option."
+        },
+        {
+          "question": "Do hard-sided carriers fold flat for storage?",
+          "answer": "Most don't fold in the way soft-sided carriers do, since the rigid shell is what gives them their strength. Some do split into a top and bottom half for flatter storage, worth checking on the individual listing."
+        },
+        {
+          "question": "Are hard-sided carriers better for nervous pets?",
+          "answer": "This depends on the individual pet. Some feel more settled in a solid, enclosed shell, while others prefer the softer give of fabric sides. If you're unsure, check the ventilation and interior space of each option carefully."
+        },
+        {
+          "question": "Can a hard-sided carrier go in a car boot?",
+          "answer": "Yes, the rigid shape generally makes hard-sided carriers well suited to stacking or wedging securely in a boot alongside other luggage, more so than a soft-sided bag that can shift shape."
+        },
+        {
+          "question": "How do I clean a hard-sided carrier?",
+          "answer": "Most hard shells wipe down easily with a damp cloth, one of the format's main practical advantages. Check the specific product listing for any material-specific cleaning guidance."
+        }
+      ]
+    },
+    "carriers/pet-soft-sided-carriers": {
+      "path": "carriers/pet-soft-sided-carriers",
+      "meta_title": "Soft-Sided Pet Carriers | Pet Carrier UK",
+      "meta_description": "Lightweight, comfortable soft-sided carriers for dogs, cats and small pets. Easy to fold and store between trips.",
+      "intro": "A soft-sided carrier is built from fabric over a light internal frame rather than a rigid shell, which keeps the overall weight down and lets the carrier fold flat when it's not in use. That flexibility makes it easy to store in a cupboard between trips or squeeze into a car boot alongside other luggage, and the give in the material tends to feel a little gentler against a pet who presses or leans against the sides. It's the format most owners reach for when a carrier needs to earn its place in daily life rather than sit unused most of the time.\n\n### Who This Is Best For\n\nSoft-sided carriers suit pets who are already comfortable with handling and don't need the extra structure of a hard shell, and owners who want something lightweight enough to carry all day without adding noticeable bulk. They're a strong option for regular, shorter trips such as vet visits or car journeys, where a carrier needs to be picked up, used, and put away again with minimal fuss. Our [soft-sided cat carrier](/carriers/cat-carriers/soft-sided-cat-carriers) range is shaped specifically around cats, with a slightly lower profile and softer internal padding suited to how most cats prefer to sit.\n\n### What to Look For\n\n- **A supportive internal frame**, even in a soft-sided design, so the carrier holds its shape reasonably well when lifted rather than sagging around your pet.\n- **A machine-washable or wipeable liner**, since fabric carriers need a proper clean more often than hard-sided ones.\n- **Mesh panelling on at least two sides** for airflow, ideally positioned so your pet can see out without feeling too exposed.\n- **Reinforced stitching at stress points** such as the handle and strap joins, usually where a soft carrier wears out first.\n\nFor everyday use where weight and easy storage matter more than maximum rigidity, a soft-sided carrier is usually the more practical choice. Have a browse through the range below, and check the liner material and stitching details on each listing, since that's generally where the better-made options separate themselves from the rest.",
+      "faqs": [
+        {
+          "question": "Are soft-sided carriers durable enough for regular use?",
+          "answer": "Yes, most are built with reinforced stitching at the main stress points such as handles and strap joins, designed to hold up to frequent everyday use rather than occasional trips."
+        },
+        {
+          "question": "Can soft-sided carriers be washed?",
+          "answer": "Most have a removable liner that can be machine washed, with the outer shell wiped clean separately. Always check the specific care instructions on the product page first."
+        },
+        {
+          "question": "Do soft-sided carriers provide enough protection in a car?",
+          "answer": "They provide a secure, enclosed space but less rigid protection than a hard-sided carrier. If car travel is your main use, our pet car travel carriers range covers options built specifically with that in mind."
+        },
+        {
+          "question": "How do I know if a soft-sided carrier will hold its shape?",
+          "answer": "Look for a listing that mentions an internal frame or reinforced base panel, since this is what stops a soft carrier sagging or collapsing when lifted with your pet inside."
+        },
+        {
+          "question": "Are soft-sided carriers suitable for small dogs as well as cats?",
+          "answer": "Yes, many soft-sided carriers in this range are suitable for both, though it's worth checking the stated weight and dimension limits against your specific pet before ordering."
+        }
+      ]
+    },
+    "carriers/pet-carriers-for-vet-visits": {
+      "path": "carriers/pet-carriers-for-vet-visits",
+      "meta_title": "Best Pet Carriers for Vet Visits | Pet Carrier UK",
+      "meta_description": "Secure pet carriers designed for calmer vet trips, for dogs, cats and small animals. Top-loading access for easy handling. Free UK delivery.",
+      "intro": "A trip to the vet is rarely a pet's favourite outing, and the carrier itself plays a bigger part in how that trip goes than most owners expect. A carrier that's easy to get your pet into without a struggle, secure enough that they can't push their way out mid-appointment, and simple for a vet to open from the top rather than posting your pet out through a front-only door, is designed with exactly that kind of visit in mind, rather than being a general-purpose bag pressed into service for the day.\n\n### Who This Is Best For\n\nThis range is built around short, occasional vet trips rather than long days out, so it suits any pet with a routine check-up, vaccination, or unplanned appointment ahead. It's especially worth considering for cats and small dogs who tense up at the sight of a carrier, since top access and a calmer, more enclosed design can make the whole experience noticeably less of a battle to manage. For smaller dogs specifically, our [small dog carriers](/carriers/dog-carriers/small-dog-carriers) range includes several models suited to quick, secure trips, while our [cat carriers](/carriers/cat-carriers) range and [small animal carriers](/carriers/small-animal-carriers) range cover the same short-journey needs for cats, rabbits, and other small pets.\n\n### What to Look For\n\n- **Top-loading access.** A carrier that opens from the top lets a vet lift your pet out gently without the awkward angle of a front-only door, which matters more than it sounds.\n- **Secure, easy-to-check zips or latches**, so there's no risk of a pet pushing their way out in a busy waiting room.\n- **A wipeable or removable interior liner**, since accidents happen more often on unfamiliar trips and a carrier that's simple to clean afterwards saves a lot of hassle.\n- **A more enclosed feel rather than lots of open mesh**, which suits pets who prefer a den-like space over a fully open one.\n\nNone of this makes a vet visit anyone's favourite outing, but a well-designed carrier makes the practical side of getting there and back considerably easier. Browse the range below, and if your pet is on the nervier side, look at the calmer, more enclosed designs first rather than the most ventilated ones.",
+      "faqs": [
+        {
+          "question": "What size carrier do I need for a vet visit?",
+          "answer": "Measure your pet's length and height and check this against the product's stated dimensions, leaving enough room for them to stand and turn round comfortably. A carrier that's too snug can make handling harder for the vet as well as your pet."
+        },
+        {
+          "question": "Why does top-loading access matter for a vet visit?",
+          "answer": "It lets a vet lift your pet out gently from above rather than coaxing them through a single front door, which is generally quicker and less fiddly, especially for a cat or small dog reluctant to come out on their own."
+        },
+        {
+          "question": "Can I use the same carrier for the vet and for car travel?",
+          "answer": "Yes, most carriers in this range work well for both. If car travel is your main regular use, it's worth also checking our pet car travel carriers range for options with a seatbelt fixing or non-slip base."
+        },
+        {
+          "question": "How do I clean a carrier after a vet visit?",
+          "answer": "Most carriers here have a removable, washable liner or a wipeable interior. Check the specific product's care instructions, particularly if your pet is prone to accidents when travelling."
+        },
+        {
+          "question": "Should I cover the carrier on the way to the vet?",
+          "answer": "Some owners find a light cover over part of the carrier helps their pet feel more settled during the journey, though this comes down to individual preference. Make sure any cover doesn't block the ventilation panels."
+        }
+      ]
+    },
+    "carriers/pet-car-travel-carriers": {
+      "path": "carriers/pet-car-travel-carriers",
+      "meta_title": "Pet Carriers for Car Travel | Pet Carrier UK",
+      "meta_description": "Secure car travel carriers that keep pets safe and steady on the road. Suitable for dogs, cats and small pets.",
+      "intro": "A moving car is one of the less predictable environments a pet will experience: sudden braking, cornering, and general road vibration all put a carrier through more real-world stress than almost any other everyday use. A carrier built for car travel is designed to stay upright and secure on the back seat or in the boot, usually with a way to strap or wedge it in place, so your pet isn't sliding around every time you brake at a junction or take a roundabout a little quicker than planned.\n\n### Who This Is Best For\n\nThis range suits anyone who regularly drives with a pet, whether that's a daily commute, a school run with the family dog along, or occasional longer journeys to visit family or head off on holiday. It's particularly worth considering if you've previously used a carrier that slides around on the seat or tips over on a corner, since a properly secured carrier removes that problem rather than just easing it. For dogs specifically, our [dog car carrier](/carriers/dog-carriers/dog-car-carriers) range includes options built with integrated seatbelt loops and a wider, more stable base for exactly this kind of use.\n\n### What to Look For\n\n- **A seatbelt loop or fixing point**, so the carrier can be properly secured rather than just sat on the seat and hoped for the best.\n- **A wide, stable base** that resists tipping on corners, particularly important for taller carriers.\n- **Non-slip feet or a rubberised underside**, which stops the carrier sliding around on a smooth boot liner or leather seat.\n- **Easy-clean materials**, since car journeys are where accidents and muddy paws are most likely to end up on the carrier itself.\n\nIf your pet travels by car more than the odd occasion, a properly secured carrier is worth the investment over a standard bag balanced on the seat. Browse the range below, and check how each one attaches to your car, whether that's a seatbelt loop, a boot-specific shape, or both, before deciding which fits your usual journeys best.",
+      "faqs": [
+        {
+          "question": "Do I need to secure the carrier with a seatbelt?",
+          "answer": "It's strongly recommended where the carrier has a seatbelt loop or fixing point, since this keeps it from sliding or tipping under braking or cornering. Check each product listing for its specific fixing method."
+        },
+        {
+          "question": "Can I put the carrier in the boot instead of the back seat?",
+          "answer": "Yes, many carriers in this range are suitable for either, though a wider, stable base matters more in a boot where there's no seatbelt to help secure it in place."
+        },
+        {
+          "question": "What's the difference between a car travel carrier and a regular carrier?",
+          "answer": "Car travel carriers typically have a wider base, non-slip feet, and a fixing point such as a seatbelt loop, all aimed at keeping the carrier stable specifically inside a moving vehicle."
+        },
+        {
+          "question": "Are car booster seats included in this range?",
+          "answer": "Yes, alongside enclosed carriers, this range also includes booster-style car seats for dogs who are happier sitting upright and secured by harness rather than fully enclosed."
+        },
+        {
+          "question": "How do I clean the carrier after a messy journey?",
+          "answer": "Most car travel carriers have a wipeable base or a removable liner, worth checking on the individual listing if muddy paws or travel sickness are a regular concern."
+        }
+      ]
+    },
+    "carriers/everyday-pet-carriers": {
+      "path": "carriers/everyday-pet-carriers",
+      "meta_title": "Everyday Pet Carriers for Dogs & Cats | Pet Carrier UK",
+      "meta_description": "Practical, comfortable everyday carriers for regular trips out with your pet. Shop dog and cat carriers built for daily use.",
+      "intro": "Most trips out with a pet aren't a flight, a hike, or a dash to the vet, they're the ordinary stuff: a short walk to the shops, a visit to a friend's house, or a quick errand where your pet comes along rather than staying home. An everyday carrier is built around exactly that kind of regular, unremarkable use: light enough to grab on the way out, simple enough to get your pet into quickly, and sturdy enough to handle being used several times a week without falling apart.\n\n### Who This Is Best For\n\nThis range suits owners who use a carrier often rather than occasionally, where the priorities shift from specialist features towards general reliability, comfort and ease of use. It's a sensible starting point if you're buying your first carrier and aren't yet sure which specialist style, such as a backpack or sling, will suit your routine best. Our [small dog carriers](/carriers/dog-carriers/small-dog-carriers) range covers a good spread of everyday-friendly options sized for smaller breeds, and if you'd prefer something lighter and easier to fold away between uses, our [soft-sided pet carriers](/carriers/pet-soft-sided-carriers) range is generally the more practical everyday choice over a rigid shell.\n\n### What to Look For\n\n- **A manageable weight when empty**, since you'll be carrying both the pet and the carrier itself on a regular basis.\n- **A shoulder strap and carry handle together**, so you can switch grip on a longer errand rather than being stuck with one option.\n- **Simple, quick-access closures**, ideally something you can open and close one-handed while managing a lead or shopping bags.\n- **Durable, easy-clean fabric** that can handle frequent use without the seams or zips wearing out within a few months.\n\nAn everyday carrier doesn't need to do everything brilliantly, it just needs to do the basics reliably, trip after trip. Have a browse through the range below, and if you're weighing this up against a more specialist style, our buying guide further down this page runs through how the everyday range compares to backpack, sling and hard-sided options.",
+      "faqs": [
+        {
+          "question": "What makes a carrier suitable for everyday use?",
+          "answer": "Generally a manageable weight, a simple one-handed closure, and fabric that holds up to frequent use without the stitching or zips wearing out quickly. This range is curated with exactly those priorities in mind."
+        },
+        {
+          "question": "Is an everyday carrier suitable for vet visits too?",
+          "answer": "Yes, most carriers in this range work perfectly well for the occasional vet visit as well as regular outings, though if that's your main use, our pet carriers for vet visits range is designed more specifically around it."
+        },
+        {
+          "question": "How long should an everyday carrier last?",
+          "answer": "These carriers are built for frequent use, but like any product, lifespan depends on care and how often it's used. Reinforced stitching at handles and strap joins is the main thing to check for longevity."
+        },
+        {
+          "question": "Should I choose a backpack, sling or everyday carrier?",
+          "answer": "It depends on your usual trips. An everyday carrier is the flexible middle ground, while a backpack suits longer walks and a sling suits pets who prefer close contact on shorter trips."
+        },
+        {
+          "question": "Are everyday carriers suitable for small dogs?",
+          "answer": "Yes, this range includes plenty of options sized for small dog breeds, alongside cats and other small pets. Check the individual size and weight guidance on each listing."
+        }
+      ]
+    },
+    "carriers/dog-carriers/airline-approved-dog-carriers": {
+      "path": "carriers/dog-carriers/airline-approved-dog-carriers",
+      "intro": "Airline Approved Dog Carriers need to do one job well: help your pet travel without stress. Here you'll find options built specifically for dogs flying in the cabin on UK and EU airlines, so you're not stuck comparing generic products that don't quite fit the brief.\n\nComfort, safety and practicality all need to work together for this category. It's not just about picking the first option that looks nice, it's about finding something that will genuinely hold up to regular use.\n\nTake a look through what's available below. If you need a hand deciding between options, the buying guide and FAQ further down cover the questions we hear most often.\n\nLooking for the bigger picture on flying with a pet? Our [airline approved pet carriers](/carriers/pet-airline-approved-carriers) range covers the same cabin-friendly designs across every pet type, with more detail on airline size rules."
+    },
+    "carriers/cat-carriers/airline-approved-cat-carriers": {
+      "path": "carriers/cat-carriers/airline-approved-cat-carriers",
+      "intro": "Airline Approved Cat Carriers need to do one job well: help your pet travel without stress. Here you'll find options built specifically for cats flying in the cabin on UK and EU airlines, so you're not stuck comparing generic products that don't quite fit the brief.\n\nComfort, safety and practicality all need to work together for this category. It's not just about picking the first option that looks nice, it's about finding something that will genuinely hold up to regular use.\n\nTake a look through what's available below. If you need a hand deciding between options, the buying guide and FAQ further down cover the questions we hear most often.\n\nFor the full picture on flying with a pet, see our [airline approved pet carriers](/carriers/pet-airline-approved-carriers) range, which covers cabin-friendly designs across every pet type."
+    },
+    "carriers/dog-carriers/dog-backpack-carriers": {
+      "path": "carriers/dog-carriers/dog-backpack-carriers",
+      "intro": "Dog Backpack Carriers need to do one job well: help your pet travel without stress. Here you'll find options built specifically for hands-free days out with your dog carried on your back, so you're not stuck comparing generic products that don't quite fit the brief.\n\nComfort, safety and practicality all need to work together for this category. It's not just about picking the first option that looks nice, it's about finding something that will genuinely hold up to regular use.\n\nTake a look through what's available below. If you need a hand deciding between options, the buying guide and FAQ further down cover the questions we hear most often.\n\nIf you're comparing formats more broadly, our [pet backpack carriers](/carriers/pet-backpack-carriers) range covers the same hands-free design across dogs, cats and other pets."
+    },
+    "carriers/cat-carriers/cat-backpack-carriers": {
+      "path": "carriers/cat-carriers/cat-backpack-carriers",
+      "intro": "Choosing the right cat backpack carrier makes a real difference, especially for hands-free travel with your cat carried on your back. This category brings together options suited to exactly that, so you can compare like for like rather than sifting through everything at once.\n\nA well-chosen cat backpack carrier should feel secure without feeling restrictive. That balance matters more than it might seem: too loose and your pet can feel unsteady, too tight and even short trips become uncomfortable. We've kept that balance in mind when curating this range.\n\nHave a browse below. We've also put together a short buying guide and some frequently asked questions further down the page if you want more detail before deciding.\n\nFor a wider look at this hands-free style, our [pet backpack carriers](/carriers/pet-backpack-carriers) range covers backpack designs across every pet type, not just cats."
+    },
+    "carriers/dog-carriers/rolling-dog-carriers": {
+      "path": "carriers/dog-carriers/rolling-dog-carriers",
+      "intro": "Choosing the right rolling dog carrier makes a real difference, especially for dogs who are more comfortable wheeled than carried. This category brings together options suited to exactly that, so you can compare like for like rather than sifting through everything at once.\n\nA well-chosen rolling dog carrier should feel secure without feeling restrictive. That balance matters more than it might seem: too loose and your pet can feel unsteady, too tight and even short trips become uncomfortable. We've kept that balance in mind when curating this range.\n\nHave a browse below. We've also put together a short buying guide and some frequently asked questions further down the page if you want more detail before deciding.\n\nFor the wider range of wheeled designs across all pets, see our [pet carriers with wheels](/carriers/pet-rolling-carriers) collection."
+    },
+    "carriers/dog-carriers/dog-slings": {
+      "path": "carriers/dog-carriers/dog-slings",
+      "intro": "Choosing the right dog sling makes a real difference, especially for dogs who travel best held close against you in a sling. This category brings together options suited to exactly that, so you can compare like for like rather than sifting through everything at once.\n\nA well-chosen dog sling should feel secure without feeling restrictive. That balance matters more than it might seem: too loose and your pet can feel unsteady, too tight and even short trips become uncomfortable. We've kept that balance in mind when curating this range.\n\nHave a browse below. We've also put together a short buying guide and some frequently asked questions further down the page if you want more detail before deciding.\n\nIf you're comparing sling styles more broadly, our [pet sling carriers](/carriers/pet-sling-carriers) range covers slings for dogs, cats and other small pets."
+    },
+    "carriers/cat-carriers/cat-slings": {
+      "path": "carriers/cat-carriers/cat-slings",
+      "intro": "Looking for cat slings? This is exactly the right place to start. Every cat sling in this range is chosen with cats who feel safest held close against you in mind, so you can shop with confidence rather than guessing whether something will actually fit.\n\nMaterials, ventilation and closures all matter here. A cat sling that looks the part in photos but skimps on airflow or has a flimsy closure will let you down exactly when you need it most, so these details are worth paying attention to before you buy.\n\nBrowse the range below, and if you're not sure where to start, our sizing and buying guide further down this page walks through exactly what to look for.\n\nFor a wider look at this style, our [pet sling carriers](/carriers/pet-sling-carriers) range covers slings across every pet type, not just cats."
+    },
+    "carriers/cat-carriers/hard-sided-cat-carriers": {
+      "path": "carriers/cat-carriers/hard-sided-cat-carriers",
+      "intro": "Hard-Sided Cat Carriers need to do one job well: help your pet travel without stress. Here you'll find options built specifically for cats who need a little extra protection and structure, so you're not stuck comparing generic products that don't quite fit the brief.\n\nComfort, safety and practicality all need to work together for this category. It's not just about picking the first option that looks nice, it's about finding something that will genuinely hold up to regular use.\n\nTake a look through what's available below. If you need a hand deciding between options, the buying guide and FAQ further down cover the questions we hear most often.\n\nFor the wider range of rigid-shell designs across all pets, see our [hard-sided pet carriers](/carriers/pet-hard-sided-carriers) collection."
+    },
+    "carriers/cat-carriers/soft-sided-cat-carriers": {
+      "path": "carriers/cat-carriers/soft-sided-cat-carriers",
+      "intro": "Soft-Sided Cat Carriers need to do one job well: help your pet travel without stress. Here you'll find options built specifically for cats who settle better in a softer, more flexible carrier, so you're not stuck comparing generic products that don't quite fit the brief.\n\nComfort, safety and practicality all need to work together for this category. It's not just about picking the first option that looks nice, it's about finding something that will genuinely hold up to regular use.\n\nTake a look through what's available below. If you need a hand deciding between options, the buying guide and FAQ further down cover the questions we hear most often.\n\nFor the wider range of lightweight, foldable designs across all pets, see our [soft-sided pet carriers](/carriers/pet-soft-sided-carriers) collection."
+    },
+    "carriers/cat-carriers": {
+      "path": "carriers/cat-carriers",
+      "intro": "Looking for cat carriers? This is exactly the right place to start. Every cat carrier in this range is chosen with cats of every age, from nervous kittens to larger breeds in mind, so you can shop with confidence rather than guessing whether something will actually fit.\n\nMaterials, ventilation and closures all matter here. A cat carrier that looks the part in photos but skimps on airflow or has a flimsy closure will let you down exactly when you need it most, so these details are worth paying attention to before you buy.\n\nBrowse the range below, and if you're not sure where to start, our sizing and buying guide further down this page walks through exactly what to look for.\n\nIf a vet appointment is what brings you here, our [pet carriers for vet visits](/carriers/pet-carriers-for-vet-visits) range picks out the designs best suited to that shorter, calmer kind of trip."
+    },
+    "carriers/small-animal-carriers": {
+      "path": "carriers/small-animal-carriers",
+      "intro": "Looking for small animal carriers? This is exactly the right place to start. Every small animal carrier in this range is chosen with rabbits, guinea pigs, hamsters, ferrets and other small pets in mind, so you can shop with confidence rather than guessing whether something will actually fit.\n\nMaterials, ventilation and closures all matter here. A small animal carrier that looks the part in photos but skimps on airflow or has a flimsy closure will let you down exactly when you need it most, so these details are worth paying attention to before you buy.\n\nBrowse the range below, and if you're not sure where to start, our sizing and buying guide further down this page walks through exactly what to look for.\n\nIf a vet appointment is what brings you here, our [pet carriers for vet visits](/carriers/pet-carriers-for-vet-visits) range picks out the designs best suited to that shorter, calmer kind of trip."
+    },
+    "carriers/dog-carriers/dog-car-carriers": {
+      "path": "carriers/dog-carriers/dog-car-carriers",
+      "intro": "Dog Car Carriers need to do one job well: help your pet travel without stress. Here you'll find options built specifically for safe, secure car journeys with your dog, so you're not stuck comparing generic products that don't quite fit the brief.\n\nComfort, safety and practicality all need to work together for this category. It's not just about picking the first option that looks nice, it's about finding something that will genuinely hold up to regular use.\n\nTake a look through what's available below. If you need a hand deciding between options, the buying guide and FAQ further down cover the questions we hear most often.\n\nFor the wider range of car-secure designs across all pets, see our [pet carriers for car travel](/carriers/pet-car-travel-carriers) collection."
+    },
+    "carriers/dog-carriers/small-dog-carriers": {
+      "path": "carriers/dog-carriers/small-dog-carriers",
+      "intro": "Looking for small dog carriers? This is exactly the right place to start. Every small dog carrier in this range is chosen with small dogs weighing up to around 10kg in mind, so you can shop with confidence rather than guessing whether something will actually fit.\n\nMaterials, ventilation and closures all matter here. A small dog carrier that looks the part in photos but skimps on airflow or has a flimsy closure will let you down exactly when you need it most, so these details are worth paying attention to before you buy.\n\nBrowse the range below, and if you're not sure where to start, our sizing and buying guide further down this page walks through exactly what to look for.\n\nFor short, calmer trips specifically, our [pet carriers for vet visits](/carriers/pet-carriers-for-vet-visits) range picks out designs suited to that kind of appointment, and our [everyday pet carriers](/carriers/everyday-pet-carriers) range covers general day-to-day use."
+    }
+  },
   "custom": [],
   "deleted": []
 }

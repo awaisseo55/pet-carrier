@@ -15,6 +15,7 @@ import { getBreadcrumbNodes, getChildNodes, getRelatedNodes, getResolvedCategory
 import { getProductById, getProductsByCategoryIncludingDescendants, toPublicProduct } from "@/lib/products";
 import { getCategoryImageUrl } from "@/lib/placeholders";
 import { breadcrumbJsonLd, collectionPageJsonLd, faqJsonLd } from "@/lib/seo";
+import { renderRichText } from "@/lib/markdown-lite";
 
 // Belt-and-braces alongside the on-demand revalidatePath() calls in
 // lib/revalidate.ts (which fire immediately after an admin save): a ceiling
@@ -134,11 +135,7 @@ export default async function CategoryPage({
         </div>
       </div>
 
-      <div className="mt-6 flex flex-col gap-4 text-gray-600">
-        {resolved.intro.split("\n\n").map((paragraph, i) => (
-          <p key={i}>{paragraph}</p>
-        ))}
-      </div>
+      <div className="mt-6 flex flex-col gap-4 text-gray-600">{renderRichText(resolved.intro)}</div>
 
       {children.length > 0 && (
         <div className="mt-10">

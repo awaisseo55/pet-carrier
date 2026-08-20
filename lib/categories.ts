@@ -167,16 +167,16 @@ const birdCarrierSubs: CategoryNode[] = [
 ];
 
 const carrierCollections: CategoryNode[] = [
-  collection("carriers", "carriers", "airline-approved-carriers", "Airline Approved Carriers", "multiple pets", "any pet flying in the cabin on UK and EU airlines"),
-  collection("carriers", "carriers", "backpack-carriers", "Backpack Carriers", "multiple pets", "hands-free travel with your pet carried on your back"),
-  collection("carriers", "carriers", "rolling-carriers", "Rolling Carriers", "multiple pets", "pets who travel better wheeled than carried"),
-  collection("carriers", "carriers", "sling-carriers", "Sling Carriers", "multiple pets", "pets who feel calmest held close in a sling"),
-  collection("carriers", "carriers", "hard-sided-carriers", "Hard-Sided Carriers", "multiple pets", "pets who need a sturdier, more protective carrier"),
-  collection("carriers", "carriers", "soft-sided-carriers", "Soft-Sided Carriers", "multiple pets", "pets who prefer a lighter, more flexible carrier"),
-  collection("carriers", "carriers", "vet-visit-carriers", "Vet Visit Carriers", "multiple pets", "short, sometimes stressful trips to the vet"),
-  collection("carriers", "carriers", "car-travel-carriers", "Car Travel Carriers", "multiple pets", "safe, secure car journeys"),
+  collection("carriers", "carriers", "pet-airline-approved-carriers", "Airline Approved Pet Carriers", "multiple pets", "any pet flying in the cabin on UK and EU airlines"),
+  collection("carriers", "carriers", "pet-backpack-carriers", "Pet Backpack Carriers", "multiple pets", "hands-free travel with your pet carried on your back"),
+  collection("carriers", "carriers", "pet-rolling-carriers", "Pet Carriers with Wheels", "multiple pets", "pets who travel better wheeled than carried"),
+  collection("carriers", "carriers", "pet-sling-carriers", "Pet Sling Carriers", "multiple pets", "pets who feel calmest held close in a sling"),
+  collection("carriers", "carriers", "pet-hard-sided-carriers", "Hard-Sided Pet Carriers", "multiple pets", "pets who need a sturdier, more protective carrier"),
+  collection("carriers", "carriers", "pet-soft-sided-carriers", "Soft-Sided Pet Carriers", "multiple pets", "pets who prefer a lighter, more flexible carrier"),
+  collection("carriers", "carriers", "pet-carriers-for-vet-visits", "Pet Carriers for Vet Visits", "multiple pets", "short trips to the vet"),
+  collection("carriers", "carriers", "pet-car-travel-carriers", "Pet Carriers for Car Travel", "multiple pets", "safe, secure car journeys"),
   collection("carriers", "carriers", "hiking-pet-carriers", "Hiking Pet Carriers", "multiple pets", "pets joining you on longer walks and hikes"),
-  collection("carriers", "carriers", "everyday-carriers", "Everyday Carriers", "multiple pets", "everyday trips and errands with your pet"),
+  collection("carriers", "carriers", "everyday-pet-carriers", "Everyday Pet Carriers", "multiple pets", "everyday trips and errands with your pet"),
 ];
 
 // ---------------------------------------------------------------------

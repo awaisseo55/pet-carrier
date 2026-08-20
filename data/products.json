@@ -44,9 +44,9 @@
       "carriers/dog-carriers/dog-car-carriers",
       "carriers/cat-carriers",
       "carriers/cat-carriers/soft-sided-cat-carriers",
-      "carriers/soft-sided-carriers",
-      "carriers/vet-visit-carriers",
-      "carriers/car-travel-carriers"
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-carriers-for-vet-visits",
+      "carriers/pet-car-travel-carriers"
     ],
     "size_range": "S to XXL",
     "weight_capacity": "Approximately 7kg to 30kg depending on size selected",
@@ -352,9 +352,9 @@
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/soft-sided-carriers",
-      "carriers/vet-visit-carriers",
-      "carriers/car-travel-carriers"
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-carriers-for-vet-visits",
+      "carriers/pet-car-travel-carriers"
     ],
     "size_range": "S to XXXL",
     "weight_capacity": "Approximately 5kg to 35kg depending on size selected",
@@ -880,7 +880,7 @@
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
       "carriers/dog-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers",
       "carriers/dog-carriers/medium-dog-carriers"
     ],
@@ -1089,8 +1089,8 @@
       "carriers/cat-carriers",
       "carriers/cat-carriers/large-cat-carriers",
       "carriers/dog-carriers/airline-approved-dog-carriers",
-      "carriers/vet-visit-carriers",
-      "carriers/airline-approved-carriers"
+      "carriers/pet-carriers-for-vet-visits",
+      "carriers/pet-airline-approved-carriers"
     ],
     "size_range": "Medium to Large",
     "weight_capacity": "See listing",
@@ -1230,9 +1230,9 @@
     "category_slugs": [
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/cat-carriers/soft-sided-cat-carriers",
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/everyday-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/everyday-pet-carriers",
       "carriers/dog-carriers",
       "carriers",
       "carriers/dog-carriers/puppy-carriers",
@@ -1486,9 +1486,9 @@
     "category_slugs": [
       "carriers/cat-carriers/airline-approved-cat-carriers",
       "carriers/cat-carriers/soft-sided-cat-carriers",
-      "carriers/airline-approved-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/soft-sided-carriers",
+      "carriers/pet-airline-approved-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-soft-sided-carriers",
       "carriers",
       "carriers/dog-carriers/puppy-carriers",
       "carriers/cat-carriers",
@@ -1657,9 +1657,9 @@
       "carriers/cat-carriers/soft-sided-cat-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers",
-      "carriers/soft-sided-carriers",
-      "carriers/airline-approved-carriers",
-      "carriers/car-travel-carriers"
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-airline-approved-carriers",
+      "carriers/pet-car-travel-carriers"
     ],
     "size_range": "Medium to Large",
     "weight_capacity": "7.3kg (16lbs)",
@@ -1822,9 +1822,9 @@
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/cat-carriers",
       "carriers/dog-carriers",
-      "carriers/soft-sided-carriers",
+      "carriers/pet-soft-sided-carriers",
       "carriers/hiking-pet-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers"
     ],
     "size_range": "M to XL",
@@ -1979,8 +1979,8 @@
       "carriers/dog-carriers/puppy-slings",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/cat-carriers",
-      "carriers/sling-carriers",
-      "carriers/everyday-carriers",
+      "carriers/pet-sling-carriers",
+      "carriers/everyday-pet-carriers",
       "carriers"
     ],
     "size_range": "Small (L strap size)",
@@ -2174,8 +2174,8 @@
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/cat-carriers",
-      "carriers/sling-carriers",
-      "carriers/everyday-carriers",
+      "carriers/pet-sling-carriers",
+      "carriers/everyday-pet-carriers",
       "carriers",
       "carriers/cat-carriers/cat-slings",
       "carriers/cat-carriers/large-cat-carriers"
@@ -2319,9 +2319,9 @@
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/cat-carriers",
-      "carriers/sling-carriers",
-      "carriers/vet-visit-carriers",
-      "carriers/everyday-carriers"
+      "carriers/pet-sling-carriers",
+      "carriers/pet-carriers-for-vet-visits",
+      "carriers/everyday-pet-carriers"
     ],
     "size_range": "Small to medium",
     "weight_capacity": "Not stated by manufacturer",
@@ -2502,9 +2502,9 @@
       "carriers/dog-carriers/dog-slings",
       "carriers/dog-carriers/puppy-slings",
       "carriers/dog-carriers/small-dog-carriers",
-      "carriers/sling-carriers",
-      "carriers/soft-sided-carriers",
-      "carriers/everyday-carriers"
+      "carriers/pet-sling-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/everyday-pet-carriers"
     ],
     "size_range": "Small (up to approx. 12lbs / 5.4kg)",
     "weight_capacity": "12lbs (5.4kg)",
@@ -2725,10 +2725,10 @@
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/cat-carriers",
       "carriers/dog-carriers",
-      "carriers/airline-approved-carriers",
-      "carriers/soft-sided-carriers",
-      "carriers/vet-visit-carriers",
-      "carriers/car-travel-carriers"
+      "carriers/pet-airline-approved-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-carriers-for-vet-visits",
+      "carriers/pet-car-travel-carriers"
     ],
     "size_range": "One size (approx. 43cm x 28cm x 28cm)",
     "weight_capacity": "Approximately up to 7kg",
@@ -2826,10 +2826,10 @@
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/cat-carriers",
       "carriers/dog-carriers",
-      "carriers/airline-approved-carriers",
-      "carriers/soft-sided-carriers",
-      "carriers/vet-visit-carriers",
-      "carriers/car-travel-carriers"
+      "carriers/pet-airline-approved-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-carriers-for-vet-visits",
+      "carriers/pet-car-travel-carriers"
     ],
     "size_range": "One size (approx. 43cm x 30cm x 33cm)",
     "weight_capacity": "Approximately up to 7kg",
@@ -2931,9 +2931,9 @@
       "carriers/dog-carriers/puppy-carriers",
       "carriers/cat-carriers",
       "carriers/dog-carriers",
-      "carriers/airline-approved-carriers",
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers"
+      "carriers/pet-airline-approved-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers"
     ],
     "size_range": "Medium (approx. 47cm x 24cm x 30cm)",
     "weight_capacity": "Approximately up to 10kg",
@@ -3033,10 +3033,10 @@
       "carriers/cat-carriers/soft-sided-cat-carriers",
       "carriers/cat-carriers/kitten-carriers",
       "carriers/cat-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/soft-sided-carriers",
-      "carriers/everyday-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/everyday-pet-carriers",
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "One size (approx. 43cm x 28cm x 28cm)",
     "weight_capacity": "Approximately under 5kg",
@@ -3134,8 +3134,8 @@
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/backpack-carriers",
-      "carriers/everyday-carriers"
+      "carriers/pet-backpack-carriers",
+      "carriers/everyday-pet-carriers"
     ],
     "size_range": "Small to medium (approx. 1kg to 25kg, check listing before ordering)",
     "weight_capacity": "Approximately 1kg to 25kg",
@@ -3220,7 +3220,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-slings",
-      "carriers/sling-carriers",
+      "carriers/pet-sling-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -3302,7 +3302,7 @@
     "category_slugs": [
       "carriers/dog-carriers/dog-slings",
       "carriers/dog-carriers/puppy-slings",
-      "carriers/sling-carriers",
+      "carriers/pet-sling-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -3383,7 +3383,7 @@
     "category_slugs": [
       "carriers/dog-carriers/dog-slings",
       "carriers/dog-carriers/puppy-slings",
-      "carriers/sling-carriers",
+      "carriers/pet-sling-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -3464,7 +3464,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-slings",
-      "carriers/sling-carriers",
+      "carriers/pet-sling-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -3546,7 +3546,7 @@
     "category_slugs": [
       "carriers/dog-carriers/dog-slings",
       "carriers/dog-carriers/puppy-slings",
-      "carriers/sling-carriers",
+      "carriers/pet-sling-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -3628,7 +3628,7 @@
     "category_slugs": [
       "carriers/dog-carriers/dog-slings",
       "carriers/dog-carriers/puppy-slings",
-      "carriers/sling-carriers",
+      "carriers/pet-sling-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers",
@@ -3715,7 +3715,7 @@
     "category_slugs": [
       "carriers/dog-carriers/dog-slings",
       "carriers/dog-carriers/puppy-slings",
-      "carriers/sling-carriers",
+      "carriers/pet-sling-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers"
     ],
@@ -3793,7 +3793,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-slings",
-      "carriers/sling-carriers",
+      "carriers/pet-sling-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -3874,7 +3874,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-slings",
-      "carriers/sling-carriers",
+      "carriers/pet-sling-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers",
@@ -3959,9 +3959,9 @@
       "https://images.pet-carrier.co.uk/products/amazon-basics-4-doors-portable-soft-sided-folding-travel-cra/gallery-5.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -4043,9 +4043,9 @@
       "https://images.pet-carrier.co.uk/products/feandrea-collapsible-dog-crate-portable-pet-travel-crate-for/gallery-5.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers"
     ],
@@ -4125,9 +4125,9 @@
       "https://images.pet-carrier.co.uk/products/floofy-friends-soft-sided-dog-travel-crate-foldable/gallery-5.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -4204,9 +4204,9 @@
       "https://images.pet-carrier.co.uk/products/tails-of-glory-dog-carrier-bag-travel-dog-bed-for-small-dogs/gallery-5.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -4288,7 +4288,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-slings",
-      "carriers/sling-carriers",
+      "carriers/pet-sling-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -4367,9 +4367,9 @@
       "https://images.pet-carrier.co.uk/products/rosewood-eco-line-recycled-plastic-pet-carrier-for-travel/gallery-3.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers"
     ],
@@ -4449,9 +4449,9 @@
       "https://images.pet-carrier.co.uk/products/morpilot-large-dog-cat-carrier/gallery-5.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/large-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -4530,9 +4530,9 @@
       "https://images.pet-carrier.co.uk/products/petbarn-portable-soft-fabric-pet-carrier-folding-dog-cat-pup/gallery-5.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/large-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -4614,9 +4614,9 @@
       "https://images.pet-carrier.co.uk/products/petsfit-collapsible-dog-crate-dog-travel-crate/gallery-5.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers"
     ],
@@ -4688,9 +4688,9 @@
       "https://images.pet-carrier.co.uk/products/rac-pet-carrier-large/gallery-3.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/large-dog-carriers",
       "carriers/dog-carriers"
     ],
@@ -4767,9 +4767,9 @@
       "https://images.pet-carrier.co.uk/products/kerbl-transport-box-expedion-with-plastic-door/gallery-5.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers"
     ],
     "size_range": "small to medium",
@@ -4845,7 +4845,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-backpack-carriers",
-      "carriers/backpack-carriers",
+      "carriers/pet-backpack-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -4926,7 +4926,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-backpack-carriers",
-      "carriers/backpack-carriers",
+      "carriers/pet-backpack-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -5008,7 +5008,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-backpack-carriers",
-      "carriers/backpack-carriers",
+      "carriers/pet-backpack-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -5090,7 +5090,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-backpack-carriers",
-      "carriers/backpack-carriers",
+      "carriers/pet-backpack-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers"
     ],
@@ -5170,7 +5170,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-backpack-carriers",
-      "carriers/backpack-carriers",
+      "carriers/pet-backpack-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -5251,7 +5251,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-backpack-carriers",
-      "carriers/backpack-carriers",
+      "carriers/pet-backpack-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers"
     ],
@@ -5329,7 +5329,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-backpack-carriers",
-      "carriers/backpack-carriers",
+      "carriers/pet-backpack-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -5410,7 +5410,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-backpack-carriers",
-      "carriers/backpack-carriers",
+      "carriers/pet-backpack-carriers",
       "carriers/dog-carriers/large-dog-carriers",
       "carriers/dog-carriers"
     ],
@@ -5489,7 +5489,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-backpack-carriers",
-      "carriers/backpack-carriers",
+      "carriers/pet-backpack-carriers",
       "carriers/dog-carriers/large-dog-carriers",
       "carriers/dog-carriers"
     ],
@@ -5568,7 +5568,7 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-backpack-carriers",
-      "carriers/backpack-carriers",
+      "carriers/pet-backpack-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers"
     ],
@@ -5645,10 +5645,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/airline-approved-dog-carriers",
-      "carriers/airline-approved-carriers",
+      "carriers/pet-airline-approved-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "medium",
     "weight_capacity": "See product description",
@@ -5722,11 +5722,11 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/large-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "large",
     "weight_capacity": "See product description",
@@ -5807,10 +5807,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/airline-approved-dog-carriers",
-      "carriers/airline-approved-carriers",
+      "carriers/pet-airline-approved-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "medium",
     "weight_capacity": "20kg",
@@ -5882,9 +5882,9 @@
       "https://images.pet-carrier.co.uk/products/petprsco-portable-collapsible-dog-crate/gallery-5.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/large-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -5963,9 +5963,9 @@
       "https://images.pet-carrier.co.uk/products/hugglepets-foldable-fabric-pet-crate-carrier/gallery-5.webp"
     ],
     "category_slugs": [
-      "carriers/soft-sided-carriers",
-      "carriers/car-travel-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/large-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers"
@@ -6046,10 +6046,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "medium",
     "weight_capacity": "16kg",
@@ -6125,10 +6125,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/large-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "large",
     "weight_capacity": "25kg",
@@ -6206,11 +6206,11 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/large-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "large",
     "weight_capacity": "See product description",
@@ -6287,10 +6287,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "medium",
     "weight_capacity": "12kg",
@@ -6370,11 +6370,11 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "small",
     "weight_capacity": "6kg",
@@ -6453,10 +6453,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "small",
     "weight_capacity": "15kg",
@@ -6534,10 +6534,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "medium",
     "weight_capacity": "See product description",
@@ -6614,10 +6614,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "small",
     "weight_capacity": "6kg",
@@ -6694,9 +6694,9 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "small to medium",
     "weight_capacity": "See product description",
@@ -6774,10 +6774,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/large-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "large",
     "weight_capacity": "26kg",
@@ -6856,10 +6856,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "small",
     "weight_capacity": "10kg",
@@ -6936,10 +6936,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "medium",
     "weight_capacity": "16kg",
@@ -7017,11 +7017,11 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "medium",
     "weight_capacity": "20kg",
@@ -7099,10 +7099,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/medium-dog-carriers",
       "carriers/dog-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "medium",
     "weight_capacity": "See product description",
@@ -7176,11 +7176,11 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "small",
     "weight_capacity": "See product description",
@@ -7259,10 +7259,10 @@
     ],
     "category_slugs": [
       "carriers/dog-carriers/dog-car-carriers",
-      "carriers/car-travel-carriers",
+      "carriers/pet-car-travel-carriers",
       "carriers/dog-carriers",
       "carriers/cat-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "Standard / Medium",
     "weight_capacity": "7kg",
@@ -7403,7 +7403,7 @@
       "carriers/bird-carriers/budgie-travel-cages",
       "carriers/small-animal-carriers/hamster-carriers",
       "carriers/small-animal-carriers/guinea-pig-carriers",
-      "carriers/vet-visit-carriers"
+      "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "One size (35 x 24 x 21cm)",
     "weight_capacity": "Not stated by manufacturer",
@@ -7723,7 +7723,7 @@
       "carriers/dog-carriers/dog-backpack-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/cat-carriers/cat-backpack-carriers",
-      "carriers/vet-visit-carriers",
+      "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers"
     ],
     "size_range": "One size",

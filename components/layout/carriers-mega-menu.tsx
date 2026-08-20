@@ -14,19 +14,19 @@ const byPet = [
 ];
 
 const byStyle = [
-  { href: "/carriers/airline-approved-carriers", label: "Airline Approved" },
-  { href: "/carriers/backpack-carriers", label: "Backpack Carriers" },
-  { href: "/carriers/rolling-carriers", label: "Rolling Carriers" },
-  { href: "/carriers/sling-carriers", label: "Sling Carriers" },
-  { href: "/carriers/hard-sided-carriers", label: "Hard-Sided Carriers" },
-  { href: "/carriers/soft-sided-carriers", label: "Soft-Sided Carriers" },
+  { href: "/carriers/pet-airline-approved-carriers", label: "Airline Approved" },
+  { href: "/carriers/pet-backpack-carriers", label: "Pet Backpack Carriers" },
+  { href: "/carriers/pet-rolling-carriers", label: "Pet Carriers with Wheels" },
+  { href: "/carriers/pet-sling-carriers", label: "Pet Sling Carriers" },
+  { href: "/carriers/pet-hard-sided-carriers", label: "Hard-Sided Carriers" },
+  { href: "/carriers/pet-soft-sided-carriers", label: "Soft-Sided Carriers" },
 ];
 
 const byUse = [
-  { href: "/carriers/vet-visit-carriers", label: "Vet Visit Carriers" },
-  { href: "/carriers/car-travel-carriers", label: "Car Travel Carriers" },
+  { href: "/carriers/pet-carriers-for-vet-visits", label: "Vet Visit Carriers" },
+  { href: "/carriers/pet-car-travel-carriers", label: "Car Travel Carriers" },
   { href: "/carriers/hiking-pet-carriers", label: "Hiking Carriers" },
-  { href: "/carriers/everyday-carriers", label: "Everyday Carriers" },
+  { href: "/carriers/everyday-pet-carriers", label: "Everyday Carriers" },
 ];
 
 export function CarriersMegaMenu() {
