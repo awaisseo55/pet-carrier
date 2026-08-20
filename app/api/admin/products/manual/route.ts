@@ -72,7 +72,7 @@ export async function POST(request: Request) {
     created_at: now,
     updated_at: now,
     markup_percentage: 0,
-    meta_title: body.meta_title || `${title} | Pet Carrier`,
+    meta_title: body.meta_title || title,
     meta_description: body.meta_description || short_description || "",
   };
 

@@ -40,9 +40,7 @@ function singularName(node: CategoryNode): string {
 }
 
 export function getMetaTitle(node: CategoryNode): string {
-  const base = `${node.name} UK 2026`;
-  const withBrand = `${base} | Pet Carrier`;
-  return withBrand.length <= 60 ? withBrand : `${base.slice(0, 55)}… | Pet Carrier`.slice(0, 60);
+  return node.name.length <= 60 ? node.name : `${node.name.slice(0, 57)}...`;
 }
 
 export function getMetaDescription(node: CategoryNode): string {

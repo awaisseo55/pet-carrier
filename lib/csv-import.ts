@@ -170,7 +170,7 @@ export async function processCsvRow(
 
   let description = data.description?.trim() || "";
   let shortDescription = data.short_description?.trim() || "";
-  let metaTitle = data.meta_title?.trim() || `${title} | Pet Carrier`;
+  let metaTitle = data.meta_title?.trim() || title;
   let metaDescription = data.meta_description?.trim() || "";
   let features = data.features
     ? data.features.split(",").map((f) => f.trim()).filter(Boolean)
