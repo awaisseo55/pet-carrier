@@ -5,24 +5,25 @@ import React from "react";
  * Minimal markdown-like renderer for admin-authored product/content copy.
  * Supports exactly what the site's product descriptions and FAQ answers
  * need: "## "/"### " headings, "- " bullet lists, blank-line-separated
- * paragraphs, and inline [text](/path) links. Deliberately not a full
- * markdown parser (no bold/italic/tables/nesting) and never touches
- * dangerouslySetInnerHTML, everything renders as real React elements built
- * from trusted, admin-entered text.
+ * paragraphs, inline [text](/path) links, and **bold** emphasis (no
+ * italic/tables/nesting). Never touches dangerouslySetInnerHTML, everything
+ * renders as real React elements built from trusted, admin-entered text.
  */
 function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
-  const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const inlinePattern = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
   let lastIndex = 0;
   let match: RegExpExecArray | null;
   let i = 0;
 
-  while ((match = linkPattern.exec(text)) !== null) {
+  while ((match = inlinePattern.exec(text)) !== null) {
     if (match.index > lastIndex) {
       parts.push(text.slice(lastIndex, match.index));
     }
-    const [, label, href] = match;
-    if (href.startsWith("/")) {
+    const [, label, href, bold] = match;
+    if (bold !== undefined) {
+      parts.push(<strong key={`${keyPrefix}-strong-${i}`}>{bold}</strong>);
+    } else if (href.startsWith("/")) {
       parts.push(
         <Link key={`${keyPrefix}-link-${i}`} href={href} className="text-blue-600 hover:text-blue-800 hover:underline">
           {label}
