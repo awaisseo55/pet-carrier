@@ -39,7 +39,82 @@ function singularName(node: CategoryNode): string {
   return lower.replace(/s$/, "");
 }
 
+/**
+ * Hand-authored meta titles for every built-in category, keyed by path.
+ * The bare category name alone (e.g. "Dog Carriers") is too thin for search
+ * or AI-answer-engine ranking, it wastes most of the ~60-character budget
+ * and reads as generic. Each entry below leads with the primary keyword and
+ * adds a short, genuine qualifier (size, use, material) rather than padding
+ * with filler. Admin-added custom categories (not in this table) fall back
+ * to the plain node.name below.
+ */
+const CATEGORY_META_TITLES: Record<string, string> = {
+  carriers: "Pet Carriers for Dogs, Cats, Small Animals & Birds",
+  "carriers/dog-carriers": "Dog Carriers: Comfortable Options for Every Size",
+  "carriers/dog-carriers/puppy-carriers": "Puppy Carriers for Growing, Curious Pups",
+  "carriers/dog-carriers/puppy-slings": "Puppy Slings for Holding Young Pups Close",
+  "carriers/dog-carriers/small-dog-carriers": "Small Dog Carriers for Dogs Up to 10kg",
+  "carriers/dog-carriers/medium-dog-carriers": "Medium Dog Carriers for Dogs 10 to 25kg",
+  "carriers/dog-carriers/large-dog-carriers": "Large Dog Carriers for Dogs Over 25kg",
+  "carriers/dog-carriers/dog-slings": "Dog Slings for Holding Your Dog Close",
+  "carriers/dog-carriers/dog-backpack-carriers": "Dog Backpack Carriers for Hands-Free Walks",
+  "carriers/dog-carriers/airline-approved-dog-carriers": "Airline Approved Dog Carriers for Cabin Travel",
+  "carriers/dog-carriers/dog-car-carriers": "Dog Car Carriers for Safe, Secure Journeys",
+  "carriers/dog-carriers/dog-bike-carriers": "Dog Bike Carriers for Rides with Your Dog",
+  "carriers/dog-carriers/hiking-dog-carriers": "Hiking Dog Carriers for Longer Walks",
+  "carriers/dog-carriers/rolling-dog-carriers": "Rolling Dog Carriers with Wheels",
+  "carriers/cat-carriers": "Cat Carriers: Calm, Secure Travel for Cats",
+  "carriers/cat-carriers/kitten-carriers": "Kitten Carriers for Young, Nervous Kittens",
+  "carriers/cat-carriers/soft-sided-cat-carriers": "Soft-Sided Cat Carriers, Light & Foldable",
+  "carriers/cat-carriers/hard-sided-cat-carriers": "Hard-Sided Cat Carriers for Extra Protection",
+  "carriers/cat-carriers/cat-backpack-carriers": "Cat Backpack Carriers for Hands-Free Trips",
+  "carriers/cat-carriers/airline-approved-cat-carriers": "Airline Approved Cat Carriers for Cabin Travel",
+  "carriers/cat-carriers/cat-slings": "Cat Slings for Holding Your Cat Close",
+  "carriers/cat-carriers/large-cat-carriers": "Large Cat Carriers for Bigger Cat Breeds",
+  "carriers/small-animal-carriers": "Small Animal Carriers for Rabbits, Guinea Pigs & More",
+  "carriers/small-animal-carriers/rabbit-carriers": "Rabbit Carriers with Ventilated, Secure Bases",
+  "carriers/small-animal-carriers/guinea-pig-carriers": "Guinea Pig Carriers for Short, Safe Trips",
+  "carriers/small-animal-carriers/hamster-carriers": "Hamster Carriers for Small Pet Rodents",
+  "carriers/small-animal-carriers/ferret-carriers": "Ferret Carriers, Secure & Escape-Proof",
+  "carriers/small-animal-carriers/reptile-carriers": "Reptile Carriers for Warm, Secure Transport",
+  "carriers/bird-carriers": "Bird Carriers for Budgies, Parrots & Pet Birds",
+  "carriers/bird-carriers/budgie-travel-cages": "Budgie Travel Cages for Small Pet Birds",
+  "carriers/bird-carriers/parrot-travel-cages": "Parrot Travel Cages with Room to Perch",
+  "carriers/bird-carriers/small-bird-carriers": "Small Bird Carriers for Short, Calm Trips",
+  "carriers/hiking-pet-carriers": "Hiking Pet Carriers for Longer Walks Outdoors",
+  strollers: "Pet Strollers for Dogs, Cats & Small Animals",
+  "strollers/dog-strollers": "Dog Strollers for a Comfortable Ride on Wheels",
+  "strollers/dog-strollers/small-dog-strollers": "Small Dog Strollers for Toy & Small Breeds",
+  "strollers/dog-strollers/large-dog-strollers": "Large Dog Strollers with a Sturdy Frame",
+  "strollers/dog-strollers/jogging-dog-strollers": "Jogging Dog Strollers for Runs Together",
+  "strollers/dog-strollers/double-dog-strollers": "Double Dog Strollers for Two Dogs Together",
+  "strollers/dog-strollers/puppy-strollers": "Puppy Strollers for Young, Unvaccinated Pups",
+  "strollers/cat-strollers": "Cat Strollers for Safe Outdoor Fresh Air",
+  "strollers/small-animal-strollers": "Small Animal Strollers for Rabbits & Guinea Pigs",
+  "strollers/multi-pet-strollers": "Multi-Pet Strollers for Travelling Together",
+  beds: "Pet Beds for Dogs, Cats & Small Animals",
+  "beds/dog-beds": "Dog Beds for Comfortable Rest & Recovery",
+  "beds/dog-beds/puppy-beds": "Puppy Beds for Growing Pups to Settle Into",
+  "beds/dog-beds/small-dog-beds": "Small Dog Beds for Small Dog Breeds",
+  "beds/dog-beds/large-dog-beds": "Large Dog Beds with Room to Stretch Out",
+  "beds/dog-beds/orthopaedic-dog-beds": "Orthopaedic Dog Beds for Joint Support",
+  "beds/dog-beds/elevated-dog-beds": "Elevated Dog Beds, Raised Off the Floor",
+  "beds/dog-beds/travel-dog-beds": "Travel Dog Beds for a Familiar Place to Rest",
+  "beds/cat-beds": "Cat Beds for Cosy, Comfortable Naps",
+  "beds/cat-beds/kitten-beds": "Kitten Beds for Young Kittens to Settle Into",
+  "beds/cat-beds/cat-cave-beds": "Cat Cave Beds for Cats Who Love to Hide",
+  "beds/cat-beds/heated-cat-beds": "Heated Cat Beds for Cats Who Feel the Cold",
+  "beds/cat-beds/window-cat-beds": "Window Cat Beds for Watching the World Go By",
+  "beds/small-animal-beds": "Small Animal Beds for Rabbits, Guinea Pigs & More",
+  "beds/small-animal-beds/rabbit-beds": "Rabbit Beds, Soft & Insulated for Burrowing",
+  "beds/small-animal-beds/guinea-pig-beds": "Guinea Pig Beds for Burrowing Somewhere Warm",
+  "beds/small-animal-beds/ferret-beds": "Ferret Beds for Sleeping Tucked Away",
+  "beds/travel-beds": "Travel Beds for a Familiar Bed Away from Home",
+};
+
 export function getMetaTitle(node: CategoryNode): string {
+  const curated = CATEGORY_META_TITLES[node.path];
+  if (curated) return curated;
   return node.name.length <= 60 ? node.name : `${node.name.slice(0, 57)}...`;
 }
 
