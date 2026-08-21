@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/accordion";
 import { CATEGORIES, type Section } from "@/lib/categories";
 import { getBreadcrumbNodes, getChildNodes, getRelatedNodes, getResolvedCategory } from "@/lib/category-store";
+import { getRelevantBlogPosts } from "@/lib/blog";
 import { getProductById, getProductsByCategoryIncludingDescendants, toPublicProduct } from "@/lib/products";
 import { getCategoryImageUrl } from "@/lib/placeholders";
 import { breadcrumbJsonLd, collectionPageJsonLd, faqJsonLd } from "@/lib/seo";
@@ -73,12 +74,13 @@ export default async function CategoryPage({
   const resolved = await getResolvedCategory(fullPath);
   if (!resolved) notFound();
 
-  const [breadcrumbTrail, children, related, products, categoryImage] = await Promise.all([
+  const [breadcrumbTrail, children, related, products, categoryImage, relevantPosts] = await Promise.all([
     getBreadcrumbNodes(fullPath),
     getChildNodes(fullPath),
     getRelatedNodes(fullPath),
     getProductsByCategoryIncludingDescendants(fullPath),
     getCategoryImageUrl(fullPath),
+    getRelevantBlogPosts(fullPath),
   ]);
 
   // Featured products pinned by admin for this category, if any, shown first.
@@ -235,12 +237,28 @@ export default async function CategoryPage({
         </div>
       )}
 
-      <div className="mt-12">
-        <h2 className="font-heading text-xl font-semibold text-foreground">From the Blog</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          We haven’t published a blog post for this category yet, check back soon.
-        </p>
-      </div>
+      {relevantPosts.length > 0 && (
+        <div className="mt-12">
+          <h2 className="font-heading text-xl font-semibold text-foreground">From the Blog</h2>
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {relevantPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group flex gap-4 rounded-lg border border-border bg-card p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md"
+              >
+                <div className="relative aspect-square w-20 shrink-0 overflow-hidden rounded-md">
+                  <Image src={post.cover_image} alt={post.title} fill sizes="80px" className="object-cover" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground group-hover:text-blue-700">{post.title}</p>
+                  <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{post.excerpt}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
