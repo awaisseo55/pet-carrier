@@ -5,10 +5,8 @@ import type { ProductRatingStats, PublicReview, RatingBreakdown, Review, ReviewS
 import { readJsonFile, writeJsonFile } from "./data-store";
 import { updateProductRatingStats } from "./products";
 
-const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 review per IP per product per hour
-
 // Deliberately short and conservative: this is a first line of defence
-// alongside rate limiting and admin moderation, not a substitute for either.
+// alongside admin moderation, not a substitute for it.
 const SPAM_TERMS = [
   "viagra",
   "cialis",
@@ -63,15 +61,6 @@ export function hashIp(ip: string): string {
 export function containsSpamTerms(text: string): boolean {
   const lower = text.toLowerCase();
   return SPAM_TERMS.some((term) => lower.includes(term));
-}
-
-/** True if this IP has already posted a review for this product within the rate-limit window. */
-export async function isRateLimited(productId: string, ipHash: string): Promise<boolean> {
-  const reviews = await getAllReviews();
-  const cutoff = Date.now() - RATE_LIMIT_WINDOW_MS;
-  return reviews.some(
-    (r) => r.productId === productId && r.ipHash === ipHash && new Date(r.createdAt).getTime() > cutoff
-  );
 }
 
 export interface CreateReviewInput {

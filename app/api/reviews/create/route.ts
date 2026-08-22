@@ -8,7 +8,6 @@ import {
   containsSpamTerms,
   createReview,
   hashIp,
-  isRateLimited,
   syncProductRatingStats,
   toPublicReview,
 } from "@/lib/reviews";
@@ -88,12 +87,6 @@ export async function POST(request: Request) {
 
   const ip = getRequestIp(request);
   const ipHash = hashIp(ip);
-  if (await isRateLimited(product.id, ipHash)) {
-    return NextResponse.json(
-      { error: "You can only leave one review per product per hour. Please try again shortly." },
-      { status: 429 }
-    );
-  }
 
   const reviewId = nanoid(12);
   const images: string[] = [];
