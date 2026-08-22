@@ -54,19 +54,19 @@ export function AddToCart({ product, selectedVariant = null }: AddToCartProps) {
   }
 
   return (
-    <div className="flex flex-col gap-3 sm:flex-row">
-      <div className="flex items-center rounded-full border border-border">
+    <div className="flex items-center gap-3">
+      <div className="flex h-13 shrink-0 items-center justify-between rounded-full border border-border">
         <button
           onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-          className="flex size-11 items-center justify-center rounded-full hover:bg-muted cursor-pointer"
+          className="flex size-13 shrink-0 items-center justify-center rounded-full hover:bg-muted cursor-pointer"
           aria-label="Decrease quantity"
         >
           <Minus className="size-4" />
         </button>
-        <span className="w-8 text-center font-medium">{quantity}</span>
+        <span className="w-6 text-center font-medium tabular-nums">{quantity}</span>
         <button
           onClick={() => setQuantity((q) => q + 1)}
-          className="flex size-11 items-center justify-center rounded-full hover:bg-muted cursor-pointer"
+          className="flex size-13 shrink-0 items-center justify-center rounded-full hover:bg-muted cursor-pointer"
           aria-label="Increase quantity"
         >
           <Plus className="size-4" />
