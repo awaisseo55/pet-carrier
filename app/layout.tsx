@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { CartProvider } from "@/components/cart/cart-context";
@@ -78,6 +79,11 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+        />
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="oe+0WxSevsXawq740ab8Pw"
+          strategy="afterInteractive"
         />
       </head>
       <body className="min-h-full flex flex-col antialiased bg-background text-foreground">
