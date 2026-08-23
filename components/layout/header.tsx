@@ -49,7 +49,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-white">
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0">
-          <Image src="/logo.svg" alt="Pet Carrier" width={160} height={48} className="h-10 w-auto" priority />
+          <Image src="/logo.png" alt="Pet Carrier" width={200} height={100} className="h-11 w-auto" priority />
         </Link>
 
         <form onSubmit={handleSearch} className="hidden flex-1 md:flex">
