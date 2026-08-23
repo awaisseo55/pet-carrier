@@ -34,7 +34,8 @@ function singularName(node: CategoryNode): string {
   const lower = lowerName(node.name);
   const plural = `${noun}s`;
   if (lower.endsWith(plural)) {
-    return `${lower.slice(0, -plural.length - 1)} ${noun}`;
+    const prefix = lower.slice(0, -plural.length - 1);
+    return prefix ? `${prefix} ${noun}` : noun;
   }
   return lower.replace(/s$/, "");
 }

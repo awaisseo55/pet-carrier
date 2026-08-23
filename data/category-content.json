@@ -660,7 +660,8 @@
           "question": "Do you offer free UK delivery?",
           "answer": "Yes, orders over £50 qualify for free standard UK shipping, with a small delivery charge shown at checkout for orders under that. We also offer 30-day returns."
         }
-      ]
+      ],
+      "meta_description": "Shop pet carriers for dogs, cats, small animals and birds, from soft-sided everyday bags to airline approved and car travel designs. Free UK delivery over £50."
     },
     "carriers/dog-carriers": {
       "path": "carriers/dog-carriers",
