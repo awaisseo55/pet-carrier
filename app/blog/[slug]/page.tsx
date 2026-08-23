@@ -3,11 +3,21 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ChevronRight } from "lucide-react";
-import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/blog";
+import { getAllBlogPosts, getBlogPostBySlug, getRelatedBlogPosts } from "@/lib/blog";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { getPersonByName } from "@/lib/people";
 import { renderRichText } from "@/lib/markdown-lite";
+import { estimateReadingTime } from "@/lib/reading-time";
+import { extractToc } from "@/lib/toc";
 import { PersonCard } from "@/components/blog/person-card";
+import { KeyTakeaways } from "@/components/blog/key-takeaways";
+import { TableOfContents } from "@/components/blog/table-of-contents";
+import { ChecklistBox } from "@/components/blog/checklist-box";
+import { ComparisonTable } from "@/components/blog/comparison-table";
+import { CommonMistakes } from "@/components/blog/common-mistakes";
+import { EditorialNote } from "@/components/blog/editorial-note";
+import { ArticleFaq } from "@/components/blog/article-faq";
+import { RelatedArticles } from "@/components/blog/related-articles";
 
 // Belt-and-braces alongside the on-demand revalidatePath() calls in
 // lib/revalidate.ts (which fire immediately after an admin save).
@@ -29,6 +39,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -48,8 +59,12 @@ export default async function BlogPostPage({
   const post = await getBlogPostBySlug(slug);
   if (!post) notFound();
 
+  const [related] = await Promise.all([getRelatedBlogPosts(post, 4)]);
+
   const author = getPersonByName(post.author, "author");
   const reviewer = post.reviewed_by ? getPersonByName(post.reviewed_by, "reviewer") : undefined;
+  const toc = extractToc(post.content);
+  const readingTime = estimateReadingTime(post.content, post.faqs?.map((f) => `${f.question} ${f.answer}`));
 
   const breadcrumbs = breadcrumbJsonLd([
     { name: "Home", url: "/" },
@@ -126,7 +141,7 @@ export default async function BlogPostPage({
               })}
             </>
           )}{" "}
-          &middot; {post.read_time}
+          &middot; {readingTime}
         </p>
       </div>
 
@@ -134,12 +149,35 @@ export default async function BlogPostPage({
         <Image src={post.cover_image} alt={post.title} fill priority sizes="800px" className="object-cover" />
       </div>
 
+      <div className="mt-8 flex flex-col gap-6">
+        {post.quick_answer && post.quick_answer.length > 0 && <KeyTakeaways items={post.quick_answer} />}
+        <TableOfContents entries={toc} />
+      </div>
+
       <div className="prose-content mt-8 flex flex-col gap-5 text-gray-500">{renderRichText(post.content)}</div>
+
+      <div className="mt-10 flex flex-col gap-8">
+        {post.checklist_items && post.checklist_items.length > 0 && (
+          <ChecklistBox heading={post.checklist_heading} items={post.checklist_items} />
+        )}
+        {post.comparison_table && <ComparisonTable table={post.comparison_table} />}
+        {post.common_mistakes && post.common_mistakes.length > 0 && (
+          <CommonMistakes items={post.common_mistakes} />
+        )}
+        <EditorialNote note={post.editorial_note} />
+        {post.faqs && post.faqs.length > 0 && <ArticleFaq faqs={post.faqs} />}
+      </div>
 
       {(author || reviewer) && (
         <div className="mt-12 flex flex-col gap-4 border-t border-border pt-8">
           {author && <PersonCard person={author} />}
           {reviewer && <PersonCard person={reviewer} />}
+        </div>
+      )}
+
+      {related.length > 0 && (
+        <div className="mt-12 border-t border-border pt-8">
+          <RelatedArticles posts={related} />
         </div>
       )}
     </article>

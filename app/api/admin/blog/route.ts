@@ -11,7 +11,24 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json();
-  const { title, excerpt, content, cover_image, category, author, reviewed_by, reviewed_by_role, read_time } = body;
+  const {
+    title,
+    excerpt,
+    content,
+    cover_image,
+    category,
+    author,
+    reviewed_by,
+    reviewed_by_role,
+    quick_answer,
+    checklist_heading,
+    checklist_items,
+    common_mistakes,
+    comparison_table,
+    editorial_note,
+    faqs,
+    related_slugs,
+  } = body;
 
   if (!title || !excerpt || !content) {
     return NextResponse.json({ error: "Title, excerpt and content are required." }, { status: 400 });
@@ -34,11 +51,18 @@ export async function POST(request: Request) {
       content,
       cover_image: cover_image || "",
       category: category || "Pet Care",
-      author: author || "Pet Carrier Team",
+      author: author || "Rebecca",
       reviewed_by: reviewed_by || undefined,
       reviewed_by_role: reviewed_by_role || undefined,
+      quick_answer: quick_answer || undefined,
+      checklist_heading: checklist_heading || undefined,
+      checklist_items: checklist_items || undefined,
+      common_mistakes: common_mistakes || undefined,
+      comparison_table: comparison_table || undefined,
+      editorial_note: editorial_note || undefined,
+      faqs: faqs || undefined,
+      related_slugs: related_slugs || undefined,
       published_at: new Date().toISOString(),
-      read_time: read_time || "3 min read",
     });
 
     revalidateBlogPaths(post.slug);

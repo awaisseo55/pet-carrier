@@ -91,6 +91,21 @@ export async function getRelevantBlogPosts(categoryPath: string, limit = 2): Pro
     .filter((p): p is BlogPost => Boolean(p));
 }
 
+export async function getRelatedBlogPosts(post: BlogPost, limit = 4): Promise<BlogPost[]> {
+  const posts = (await getAllBlogPosts()).filter((p) => p.slug !== post.slug);
+
+  if (post.related_slugs && post.related_slugs.length > 0) {
+    const curated = post.related_slugs
+      .map((slug) => posts.find((p) => p.slug === slug))
+      .filter((p): p is BlogPost => Boolean(p));
+    if (curated.length > 0) return curated.slice(0, limit);
+  }
+
+  const sameCategory = posts.filter((p) => p.category === post.category);
+  const rest = posts.filter((p) => p.category !== post.category);
+  return [...sameCategory, ...rest].slice(0, limit);
+}
+
 export async function createBlogPost(post: Omit<BlogPost, "id">): Promise<BlogPost> {
   const posts = await getRawPosts();
   const newPost: BlogPost = { ...post, id: nanoid(10) };

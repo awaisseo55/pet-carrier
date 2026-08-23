@@ -165,6 +165,17 @@ export interface HomepageSettings {
   shop_by_pet_categories: string[];
 }
 
+export interface BlogFaq {
+  question: string;
+  answer: string;
+}
+
+export interface BlogComparisonTable {
+  heading: string;
+  headers: string[];
+  rows: string[][];
+}
+
 export interface BlogPost {
   id: string;
   slug: string;
@@ -178,8 +189,18 @@ export interface BlogPost {
   reviewed_by_role?: string;
   published_at: string;
   updated_at?: string;
-  read_time: string;
   is_draft?: boolean;
+  // Structured content blocks, rendered as dedicated components rather than
+  // parsed out of `content`, see components/blog/. All optional so a post
+  // can be as simple or as fully built-out as the topic warrants.
+  quick_answer?: string[];
+  checklist_heading?: string;
+  checklist_items?: string[];
+  common_mistakes?: string[];
+  comparison_table?: BlogComparisonTable;
+  editorial_note?: string;
+  faqs?: BlogFaq[];
+  related_slugs?: string[];
 }
 
 export interface CartItem {

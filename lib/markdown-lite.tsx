@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { slugify } from "./utils";
 
 /**
  * Minimal markdown-like renderer for admin-authored product/content copy.
@@ -65,15 +66,25 @@ export function renderRichText(text: string): React.ReactNode[] {
       const rest = newlineIndex === -1 ? "" : trimmed.slice(newlineIndex + 1).trim();
       const headingText = headingLine.slice(isH3 ? 4 : 3).trim();
 
+      const headingId = slugify(headingText);
+
       if (isH3) {
         nodes.push(
-          <h3 key={key} className="font-heading text-xl font-semibold text-foreground mt-6 mb-2 block">
+          <h3
+            key={key}
+            id={headingId}
+            className="font-heading text-xl font-semibold text-foreground mt-6 mb-2 block scroll-mt-24"
+          >
             {renderInline(headingText, key)}
           </h3>
         );
       } else {
         nodes.push(
-          <h2 key={key} className="font-heading text-2xl font-semibold text-foreground mt-6 mb-2 block">
+          <h2
+            key={key}
+            id={headingId}
+            className="font-heading text-2xl font-semibold text-foreground mt-6 mb-2 block scroll-mt-24"
+          >
             {renderInline(headingText, key)}
           </h2>
         );

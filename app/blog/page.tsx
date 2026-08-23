@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getAllBlogPosts } from "@/lib/blog";
+import { estimateReadingTime } from "@/lib/reading-time";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -55,7 +56,7 @@ export default async function BlogPage() {
                   month: "long",
                   year: "numeric",
                 })}{" "}
-                &middot; {post.read_time}
+                &middot; {estimateReadingTime(post.content, post.faqs?.map((f) => `${f.question} ${f.answer}`))}
               </span>
             </div>
           </Link>

@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 import type { Person } from "@/lib/people";
 import type { BlogPost } from "@/lib/types";
 import { PersonAvatar } from "@/components/blog/person-avatar";
+import { estimateReadingTime } from "@/lib/reading-time";
 
 export function PersonProfile({ person, posts }: { person: Person; posts: BlogPost[] }) {
   const roleLabel = person.role === "author" ? "Author" : "Reviewer";
@@ -97,7 +98,7 @@ export function PersonProfile({ person, posts }: { person: Person; posts: BlogPo
                       month: "short",
                       year: "numeric",
                     })}{" "}
-                    &middot; {post.read_time}
+                    &middot; {estimateReadingTime(post.content, post.faqs?.map((f) => `${f.question} ${f.answer}`))}
                   </p>
                 </div>
               </Link>
