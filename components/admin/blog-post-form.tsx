@@ -5,10 +5,21 @@ import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { slugify } from "@/lib/utils";
+import { authors, reviewers } from "@/lib/people";
 import type { BlogPost } from "@/lib/types";
 import { toast } from "sonner";
+
+const AUTHOR_OPTIONS = authors();
+const REVIEWER_OPTIONS = reviewers();
 
 export function BlogPostForm({ post }: { post?: BlogPost }) {
   const router = useRouter();
@@ -18,9 +29,11 @@ export function BlogPostForm({ post }: { post?: BlogPost }) {
   const [excerpt, setExcerpt] = React.useState(post?.excerpt ?? "");
   const [content, setContent] = React.useState(post?.content ?? "");
   const [category, setCategory] = React.useState(post?.category ?? "Pet Care");
-  const [author, setAuthor] = React.useState(post?.author ?? "Pet Carrier Team");
-  const [reviewedBy, setReviewedBy] = React.useState(post?.reviewed_by ?? "");
-  const [reviewedByRole, setReviewedByRole] = React.useState(post?.reviewed_by_role ?? "");
+  const [author, setAuthor] = React.useState(post?.author ?? AUTHOR_OPTIONS[0]?.name ?? "");
+  const [reviewedBy, setReviewedBy] = React.useState(post?.reviewed_by ?? REVIEWER_OPTIONS[0]?.name ?? "");
+  const [reviewedByRole, setReviewedByRole] = React.useState(
+    post?.reviewed_by_role ?? REVIEWER_OPTIONS[0]?.title ?? ""
+  );
   const [readTime, setReadTime] = React.useState(post?.read_time ?? "3 min read");
   const [coverImage, setCoverImage] = React.useState(post?.cover_image ?? "");
   const [saving, setSaving] = React.useState(false);
@@ -132,40 +145,55 @@ export function BlogPostForm({ post }: { post?: BlogPost }) {
 
       <div>
         <Label htmlFor="author">Author</Label>
-        <Input id="author" value={author} onChange={(e) => setAuthor(e.target.value)} className="mt-1.5" />
+        <Select value={author} onValueChange={setAuthor}>
+          <SelectTrigger id="author" className="mt-1.5 w-full">
+            <SelectValue placeholder="Select an author" />
+          </SelectTrigger>
+          <SelectContent>
+            {AUTHOR_OPTIONS.map((a) => (
+              <SelectItem key={a.slug} value={a.name}>
+                {a.name}, {a.title}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
         <p className="mt-1 text-xs text-muted-foreground">
-          Shown as the byline and linked to an author bio page. Author bios are configured in{" "}
-          <code>lib/authors.ts</code>, so a name typed here that doesn&apos;t have an entry there will link to a
-          bio page that doesn&apos;t exist yet.
+          Shown as the byline and linked to the author&apos;s profile page. New authors are added in{" "}
+          <code>lib/people.ts</code>.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="reviewedBy">Reviewed by (optional)</Label>
-          <Input
-            id="reviewedBy"
-            value={reviewedBy}
-            onChange={(e) => setReviewedBy(e.target.value)}
-            placeholder="Leave blank to hide this line"
-            className="mt-1.5"
-          />
-        </div>
-        <div>
-          <Label htmlFor="reviewedByRole">Reviewer role</Label>
-          <Input
-            id="reviewedByRole"
-            value={reviewedByRole}
-            onChange={(e) => setReviewedByRole(e.target.value)}
-            placeholder="e.g. Pet Specialist"
-            className="mt-1.5"
-          />
-        </div>
+      <div>
+        <Label htmlFor="reviewedBy">Reviewed by (optional)</Label>
+        <Select
+          value={reviewedBy || "__none"}
+          onValueChange={(value) => {
+            if (value === "__none") {
+              setReviewedBy("");
+              setReviewedByRole("");
+              return;
+            }
+            setReviewedBy(value);
+            setReviewedByRole(REVIEWER_OPTIONS.find((r) => r.name === value)?.title ?? "");
+          }}
+        >
+          <SelectTrigger id="reviewedBy" className="mt-1.5 w-full">
+            <SelectValue placeholder="No reviewer" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="__none">No reviewer (hide this line)</SelectItem>
+            {REVIEWER_OPTIONS.map((r) => (
+              <SelectItem key={r.slug} value={r.name}>
+                {r.name}, {r.title}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Only credit a real person who genuinely reviewed this post. New reviewers are added in{" "}
+          <code>lib/people.ts</code>.
+        </p>
       </div>
-      <p className="-mt-3 text-xs text-muted-foreground">
-        Only credit a real person who genuinely reviewed this post. Don&apos;t use a title implying a
-        qualification (e.g. a veterinary credential) unless that&apos;s actually true.
-      </p>
 
       <Button type="submit" variant="default" size="lg" className="w-fit" disabled={saving}>
         {saving ? "Saving..." : isEdit ? "Save Changes" : "Publish Post"}

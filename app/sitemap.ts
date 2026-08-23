@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getActiveProducts } from "@/lib/products";
 import { getAllBlogPosts } from "@/lib/blog";
 import { getAllCategoryNodes } from "@/lib/category-store";
-import { AUTHORS } from "@/lib/authors";
+import { PEOPLE } from "@/lib/people";
 import { siteUrl } from "@/lib/seo";
 
 const STATIC_ROUTES = [
@@ -52,12 +52,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  const authorEntries: MetadataRoute.Sitemap = AUTHORS.map((author) => ({
-    url: `${siteUrl}/blog/author/${author.slug}`,
+  const peopleEntries: MetadataRoute.Sitemap = PEOPLE.map((person) => ({
+    url: `${siteUrl}${person.profileUrl}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.3,
   }));
 
-  return [...staticEntries, ...categoryEntries, ...productEntries, ...blogEntries, ...authorEntries];
+  return [...staticEntries, ...categoryEntries, ...productEntries, ...blogEntries, ...peopleEntries];
 }

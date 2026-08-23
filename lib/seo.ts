@@ -1,3 +1,5 @@
+import { personSlug } from "./people";
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pet-carrier.co.uk";
 
 export function organizationJsonLd() {
@@ -107,6 +109,8 @@ export function articleJsonLd(post: {
   cover_image: string;
   slug: string;
   author: string;
+  reviewed_by?: string;
+  reviewed_by_role?: string;
   published_at: string;
   updated_at?: string;
 }) {
@@ -119,9 +123,20 @@ export function articleJsonLd(post: {
     datePublished: post.published_at,
     dateModified: post.updated_at || post.published_at,
     author: {
-      "@type": "Organization",
+      "@type": "Person",
       name: post.author,
+      url: `${siteUrl}/author/${personSlug(post.author)}`,
     },
+    ...(post.reviewed_by
+      ? {
+          reviewedBy: {
+            "@type": "Person",
+            name: post.reviewed_by,
+            jobTitle: post.reviewed_by_role,
+            url: `${siteUrl}/reviewer/${personSlug(post.reviewed_by)}`,
+          },
+        }
+      : {}),
     publisher: {
       "@type": "Organization",
       name: "Pet Carrier",
