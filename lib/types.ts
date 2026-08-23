@@ -174,6 +174,8 @@ export interface BlogPost {
   cover_image: string;
   category: string;
   author: string;
+  reviewed_by?: string;
+  reviewed_by_role?: string;
   published_at: string;
   updated_at?: string;
   read_time: string;

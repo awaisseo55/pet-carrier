@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { BlogPost } from "@/lib/types";
 import { toast } from "sonner";
@@ -52,6 +53,11 @@ export function BlogList({ posts }: { posts: BlogPost[] }) {
               })}
             </p>
           </div>
+          <Button size="icon" variant="ghost" aria-label="Edit post" asChild>
+            <Link href={`/admin/blog/${post.id}/edit`}>
+              <Pencil className="size-4" />
+            </Link>
+          </Button>
           <Button
             size="icon"
             variant="ghost"

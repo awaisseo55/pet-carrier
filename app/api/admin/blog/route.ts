@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json();
-  const { title, excerpt, content, cover_image, category, author, read_time } = body;
+  const { title, excerpt, content, cover_image, category, author, reviewed_by, reviewed_by_role, read_time } = body;
 
   if (!title || !excerpt || !content) {
     return NextResponse.json({ error: "Title, excerpt and content are required." }, { status: 400 });
@@ -35,6 +35,8 @@ export async function POST(request: Request) {
       cover_image: cover_image || "",
       category: category || "Pet Care",
       author: author || "Pet Carrier Team",
+      reviewed_by: reviewed_by || undefined,
+      reviewed_by_role: reviewed_by_role || undefined,
       published_at: new Date().toISOString(),
       read_time: read_time || "3 min read",
     });

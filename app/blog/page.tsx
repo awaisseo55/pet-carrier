@@ -47,6 +47,7 @@ export default async function BlogPage() {
               </h2>
               <p className="text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>
               <span className="mt-auto pt-2 text-xs text-muted-foreground">
+                {post.author} &middot;{" "}
                 {new Date(post.published_at).toLocaleDateString("en-GB", {
                   day: "numeric",
                   month: "long",

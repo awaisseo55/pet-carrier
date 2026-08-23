@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getActiveProducts } from "@/lib/products";
 import { getAllBlogPosts } from "@/lib/blog";
 import { getAllCategoryNodes } from "@/lib/category-store";
+import { AUTHORS } from "@/lib/authors";
 import { siteUrl } from "@/lib/seo";
 
 const STATIC_ROUTES = [
@@ -51,5 +52,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  return [...staticEntries, ...categoryEntries, ...productEntries, ...blogEntries];
+  const authorEntries: MetadataRoute.Sitemap = AUTHORS.map((author) => ({
+    url: `${siteUrl}/blog/author/${author.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.3,
+  }));
+
+  return [...staticEntries, ...categoryEntries, ...productEntries, ...blogEntries, ...authorEntries];
 }

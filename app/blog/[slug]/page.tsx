@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import { ChevronRight } from "lucide-react";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/blog";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { authorSlug } from "@/lib/authors";
+import { renderRichText } from "@/lib/markdown-lite";
 
 // Belt-and-braces alongside the on-demand revalidatePath() calls in
 // lib/revalidate.ts (which fire immediately after an admin save).
@@ -77,7 +79,11 @@ export default async function BlogPostPage({
         {post.title}
       </h1>
       <p className="mt-3 text-sm text-muted-foreground">
-        By {post.author} &middot;{" "}
+        By{" "}
+        <Link href={`/blog/author/${authorSlug(post.author)}`} className="font-medium text-foreground hover:text-blue-700">
+          {post.author}
+        </Link>{" "}
+        &middot;{" "}
         {new Date(post.published_at).toLocaleDateString("en-GB", {
           day: "numeric",
           month: "long",
@@ -85,16 +91,18 @@ export default async function BlogPostPage({
         })}{" "}
         &middot; {post.read_time}
       </p>
+      {post.reviewed_by && (
+        <p className="mt-1 text-sm text-muted-foreground">
+          Reviewed by <span className="font-medium text-foreground">{post.reviewed_by}</span>
+          {post.reviewed_by_role ? `, ${post.reviewed_by_role}` : ""}
+        </p>
+      )}
 
       <div className="relative mt-8 aspect-16/9 overflow-hidden rounded-xl shadow-sm">
         <Image src={post.cover_image} alt={post.title} fill priority sizes="800px" className="object-cover" />
       </div>
 
-      <div className="prose-content mt-8 flex flex-col gap-5 text-gray-500">
-        {post.content.split("\n\n").map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
-        ))}
-      </div>
+      <div className="prose-content mt-8 flex flex-col gap-5 text-gray-500">{renderRichText(post.content)}</div>
     </article>
   );
 }
