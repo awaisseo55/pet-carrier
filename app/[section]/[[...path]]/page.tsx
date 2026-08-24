@@ -13,7 +13,12 @@ import {
 import { CATEGORIES, type Section } from "@/lib/categories";
 import { getBreadcrumbNodes, getChildNodes, getRelatedNodes, getResolvedCategory } from "@/lib/category-store";
 import { getRelevantBlogPosts } from "@/lib/blog";
-import { getProductById, getProductsByCategoryIncludingDescendants, toPublicProduct } from "@/lib/products";
+import {
+  getFeaturedProducts,
+  getProductById,
+  getProductsByCategoryIncludingDescendants,
+  toPublicProduct,
+} from "@/lib/products";
 import { getCategoryImageUrl } from "@/lib/placeholders";
 import { breadcrumbJsonLd, collectionPageJsonLd, faqJsonLd } from "@/lib/seo";
 import { renderRichText } from "@/lib/markdown-lite";
@@ -89,6 +94,13 @@ export default async function CategoryPage({
   ).filter((p): p is NonNullable<typeof p> => Boolean(p));
   const featuredIds = new Set(featuredProducts.map((p) => p.id));
   const orderedProducts = [...featuredProducts, ...products.filter((p) => !featuredIds.has(p.id))];
+
+  // Only needed for the empty-grid state's "view our featured carrier"
+  // fallback link, so only fetched when there's actually nothing to show,
+  // resolved to a real, currently active product rather than a hardcoded
+  // slug that can silently go stale and 404 if that product is ever removed.
+  const fallbackFeaturedProduct =
+    orderedProducts.length === 0 ? (await getFeaturedProducts(1))[0] : undefined;
 
   const breadcrumbs = breadcrumbJsonLd([
     { name: "Home", url: "/" },
@@ -179,9 +191,14 @@ export default async function CategoryPage({
               We’re adding {resolved.name.toLowerCase()} to the shop. In the meantime, have a look at our featured
               carrier or browse related categories below.
             </p>
-            <Link href="/product/premium-multi-purpose-pet-carrier" className="text-sm font-medium text-blue-700 hover:underline">
-              View our featured carrier &rarr;
-            </Link>
+            {fallbackFeaturedProduct && (
+              <Link
+                href={`/product/${fallbackFeaturedProduct.slug}`}
+                className="text-sm font-medium text-blue-700 hover:underline"
+              >
+                View our featured carrier &rarr;
+              </Link>
+            )}
           </div>
         )}
       </div>
