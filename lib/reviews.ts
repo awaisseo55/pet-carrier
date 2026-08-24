@@ -76,6 +76,8 @@ export interface CreateReviewInput {
   images: string[];
   status?: ReviewStatus;
   ipHash?: string;
+  /** Lets a bulk import carry the review's original date instead of the import date. Defaults to now, exactly as before, for every other caller. */
+  createdAt?: string;
 }
 
 export async function createReview(input: CreateReviewInput): Promise<Review> {
@@ -93,7 +95,7 @@ export async function createReview(input: CreateReviewInput): Promise<Review> {
     isVerified: true,
     isAnonymous: input.isAnonymous,
     helpfulCount: 0,
-    createdAt: new Date().toISOString(),
+    createdAt: input.createdAt ?? new Date().toISOString(),
     status: input.status ?? "approved",
     ipHash: input.ipHash,
   };
