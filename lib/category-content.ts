@@ -72,7 +72,7 @@ const CATEGORY_META_TITLES: Record<string, string> = {
   "carriers/cat-carriers/hard-sided-cat-carriers": "Hard-Sided Cat Carriers for Extra Protection",
   "carriers/cat-carriers/cat-backpack-carriers": "Cat Backpack Carriers for Hands-Free Trips",
   "carriers/cat-carriers/airline-approved-cat-carriers": "Airline Approved Cat Carriers for Cabin Travel",
-  "carriers/cat-carriers/cat-slings": "Sling Cat Carrier Range for Holding Your Cat Close",
+  "carriers/cat-carriers/cat-slings": "Sling Cat Carrier for Holding Your Cat Close",
   "carriers/cat-carriers/large-cat-carriers": "Large Cat Carriers for Bigger Cat Breeds",
   "carriers/small-animal-carriers": "Small Animal Carriers for Rabbits, Guinea Pigs & More",
   "carriers/small-animal-carriers/rabbit-carriers": "Rabbit Carriers with Ventilated, Secure Bases",
