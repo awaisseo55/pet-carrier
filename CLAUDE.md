@@ -95,6 +95,17 @@ optimiser in the loop is what caused two of the three outages below.
    everywhere, but the page itself and every other asset (JS, CSS, fonts) returns 200. This is why
    `unoptimized: true` is now set, it removes Vercel's optimiser from the path entirely so this
    class of failure can't recur.
+4. **Cloudflare's edge cache can hold a stale copy of an R2 object key even after the origin object
+   has been overwritten**, despite the response showing `cf-cache-status: DYNAMIC` (which describes
+   that specific request, not a guarantee the URL was never cached elsewhere/earlier). Confirmed in
+   practice: uploading a wrong image to a key, then overwriting the same key with the correct image,
+   left the bare URL intermittently serving the old bytes on repeat `curl` checks, while a
+   cache-busting `?t=` query string reliably returned the fresh content. Symptom: an image looks
+   correct when checked with a cache-busting param but wrong (or stale) when requested at its real,
+   bare URL, exactly as the browser/`next/image` will request it, with no way to see this from the
+   admin UI or the JSON data alone. **Never overwrite an R2 image key to "fix" wrong content once
+   the bare URL may have been requested even once. Upload to a brand-new key instead** and update
+   the record to point at that new key, then verify the *bare* URL (no query string) directly.
 
 **Strict rules going forward:**
 
