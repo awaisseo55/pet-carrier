@@ -3,7 +3,8 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Lock, Mail, Phone, ShieldCheck, Tag, Truck } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Banknote, Lock, Mail, Phone, ShieldCheck, Tag, Truck } from "lucide-react";
 import { useCart } from "@/components/cart/cart-context";
 import { usePublicSettings } from "@/components/cart/use-public-settings";
 import { Button } from "@/components/ui/button";
@@ -25,7 +26,9 @@ import { toast } from "sonner";
 export default function CheckoutPage() {
   const { activeItems, subtotal, coupon, couponError, applyingCoupon, applyCoupon, removeCoupon } = useCart();
   const settings = usePublicSettings();
+  const router = useRouter();
   const [loading, setLoading] = React.useState(false);
+  const [paymentMethod, setPaymentMethod] = React.useState<"card" | "cod">("card");
 
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
@@ -84,16 +87,47 @@ export default function CheckoutPage() {
         }
       }
 
+      // Only trusted line references go to the server, price/title/image are
+      // never sent, the server looks those up itself from the product
+      // catalogue so nothing here can be tampered with in the browser.
+      const lines = activeItems.map((item) => ({
+        product_id: item.product_id,
+        variant_sku: item.variant_sku,
+        quantity: item.quantity,
+      }));
+      const requestBody = {
+        lines,
+        customer: { firstName, lastName, email, phone },
+        address: { line1, line2, city, county, postcode, country, instructions },
+        deliveryOption,
+        couponCode: coupon?.code,
+      };
+
+      if (paymentMethod === "cod") {
+        const res = await fetch("/api/checkout/cod", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(requestBody),
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          toast.error(data.error || "Could not place your order. Please try again.");
+          setLoading(false);
+          return;
+        }
+
+        // The success page reads this to show a COD confirmation without
+        // needing to fetch order details by a bare ID.
+        sessionStorage.setItem("cod_order_summary", JSON.stringify(data));
+        router.push("/checkout/success?cod=1");
+        return;
+      }
+
       const res = await fetch("/api/checkout/session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: activeItems,
-          customer: { firstName, lastName, email, phone },
-          address: { line1, line2, city, county, postcode, country, instructions },
-          deliveryOption,
-          couponCode: coupon?.code,
-        }),
+        body: JSON.stringify(requestBody),
       });
       const data = await res.json();
 
@@ -259,9 +293,57 @@ export default function CheckoutPage() {
 
           <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
             <h2 className="font-heading text-lg font-semibold text-ink">4. Payment</h2>
-            <p className="mt-2 text-sm text-gray-500">
-              You’ll be redirected to our secure Stripe checkout to enter your card details.
-            </p>
+
+            <fieldset className="mt-4 flex flex-col gap-3">
+              <legend className="sr-only">Payment method</legend>
+              <label
+                className="flex cursor-pointer items-start gap-3 rounded-lg border border-border p-4 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50"
+              >
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  checked={paymentMethod === "card"}
+                  onChange={() => setPaymentMethod("card")}
+                  className="mt-0.5 size-4 accent-blue-600"
+                />
+                <span className="flex-1">
+                  <span className="flex items-center gap-2 font-medium text-ink">
+                    <Lock className="size-4" />
+                    Pay securely by card
+                    <span className="rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-blue-700">
+                      Recommended
+                    </span>
+                  </span>
+                  <span className="mt-1 block text-sm text-gray-500">
+                    You’ll be redirected to our secure Stripe checkout to enter your card details.
+                  </span>
+                </span>
+              </label>
+
+              {settings.enable_cash_on_delivery && (
+                <label
+                  className="flex cursor-pointer items-start gap-3 rounded-lg border border-border p-4 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50"
+                >
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    checked={paymentMethod === "cod"}
+                    onChange={() => setPaymentMethod("cod")}
+                    className="mt-0.5 size-4 accent-blue-600"
+                  />
+                  <span className="flex-1">
+                    <span className="flex items-center gap-2 font-medium text-ink">
+                      <Banknote className="size-4" />
+                      Cash on delivery
+                    </span>
+                    <span className="mt-1 block text-sm text-gray-500">
+                      No online payment is taken today. You’ll pay {formatPrice(total)} when your parcel arrives,
+                      please have an accepted payment method ready for the courier.
+                    </span>
+                  </span>
+                </label>
+              )}
+            </fieldset>
 
             <div className="mt-4">
               <Label>Promo code</Label>
@@ -307,13 +389,21 @@ export default function CheckoutPage() {
 
             <Button type="submit" size="lg" variant="default" className="mt-6 w-full" disabled={loading}>
               <Lock className="size-4" />
-              {loading ? "Redirecting to secure payment..." : `Complete Order - ${formatPrice(total)}`}
+              {loading
+                ? paymentMethod === "cod"
+                  ? "Placing your order..."
+                  : "Redirecting to secure payment..."
+                : paymentMethod === "cod"
+                  ? `Place Order (Pay ${formatPrice(total)} on Delivery)`
+                  : `Complete Order - ${formatPrice(total)}`}
             </Button>
 
             <div className="mt-4 flex flex-col gap-1.5 text-xs text-gray-500">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="size-3.5" />
-                Payments are securely processed by Stripe, we never see or store your card details.
+                {paymentMethod === "cod"
+                  ? "No online payment is taken for cash on delivery orders."
+                  : "Payments are securely processed by Stripe, we never see or store your card details."}
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="size-3.5" />

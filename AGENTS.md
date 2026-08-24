@@ -1,4 +1,4 @@
-# Pet Carrier — CLAUDE.md
+# Pet Carrier — AGENTS.md
 
 Project rules for working on pet-carrier.co.uk. Read this before making changes.
 
@@ -42,92 +42,14 @@ just easy for us to hack on.
   `lib/*.ts` call sites unchanged, see `.env.local.example` for setup. Product/category/hero image
   uploads have the equivalent split in `lib/image-store.ts`. Never write to the local filesystem
   when running on Vercel, it's read-only outside `/tmp`.
-- **Product images**: `NEXT_PUBLIC_R2_PUBLIC_URL` is a custom domain
-  (`images.pet-carrier.co.uk`) attached to the R2 bucket via Cloudflare, and `next.config.ts` sets
-  `images.unoptimized: true`, so images are served straight from R2 with no Vercel image
-  optimisation in between. See the **"Product images: rules to prevent broken images"** section
-  below before touching anything image-related, it documents three separate real production
-  outages and the exact rules that prevent each one recurring.
 - Stripe for card payments (Checkout Sessions, redirect flow, discounts applied as one-time Stripe
   coupons) plus an optional cash-on-delivery flow behind a feature flag, Resend for transactional
-  email, Anthropic Claude for AI content rewriting of Amazon listings, cheerio + sharp for the
+  email, Anthropic Codex for AI content rewriting of Amazon listings, cheerio + sharp for the
   Amazon scrape/image pipeline. See the **"Transactional email"** and **"Cash on delivery
   checkout"** sections below.
 - Vitest for automated tests (`npm run test`), covering the shared checkout calculation, coupon
   and free-shipping rules, HTML escaping, contact-form validation, order idempotency, and Resend's
   thrown-vs-returned error handling. Config in `vitest.config.ts`, tests in `tests/`.
-
-## Product images: rules to prevent broken images
-
-Product images have broken in production three separate times from three genuinely different
-causes. Read this in full before changing anything related to image storage, domains, or
-`next.config.ts`'s `images` block, don't assume a fix for one of these automatically covers the
-others.
-
-**Current architecture** (as of the 2026-08 R2 custom-domain migration): product/category/hero
-images live in the public R2 bucket (`R2_BUCKET_NAME`), served via a Cloudflare custom domain at
-`NEXT_PUBLIC_R2_PUBLIC_URL` (currently `images.pet-carrier.co.uk`, attached to the bucket under R2
-→ Custom Domains in the Cloudflare dashboard). `next.config.ts` sets `images.unoptimized: true`, so
-`next/image` serves the R2 file directly as-is rather than proxying it through Vercel's
-`/_next/image` optimiser. This is deliberate, not a shortcut: `lib/image-pipeline.ts` already
-resizes and converts every upload to correctly-sized WebP (1200×1200 main, 400×400 thumb, 2000px-cap
-zoom) at upload time, so there's no real optimisation left for Vercel to do, and leaving Vercel's
-optimiser in the loop is what caused two of the three outages below.
-
-**The three failure modes, so you recognise them if they recur:**
-
-1. **A stale/dead image URL sitting in data that nothing checks.** A prior incomplete Vercel Blob →
-   R2 migration left four products with a `/api/blob/...` URL (a deleted proxy route) in
-   `variants[0].colourImage`, invisible because it's a nested field, not the top-level `images[]`
-   array everyone reflexively checks. Symptom: that product's default/hero image was broken, other
-   images on the same product were fine.
-2. **The R2 public bucket's free `*.r2.dev` "dev" URL is rate-limited and not meant for production**
-   (Cloudflare's own documentation says so). `next/image`'s optimiser (when not `unoptimized`)
-   re-fetches every `srcset` width from the origin on every cache miss, generating far more origin
-   requests than a plain `<img>` tag, and can trip that rate limit under real traffic. Symptom:
-   images broken on first load, then loading fine once clicked into (a plain `<img>` tag, e.g. the
-   lightbox in `components/product/image-lightbox.tsx`, only ever needs one request).
-3. **Vercel's Image Optimization has its own monthly usage quota on the Hobby plan, keyed by source
-   URL.** Bulk-migrating every product image to a new hostname (to fix #2) made all ~400 of them
-   look like brand-new source images to Vercel's optimiser at once, which exceeded the quota and
-   made `/_next/image` return `402 Payment Required` for every product image sitewide, even though
-   the images themselves were fine and directly reachable. Symptom: every product image broken
-   everywhere, but the page itself and every other asset (JS, CSS, fonts) returns 200. This is why
-   `unoptimized: true` is now set, it removes Vercel's optimiser from the path entirely so this
-   class of failure can't recur.
-
-**Strict rules going forward:**
-
-- **Never re-enable Vercel's image optimiser** (i.e. never remove `images.unoptimized: true` from
-  `next.config.ts`) without a deliberate reason, and if you do, re-read failure modes #2 and #3
-  above first and check the current Vercel plan's Image Optimization quota before doing anything
-  that touches many image URLs at once.
-- **Whenever you change where an image is served from** (new bucket, new domain, re-upload,
-  storage migration), grep/search every field that can hold an image URL, not just `images[]`:
-  that's `images[]`, `variants[].colourImage`, category/hero images in
-  `data/category-content.json`, and `data/homepage.json`. `scripts/check-image-domains.mjs`
-  (`npm run check:images`) checks `images[]` and `variants[].colourImage` automatically, extend it
-  if a new image-bearing field is ever added to `Product` or elsewhere.
-- **Run `npm run check:images` before every push that touches product data or image config.** It
-  cross-checks every image hostname in `data/products.json` against `next.config.ts`'s configured
-  hostnames and flags anything on a `.r2.dev` dev subdomain.
-- **Never point `NEXT_PUBLIC_R2_PUBLIC_URL` at a `pub-<hash>.r2.dev` dev URL for production.**
-  Always use a proper custom domain attached to the bucket via Cloudflare R2 → Custom Domains (this
-  requires the domain's zone to exist in the same Cloudflare account, a bare external CNAME without
-  the zone present will not work, confirmed by trial).
-- **When changing `NEXT_PUBLIC_R2_PUBLIC_URL` (or any env var `next.config.ts` reads), update it in
-  Vercel's dashboard *and* trigger a fresh deploy in the same sitting.** Saving an env var alone
-  does not rebuild anything; a deployment that started building before the save can silently ship
-  with the old value baked in. Confirm the correct value actually shipped by checking a real
-  `/_next/image` or image request in the deployed site's Network tab, not just that the env var
-  shows "saved" in Vercel's UI.
-- **A `200` on the page itself proves nothing about images.** A broken image can hide behind a
-  perfectly successful page load. When verifying an image fix, check the actual image request's
-  status code (Network tab, filter by the image extension or `_next/image`), not just that the page
-  renders without a 500.
-- **If product images are reported broken, check the browser Network tab's actual response codes
-  before assuming a cause.** All three failure modes above produce visually identical symptoms
-  (broken image icons) but need completely different fixes, don't guess from memory, verify.
 
 ## Voice and content rules
 
@@ -276,7 +198,7 @@ This is the part most likely to trip up future changes, read carefully.
   and per-account.
 - The Amazon import pipeline is three steps, kept as separate modules:
   1. `lib/amazon.ts` scrapes a product URL with cheerio (best-effort, Amazon can block this).
-  2. `lib/ai-content.ts` rewrites the scraped data into original copy via Claude, with a
+  2. `lib/ai-content.ts` rewrites the scraped data into original copy via Codex, with a
      rule-based fallback if `ANTHROPIC_API_KEY` is unset or the call fails, and suggests likely
      `category_slugs` from the product title.
   3. `lib/image-pipeline.ts` downloads and converts images to WebP, then stores them via

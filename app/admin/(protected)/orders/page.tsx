@@ -22,6 +22,7 @@ export default async function AdminOrdersPage() {
               <tr className="border-b border-border text-left text-muted-foreground">
                 <th className="p-3">Order</th>
                 <th className="p-3">Customer</th>
+                <th className="p-3">Payment</th>
                 <th className="p-3">Items</th>
                 <th className="p-3">Total</th>
                 <th className="p-3">Date</th>

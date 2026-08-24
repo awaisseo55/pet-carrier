@@ -1,12 +1,10 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { stripe } from "@/lib/stripe";
-import { createOrder } from "@/lib/orders";
-import { sendOrderConfirmationEmail, sendOwnerNotificationEmail } from "@/lib/email";
-import { getSettings } from "@/lib/settings";
+import { createOrder, getOrderBySessionId, updateOrder } from "@/lib/orders";
+import { sendOrderConfirmationEmail, sendOwnerNewOrderEmail } from "@/lib/email";
 import { incrementCouponUsage } from "@/lib/coupons";
-import { getAllProducts } from "@/lib/products";
-import type { DeliveryOption } from "@/lib/types";
+import type { DeliveryOption, OrderItem } from "@/lib/types";
 
 // TODO: add STRIPE_WEBHOOK_SECRET to .env.local. Get it by running
 // `stripe listen --forward-to localhost:3000/api/webhooks/stripe` locally,
@@ -34,29 +32,24 @@ export async function POST(request: Request) {
     const session = event.data.object as Stripe.Checkout.Session;
 
     try {
-      const cartItems: {
-        id: string;
-        slug: string;
-        title: string;
-        qty: number;
-        price: number;
-        image: string;
-        variant_sku?: string;
-        variant_label?: string;
-      }[] = JSON.parse(session.metadata?.cart_items || "[]");
+      // Stripe retries webhook delivery on anything other than a 2xx
+      // response, and can also occasionally deliver the same event twice.
+      // Without this check a retry would create a second order (and send a
+      // second pair of emails) for the same payment.
+      const existing = await getOrderBySessionId(session.id);
+      if (existing) {
+        return NextResponse.json({ received: true, duplicate: true });
+      }
 
       const meta = session.metadata || {};
-      const [settings, products] = await Promise.all([getSettings(), getAllProducts()]);
-      const productsById = new Map(products.map((p) => [p.id, p]));
-      const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+      // Reconstructed from the exact basket the server calculated at
+      // checkout-session creation time (lib/checkout-calculation.ts), never
+      // recomputed from anything the client could influence after the fact.
+      const items: OrderItem[] = JSON.parse(meta.order_items || "[]");
       const deliveryOption = (meta.delivery_option as DeliveryOption) || "standard";
-      const shippingCostByOption: Record<DeliveryOption, number> = {
-        standard: subtotal >= settings.free_shipping_threshold ? 0 : settings.standard_shipping_cost,
-        express: settings.express_shipping_cost,
-        next_day: settings.next_day_shipping_cost,
-      };
 
       const order = await createOrder({
+        payment_method: "card",
         stripe_session_id: session.id,
         customer_name: meta.customer_name || session.customer_details?.name || "Customer",
         customer_email: session.customer_details?.email || "",
@@ -70,34 +63,12 @@ export async function POST(request: Request) {
           country: meta.country || "GB",
           delivery_instructions: meta.delivery_instructions || undefined,
         },
-        items: cartItems.map((item) => {
-          const product = productsById.get(item.id);
-          const variant = item.variant_sku
-            ? product?.variants?.find((v) => v.sku === item.variant_sku)
-            : undefined;
-          return {
-            product_id: item.id,
-            slug: item.slug,
-            title: item.title,
-            image: item.image,
-            quantity: item.qty,
-            price: item.price,
-            // Looked up server-side from the product (or matching variant)
-            // record, never from the client-supplied cart, so this internal
-            // fulfilment link is never exposed to or roundtripped through
-            // the customer's browser. The variant's own link (if it has one,
-            // e.g. a different Amazon listing per size/colour) takes
-            // priority over the product's general link.
-            amazon_url: variant?.amazonUrl || product?.amazon_url || "",
-            variant_sku: item.variant_sku,
-            variant_label: item.variant_label,
-          };
-        }),
+        items,
         delivery_option: deliveryOption,
         coupon_code: meta.coupon_code || undefined,
         discount: meta.discount ? Number(meta.discount) : 0,
-        subtotal,
-        shipping_cost: shippingCostByOption[deliveryOption],
+        subtotal: meta.subtotal ? Number(meta.subtotal) : items.reduce((s, i) => s + i.price * i.quantity, 0),
+        shipping_cost: meta.shipping_cost ? Number(meta.shipping_cost) : 0,
         vat: meta.vat ? Number(meta.vat) : 0,
         total: (session.amount_total || 0) / 100,
         status: "paid",
@@ -110,7 +81,16 @@ export async function POST(request: Request) {
         await incrementCouponUsage(meta.coupon_code);
       }
 
-      await Promise.all([sendOrderConfirmationEmail(order), sendOwnerNotificationEmail(order)]);
+      const [confirmationSent, ownerNotified] = await Promise.all([
+        sendOrderConfirmationEmail(order),
+        sendOwnerNewOrderEmail(order),
+      ]);
+      const markers: Partial<typeof order> = {};
+      if (confirmationSent) markers.confirmation_email_sent_at = new Date().toISOString();
+      if (ownerNotified) markers.owner_notification_sent_at = new Date().toISOString();
+      if (Object.keys(markers).length > 0) {
+        await updateOrder(order.id, markers);
+      }
     } catch (error) {
       console.error("Failed to process checkout.session.completed", error);
       return NextResponse.json({ error: "Failed to record order" }, { status: 500 });

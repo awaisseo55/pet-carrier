@@ -109,9 +109,15 @@ export interface OrderItem {
   variant_label?: string;
 }
 
+/** "card" is the default when reading an existing order that predates this field, see getOrderPaymentMethod() in lib/orders.ts. */
+export type PaymentMethod = "card" | "cash_on_delivery";
+
 export interface Order {
   id: string;
-  stripe_session_id: string;
+  /** Optional because cash-on-delivery orders never go through Stripe. Never fabricate a fake Stripe id for a COD order, leave this unset instead. */
+  stripe_session_id?: string;
+  /** Absent on orders created before this field existed; treat as "card", see getOrderPaymentMethod(). */
+  payment_method?: PaymentMethod;
   customer_name: string;
   customer_email: string;
   customer_phone?: string;
@@ -134,6 +140,22 @@ export interface Order {
   total: number;
   status: OrderStatus;
   payment_status: "pending" | "paid" | "failed" | "refunded";
+  /** Set by admin before or when marking an order dispatched. */
+  courier_name?: string;
+  tracking_number?: string;
+  /** Only ever rendered as a link when it's a genuine http(s) URL, see isSafeTrackingUrl() in lib/email.ts. */
+  tracking_url?: string;
+  /**
+   * Durable per-order sent-once markers so webhook retries, repeated identical
+   * admin status updates, or page refreshes can never trigger a duplicate
+   * transactional email. Absent means "not sent yet", never inferred from
+   * order.status alone.
+   */
+  confirmation_email_sent_at?: string;
+  owner_notification_sent_at?: string;
+  dispatch_email_sent_at?: string;
+  cancellation_email_sent_at?: string;
+  delivered_email_sent_at?: string;
   created_at: string;
   updated_at: string;
 }

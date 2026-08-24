@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { Copy, ExternalLink } from "lucide-react";
+import { Copy, CreditCard, ExternalLink, Truck } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { formatPrice } from "@/lib/utils";
 import type { Order, OrderStatus } from "@/lib/types";
 import { toast } from "sonner";
@@ -24,24 +25,71 @@ const STATUS_OPTIONS: { value: OrderStatus; label: string }[] = [
   { value: "cancelled", label: "Cancelled" },
 ];
 
+async function patchOrder(id: string, body: Record<string, unknown>) {
+  const res = await fetch(`/api/admin/orders/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const data = await res.json().catch(() => null);
+    throw new Error(data?.error || "Could not update this order.");
+  }
+}
+
 export function OrderRow({ order }: { order: Order }) {
   const router = useRouter();
   const [updating, setUpdating] = React.useState(false);
+  const [courierName, setCourierName] = React.useState(order.courier_name ?? "");
+  const [trackingNumber, setTrackingNumber] = React.useState(order.tracking_number ?? "");
+  const [trackingUrl, setTrackingUrl] = React.useState(order.tracking_url ?? "");
+  const [trackingDirty, setTrackingDirty] = React.useState(false);
+
+  const isCod = order.payment_method === "cash_on_delivery";
 
   async function handleStatusChange(status: string) {
     setUpdating(true);
-    const res = await fetch(`/api/admin/orders/${order.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status }),
-    });
-    setUpdating(false);
-    if (res.ok) {
+    try {
+      await patchOrder(order.id, { status });
       toast.success("Order status updated");
       router.refresh();
-    } else {
-      const data = await res.json().catch(() => null);
-      toast.error(data?.error || "Could not update order status");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not update order status");
+    } finally {
+      setUpdating(false);
+    }
+  }
+
+  async function handleSaveTracking() {
+    setUpdating(true);
+    try {
+      await patchOrder(order.id, {
+        courier_name: courierName,
+        tracking_number: trackingNumber,
+        tracking_url: trackingUrl,
+      });
+      toast.success("Tracking details saved");
+      setTrackingDirty(false);
+      router.refresh();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not save tracking details");
+    } finally {
+      setUpdating(false);
+    }
+  }
+
+  async function handleMarkCodPaid() {
+    setUpdating(true);
+    try {
+      // Payment status only, this never calls Stripe, it just records that
+      // the courier collected payment on delivery.
+      await patchOrder(order.id, { payment_status: "paid" });
+      toast.success("Marked as paid");
+      router.refresh();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not update payment status");
+    } finally {
+      setUpdating(false);
     }
   }
 
@@ -56,11 +104,32 @@ export function OrderRow({ order }: { order: Order }) {
   }
 
   return (
-    <tr className="border-b border-border last:border-0 align-top hover:bg-gray-100/30">
+    <tr className={`border-b border-border last:border-0 align-top hover:bg-gray-100/30 ${isCod ? "bg-blue-50/30" : ""}`}>
       <td className="p-3 font-medium">#{order.id}</td>
       <td className="p-3">
         <p className="font-medium">{order.customer_name}</p>
         <p className="text-xs text-muted-foreground">{order.customer_email}</p>
+        {order.customer_phone && <p className="text-xs text-muted-foreground">{order.customer_phone}</p>}
+      </td>
+      <td className="p-3">
+        <div className="flex items-center gap-1.5 text-xs font-medium">
+          {isCod ? <Truck className="size-3.5 text-blue-700" /> : <CreditCard className="size-3.5 text-gray-500" />}
+          {isCod ? "Cash on delivery" : "Card"}
+        </div>
+        <p className="mt-1 text-xs text-muted-foreground">
+          {isCod ? "Due on delivery: " : "Payment: "}
+          <span className="font-medium text-ink">
+            {isCod ? formatPrice(order.total) : order.payment_status}
+          </span>
+        </p>
+        {isCod && order.payment_status !== "paid" && (
+          <Button size="sm" variant="outline" className="mt-1.5 h-7 px-2 text-xs" onClick={handleMarkCodPaid} disabled={updating}>
+            Mark as paid
+          </Button>
+        )}
+        {isCod && order.payment_status === "paid" && (
+          <p className="mt-1 text-xs font-medium text-success">Collected on delivery</p>
+        )}
       </td>
       <td className="p-3">
         <ul className="flex flex-col gap-1">
@@ -97,7 +166,7 @@ export function OrderRow({ order }: { order: Order }) {
       </td>
       <td className="p-3">
         <Select value={order.status} onValueChange={handleStatusChange} disabled={updating}>
-          <SelectTrigger className="h-9 w-48">
+          <SelectTrigger className="h-9 w-44">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -108,6 +177,48 @@ export function OrderRow({ order }: { order: Order }) {
             ))}
           </SelectContent>
         </Select>
+
+        <div className="mt-2 flex flex-col gap-1.5">
+          <Input
+            value={courierName}
+            onChange={(e) => {
+              setCourierName(e.target.value);
+              setTrackingDirty(true);
+            }}
+            placeholder="Courier name"
+            className="h-8 w-44 text-xs"
+          />
+          <Input
+            value={trackingNumber}
+            onChange={(e) => {
+              setTrackingNumber(e.target.value);
+              setTrackingDirty(true);
+            }}
+            placeholder="Tracking number"
+            className="h-8 w-44 text-xs"
+          />
+          <Input
+            value={trackingUrl}
+            onChange={(e) => {
+              setTrackingUrl(e.target.value);
+              setTrackingDirty(true);
+            }}
+            placeholder="Tracking URL"
+            className="h-8 w-44 text-xs"
+          />
+          {trackingDirty && (
+            <Button size="sm" variant="outline" className="h-7 px-2 text-xs" onClick={handleSaveTracking} disabled={updating}>
+              Save tracking
+            </Button>
+          )}
+        </div>
+        {(order.dispatch_email_sent_at || order.delivered_email_sent_at || order.cancellation_email_sent_at) && (
+          <p className="mt-1.5 text-[10px] text-muted-foreground">
+            {order.dispatch_email_sent_at && "Dispatch email sent"}
+            {order.delivered_email_sent_at && " · Delivered email sent"}
+            {order.cancellation_email_sent_at && " · Cancellation email sent"}
+          </p>
+        )}
       </td>
       <td className="p-3">
         <Button size="sm" variant="outline" onClick={copyReorderLinks}>

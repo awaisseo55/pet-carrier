@@ -9,6 +9,7 @@ export interface PublicSettings {
   next_day_shipping_cost: number;
   vat_rate: number;
   currency: string;
+  enable_cash_on_delivery: boolean;
 }
 
 const DEFAULTS: PublicSettings = {
@@ -18,6 +19,7 @@ const DEFAULTS: PublicSettings = {
   next_day_shipping_cost: 9.99,
   vat_rate: 20,
   currency: "GBP",
+  enable_cash_on_delivery: false,
 };
 
 export function usePublicSettings(): PublicSettings {

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "check:images": "node scripts/check-image-domains.mjs"
+    "check:images": "node scripts/check-image-domains.mjs",
+    "test": "vitest run"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1104.0",
@@ -54,6 +55,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.11"
   }
 }
