@@ -103,6 +103,8 @@ const dogCarriersHub = hub(
 const dogCarrierSubs: CategoryNode[] = [
   sub("carriers", "carriers/dog-carriers", "puppy-carriers", "Puppy Carriers", 3, "dog", "young puppies who are still growing and getting used to the world"),
   sub("carriers", "carriers/dog-carriers", "puppy-slings", "Puppy Slings", 3, "dog", "very young puppies who need to be held close and reassured"),
+  sub("carriers", "carriers/dog-carriers", "puppy-bicycle-carriers", "Puppy Bicycle Carriers", 3, "dog", "young puppies who join you on bicycle rides in a secure, ventilated carrier"),
+  sub("carriers", "carriers/dog-carriers", "puppy-bike-carriers", "Puppy Bike Carriers", 3, "dog", "puppies riding along on a bike in a secure, ventilated basket carrier"),
   sub("carriers", "carriers/dog-carriers", "small-dog-carriers", "Small Dog Carriers", 3, "dog", "small dogs weighing up to around 10kg"),
   sub("carriers", "carriers/dog-carriers", "medium-dog-carriers", "Medium Dog Carriers", 3, "dog", "medium-sized dogs weighing roughly 10kg to 25kg"),
   sub("carriers", "carriers/dog-carriers", "large-dog-carriers", "Large Dog Carriers", 3, "dog", "larger dogs over around 25kg who need a sturdier, roomier carrier"),
