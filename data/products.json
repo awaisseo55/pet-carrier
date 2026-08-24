@@ -6748,7 +6748,7 @@
     "id": "B097Y2BD8K",
     "slug": "wuglo-extra-stable-dog-car-seat-for-large-dogs-up-to-26-kg",
     "title": "Wuglo Extra Stable Dog Car Seat for Large Dogs up to 26 kg",
-    "description": "## About the Wuglo Extra Stable Dog Car Seat for Large Dogs up to 26 kg\n\nThe Wuglo Extra Stable Dog Car Seat for Large Dogs up to 26 kg is built to keep your dog safely restrained and comfortable on [car travel](/carriers/car-travel-carriers), rather than loose on the back seat or under your feet. Wuglo has combined a raised, cushioned base with a clip-on lead attachment that connects to your car's seatbelt, so your pet can see out of the window without being able to climb into the footwell or onto your lap while you're driving.\n\nIt's aimed at dogs who travel regularly, whether that's the school run, the vet or weekends away, and gives nervous travellers a raised, secure spot of their own rather than sliding around the seat on every corner.\n\n## Key Features and Benefits\n\n### Fully Adjustable Fit\n\nThe strap adjusts to fit different body shapes and heights, so you can set it up comfortably whether you're tall, short, or somewhere in between.\n\n### Key Feature\n\nA reinforced frame gives the structure real rigidity, so it holds its shape rather than collapsing under your pet's weight.\n\n### 100% Protection for the Rear\n\n100% Protection for the Rear Seat - This convenient car seat for dogs means no more scratches, hair or other dirt on the back seat.\n\n### Quickly Ready for Use- Due\n\nQuickly Ready for Use- Due to their straightforward and user-friendly design, Wuglo dog car seats can be installed in just a few moments.\n\n### Full Satisfaction Guarantee - If\n\nFull Satisfaction Guarantee - If you are not completely satisfied with the Wuglo dog booster seat for medium-sized dogs, simply send it back and we will refund you 100% of the full purchase amount immediately - no questions asked!\n\n## Who This Car Seat Is Best For\n\nWuglo Extra Stable Dog Car Seat for Large Dogs up to 26 kg suits:\n\n- dogs who travel regularly by car and need a secure, restrained spot\n- Nervous travellers who benefit from a raised view out of the window\n- Owners who want to stop their pet climbing into the footwell while driving\n- Vet visits and longer road trips\n\n## Specifications\n\n- **Weight Capacity:** Up to 26kg\n- **Brand:** Wuglo\n\n## Care Instructions\n\nA damp cloth and a little mild soap is usually enough to keep the exterior looking fresh; let it dry fully before folding away. Spot clean any padded sections rather than fully submerging them, so the internal structure isn't affected. Give the fastenings a quick check now and then, so any wear gets spotted before it becomes a problem.\n\n## Frequently Asked Questions\n",
+    "description": "## About the Wuglo Extra Stable Dog Car Seat for Large Dogs up to 26 kg\n\nThe Wuglo Extra Stable Dog Car Seat for Large Dogs up to 26 kg is built to keep your dog safely restrained and comfortable on [car travel](/carriers/car-travel-carriers), rather than loose on the back seat or under your feet. Wuglo has combined a raised, cushioned base with a clip-on lead attachment that connects to your car's seatbelt, so your pet can see out of the window without being able to climb into the footwell or onto your lap while you're driving.\n\nIt's aimed at dogs who travel regularly, whether that's the school run, the vet or weekends away, and gives nervous travellers a raised, secure spot of their own rather than sliding around the seat on every corner.\n\n## Key Features and Benefits\n\n### Fully Adjustable Fit\n\nThe strap adjusts to fit different body shapes and heights, so you can set it up comfortably whether you're tall, short, or somewhere in between.\n\n### Key Feature\n\nA reinforced frame gives the structure real rigidity, so it holds its shape rather than collapsing under your pet's weight.\n\n### 100% Protection for the Rear\n\n100% Protection for the Rear Seat - This convenient car seat for dogs means no more scratches, hair or other dirt on the back seat.\n\n### Quickly Ready for Use- Due\n\nQuickly Ready for Use- Due to their straightforward and user-friendly design, Wuglo dog car seats can be installed in just a few moments.\n\n### Full Satisfaction Guarantee - If\n\nFull Satisfaction Guarantee - If you are not completely satisfied with the Wuglo dog booster seat for medium-sized dogs, simply send it back and we will refund you 100% of the full purchase amount immediately - no questions asked!\n\n## Who This Car Seat Is Best For\n\nWuglo Extra Stable Dog Car Seat for Large Dogs up to 26 kg suits:\n\n- dogs who travel regularly by car and need a secure, restrained spot\n- Nervous travellers who benefit from a raised view out of the window\n- Owners who want to stop their pet climbing into the footwell while driving\n- Vet visits and longer road trips\n\n## Specifications\n\n- **Weight Capacity:** S: up to 12kg, M: up to 18kg, L: up to 26kg\n- **Brand:** Wuglo\n\n## Care Instructions\n\nA damp cloth and a little mild soap is usually enough to keep the exterior looking fresh; let it dry fully before folding away. Spot clean any padded sections rather than fully submerging them, so the internal structure isn't affected. Give the fastenings a quick check now and then, so any wear gets spotted before it becomes a problem.\n\n## Frequently Asked Questions\n",
     "short_description": "Extra Stable & Safer - Due to the four belts & the anchoring, this dog seat is extremely stable & safer than most other products. In addition, the length-adjustable safety belt on our dog car booster seat keeps your dog firmly in place.. Suitable for pets up to 26kg.",
     "features": [
       "The strap adjusts to fit different body shapes and heights, so you can set it up comfortably whether you're tall, short, or somewhere in between.",
@@ -6758,7 +6758,7 @@
       "Full Satisfaction Guarantee - If you are not completely satisfied with the Wuglo dog booster seat for medium-sized dogs, simply send it back and we will refund you 100% of the full purchase amount immediately - no questions asked!"
     ],
     "specifications": {
-      "Weight Capacity": "Up to 26kg",
+      "Weight Capacity": "S: up to 12kg, M: up to 18kg, L: up to 26kg",
       "Brand": "Wuglo"
     },
     "price": 61.99,
@@ -6780,7 +6780,7 @@
       "carriers/pet-carriers-for-vet-visits"
     ],
     "size_range": "large",
-    "weight_capacity": "26kg",
+    "weight_capacity": "12kg to 26kg depending on size",
     "brand": "Wuglo",
     "amazon_asin": "B097Y2BD8K",
     "amazon_url": "https://www.amazon.co.uk/dp/B097Y2BD8K",
@@ -6824,7 +6824,44 @@
       "car-compatible",
       "hard-sided"
     ],
-    "colours": []
+    "colours": [],
+    "hasVariants": true,
+    "variantType": "size",
+    "variants": [
+      {
+        "id": "B097Y1JG5H",
+        "type": "size",
+        "size": "S",
+        "sizeLabel": "S (up to 12kg)",
+        "price": 61.99,
+        "sku": "PC-B097Y1JG5H",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B097Y1JG5H",
+        "inStock": true,
+        "colourImage": "https://images.pet-carrier.co.uk/products/wuglo-extra-stable-dog-car-seat-for-large-dogs-up-to-26-kg/variant-s-final.webp"
+      },
+      {
+        "id": "B097Y4142D",
+        "type": "size",
+        "size": "M",
+        "sizeLabel": "M (up to 18kg)",
+        "price": 61.99,
+        "sku": "PC-B097Y4142D",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B097Y4142D",
+        "inStock": true,
+        "colourImage": "https://images.pet-carrier.co.uk/products/wuglo-extra-stable-dog-car-seat-for-large-dogs-up-to-26-kg/variant-m-final.webp"
+      },
+      {
+        "id": "B097Y2BD8K",
+        "type": "size",
+        "size": "L",
+        "sizeLabel": "L (up to 26kg)",
+        "price": 61.99,
+        "sku": "PC-B097Y2BD8K",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B097Y2BD8K",
+        "inStock": true,
+        "colourImage": "https://images.pet-carrier.co.uk/products/wuglo-extra-stable-dog-car-seat-for-large-dogs-up-to-26-kg/gallery-1.webp"
+      }
+    ]
   },
   {
     "id": "B0DDK7NTSD",
