@@ -42,6 +42,21 @@ just easy for us to hack on.
   `lib/*.ts` call sites unchanged, see `.env.local.example` for setup. Product/category/hero image
   uploads have the equivalent split in `lib/image-store.ts`. Never write to the local filesystem
   when running on Vercel, it's read-only outside `/tmp`.
+- **Never overwrite an R2 data file (`products.json`, `reviews.json`, `orders.json`, `customers.json`,
+  `category-content.json`, etc.) with the local git-tracked copy from `/data`.** Real incident: an
+  out-of-band script pushed the local `products.json` straight to R2 to add a couple of fields, which
+  silently reset every product's `averageRating`/`reviewCount`/`ratingBreakdown` back to unset,
+  because those fields are runtime-only, computed by `syncProductRatingStats()` in `lib/reviews.ts`
+  and never committed to git. Production had genuine customer reviews live at the time; the fix took
+  two days to notice because the review *list* still rendered correctly (it reads `reviews.json`
+  fresh), only the star-rating summary silently reverted to "Be the first to review". The same class
+  of loss applies to anything else computed and written back at runtime rather than authored in git:
+  order records, coupon usage counts, admin-added custom categories (`category-content.json`'s
+  `custom`/`deleted` arrays). **If you ever need to script a direct R2 write outside the running app
+  (emergency fix, backfill, migration), always read the current live object from R2 first, patch only
+  the specific fields you intend to change, and write that back, never `PutObjectCommand` a
+  locally-sourced file wholesale.** The one safe exception is a first-time seed of a file that has
+  never been written to in production.
 - **Product images**: `NEXT_PUBLIC_R2_PUBLIC_URL` is a custom domain
   (`images.pet-carrier.co.uk`) attached to the R2 bucket via Cloudflare, and `next.config.ts` sets
   `images.unoptimized: true`, so images are served straight from R2 with no Vercel image
