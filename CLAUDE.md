@@ -442,3 +442,8 @@ a trading-standards problem, not just a content bug.
 - Run `npm run build` before considering a change done, this project should always build cleanly.
   Run `npm run test` too if the change touches checkout, pricing, coupons, orders or email, it
   should always pass.
+- **Standing authorization: commit and push to `main` automatically once a change builds cleanly and
+  passes its tests, without asking first.** Vercel auto-deploys `main`, so a change that isn't pushed
+  isn't live, and the owner has explicitly said not to be asked each time, that's what this line is
+  for. This does not extend to force-pushes, history rewrites, or any other destructive git
+  operation, those still require asking.
