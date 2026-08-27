@@ -161,6 +161,18 @@ export default async function ProductPage({
     </>
   );
 
+  const faqBody =
+    product.faqs && product.faqs.length > 0 ? (
+      <Accordion type="single" collapsible className="mt-4">
+        {product.faqs.map((faq) => (
+          <AccordionItem key={faq.question} value={faq.question}>
+            <AccordionTrigger>{faq.question}</AccordionTrigger>
+            <AccordionContent>{renderRichText(faq.answer)}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    ) : null;
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -196,55 +208,57 @@ export default async function ProductPage({
         categoryName={primaryCategoryPath ? getCategoryByPath(primaryCategoryPath)?.name ?? null : null}
       />
 
-      <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-3">
-        <div className="lg:col-span-2">
-          {/* Mobile/tablet: collapsed behind a chevron so the page doesn't open on a wall of text. */}
-          <Accordion type="single" collapsible defaultValue="description" className="lg:hidden">
-            <AccordionItem value="description">
-              <AccordionTrigger className="font-heading text-lg font-semibold text-foreground">
-                Description
-              </AccordionTrigger>
-              <AccordionContent>{descriptionBody}</AccordionContent>
-            </AccordionItem>
-          </Accordion>
+      {/* Mobile/tablet: Specifications, then Description, then FAQ, each collapsed behind a
+          chevron so the page doesn't open on a wall of text. A separate stack from the desktop
+          grid below since the two need a different section order, not just different styling. */}
+      <div className="mt-14 flex flex-col divide-y divide-border border-t border-border lg:hidden">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="specifications" className="border-b-0">
+            <AccordionTrigger className="font-heading text-lg font-semibold text-foreground">
+              Specifications
+            </AccordionTrigger>
+            <AccordionContent>{specificationsBody}</AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
-          {/* Desktop: shown in full, there's room for it. */}
-          <div className="hidden lg:block">
-            <h2 className="font-heading text-2xl font-semibold text-foreground">Description</h2>
-            <div className="mt-4">{descriptionBody}</div>
+        <Accordion type="single" collapsible defaultValue="description">
+          <AccordionItem value="description">
+            <AccordionTrigger className="font-heading text-lg font-semibold text-foreground">
+              Description
+            </AccordionTrigger>
+            <AccordionContent>{descriptionBody}</AccordionContent>
+          </AccordionItem>
+        </Accordion>
+
+        {faqBody && (
+          <div className="pt-4">
+            <h2 className="font-heading text-lg font-semibold text-foreground">
+              Frequently Asked Questions
+            </h2>
+            {faqBody}
           </div>
+        )}
+      </div>
 
-          {product.faqs && product.faqs.length > 0 && (
+      {/* Desktop: shown in full, there's room for it. */}
+      <div className="mt-14 hidden gap-10 lg:grid lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <h2 className="font-heading text-2xl font-semibold text-foreground">Description</h2>
+          <div className="mt-4">{descriptionBody}</div>
+
+          {faqBody && (
             <div className="mt-10">
               <h2 className="font-heading text-2xl font-semibold text-foreground">
                 Frequently Asked Questions
               </h2>
-              <Accordion type="single" collapsible className="mt-4">
-                {product.faqs.map((faq) => (
-                  <AccordionItem key={faq.question} value={faq.question}>
-                    <AccordionTrigger>{faq.question}</AccordionTrigger>
-                    <AccordionContent>{renderRichText(faq.answer)}</AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+              {faqBody}
             </div>
           )}
         </div>
 
         <div>
-          <Accordion type="single" collapsible className="lg:hidden">
-            <AccordionItem value="specifications">
-              <AccordionTrigger className="font-heading text-lg font-semibold text-foreground">
-                Specifications
-              </AccordionTrigger>
-              <AccordionContent>{specificationsBody}</AccordionContent>
-            </AccordionItem>
-          </Accordion>
-
-          <div className="hidden lg:block">
-            <h2 className="font-heading text-2xl font-semibold text-foreground">Specifications</h2>
-            <div className="mt-4">{specificationsBody}</div>
-          </div>
+          <h2 className="font-heading text-2xl font-semibold text-foreground">Specifications</h2>
+          <div className="mt-4">{specificationsBody}</div>
         </div>
       </div>
 
