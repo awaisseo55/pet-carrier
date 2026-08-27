@@ -110,6 +110,57 @@ export default async function ProductPage({
   ]);
   const faqSchema = product.faqs && product.faqs.length > 0 ? faqJsonLd(product.faqs) : null;
 
+  const descriptionBody = (
+    <div className="prose-content flex flex-col gap-4 text-gray-500">
+      {renderRichText(product.description)}
+    </div>
+  );
+
+  const specificationsBody = (
+    <>
+      {product.hasVariants &&
+        product.variants &&
+        (product.variantType === "size" || product.variantType === "size-colour") && (
+          <div className="overflow-x-auto rounded-lg border border-border">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-gray-50 text-muted-foreground">
+                <tr>
+                  <th className="px-4 py-2.5 font-medium">Size</th>
+                  <th className="px-4 py-2.5 font-medium">Dimensions</th>
+                  <th className="px-4 py-2.5 text-right font-medium">Price</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {distinctSizes(product.variants).map(({ size, sizeLabel }) => {
+                  const variant = product.variants!.find((v) => v.size === size);
+                  return (
+                    <tr key={size}>
+                      <td className="px-4 py-2.5 font-medium text-foreground">{size}</td>
+                      <td className="px-4 py-2.5 text-muted-foreground">
+                        {sizeLabel?.replace(`${size} `, "").replace(/[()]/g, "") || "—"}
+                      </td>
+                      <td className="px-4 py-2.5 text-right font-medium text-foreground">
+                        {variant ? formatPrice(variant.price) : "—"}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+      <dl className="mt-4 divide-y divide-border rounded-lg border border-border bg-card">
+        {Object.entries(product.specifications).map(([key, value]) => (
+          <div key={key} className="flex justify-between gap-4 px-4 py-3 text-sm">
+            <dt className="text-muted-foreground">{key}</dt>
+            <dd className="text-right font-medium text-foreground">{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </>
+  );
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -147,8 +198,20 @@ export default async function ProductPage({
 
       <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <div className="prose-content flex flex-col gap-4 text-gray-500">
-            {renderRichText(product.description)}
+          {/* Mobile/tablet: collapsed behind a chevron so the page doesn't open on a wall of text. */}
+          <Accordion type="single" collapsible defaultValue="description" className="lg:hidden">
+            <AccordionItem value="description">
+              <AccordionTrigger className="font-heading text-lg font-semibold text-foreground">
+                Description
+              </AccordionTrigger>
+              <AccordionContent>{descriptionBody}</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          {/* Desktop: shown in full, there's room for it. */}
+          <div className="hidden lg:block">
+            <h2 className="font-heading text-2xl font-semibold text-foreground">Description</h2>
+            <div className="mt-4">{descriptionBody}</div>
           </div>
 
           {product.faqs && product.faqs.length > 0 && (
@@ -169,48 +232,19 @@ export default async function ProductPage({
         </div>
 
         <div>
-          <h2 className="font-heading text-2xl font-semibold text-foreground">Specifications</h2>
+          <Accordion type="single" collapsible className="lg:hidden">
+            <AccordionItem value="specifications">
+              <AccordionTrigger className="font-heading text-lg font-semibold text-foreground">
+                Specifications
+              </AccordionTrigger>
+              <AccordionContent>{specificationsBody}</AccordionContent>
+            </AccordionItem>
+          </Accordion>
 
-          {product.hasVariants &&
-            product.variants &&
-            (product.variantType === "size" || product.variantType === "size-colour") && (
-              <div className="mt-4 overflow-x-auto rounded-lg border border-border">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-gray-50 text-muted-foreground">
-                    <tr>
-                      <th className="px-4 py-2.5 font-medium">Size</th>
-                      <th className="px-4 py-2.5 font-medium">Dimensions</th>
-                      <th className="px-4 py-2.5 text-right font-medium">Price</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border">
-                    {distinctSizes(product.variants).map(({ size, sizeLabel }) => {
-                      const variant = product.variants!.find((v) => v.size === size);
-                      return (
-                        <tr key={size}>
-                          <td className="px-4 py-2.5 font-medium text-foreground">{size}</td>
-                          <td className="px-4 py-2.5 text-muted-foreground">
-                            {sizeLabel?.replace(`${size} `, "").replace(/[()]/g, "") || "—"}
-                          </td>
-                          <td className="px-4 py-2.5 text-right font-medium text-foreground">
-                            {variant ? formatPrice(variant.price) : "—"}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            )}
-
-          <dl className="mt-4 divide-y divide-border rounded-lg border border-border bg-card">
-            {Object.entries(product.specifications).map(([key, value]) => (
-              <div key={key} className="flex justify-between gap-4 px-4 py-3 text-sm">
-                <dt className="text-muted-foreground">{key}</dt>
-                <dd className="text-right font-medium text-foreground">{value}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="hidden lg:block">
+            <h2 className="font-heading text-2xl font-semibold text-foreground">Specifications</h2>
+            <div className="mt-4">{specificationsBody}</div>
+          </div>
         </div>
       </div>
 
