@@ -37,7 +37,8 @@ export default function ShippingPage() {
       <h2>Tracking</h2>
       <p>
         You’ll receive tracking information by email once your order has been dispatched, so you
-        can follow its progress right up to your door.
+        can follow its progress right up to your door. You can also check your order’s status
+        anytime on our <Link href="/track-order">Track Order</Link> page.
       </p>
 
       <h2>Where we deliver</h2>

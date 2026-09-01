@@ -42,6 +42,7 @@ const shopLinks = [
 
 const supportLinks = [
   { href: "/contact", label: "Contact" },
+  { href: "/track-order", label: "Track Order" },
   { href: "/shipping", label: "Shipping" },
   { href: "/returns", label: "Returns" },
   { href: "/contact", label: "FAQ" },
