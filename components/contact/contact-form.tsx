@@ -11,8 +11,13 @@ export function ContactForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    // Captured before the await: React nulls out e.currentTarget once the
+    // synchronous event-handling phase ends, so reading it after an await
+    // throws "Cannot read properties of null (reading 'reset')" instead of
+    // clearing the form.
+    const form = e.currentTarget;
     setLoading(true);
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
 
     const res = await fetch("/api/contact", {
       method: "POST",
@@ -28,7 +33,7 @@ export function ContactForm() {
 
     if (res.ok) {
       toast.success("Thanks, we've got your message and will reply soon.");
-      e.currentTarget.reset();
+      form.reset();
     } else {
       toast.error("Something went wrong sending your message. Please try again.");
     }
