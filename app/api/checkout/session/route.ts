@@ -4,7 +4,7 @@ import { calculateCheckout, CheckoutValidationError, type CheckoutLine } from "@
 import { validateCustomer, validateAddress } from "@/lib/checkout-validation";
 import type { DeliveryOption } from "@/lib/types";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pet-carrier.co.uk";
 
 interface CheckoutRequestBody {
   lines: CheckoutLine[];
