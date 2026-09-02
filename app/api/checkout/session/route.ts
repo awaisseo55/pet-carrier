@@ -1,23 +1,18 @@
 import { NextResponse } from "next/server";
 import { stripe, isStripeConfigured } from "@/lib/stripe";
 import { calculateCheckout, CheckoutValidationError, type CheckoutLine } from "@/lib/checkout-calculation";
-import { validateCustomer, validateAddress } from "@/lib/checkout-validation";
 import type { DeliveryOption } from "@/lib/types";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pet-carrier.co.uk";
 
+// Matches the countries previously offered in the checkout page's own
+// address form, see the webhook (app/api/webhooks/stripe/route.ts) for
+// where Stripe's own collected shipping address is read back out.
+const ALLOWED_SHIPPING_COUNTRIES: import("stripe").default.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[] =
+  ["GB", "IE", "FR", "DE"];
+
 interface CheckoutRequestBody {
   lines: CheckoutLine[];
-  customer: { firstName: string; lastName: string; email: string; phone: string };
-  address: {
-    line1: string;
-    line2?: string;
-    city: string;
-    county?: string;
-    postcode: string;
-    country: string;
-    instructions?: string;
-  };
   deliveryOption: DeliveryOption;
   couponCode?: string;
 }
@@ -40,9 +35,6 @@ export async function POST(request: Request) {
 
   try {
     const body: CheckoutRequestBody = await request.json();
-
-    const customer = validateCustomer(body.customer || {}, { requirePhone: true });
-    const address = validateAddress(body.address || {}, { ukOnly: false });
 
     const calculated = await calculateCheckout({
       lines: body.lines,
@@ -95,7 +87,21 @@ export async function POST(request: Request) {
       mode: "payment",
       line_items,
       discounts,
-      customer_email: customer.email,
+      // Name, email, phone and delivery address are no longer collected on
+      // our own page, Stripe's hosted Checkout page collects all of that
+      // itself (with its own address autocomplete), read back out of
+      // session.customer_details / session.collected_information in the
+      // webhook once payment completes.
+      shipping_address_collection: { allowed_countries: ALLOWED_SHIPPING_COUNTRIES },
+      phone_number_collection: { enabled: true },
+      custom_fields: [
+        {
+          key: "delivery_instructions",
+          label: { type: "custom", custom: "Delivery instructions (optional)" },
+          type: "text",
+          optional: true,
+        },
+      ],
       success_url: `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/checkout/cancel`,
       metadata: {
@@ -104,15 +110,6 @@ export async function POST(request: Request) {
         // client-sent lines, so a price change between session creation and
         // webhook delivery can't retroactively alter what was charged.
         order_items: JSON.stringify(calculated.items),
-        customer_name: `${customer.firstName} ${customer.lastName}`.trim(),
-        customer_phone: customer.phone || "",
-        address_line1: address.line1,
-        address_line2: address.line2 || "",
-        city: address.city,
-        county: address.county || "",
-        postcode: address.postcode,
-        country: address.country,
-        delivery_instructions: address.instructions || "",
         delivery_option: calculated.deliveryOption,
         coupon_code: calculated.appliedCouponCode || "",
         discount: calculated.discount.toFixed(2),

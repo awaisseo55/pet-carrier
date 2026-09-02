@@ -48,20 +48,31 @@ export async function POST(request: Request) {
       const items: OrderItem[] = JSON.parse(meta.order_items || "[]");
       const deliveryOption = (meta.delivery_option as DeliveryOption) || "standard";
 
+      // Name, email, phone and delivery address are collected by Stripe's
+      // own hosted Checkout page (shipping_address_collection /
+      // phone_number_collection on the session, see
+      // app/api/checkout/session/route.ts), not our own form, so they're
+      // read back out of what Stripe captured rather than session metadata.
+      const shippingAddress = session.collected_information?.shipping_details?.address;
+      const deliveryInstructionsField = session.custom_fields?.find(
+        (field) => field.key === "delivery_instructions"
+      );
+
       const order = await createOrder({
         payment_method: "card",
         stripe_session_id: session.id,
-        customer_name: meta.customer_name || session.customer_details?.name || "Customer",
+        customer_name:
+          session.collected_information?.shipping_details?.name || session.customer_details?.name || "Customer",
         customer_email: session.customer_details?.email || "",
-        customer_phone: meta.customer_phone || undefined,
+        customer_phone: session.customer_details?.phone || undefined,
         shipping_address: {
-          line1: meta.address_line1 || "",
-          line2: meta.address_line2 || undefined,
-          city: meta.city || "",
-          county: meta.county || undefined,
-          postcode: meta.postcode || "",
-          country: meta.country || "GB",
-          delivery_instructions: meta.delivery_instructions || undefined,
+          line1: shippingAddress?.line1 || "",
+          line2: shippingAddress?.line2 || undefined,
+          city: shippingAddress?.city || "",
+          county: shippingAddress?.state || undefined,
+          postcode: shippingAddress?.postal_code || "",
+          country: shippingAddress?.country || "GB",
+          delivery_instructions: deliveryInstructionsField?.text?.value || undefined,
         },
         items,
         delivery_option: deliveryOption,
