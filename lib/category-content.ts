@@ -123,7 +123,7 @@ export function getMetaTitle(node: CategoryNode): string {
 
 export function getMetaDescription(node: CategoryNode): string {
   const noun = singularName(node);
-  const text = `Shop ${lowerName(node.name)} for ${node.descriptor}. Free UK shipping over £50, 30-day returns. Find the right ${noun} for your pet.`;
+  const text = `Shop ${lowerName(node.name)} for ${node.descriptor}. Free UK shipping over £70, 14-day returns. Find the right ${noun} for your pet.`;
   return text.length <= 155 ? text : `${text.slice(0, 152)}...`;
 }
 
@@ -214,11 +214,11 @@ export function getFaqs(node: CategoryNode): { question: string; answer: string 
     },
     {
       question: `How much do ${namePlural} cost?`,
-      answer: `Prices vary depending on size, material and features. As a general guide, expect to pay more for hard-sided or heavier-duty options than for simple soft-sided designs. Free UK shipping applies on all orders over £50.`,
+      answer: `Prices vary depending on size, material and features. As a general guide, expect to pay more for hard-sided or heavier-duty options than for simple soft-sided designs. Free UK shipping applies on all orders over £70.`,
     },
     {
       question: `Do you offer free UK delivery on ${namePlural}?`,
-      answer: `Yes, orders over £50 qualify for free standard UK shipping. Orders under £50 have a small delivery charge shown at checkout. We also offer 30-day returns if something isn't quite right.`,
+      answer: `Yes, orders over £70 qualify for free standard UK shipping. Orders under £70 have a small delivery charge shown at checkout. We also offer 14-day returns if something isn't quite right.`,
     },
   ];
 

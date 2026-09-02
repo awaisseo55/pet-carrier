@@ -13,7 +13,7 @@ export interface PublicSettings {
 }
 
 const DEFAULTS: PublicSettings = {
-  free_shipping_threshold: 50,
+  free_shipping_threshold: 70,
   standard_shipping_cost: 3.99,
   express_shipping_cost: 6.99,
   next_day_shipping_cost: 9.99,

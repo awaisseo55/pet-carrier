@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Pet Carrier | Carriers, Strollers & Beds for Every Pet",
   description:
-    "Everything for your pet on the move and at rest. Carriers, strollers and beds for dogs, cats, small animals and birds. UK based, free shipping over £50, 30-day returns.",
+    "Everything for your pet on the move and at rest. Carriers, strollers and beds for dogs, cats, small animals and birds. UK based, free shipping over £70, 14-day returns.",
   openGraph: {
     type: "website",
     locale: "en_GB",

@@ -40,7 +40,7 @@ export default function ContactPage() {
                 <MapPin className="mt-0.5 size-5 shrink-0 text-blue-700" />
                 <div>
                   <p className="font-medium">Based in</p>
-                  <p className="text-sm text-gray-500">United Kingdom</p>
+                  <p className="text-sm text-gray-500">Manchester, United Kingdom</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

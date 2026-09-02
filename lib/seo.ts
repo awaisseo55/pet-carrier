@@ -8,8 +8,13 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: "Pet Carrier",
     url: siteUrl,
-    logo: `${siteUrl}/placeholders/logo.png`,
+    logo: `${siteUrl}/logo.png`,
     description: "Everything for your pet on the move and at rest.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Manchester",
+      addressCountry: "GB",
+    },
     sameAs: [
       "https://www.instagram.com/petcarrieruk",
       "https://www.facebook.com/petcarrieruk",

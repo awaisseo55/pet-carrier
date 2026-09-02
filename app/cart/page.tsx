@@ -255,7 +255,7 @@ export default function CartPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Truck className="size-4 text-blue-600" />
-                  Free UK shipping over £50
+                  Free UK shipping over £70
                 </div>
               </div>
             </div>

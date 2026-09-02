@@ -8,7 +8,7 @@ import { getHomepageSettings } from "@/lib/homepage";
 const BADGE_ICONS: Record<string, typeof MapPin> = {
   "UK Based": MapPin,
   "Fast Dispatch": Truck,
-  "30-Day Returns": Undo2,
+  "14-Day Returns": Undo2,
   "Secure Checkout": ShieldCheck,
 };
 

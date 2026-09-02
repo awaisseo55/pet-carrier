@@ -37,7 +37,7 @@ function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
 const trustPoints = [
   { icon: Star, label: "Handpicked quality" },
   { icon: Truck, label: "UK-based fulfilment" },
-  { icon: ShieldCheck, label: "30-day returns" },
+  { icon: ShieldCheck, label: "14-day returns" },
 ];
 
 const shopLinks = [
@@ -103,12 +103,12 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
           <div className="lg:w-72 lg:shrink-0">
-            <Link href="/" className="inline-block">
-              <Image src="/logo-white.svg" alt="Pet Carrier" width={200} height={60} className="h-9 w-auto" />
+            <Link href="/" className="inline-block rounded-lg bg-white px-3 py-2">
+              <Image src="/logo.png" alt="Pet Carrier" width={200} height={100} className="h-11 w-auto" />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-gray-400">
               Everything for your pet on the move and at rest. Carriers, strollers and beds, handpicked
-              and dispatched from the UK.
+              and dispatched from Manchester, UK.
             </p>
             <ul className="mt-5 flex flex-col gap-2.5">
               {trustPoints.map((point) => (

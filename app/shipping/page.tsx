@@ -30,8 +30,8 @@ export default function ShippingPage() {
 
       <h2>Shipping costs</h2>
       <ul>
-        <li>Free UK shipping on orders over £50</li>
-        <li>A flat shipping fee applies to orders under £50, shown at checkout</li>
+        <li>Free UK shipping on orders over £70</li>
+        <li>A flat shipping fee applies to orders under £70, shown at checkout</li>
       </ul>
 
       <h2>Tracking</h2>

@@ -15,8 +15,8 @@ const points = [
   },
   {
     icon: Shield,
-    title: "30-Day Returns",
-    description: "Not quite right? Send it back within 30 days for a straightforward refund, no fuss.",
+    title: "14-Day Returns",
+    description: "Not quite right? Send it back unused within 14 days for a straightforward refund, no fuss.",
   },
 ];
 

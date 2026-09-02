@@ -98,11 +98,11 @@ export function ProductPurchaseSection({
         <div className="mt-6 grid grid-cols-1 gap-3 rounded-lg bg-gray-100/60 p-4 sm:grid-cols-3">
           <div className="flex items-center gap-2 text-sm">
             <Truck className="size-4 shrink-0 text-blue-700" />
-            Free UK shipping over £50
+            Free UK shipping over £70
           </div>
           <div className="flex items-center gap-2 text-sm">
             <RotateCcw className="size-4 shrink-0 text-blue-700" />
-            30-day returns
+            14-day returns
           </div>
           <div className="flex items-center gap-2 text-sm">
             <ShieldCheck className="size-4 shrink-0 text-blue-700" />
