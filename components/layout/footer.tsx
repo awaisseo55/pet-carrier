@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { MapPin, ShieldCheck, Truck } from "lucide-react";
+import { ShieldCheck, Star, Truck } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -33,31 +34,36 @@ function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+const trustPoints = [
+  { icon: Star, label: "Handpicked quality" },
+  { icon: Truck, label: "UK-based fulfilment" },
+  { icon: ShieldCheck, label: "30-day returns" },
+];
+
 const shopLinks = [
   { href: "/carriers", label: "Carriers" },
+  { href: "/carriers/dog-carriers", label: "Dog Carriers" },
   { href: "/strollers", label: "Strollers" },
   { href: "/beds", label: "Beds" },
-  { href: "/carriers", label: "Sale" },
 ];
 
 const supportLinks = [
-  { href: "/contact", label: "Contact" },
+  { href: "/contact", label: "Contact Us" },
   { href: "/track-order", label: "Track Order" },
-  { href: "/shipping", label: "Shipping" },
+  { href: "/shipping", label: "Shipping Info" },
   { href: "/returns", label: "Returns" },
-  { href: "/contact", label: "FAQ" },
 ];
 
 const companyLinks = [
-  { href: "/about", label: "About" },
+  { href: "/about", label: "About Us" },
   { href: "/blog", label: "Blog" },
-  { href: "/about", label: "Careers" },
-  { href: "/about", label: "Press" },
+  { href: "/account/login", label: "Sign In" },
+  { href: "/account/register", label: "Create Account" },
 ];
 
 const legalLinks = [
-  { href: "/privacy", label: "Privacy" },
-  { href: "/terms", label: "Terms" },
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms & Conditions" },
   { href: "/disclaimer", label: "Disclaimer" },
 ];
 
@@ -95,123 +101,130 @@ export function Footer() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Shop</h4>
-            <ul className="mt-3 flex flex-col gap-2 text-sm">
-              {shopLinks.map((link, i) => (
-                <li key={link.label + i}>
-                  <Link href={link.href} className="hover:text-white">
-                    {link.label}
-                  </Link>
+        <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
+          <div className="lg:w-72 lg:shrink-0">
+            <Link href="/" className="inline-block">
+              <Image src="/logo-white.svg" alt="Pet Carrier" width={200} height={60} className="h-9 w-auto" />
+            </Link>
+            <p className="mt-4 max-w-xs text-sm text-gray-400">
+              Everything for your pet on the move and at rest. Carriers, strollers and beds, handpicked
+              and dispatched from the UK.
+            </p>
+            <ul className="mt-5 flex flex-col gap-2.5">
+              {trustPoints.map((point) => (
+                <li key={point.label} className="flex items-center gap-2 text-sm text-gray-300">
+                  <point.icon className="size-4 shrink-0 text-blue-400" />
+                  {point.label}
                 </li>
               ))}
             </ul>
+            <div className="mt-6 flex gap-3">
+              <a
+                href="https://www.instagram.com/petcarrieruk"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="flex size-9 items-center justify-center rounded-full bg-gray-700/60 hover:bg-gray-700"
+              >
+                <InstagramIcon className="size-4" />
+              </a>
+              <a
+                href="https://www.facebook.com/petcarrieruk"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="flex size-9 items-center justify-center rounded-full bg-gray-700/60 hover:bg-gray-700"
+              >
+                <FacebookIcon className="size-4" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@petcarrieruk"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+                className="flex size-9 items-center justify-center rounded-full bg-gray-700/60 hover:bg-gray-700"
+              >
+                <TikTokIcon className="size-4" />
+              </a>
+            </div>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Support</h4>
-            <ul className="mt-3 flex flex-col gap-2 text-sm">
-              {supportLinks.map((link, i) => (
-                <li key={link.label + i}>
-                  <Link href={link.href} className="hover:text-white">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <div className="grid flex-1 grid-cols-2 gap-8 sm:grid-cols-4">
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Shop</h4>
+              <ul className="mt-3 flex flex-col gap-2 text-sm">
+                {shopLinks.map((link) => (
+                  <li key={link.href + link.label}>
+                    <Link href={link.href} className="hover:text-white">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Company</h4>
-            <ul className="mt-3 flex flex-col gap-2 text-sm">
-              {companyLinks.map((link, i) => (
-                <li key={link.label + i}>
-                  <Link href={link.href} className="hover:text-white">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Support</h4>
+              <ul className="mt-3 flex flex-col gap-2 text-sm">
+                {supportLinks.map((link) => (
+                  <li key={link.href + link.label}>
+                    <Link href={link.href} className="hover:text-white">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Legal</h4>
-            <ul className="mt-3 flex flex-col gap-2 text-sm">
-              {legalLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="hover:text-white">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Company</h4>
+              <ul className="mt-3 flex flex-col gap-2 text-sm">
+                {companyLinks.map((link) => (
+                  <li key={link.href + link.label}>
+                    <Link href={link.href} className="hover:text-white">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Legal</h4>
+              <ul className="mt-3 flex flex-col gap-2 text-sm">
+                {legalLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="hover:text-white">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-gray-700 pt-8 sm:flex-row sm:items-center">
-          <div className="flex gap-3">
-            <a
-              href="https://www.instagram.com/petcarrieruk"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="flex size-9 items-center justify-center rounded-full bg-gray-800 hover:bg-gray-700"
-            >
-              <InstagramIcon className="size-4" />
-            </a>
-            <a
-              href="https://www.facebook.com/petcarrieruk"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="flex size-9 items-center justify-center rounded-full bg-gray-800 hover:bg-gray-700"
-            >
-              <FacebookIcon className="size-4" />
-            </a>
-            <a
-              href="https://www.tiktok.com/@petcarrieruk"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="TikTok"
-              className="flex size-9 items-center justify-center rounded-full bg-gray-800 hover:bg-gray-700"
-            >
-              <TikTokIcon className="size-4" />
-            </a>
-          </div>
-
+        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-gray-700 pt-8 sm:flex-row sm:items-center">
+          <p className="flex items-center gap-1.5 text-xs text-gray-500">
+            <ShieldCheck className="size-4 shrink-0 text-gray-500" />
+            Secure checkout, payments processed by Stripe
+          </p>
           <div className="flex flex-wrap gap-2">
             {paymentMethods.map((method) => (
               <span
                 key={method}
-                className="rounded border border-gray-700 bg-gray-800 px-2.5 py-1 text-xs font-medium text-gray-300"
+                className="rounded-md border border-gray-700 bg-gray-700/40 px-2.5 py-1 text-xs font-medium text-gray-300"
               >
                 {method}
               </span>
             ))}
           </div>
         </div>
-
-        <div className="mt-8 grid grid-cols-1 gap-4 border-t border-gray-700 pt-8 sm:grid-cols-3">
-          <div className="flex items-center gap-2 text-sm text-gray-400">
-            <MapPin className="size-4 shrink-0" />
-            UK based
-          </div>
-          <div className="flex items-center gap-2 text-sm text-gray-400">
-            <ShieldCheck className="size-4 shrink-0" />
-            Secure checkout
-          </div>
-          <div className="flex items-center gap-2 text-sm text-gray-400">
-            <Truck className="size-4 shrink-0" />
-            Fast dispatch
-          </div>
-        </div>
-
       </div>
 
       <div className="border-t border-gray-700 bg-gray-900">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-6 text-xs text-gray-500 sm:flex-row sm:items-center sm:px-6 lg:px-8">
-          <p>&copy; {new Date().getFullYear()} Pet Carrier. All rights reserved. Made in the UK.</p>
+          <p>&copy; {new Date().getFullYear()} Pet Carrier. All rights reserved.</p>
           <p>pet-carrier.co.uk</p>
         </div>
       </div>
