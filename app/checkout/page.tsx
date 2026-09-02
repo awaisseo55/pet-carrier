@@ -10,9 +10,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { PaymentBadges } from "@/components/checkout/payment-badges";
 import { formatPrice } from "@/lib/utils";
 import { DELIVERY_OPTIONS } from "@/lib/constants";
-import type { DeliveryOption } from "@/lib/types";
 import { toast } from "sonner";
 
 export default function CheckoutPage() {
@@ -20,17 +27,27 @@ export default function CheckoutPage() {
   const settings = usePublicSettings();
   const [loading, setLoading] = React.useState(false);
 
-  const [deliveryOption, setDeliveryOption] = React.useState<DeliveryOption>("standard");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+
+  const [line1, setLine1] = React.useState("");
+  const [line2, setLine2] = React.useState("");
+  const [city, setCity] = React.useState("");
+  const [county, setCounty] = React.useState("");
+  const [postcode, setPostcode] = React.useState("");
+  const [country, setCountry] = React.useState("GB");
+  const [instructions, setInstructions] = React.useState("");
+
   const [couponInput, setCouponInput] = React.useState("");
   const [termsAccepted, setTermsAccepted] = React.useState(false);
+  const [createAccount, setCreateAccount] = React.useState(false);
+  const [password, setPassword] = React.useState("");
 
+  const deliveryOption = DELIVERY_OPTIONS[0].value;
   const discount = coupon?.discountAmount || 0;
-  const deliveryPrices: Record<DeliveryOption, number> = {
-    standard: subtotal >= settings.free_shipping_threshold ? 0 : settings.standard_shipping_cost,
-    express: settings.express_shipping_cost,
-    next_day: settings.next_day_shipping_cost,
-  };
-  const shippingCost = deliveryPrices[deliveryOption];
+  const shippingCost = subtotal >= settings.free_shipping_threshold ? 0 : settings.standard_shipping_cost;
   const vatBase = Math.max(0, subtotal - discount);
   const vat = Math.round(vatBase * (settings.vat_rate / (100 + settings.vat_rate)) * 100) / 100;
   const total = Math.max(0, subtotal - discount) + shippingCost;
@@ -49,11 +66,21 @@ export default function CheckoutPage() {
 
     setLoading(true);
     try {
+      if (createAccount && password) {
+        const registerRes = await fetch("/api/account/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: `${firstName} ${lastName}`.trim(), email, password }),
+        });
+        if (!registerRes.ok) {
+          const data = await registerRes.json();
+          toast.error(data.error || "Could not create your account, continuing as guest.");
+        }
+      }
+
       // Only trusted line references go to the server, price/title/image are
       // never sent, the server looks those up itself from the product
-      // catalogue so nothing here can be tampered with in the browser. Name,
-      // email, phone and delivery address are collected on Stripe's own
-      // hosted checkout page next, not here.
+      // catalogue so nothing here can be tampered with in the browser.
       const lines = activeItems.map((item) => ({
         product_id: item.product_id,
         variant_sku: item.variant_sku,
@@ -65,6 +92,8 @@ export default function CheckoutPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           lines,
+          customer: { firstName, lastName, email, phone },
+          address: { line1, line2, city, county, postcode, country, instructions },
           deliveryOption,
           couponCode: coupon?.code,
         }),
@@ -103,40 +132,125 @@ export default function CheckoutPage() {
       <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_380px]">
         <div className="flex flex-col gap-8">
           <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
-            <h2 className="font-heading text-lg font-semibold text-ink">1. Delivery Options</h2>
-            <div className="mt-4 flex flex-col gap-3">
-              {DELIVERY_OPTIONS.map((option) => (
-                <label
-                  key={option.value}
-                  className="flex cursor-pointer items-center justify-between rounded-lg border border-border p-4 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50"
-                >
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="radio"
-                      name="delivery"
-                      checked={deliveryOption === option.value}
-                      onChange={() => setDeliveryOption(option.value)}
-                      className="size-4 accent-blue-600"
-                    />
-                    <div>
-                      <p className="font-medium text-ink">{option.label}</p>
-                      <p className="text-xs text-gray-500">{option.eta}</p>
-                    </div>
-                  </div>
-                  <span className="font-medium text-ink">
-                    {deliveryPrices[option.value] === 0 ? "Free" : formatPrice(deliveryPrices[option.value])}
-                  </span>
-                </label>
-              ))}
+            <h2 className="font-heading text-lg font-semibold text-ink">1. Your Details</h2>
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div>
+                <Label htmlFor="firstName">First name</Label>
+                <Input id="firstName" required value={firstName} onChange={(e) => setFirstName(e.target.value)} className="mt-1.5" />
+              </div>
+              <div>
+                <Label htmlFor="lastName">Last name</Label>
+                <Input id="lastName" required value={lastName} onChange={(e) => setLastName(e.target.value)} className="mt-1.5" />
+              </div>
+              <div>
+                <Label htmlFor="email">Email address</Label>
+                <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1.5" />
+              </div>
+              <div>
+                <Label htmlFor="phone">Phone number</Label>
+                <Input id="phone" type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} className="mt-1.5" />
+              </div>
+            </div>
+
+            <div className="mt-4 border-t border-border pt-4">
+              <label className="flex items-center gap-2 text-sm cursor-pointer">
+                <Checkbox checked={createAccount} onCheckedChange={(c) => setCreateAccount(!!c)} />
+                Create an account for faster future checkout
+              </label>
+              {createAccount && (
+                <div className="mt-3 max-w-xs">
+                  <Label htmlFor="password">Password</Label>
+                  <Input
+                    id="password"
+                    type="password"
+                    minLength={8}
+                    required={createAccount}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="mt-1.5"
+                  />
+                </div>
+              )}
+              <p className="mt-2 text-xs text-gray-500">No account required, you can also check out as a guest.</p>
             </div>
           </section>
 
           <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
-            <h2 className="font-heading text-lg font-semibold text-ink">2. Payment</h2>
-            <p className="mt-2 text-sm text-gray-500">
-              You’ll be redirected to our secure Stripe checkout to enter your name, delivery address and card
-              details.
-            </p>
+            <h2 className="font-heading text-lg font-semibold text-ink">2. Delivery Address</h2>
+            <div className="mt-4 grid grid-cols-1 gap-4">
+              <div>
+                <Label htmlFor="line1">Address line 1</Label>
+                <Input id="line1" required value={line1} onChange={(e) => setLine1(e.target.value)} className="mt-1.5" />
+              </div>
+              <div>
+                <Label htmlFor="line2">Address line 2 (optional)</Label>
+                <Input id="line2" value={line2} onChange={(e) => setLine2(e.target.value)} className="mt-1.5" />
+              </div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div>
+                  <Label htmlFor="city">Town / City</Label>
+                  <Input id="city" required value={city} onChange={(e) => setCity(e.target.value)} className="mt-1.5" />
+                </div>
+                <div>
+                  <Label htmlFor="county">County</Label>
+                  <Input id="county" value={county} onChange={(e) => setCounty(e.target.value)} className="mt-1.5" />
+                </div>
+                <div>
+                  <Label htmlFor="postcode">Postcode</Label>
+                  <Input id="postcode" required value={postcode} onChange={(e) => setPostcode(e.target.value)} className="mt-1.5" />
+                </div>
+              </div>
+              <div>
+                <Label htmlFor="country">Country</Label>
+                <Select value={country} onValueChange={setCountry}>
+                  <SelectTrigger id="country" className="mt-1.5">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="GB">United Kingdom</SelectItem>
+                    <SelectItem value="IE">Ireland</SelectItem>
+                    <SelectItem value="FR">France</SelectItem>
+                    <SelectItem value="DE">Germany</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="instructions">Delivery instructions (optional)</Label>
+                <textarea
+                  id="instructions"
+                  value={instructions}
+                  onChange={(e) => setInstructions(e.target.value)}
+                  rows={2}
+                  className="mt-1.5 w-full rounded-lg border border-input bg-white px-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                />
+              </div>
+            </div>
+
+            <div className="mt-5 flex items-center justify-between rounded-lg bg-gray-50 p-4">
+              <div className="flex items-center gap-3">
+                <Truck className="size-5 shrink-0 text-blue-700" />
+                <div>
+                  <p className="text-sm font-medium text-ink">{DELIVERY_OPTIONS[0].label}</p>
+                  <p className="text-xs text-gray-500">{DELIVERY_OPTIONS[0].eta}</p>
+                </div>
+              </div>
+              <span className="font-medium text-ink">{shippingCost === 0 ? "Free" : formatPrice(shippingCost)}</span>
+            </div>
+          </section>
+
+          <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
+            <h2 className="font-heading text-lg font-semibold text-ink">3. Payment</h2>
+
+            <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-4">
+              <div className="flex items-center gap-2 font-medium text-ink">
+                <Lock className="size-4" />
+                Pay securely by card via Stripe
+              </div>
+              <p className="mt-1 text-sm text-gray-500">
+                You’ll be redirected to our secure Stripe checkout to enter your card details.
+              </p>
+              <PaymentBadges className="mt-3" />
+            </div>
 
             <div className="mt-4">
               <Label>Promo code</Label>
@@ -182,7 +296,7 @@ export default function CheckoutPage() {
 
             <Button type="submit" size="lg" variant="default" className="mt-6 w-full" disabled={loading}>
               <Lock className="size-4" />
-              {loading ? "Redirecting to secure payment..." : `Continue to Payment - ${formatPrice(total)}`}
+              {loading ? "Redirecting to secure payment..." : "Continue to Payment"}
             </Button>
 
             <div className="mt-4 flex flex-col gap-1.5 text-xs text-gray-500">
@@ -244,7 +358,7 @@ export default function CheckoutPage() {
 
           <div className="mt-5 flex items-center gap-2 rounded-lg bg-gray-50 px-3 py-2 text-xs text-gray-500">
             <Truck className="size-3.5 shrink-0" />
-            Free UK shipping on standard delivery over {formatPrice(settings.free_shipping_threshold)}
+            Free UK shipping over {formatPrice(settings.free_shipping_threshold)}
           </div>
         </aside>
       </form>

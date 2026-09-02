@@ -3,8 +3,11 @@
 // server-side category/hero equivalents.
 export const PRODUCT_PLACEHOLDER = "/placeholders/product-placeholder.jpg";
 
+// Only one delivery tier is currently offered (see checkout-calculation.ts
+// for the free-over-threshold logic). DeliveryOption in lib/types.ts still
+// allows "express"/"next_day" so past orders placed under the old
+// multi-tier system keep displaying correctly, this constant just no
+// longer offers them as a choice on checkout.
 export const DELIVERY_OPTIONS = [
-  { value: "standard", label: "Standard delivery", eta: "3 to 5 working days" },
-  { value: "express", label: "Express delivery", eta: "1 to 2 working days" },
-  { value: "next_day", label: "Next-day delivery", eta: "Next working day" },
+  { value: "standard", label: "Standard Delivery", eta: "2 to 3 working days" },
 ] as const;
