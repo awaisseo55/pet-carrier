@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     const body: CheckoutRequestBody = await request.json();
 
     const customer = validateCustomer(body.customer || {}, { requirePhone: true });
-    const address = validateAddress(body.address || {}, { ukOnly: false });
+    const address = validateAddress(body.address || {}, { ukOnly: true });
 
     const calculated = await calculateCheckout({
       lines: body.lines,

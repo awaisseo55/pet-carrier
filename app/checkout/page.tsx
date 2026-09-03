@@ -10,13 +10,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { PaymentBadges } from "@/components/checkout/payment-badges";
 import { formatPrice } from "@/lib/utils";
 import { DELIVERY_OPTIONS } from "@/lib/constants";
@@ -37,7 +30,7 @@ export default function CheckoutPage() {
   const [city, setCity] = React.useState("");
   const [county, setCounty] = React.useState("");
   const [postcode, setPostcode] = React.useState("");
-  const [country, setCountry] = React.useState("GB");
+  const country = "GB";
   const [instructions, setInstructions] = React.useState("");
 
   const [couponInput, setCouponInput] = React.useState("");
@@ -177,6 +170,7 @@ export default function CheckoutPage() {
 
           <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
             <h2 className="font-heading text-lg font-semibold text-ink">2. Delivery Address</h2>
+            <p className="mt-1 text-xs text-gray-500">We currently deliver within the UK only.</p>
             <div className="mt-4 grid grid-cols-1 gap-4">
               <div>
                 <Label htmlFor="line1">Address line 1</Label>
@@ -199,20 +193,6 @@ export default function CheckoutPage() {
                   <Label htmlFor="postcode">Postcode</Label>
                   <Input id="postcode" required value={postcode} onChange={(e) => setPostcode(e.target.value)} className="mt-1.5" />
                 </div>
-              </div>
-              <div>
-                <Label htmlFor="country">Country</Label>
-                <Select value={country} onValueChange={setCountry}>
-                  <SelectTrigger id="country" className="mt-1.5">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="GB">United Kingdom</SelectItem>
-                    <SelectItem value="IE">Ireland</SelectItem>
-                    <SelectItem value="FR">France</SelectItem>
-                    <SelectItem value="DE">Germany</SelectItem>
-                  </SelectContent>
-                </Select>
               </div>
               <div>
                 <Label htmlFor="instructions">Delivery instructions (optional)</Label>
