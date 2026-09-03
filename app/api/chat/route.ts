@@ -1,20 +1,19 @@
 import { NextResponse } from "next/server";
 import { buildChatSystemPrompt } from "@/lib/chat-context";
+import { getRuleBasedReply } from "@/lib/chat-rules";
 
 // TODO: reuses ANTHROPIC_API_KEY (same as lib/ai-content.ts's Amazon-import
-// rewriting), unset by default locally. Without it the widget still works,
-// it just returns a canned "chat isn't switched on yet" reply instead of
-// calling Claude.
+// rewriting). Whenever it's unset, or the Claude call fails for any reason
+// (including a billing/credit block), this route falls back to the free
+// rule-based responder in lib/chat-rules.ts instead of a dead-end error, so
+// the widget is always useful. No code change is needed to "switch on" real
+// AI answers later, once ANTHROPIC_API_KEY has working credits behind it the
+// Claude call below will simply start succeeding.
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const MODEL = "claude-sonnet-5";
 
 const MAX_MESSAGES = 20;
 const MAX_MESSAGE_LENGTH = 2000;
-
-const NOT_CONFIGURED_REPLY =
-  "Our live chat assistant isn't switched on just yet. Please reach us at hello@pet-carrier.co.uk or via the contact page and we'll get back to you as soon as we can.";
-const ERROR_REPLY =
-  "Sorry, something went wrong on our end there. Please try again in a moment, or reach us at hello@pet-carrier.co.uk.";
 
 interface RawChatMessage {
   role?: unknown;
@@ -42,8 +41,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "No message provided." }, { status: 400 });
   }
 
+  const latestUserMessage = [...messages].reverse().find((m) => m.role === "user")?.content || messages[messages.length - 1].content;
+
   if (!ANTHROPIC_API_KEY) {
-    return NextResponse.json({ reply: NOT_CONFIGURED_REPLY });
+    const reply = await getRuleBasedReply(latestUserMessage);
+    return NextResponse.json({ reply });
   }
 
   try {
@@ -65,8 +67,7 @@ export async function POST(request: Request) {
     });
 
     if (!response.ok) {
-      const errorBody = await response.text();
-      throw new Error(`Claude API returned ${response.status}: ${errorBody.slice(0, 500)}`);
+      throw new Error(`Claude API returned ${response.status}`);
     }
 
     const data = await response.json();
@@ -75,8 +76,8 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ reply });
   } catch (error) {
-    console.error("Chat widget error", error);
-    // TEMPORARY diagnostic: remove the `debug` field once confirmed working.
-    return NextResponse.json({ reply: ERROR_REPLY, debug: error instanceof Error ? error.message : String(error) });
+    console.error("Chat widget: Claude call failed, falling back to rule-based reply", error);
+    const reply = await getRuleBasedReply(latestUserMessage);
+    return NextResponse.json({ reply });
   }
 }

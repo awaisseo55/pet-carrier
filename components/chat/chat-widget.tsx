@@ -21,6 +21,10 @@ const GREETING: ChatMessage = {
     "Hi, I'm the Pet Carrier assistant. Ask me about a product, delivery, returns, or anything else about the shop and I'll do my best to help.",
 };
 
+// Mirrors lib/chat-rules.ts's QUICK_TOPICS labels, kept here too since that
+// file is server-only and can't be imported into this client component.
+const QUICK_TOPICS = ["Track my order", "Shipping & delivery", "Returns policy", "Discount codes"];
+
 function loadStoredMessages(): ChatMessage[] {
   if (typeof window === "undefined") return [GREETING];
   try {
@@ -80,9 +84,7 @@ export function ChatWidget() {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, open, sending]);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const text = input.trim();
+  async function sendMessage(text: string) {
     if (!text || sending) return;
 
     const userMessage: ChatMessage = { id: crypto.randomUUID(), role: "user", content: text };
@@ -117,6 +119,11 @@ export function ChatWidget() {
     } finally {
       setSending(false);
     }
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    sendMessage(input.trim());
   }
 
   return (
@@ -184,6 +191,20 @@ export function ChatWidget() {
                   <Loader2 className="size-3.5 animate-spin" />
                   Typing...
                 </div>
+              </div>
+            )}
+            {messages.length === 1 && messages[0].id === GREETING_ID && !sending && (
+              <div className="flex flex-wrap gap-2 pl-1">
+                {QUICK_TOPICS.map((topic) => (
+                  <button
+                    key={topic}
+                    type="button"
+                    onClick={() => sendMessage(topic)}
+                    className="rounded-full border border-blue-200 bg-white px-3 py-1.5 text-xs font-medium text-blue-700 hover:bg-blue-50 cursor-pointer"
+                  >
+                    {topic}
+                  </button>
+                ))}
               </div>
             )}
           </div>

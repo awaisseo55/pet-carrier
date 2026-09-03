@@ -401,9 +401,22 @@ This is the part most likely to trip up future changes, read carefully.
 - `components/chat/chat-widget.tsx` is a bottom-right floating chat widget mounted globally in
   `app/layout.tsx` (alongside `CartDrawer`/`WelcomePopup`/`Toaster`), backed by `app/api/chat/route.ts`
   and Claude (same `ANTHROPIC_API_KEY` env var and raw `fetch` to `api.anthropic.com` pattern as
-  `lib/ai-content.ts`'s Amazon-import rewriting, model `claude-sonnet-5`). If the key is unset, the
-  route returns a canned "chat isn't switched on yet, email us" reply instead of failing, same
-  graceful-fallback convention as the rest of the AI features.
+  `lib/ai-content.ts`'s Amazon-import rewriting, model `claude-sonnet-5`).
+- **Dual-mode by design, not just a fallback message.** Whenever `ANTHROPIC_API_KEY` is unset, *or*
+  the Claude call fails for any reason (wrong key type, no billing credits, rate limit, etc.), the
+  route falls back to `lib/chat-rules.ts`'s `getRuleBasedReply()`, a free, no-API-call responder that
+  keyword-matches the customer's message against the same live product/category/settings/FAQ data
+  and answers a fixed set of important topics (order tracking, shipping, returns, discount codes,
+  product search, "talk to a human"), same voice and link format as the Claude version, before
+  falling through to an honest "I can't answer that, here's how to reach us" default. The widget also
+  shows quick-reply buttons for the four most common topics on first open, nudging customers toward
+  questions the rule-based path handles well. This was a deliberate choice (2026-09): the site owner
+  didn't want to pay for Claude API credits before there's traffic to justify it, but still wanted a
+  working, useful chatbot immediately rather than a dead "not available" message. **No code change is
+  needed to "turn on" real AI answers later**, once `ANTHROPIC_API_KEY` has working billing credits
+  behind it the Claude call simply starts succeeding and the rule-based path stops being reached. Keep
+  both paths working when touching this feature, don't remove `lib/chat-rules.ts` thinking it's
+  temporary scaffolding.
 - **The system prompt is built fresh on every single chat request** by
   `lib/chat-context.ts`'s `buildChatSystemPrompt()`, which calls `getActiveProducts()`,
   `getAllCategoryNodes()` and `getSettings()` directly, the exact same live data every other page
