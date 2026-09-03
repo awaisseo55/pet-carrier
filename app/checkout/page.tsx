@@ -48,16 +48,11 @@ function CheckoutProgress() {
   );
 }
 
-function SectionHeading({ step, title, subtitle }: { step: number; title: string; subtitle?: string }) {
+function SectionHeading({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
-    <div className="flex items-center gap-3">
-      <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
-        {step}
-      </span>
-      <div>
-        <h2 className="font-heading text-lg font-semibold text-ink">{title}</h2>
-        {subtitle && <p className="text-xs text-gray-500">{subtitle}</p>}
-      </div>
+    <div>
+      <h2 className="font-heading text-lg font-semibold text-ink">{title}</h2>
+      {subtitle && <p className="mt-0.5 text-xs text-gray-500">{subtitle}</p>}
     </div>
   );
 }
@@ -180,7 +175,7 @@ export default function CheckoutPage() {
       <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_380px]">
         <div className="flex flex-col gap-8">
           <section className="rounded-lg border border-border bg-card p-6 shadow-sm sm:p-7">
-            <SectionHeading step={1} title="Your Details" />
+            <SectionHeading title="Your Details" />
             <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <Label htmlFor="firstName">First name</Label>
@@ -224,7 +219,7 @@ export default function CheckoutPage() {
           </section>
 
           <section className="rounded-lg border border-border bg-card p-6 shadow-sm sm:p-7">
-            <SectionHeading step={2} title="Delivery Address" subtitle="We currently deliver within the UK only." />
+            <SectionHeading title="Delivery Address" subtitle="We currently deliver within the UK only." />
             <div className="mt-5 grid grid-cols-1 gap-4">
               <div>
                 <Label htmlFor="line1">Address line 1</Label>
@@ -276,7 +271,7 @@ export default function CheckoutPage() {
           </section>
 
           <section className="rounded-lg border border-border bg-card p-6 shadow-sm sm:p-7">
-            <SectionHeading step={3} title="Payment" />
+            <SectionHeading title="Payment" />
 
             <div className="mt-5 rounded-lg border border-blue-200 bg-blue-50 p-4">
               <div className="flex items-center gap-2 font-medium text-ink">
