@@ -11,42 +11,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { PaymentBadges } from "@/components/checkout/payment-badges";
+import { CourierBadges } from "@/components/checkout/courier-badges";
 import { formatPrice } from "@/lib/utils";
 import { DELIVERY_OPTIONS } from "@/lib/constants";
 import { toast } from "sonner";
-
-const CHECKOUT_STEPS = ["Basket", "Checkout", "Payment"];
-const CURRENT_STEP_INDEX = 1;
-
-function CheckoutProgress() {
-  return (
-    <ol className="mt-4 flex items-center gap-1.5 sm:gap-2">
-      {CHECKOUT_STEPS.map((step, i) => (
-        <li key={step} className="flex items-center gap-1.5 sm:gap-2">
-          <span
-            className={`flex size-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold sm:size-6 sm:text-xs ${
-              i < CURRENT_STEP_INDEX
-                ? "bg-success text-white"
-                : i === CURRENT_STEP_INDEX
-                  ? "bg-primary text-white"
-                  : "bg-gray-100 text-gray-400"
-            }`}
-          >
-            {i < CURRENT_STEP_INDEX ? <Check className="size-3" strokeWidth={3} /> : i + 1}
-          </span>
-          <span
-            className={`text-xs font-medium sm:text-sm ${
-              i === CURRENT_STEP_INDEX ? "text-ink" : i < CURRENT_STEP_INDEX ? "text-gray-500" : "text-gray-400"
-            }`}
-          >
-            {step}
-          </span>
-          {i < CHECKOUT_STEPS.length - 1 && <span className="mx-1 h-px w-6 bg-border sm:w-10" />}
-        </li>
-      ))}
-    </ol>
-  );
-}
 
 function SectionHeading({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
@@ -161,12 +129,9 @@ export default function CheckoutPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-      <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
-        <div>
-          <h1 className="font-heading text-3xl font-semibold text-ink sm:text-4xl">Checkout</h1>
-          <CheckoutProgress />
-        </div>
-        <div className="mt-1 flex items-center gap-1.5 text-sm text-gray-500">
+      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+        <h1 className="font-heading text-3xl font-semibold text-ink sm:text-4xl">Checkout</h1>
+        <div className="flex items-center gap-1.5 text-sm text-gray-500">
           <Lock className="size-4 text-success" />
           Secure checkout
         </div>
@@ -264,6 +229,7 @@ export default function CheckoutPage() {
                 <div>
                   <p className="text-sm font-medium text-ink">{DELIVERY_OPTIONS[0].label}</p>
                   <p className="text-xs text-gray-500">{DELIVERY_OPTIONS[0].eta}</p>
+                  <CourierBadges className="mt-1.5" />
                 </div>
               </div>
               <span className="font-semibold text-ink">{shippingCost === 0 ? "Free" : formatPrice(shippingCost)}</span>
