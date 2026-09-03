@@ -10,11 +10,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { formatPrice } from "@/lib/utils";
 
+function addWorkingDays(from: Date, days: number): Date {
+  const result = new Date(from);
+  let added = 0;
+  while (added < days) {
+    result.setDate(result.getDate() + 1);
+    const dayOfWeek = result.getDay();
+    if (dayOfWeek !== 0 && dayOfWeek !== 6) added++;
+  }
+  return result;
+}
+
+// Matches DELIVERY_OPTIONS' standard delivery eta of "2 to 3 working days"
+// (lib/constants.ts), skipping weekends rather than counting calendar days.
 function estimatedDeliveryRange(): string {
-  const start = new Date();
-  start.setDate(start.getDate() + 3);
-  const end = new Date();
-  end.setDate(end.getDate() + 5);
+  const now = new Date();
+  const start = addWorkingDays(now, 2);
+  const end = addWorkingDays(now, 3);
   const fmt = (d: Date) => d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
   return `${fmt(start)} to ${fmt(end)}`;
 }
