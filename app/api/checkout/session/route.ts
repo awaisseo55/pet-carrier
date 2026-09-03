@@ -99,11 +99,15 @@ export async function POST(request: Request) {
       success_url: `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/checkout/cancel`,
       metadata: {
-        // The exact server-calculated basket at the moment of checkout, this
-        // is what the webhook reconstructs the order from, never the raw
-        // client-sent lines, so a price change between session creation and
-        // webhook delivery can't retroactively alter what was charged.
-        order_items: JSON.stringify(calculated.items),
+        // The full basket used to go into a single order_items JSON blob
+        // here, but Stripe caps every metadata value at 500 characters and
+        // this catalogue's product titles plus long Amazon affiliate URLs
+        // blow past that with even a single line item, which made checkout
+        // fail outright for a large share of products ("Could not start
+        // checkout"). The webhook now reconstructs items from the actual
+        // Stripe line items instead (see app/api/webhooks/stripe/route.ts),
+        // each of which already carries product_id/slug/variant_sku in its
+        // own product_data.metadata below, well under the per-item limit.
         customer_name: `${customer.firstName} ${customer.lastName}`.trim(),
         customer_phone: customer.phone || "",
         address_line1: address.line1,

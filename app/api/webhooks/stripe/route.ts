@@ -4,7 +4,55 @@ import { stripe } from "@/lib/stripe";
 import { createOrder, getOrderBySessionId, updateOrder } from "@/lib/orders";
 import { sendOrderConfirmationEmail, sendOwnerNewOrderEmail } from "@/lib/email";
 import { incrementCouponUsage } from "@/lib/coupons";
+import { getProductById } from "@/lib/products";
+import { variantLabel } from "@/lib/variants";
+import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import type { DeliveryOption, OrderItem } from "@/lib/types";
+
+/**
+ * Rebuilds order line items from the actual Stripe checkout session line
+ * items rather than a client-supplied or metadata-stashed list, so price and
+ * quantity always match what was genuinely charged. Each line item's
+ * ephemeral Stripe product carries product_id/slug/variant_sku in its own
+ * metadata (set at session-creation time in the checkout route), well under
+ * Stripe's 500-character-per-metadata-value limit since it's just a few
+ * short identifiers, not the full title/image/affiliate-URL payload.
+ * Title/image/fulfilment-link are looked up fresh from the current
+ * catalogue via those identifiers, falling back to whatever Stripe itself
+ * has on record if the product was since removed.
+ */
+async function reconstructOrderItems(sessionId: string): Promise<OrderItem[]> {
+  const lineItems = await stripe.checkout.sessions.listLineItems(sessionId, {
+    expand: ["data.price.product"],
+    limit: 100,
+  });
+
+  const items: OrderItem[] = [];
+  for (const li of lineItems.data) {
+    const product = li.price?.product;
+    if (!product || typeof product === "string" || product.deleted) continue;
+
+    const productId = product.metadata?.product_id;
+    if (!productId) continue; // the shipping line item has no product_id, that's expected
+
+    const variantSku = product.metadata?.variant_sku;
+    const catalogueProduct = await getProductById(productId);
+    const variant = variantSku ? catalogueProduct?.variants?.find((v) => v.sku === variantSku) : undefined;
+
+    items.push({
+      product_id: productId,
+      slug: product.metadata?.slug || catalogueProduct?.slug || "",
+      title: catalogueProduct?.title || product.name || "Item",
+      image: variant?.colourImage || catalogueProduct?.images?.[0] || product.images?.[0] || PRODUCT_PLACEHOLDER,
+      quantity: li.quantity || 1,
+      price: (li.price?.unit_amount || 0) / 100,
+      amazon_url: variant?.amazonUrl || catalogueProduct?.amazon_url || "",
+      variant_sku: variantSku || undefined,
+      variant_label: variant ? variantLabel(variant) : undefined,
+    });
+  }
+  return items;
+}
 
 // TODO: add STRIPE_WEBHOOK_SECRET to .env.local. Get it by running
 // `stripe listen --forward-to localhost:3000/api/webhooks/stripe` locally,
@@ -42,10 +90,7 @@ export async function POST(request: Request) {
       }
 
       const meta = session.metadata || {};
-      // Reconstructed from the exact basket the server calculated at
-      // checkout-session creation time (lib/checkout-calculation.ts), never
-      // recomputed from anything the client could influence after the fact.
-      const items: OrderItem[] = JSON.parse(meta.order_items || "[]");
+      const items = await reconstructOrderItems(session.id);
       const deliveryOption = (meta.delivery_option as DeliveryOption) || "standard";
 
       const order = await createOrder({
