@@ -1,9 +1,9 @@
 [
   {
     "id": "cpn_welcome10",
-    "code": "WELCOME10",
+    "code": "WELCOME5",
     "type": "percentage",
-    "value": 10,
+    "value": 5,
     "min_order_value": 0,
     "valid_from": "2026-01-01T00:00:00.000Z",
     "valid_until": "2027-01-01T00:00:00.000Z",

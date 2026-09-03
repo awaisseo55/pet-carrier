@@ -6,7 +6,6 @@ import { FeaturedProduct } from "@/components/home/featured-product";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
 import { HomepageFaq, HOMEPAGE_FAQS } from "@/components/home/homepage-faq";
 import { BlogPreview } from "@/components/home/blog-preview";
-import { Newsletter } from "@/components/home/newsletter";
 import { faqJsonLd } from "@/lib/seo";
 
 // Belt-and-braces alongside the on-demand revalidatePath() calls in
@@ -28,7 +27,6 @@ export default function HomePage() {
       <WhyChooseUs />
       <HomepageFaq />
       <BlogPreview />
-      <Newsletter />
     </>
   );
 }
