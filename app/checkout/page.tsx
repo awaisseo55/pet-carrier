@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Lock, Mail, ShieldCheck, Tag, Truck } from "lucide-react";
+import { Check, Lock, Mail, RotateCcw, ShieldCheck, Tag, Truck } from "lucide-react";
 import { useCart } from "@/components/cart/cart-context";
 import { usePublicSettings } from "@/components/cart/use-public-settings";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,53 @@ import { PaymentBadges } from "@/components/checkout/payment-badges";
 import { formatPrice } from "@/lib/utils";
 import { DELIVERY_OPTIONS } from "@/lib/constants";
 import { toast } from "sonner";
+
+const CHECKOUT_STEPS = ["Basket", "Checkout", "Payment"];
+const CURRENT_STEP_INDEX = 1;
+
+function CheckoutProgress() {
+  return (
+    <ol className="mt-4 flex items-center gap-1.5 sm:gap-2">
+      {CHECKOUT_STEPS.map((step, i) => (
+        <li key={step} className="flex items-center gap-1.5 sm:gap-2">
+          <span
+            className={`flex size-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold sm:size-6 sm:text-xs ${
+              i < CURRENT_STEP_INDEX
+                ? "bg-success text-white"
+                : i === CURRENT_STEP_INDEX
+                  ? "bg-primary text-white"
+                  : "bg-gray-100 text-gray-400"
+            }`}
+          >
+            {i < CURRENT_STEP_INDEX ? <Check className="size-3" strokeWidth={3} /> : i + 1}
+          </span>
+          <span
+            className={`text-xs font-medium sm:text-sm ${
+              i === CURRENT_STEP_INDEX ? "text-ink" : i < CURRENT_STEP_INDEX ? "text-gray-500" : "text-gray-400"
+            }`}
+          >
+            {step}
+          </span>
+          {i < CHECKOUT_STEPS.length - 1 && <span className="mx-1 h-px w-6 bg-border sm:w-10" />}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function SectionHeading({ step, title, subtitle }: { step: number; title: string; subtitle?: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
+        {step}
+      </span>
+      <div>
+        <h2 className="font-heading text-lg font-semibold text-ink">{title}</h2>
+        {subtitle && <p className="text-xs text-gray-500">{subtitle}</p>}
+      </div>
+    </div>
+  );
+}
 
 export default function CheckoutPage() {
   const { activeItems, subtotal, coupon, couponError, applyingCoupon, applyCoupon, removeCoupon } = useCart();
@@ -42,6 +89,7 @@ export default function CheckoutPage() {
   const discount = coupon?.discountAmount || 0;
   const shippingCost = subtotal >= settings.free_shipping_threshold ? 0 : settings.standard_shipping_cost;
   const total = Math.max(0, subtotal - discount) + shippingCost;
+  const itemCount = activeItems.reduce((sum, item) => sum + item.quantity, 0);
 
   function handleApplyCoupon(e: React.FormEvent) {
     e.preventDefault();
@@ -118,13 +166,22 @@ export default function CheckoutPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-      <h1 className="font-heading text-3xl font-semibold text-ink sm:text-4xl">Checkout</h1>
+      <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
+        <div>
+          <h1 className="font-heading text-3xl font-semibold text-ink sm:text-4xl">Checkout</h1>
+          <CheckoutProgress />
+        </div>
+        <div className="mt-1 flex items-center gap-1.5 text-sm text-gray-500">
+          <Lock className="size-4 text-success" />
+          Secure checkout
+        </div>
+      </div>
 
       <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_380px]">
         <div className="flex flex-col gap-8">
-          <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
-            <h2 className="font-heading text-lg font-semibold text-ink">1. Your Details</h2>
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <section className="rounded-lg border border-border bg-card p-6 shadow-sm sm:p-7">
+            <SectionHeading step={1} title="Your Details" />
+            <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <Label htmlFor="firstName">First name</Label>
                 <Input id="firstName" required value={firstName} onChange={(e) => setFirstName(e.target.value)} className="mt-1.5" />
@@ -166,10 +223,9 @@ export default function CheckoutPage() {
             </div>
           </section>
 
-          <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
-            <h2 className="font-heading text-lg font-semibold text-ink">2. Delivery Address</h2>
-            <p className="mt-1 text-xs text-gray-500">We currently deliver within the UK only.</p>
-            <div className="mt-4 grid grid-cols-1 gap-4">
+          <section className="rounded-lg border border-border bg-card p-6 shadow-sm sm:p-7">
+            <SectionHeading step={2} title="Delivery Address" subtitle="We currently deliver within the UK only." />
+            <div className="mt-5 grid grid-cols-1 gap-4">
               <div>
                 <Label htmlFor="line1">Address line 1</Label>
                 <Input id="line1" required value={line1} onChange={(e) => setLine1(e.target.value)} className="mt-1.5" />
@@ -204,22 +260,25 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <div className="mt-5 flex items-center justify-between rounded-lg bg-gray-50 p-4">
+            <div className="mt-5 flex items-center justify-between gap-3 rounded-lg border-2 border-blue-600 bg-blue-50/50 p-4">
               <div className="flex items-center gap-3">
+                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-blue-600">
+                  <Check className="size-3 text-white" strokeWidth={3} />
+                </span>
                 <Truck className="size-5 shrink-0 text-blue-700" />
                 <div>
                   <p className="text-sm font-medium text-ink">{DELIVERY_OPTIONS[0].label}</p>
                   <p className="text-xs text-gray-500">{DELIVERY_OPTIONS[0].eta}</p>
                 </div>
               </div>
-              <span className="font-medium text-ink">{shippingCost === 0 ? "Free" : formatPrice(shippingCost)}</span>
+              <span className="font-semibold text-ink">{shippingCost === 0 ? "Free" : formatPrice(shippingCost)}</span>
             </div>
           </section>
 
-          <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
-            <h2 className="font-heading text-lg font-semibold text-ink">3. Payment</h2>
+          <section className="rounded-lg border border-border bg-card p-6 shadow-sm sm:p-7">
+            <SectionHeading step={3} title="Payment" />
 
-            <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-4">
+            <div className="mt-5 rounded-lg border border-blue-200 bg-blue-50 p-4">
               <div className="flex items-center gap-2 font-medium text-ink">
                 <Lock className="size-4" />
                 Pay securely by card via Stripe
@@ -258,43 +317,50 @@ export default function CheckoutPage() {
               {couponError && <p className="mt-1 text-xs text-alert">{couponError}</p>}
             </div>
 
-            <label className="mt-5 flex items-start gap-2 text-sm cursor-pointer">
-              <Checkbox checked={termsAccepted} onCheckedChange={(c) => setTermsAccepted(!!c)} className="mt-0.5" />
-              <span>
-                I agree to the{" "}
-                <Link href="/terms" className="text-blue-700 underline" target="_blank">
-                  Terms and Conditions
-                </Link>{" "}
-                and{" "}
-                <Link href="/privacy" className="text-blue-700 underline" target="_blank">
-                  Privacy Policy
-                </Link>
-              </span>
-            </label>
+            <div className="mt-6 border-t border-border pt-5">
+              <label className="flex items-start gap-2 text-sm cursor-pointer">
+                <Checkbox checked={termsAccepted} onCheckedChange={(c) => setTermsAccepted(!!c)} className="mt-0.5" />
+                <span>
+                  I agree to the{" "}
+                  <Link href="/terms" className="text-blue-700 underline" target="_blank">
+                    Terms and Conditions
+                  </Link>{" "}
+                  and{" "}
+                  <Link href="/privacy" className="text-blue-700 underline" target="_blank">
+                    Privacy Policy
+                  </Link>
+                </span>
+              </label>
 
-            <Button type="submit" size="lg" variant="default" className="mt-6 w-full" disabled={loading}>
-              <Lock className="size-4" />
-              {loading ? "Redirecting to secure payment..." : "Continue to Payment"}
-            </Button>
+              <Button type="submit" size="lg" variant="default" className="mt-5 w-full" disabled={loading}>
+                <Lock className="size-4" />
+                {loading ? "Redirecting to secure payment..." : "Continue to Payment"}
+              </Button>
 
-            <div className="mt-4 flex flex-col gap-1.5 text-xs text-gray-500">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="size-3.5" />
-                Payments are securely processed by Stripe, we never see or store your card details.
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="size-3.5" />
-                hello@pet-carrier.co.uk
+              <div className="mt-4 flex flex-col gap-1.5 text-xs text-gray-500">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="size-3.5" />
+                  Payments are securely processed by Stripe, we never see or store your card details.
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="size-3.5" />
+                  hello@pet-carrier.co.uk
+                </div>
               </div>
             </div>
           </section>
         </div>
 
         <aside className="h-fit rounded-lg border border-border bg-card p-6 shadow-sm lg:sticky lg:top-24">
-          <h2 className="font-heading text-lg font-semibold text-ink">Order Summary</h2>
-          <ul className="mt-4 flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <h2 className="font-heading text-lg font-semibold text-ink">Order Summary</h2>
+            <span className="text-xs text-gray-500">
+              {itemCount} item{itemCount === 1 ? "" : "s"}
+            </span>
+          </div>
+          <ul className="mt-4 flex flex-col divide-y divide-border">
             {activeItems.map((item) => (
-              <li key={item.product_id} className="flex items-center gap-3">
+              <li key={item.product_id} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
                 <div className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-gray-100">
                   <Image src={item.image} alt={item.title} fill sizes="56px" className="object-cover" />
                   <span className="absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full bg-ink text-[10px] font-semibold text-white">
@@ -309,7 +375,7 @@ export default function CheckoutPage() {
             ))}
           </ul>
 
-          <div className="mt-5 flex flex-col gap-2 border-t border-border pt-4 text-sm">
+          <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4 text-sm">
             <div className="flex justify-between">
               <span className="text-gray-500">Subtotal</span>
               <span>{formatPrice(subtotal)}</span>
@@ -324,15 +390,26 @@ export default function CheckoutPage() {
               <span className="text-gray-500">Shipping</span>
               <span>{shippingCost === 0 ? "Free" : formatPrice(shippingCost)}</span>
             </div>
-            <div className="flex justify-between border-t border-border pt-2 text-base font-semibold text-ink">
-              <span>Total</span>
-              <span>{formatPrice(total)}</span>
-            </div>
           </div>
 
-          <div className="mt-5 flex items-center gap-2 rounded-lg bg-gray-50 px-3 py-2 text-xs text-gray-500">
-            <Truck className="size-3.5 shrink-0" />
-            Free UK shipping over {formatPrice(settings.free_shipping_threshold)}
+          <div className="mt-3 flex items-center justify-between rounded-lg bg-gray-50 px-4 py-3">
+            <span className="text-base font-semibold text-ink">Total</span>
+            <span className="text-lg font-bold text-ink">{formatPrice(total)}</span>
+          </div>
+
+          <div className="mt-5 flex flex-col gap-2 border-t border-border pt-4 text-xs text-gray-500">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="size-3.5 shrink-0 text-blue-600" />
+              Secure checkout, your details are encrypted
+            </div>
+            <div className="flex items-center gap-2">
+              <Truck className="size-3.5 shrink-0 text-blue-600" />
+              Free UK shipping over {formatPrice(settings.free_shipping_threshold)}
+            </div>
+            <div className="flex items-center gap-2">
+              <RotateCcw className="size-3.5 shrink-0 text-blue-600" />
+              14-day returns on every order
+            </div>
           </div>
         </aside>
       </form>
