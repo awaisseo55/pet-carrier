@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { getOrderById, updateOrder } from "@/lib/orders";
-import { sendDispatchEmail, sendCancellationEmail, sendDeliveredEmail } from "@/lib/email";
-import { shouldSendTransitionEmail } from "@/lib/order-notifications";
 import { adminErrorResponse } from "@/lib/api-error";
 import type { Order, OrderStatus } from "@/lib/types";
 
@@ -44,38 +42,17 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     if (body.tracking_number !== undefined) updates.tracking_number = cleanOptionalString(body.tracking_number);
     if (body.tracking_url !== undefined) updates.tracking_url = cleanOptionalString(body.tracking_url);
 
+    // Field updates only, this never sends a customer email as a side
+    // effect. Notifications are a separate, explicit admin action, see
+    // POST /api/admin/orders/[id]/notify and the "Order management" section
+    // of CLAUDE.md for why.
     const updated = await updateOrder(id, updates);
     if (!updated) {
       return NextResponse.json({ error: "Order not found." }, { status: 404 });
     }
 
-    // Status-change transactional emails, gated by durable per-order markers
-    // so re-selecting the same status (or any retry) can never resend one.
-    // The status must have actually changed on this request, not merely be
-    // equal to the target, to avoid re-sending on unrelated field edits.
-    const statusChanged = Boolean(body.status) && existing.status !== updated.status;
-
-    if (shouldSendTransitionEmail({ statusChanged, newStatus: updated.status, alreadySentAt: updated.dispatch_email_sent_at })) {
-      if (updated.status === "dispatched") {
-        const sent = await sendDispatchEmail(updated);
-        if (sent) await updateOrder(id, { dispatch_email_sent_at: new Date().toISOString() });
-      }
-    }
-    if (shouldSendTransitionEmail({ statusChanged, newStatus: updated.status, alreadySentAt: updated.cancellation_email_sent_at })) {
-      if (updated.status === "cancelled") {
-        const sent = await sendCancellationEmail(updated);
-        if (sent) await updateOrder(id, { cancellation_email_sent_at: new Date().toISOString() });
-      }
-    }
-    if (shouldSendTransitionEmail({ statusChanged, newStatus: updated.status, alreadySentAt: updated.delivered_email_sent_at })) {
-      if (updated.status === "delivered") {
-        const sent = await sendDeliveredEmail(updated);
-        if (sent) await updateOrder(id, { delivered_email_sent_at: new Date().toISOString() });
-      }
-    }
+    return NextResponse.json({ order: updated });
   } catch (error) {
-    return adminErrorResponse(error, "Could not update order status.");
+    return adminErrorResponse(error, "Could not update order.");
   }
-
-  return NextResponse.json({ ok: true });
 }

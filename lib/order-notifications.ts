@@ -1,22 +1,24 @@
 import type { OrderStatus } from "./types";
 
 /**
- * Pure decision logic for whether a status-change transactional email should
- * be attempted, kept separate from the admin PATCH route so it's directly
- * unit-testable without mocking the whole request/response cycle. An email
- * is only ever sent when the status genuinely changed on this request AND
- * no marker for that email exists yet, so re-selecting the same status (or
- * any retried/duplicate update) can never resend one.
+ * Pure decision logic for whether a customer notification email can be sent
+ * right now, kept separate from the API route so it's directly unit-testable
+ * without mocking the whole request/response cycle. Notifications are no
+ * longer an automatic side effect of a status change (see the "Order
+ * management" section of CLAUDE.md for why): the admin explicitly clicks a
+ * "Send notification" button on the order detail page, and this just gates
+ * that the order is actually in the matching status and nothing has been
+ * sent for it yet, so a double-click (or a second tab open on the same
+ * order) can't send the same email twice.
  */
 
-const STATUSES_WITH_EMAIL: OrderStatus[] = ["dispatched", "cancelled", "delivered"];
+export type OrderNotificationType = "dispatched" | "cancelled" | "delivered";
 
-export function shouldSendTransitionEmail(params: {
-  statusChanged: boolean;
-  newStatus: OrderStatus;
+export function canSendOrderNotification(params: {
+  status: OrderStatus;
+  type: OrderNotificationType;
   alreadySentAt?: string;
 }): boolean {
-  if (!params.statusChanged) return false;
   if (params.alreadySentAt) return false;
-  return STATUSES_WITH_EMAIL.includes(params.newStatus);
+  return params.status === params.type;
 }

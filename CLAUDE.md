@@ -387,14 +387,58 @@ This is the part most likely to trip up future changes, read carefully.
   only clears the cart once that's `true`. For COD the order summary is handed back directly in
   the `/api/checkout/cod` response and carried to the success page via `sessionStorage`, since the
   order was already created before the redirect.
-- Admin can mark a COD order's `payment_status` to `paid` from the Orders page once the courier has
-  collected payment (`components/admin/order-row.tsx`'s "Mark as paid" button). This only ever
-  patches `payment_status` through the normal admin orders route, it never calls Stripe.
+- Admin can mark a COD order's `payment_status` to `paid` from the order detail page once the
+  courier has collected payment (`components/admin/order-detail.tsx`'s "Mark as paid" button in
+  the Payment card). This only ever patches `payment_status` through the normal admin orders
+  route, it never calls Stripe.
 - Dispatch emails (`sendDispatchEmail`) use `Order.courier_name` / `tracking_number` /
-  `tracking_url`, all optional and settable from the admin Orders page before the order is even
+  `tracking_url`, all optional and settable from the order detail page before the order is even
   marked dispatched. `isSafeTrackingUrl()` in `lib/email.ts` only renders `tracking_url` as a
   clickable link when it's a genuine `http(s)` URL, never trust it blindly even though it's
   admin-entered.
+
+## Order management
+
+Rebuilt 2026-09 from a single dense table row per order to a list page plus a full detail page,
+because the old layout couldn't fit customer details, full addresses, or per-item Amazon links
+without becoming unreadable, and automatically emailing the customer the instant a status dropdown
+changed gave the admin no chance to attach tracking info or review before the customer was
+notified.
+
+- **List page** (`app/admin/(protected)/orders/page.tsx`) is a plain server component, a compact
+  summary table (customer, item count, payment method, total, date, status badge) linking to each
+  order's own page at `/admin/orders/[id]`. No client-side state or editing happens here anymore,
+  that all moved to the detail page.
+- **Detail page** (`app/admin/(protected)/orders/[id]/page.tsx` + `components/admin/order-detail.tsx`)
+  shows everything about one order: full customer contact details, full shipping address, every
+  line item with its individual Amazon source link (`item.amazon_url`, the internal fulfilment
+  link, never shown to the customer), the price breakdown, payment status/method, fulfilment
+  status, and a dedicated notifications panel.
+- **Sending a customer email is never an automatic side effect of a status change.** This was a
+  real usability problem in the old design: selecting "Dispatched" from the status dropdown
+  silently emailed the customer immediately, with no tracking info attached yet and no chance to
+  double-check anything. Now:
+  1. Changing status to "Dispatched" is blocked client-side (with a toast + scroll-to-field) until
+     the Tracking Details fields (courier name and tracking number, tracking URL is optional) have
+     something in them, then the status change and tracking fields save together in one
+     `PATCH /api/admin/orders/[id]` request. Tracking details can also be edited independently at
+     any time via the same card's "Save tracking details" button, not just at the dispatch moment.
+  2. `PATCH /api/admin/orders/[id]` (`app/api/admin/orders/[id]/route.ts`) now only ever writes
+     fields, it has **no email side effects at all**.
+  3. Notifying the customer is a separate, explicit action: `POST /api/admin/orders/[id]/notify`
+     with `{ type: "dispatched" | "cancelled" | "delivered" }`
+     (`app/api/admin/orders/[id]/notify/route.ts`), triggered by its own "Send" button per
+     notification type in the detail page's Customer Notifications card. Gated by
+     `canSendOrderNotification()` in `lib/order-notifications.ts`, which only allows sending when
+     the order's current status matches that notification type and nothing has been sent for it
+     yet (button shows "Sent {date}" and disables itself once it has). The order confirmation email
+     is unaffected by any of this, that one still fires automatically from the Stripe/COD webhook
+     path exactly as before, this only changes the three *status-transition* emails (dispatched,
+     delivered, cancelled).
+  4. If you ever add a new status-transition email, wire it into this same explicit-send pattern
+     (add it to `OrderNotificationType`, `MARKER_FIELD` and `SEND_FN` in the notify route, add a
+     `NotificationRow` in the detail page), don't make it fire automatically from the status PATCH,
+     that's the exact pattern this rebuild removed.
 
 ## Customer chat widget
 

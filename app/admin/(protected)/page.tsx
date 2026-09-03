@@ -6,6 +6,7 @@ import { getAllOrders } from "@/lib/orders";
 import { getAllCategoryNodes } from "@/lib/category-store";
 import { formatPrice } from "@/lib/utils";
 import { PublishAllButton } from "@/components/admin/publish-all-button";
+import { OrderStatusBadge } from "@/components/admin/order-status-badge";
 
 export default async function AdminDashboardPage() {
   const [products, orders, categories] = await Promise.all([
@@ -107,11 +108,17 @@ export default async function AdminDashboardPage() {
               </thead>
               <tbody>
                 {recentOrders.map((order) => (
-                  <tr key={order.id} className="border-b border-border last:border-0">
-                    <td className="p-3 font-medium">#{order.id}</td>
+                  <tr key={order.id} className="border-b border-border last:border-0 hover:bg-gray-50">
+                    <td className="p-3 font-medium">
+                      <Link href={`/admin/orders/${order.id}`} className="hover:text-blue-700">
+                        #{order.id}
+                      </Link>
+                    </td>
                     <td className="p-3">{order.customer_name}</td>
                     <td className="p-3">{formatPrice(order.total)}</td>
-                    <td className="p-3 capitalize">{order.status.replace(/_/g, " ")}</td>
+                    <td className="p-3">
+                      <OrderStatusBadge status={order.status} />
+                    </td>
                   </tr>
                 ))}
               </tbody>

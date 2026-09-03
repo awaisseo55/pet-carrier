@@ -1,6 +1,8 @@
-import { Package } from "lucide-react";
-import { OrderRow } from "@/components/admin/order-row";
-import { getAllOrders } from "@/lib/orders";
+import Link from "next/link";
+import { ChevronRight, CreditCard, Package, Truck } from "lucide-react";
+import { OrderStatusBadge } from "@/components/admin/order-status-badge";
+import { getAllOrders, getOrderPaymentMethod } from "@/lib/orders";
+import { formatPrice } from "@/lib/utils";
 
 export default async function AdminOrdersPage() {
   const orders = await getAllOrders();
@@ -22,18 +24,61 @@ export default async function AdminOrdersPage() {
               <tr className="border-b border-border text-left text-muted-foreground">
                 <th className="p-3">Order</th>
                 <th className="p-3">Customer</th>
-                <th className="p-3">Payment</th>
                 <th className="p-3">Items</th>
+                <th className="p-3">Payment</th>
                 <th className="p-3">Total</th>
                 <th className="p-3">Date</th>
                 <th className="p-3">Status</th>
-                <th className="p-3">Reorder</th>
+                <th className="p-3" />
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
-                <OrderRow key={order.id} order={order} />
-              ))}
+              {orders.map((order) => {
+                const itemCount = order.items.reduce((sum, item) => sum + item.quantity, 0);
+                const isCod = getOrderPaymentMethod(order) === "cash_on_delivery";
+                return (
+                  <tr key={order.id} className="border-b border-border last:border-0 hover:bg-gray-50">
+                    <td className="p-3 font-medium">
+                      <Link href={`/admin/orders/${order.id}`} className="hover:text-blue-700">
+                        #{order.id}
+                      </Link>
+                    </td>
+                    <td className="p-3">
+                      <p className="font-medium">{order.customer_name}</p>
+                      <p className="text-xs text-muted-foreground">{order.customer_email}</p>
+                    </td>
+                    <td className="p-3 text-muted-foreground">
+                      {itemCount} item{itemCount === 1 ? "" : "s"}
+                    </td>
+                    <td className="p-3">
+                      <div className="flex items-center gap-1.5 text-xs font-medium">
+                        {isCod ? <Truck className="size-3.5 text-blue-700" /> : <CreditCard className="size-3.5 text-gray-500" />}
+                        {isCod ? "Cash on delivery" : "Card"}
+                      </div>
+                    </td>
+                    <td className="p-3">{formatPrice(order.total)}</td>
+                    <td className="p-3 text-muted-foreground">
+                      {new Date(order.created_at).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </td>
+                    <td className="p-3">
+                      <OrderStatusBadge status={order.status} />
+                    </td>
+                    <td className="p-3">
+                      <Link
+                        href={`/admin/orders/${order.id}`}
+                        className="inline-flex items-center gap-1 text-xs font-medium text-blue-700 hover:underline"
+                      >
+                        View details
+                        <ChevronRight className="size-3.5" />
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
