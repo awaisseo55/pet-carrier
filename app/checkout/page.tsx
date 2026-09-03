@@ -41,8 +41,6 @@ export default function CheckoutPage() {
   const deliveryOption = DELIVERY_OPTIONS[0].value;
   const discount = coupon?.discountAmount || 0;
   const shippingCost = subtotal >= settings.free_shipping_threshold ? 0 : settings.standard_shipping_cost;
-  const vatBase = Math.max(0, subtotal - discount);
-  const vat = Math.round(vatBase * (settings.vat_rate / (100 + settings.vat_rate)) * 100) / 100;
   const total = Math.max(0, subtotal - discount) + shippingCost;
 
   function handleApplyCoupon(e: React.FormEvent) {
@@ -325,10 +323,6 @@ export default function CheckoutPage() {
             <div className="flex justify-between">
               <span className="text-gray-500">Shipping</span>
               <span>{shippingCost === 0 ? "Free" : formatPrice(shippingCost)}</span>
-            </div>
-            <div className="flex justify-between text-gray-500">
-              <span>Includes VAT ({settings.vat_rate}%)</span>
-              <span>{formatPrice(vat)}</span>
             </div>
             <div className="flex justify-between border-t border-border pt-2 text-base font-semibold text-ink">
               <span>Total</span>

@@ -148,7 +148,6 @@ function totalsHtml(order: Order): string {
     label: `Delivery (${deliveryLabel(order.delivery_option)})`,
     value: order.shipping_cost === 0 ? "Free" : formatPrice(order.shipping_cost),
   });
-  rowsList.push({ label: `Includes VAT`, value: formatPrice(order.vat) });
   rowsList.push({
     label: getOrderPaymentMethod(order) === "cash_on_delivery" ? "Total due on delivery" : "Total paid",
     value: formatPrice(order.total),
@@ -283,7 +282,6 @@ export async function sendOrderConfirmationEmail(order: Order): Promise<boolean>
     `Subtotal: ${formatPrice(order.subtotal)}`,
     order.discount > 0 ? `Discount: -${formatPrice(order.discount)}` : "",
     `Delivery (${deliveryLabel(order.delivery_option)}): ${order.shipping_cost === 0 ? "Free" : formatPrice(order.shipping_cost)}`,
-    `Includes VAT: ${formatPrice(order.vat)}`,
     isCod ? `Total due on delivery: ${formatPrice(order.total)}` : `Total paid: ${formatPrice(order.total)}`,
     ``,
     isCod

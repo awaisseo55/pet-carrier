@@ -38,8 +38,6 @@ export default function CartPage() {
 
   const remaining = Math.max(0, settings.free_shipping_threshold - subtotal);
   const discount = coupon?.discountAmount || 0;
-  const vatBase = Math.max(0, subtotal - discount);
-  const vat = Math.round(vatBase * (settings.vat_rate / (100 + settings.vat_rate)) * 100) / 100;
 
   function handleApplyCoupon(e: React.FormEvent) {
     e.preventDefault();
@@ -226,10 +224,6 @@ export default function CartPage() {
                 <div className="flex justify-between">
                   <span className="text-gray-500">Estimated shipping</span>
                   <span>{remaining === 0 ? "Free" : formatPrice(settings.standard_shipping_cost)}</span>
-                </div>
-                <div className="flex justify-between text-gray-500">
-                  <span>Includes VAT ({settings.vat_rate}%)</span>
-                  <span>{formatPrice(vat)}</span>
                 </div>
                 <div className="flex justify-between border-t border-border pt-2 text-base font-semibold text-ink">
                   <span>Total</span>

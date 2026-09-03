@@ -169,7 +169,7 @@ export function CartDrawer() {
               <span>Total</span>
               <span>{formatPrice(Math.max(0, subtotal - (coupon?.discountAmount || 0)))}</span>
             </div>
-            <p className="text-xs text-gray-500">Shipping and VAT calculated at checkout.</p>
+            <p className="text-xs text-gray-500">Shipping calculated at checkout.</p>
             <Button variant="default" size="lg" className="w-full" asChild onClick={closeCart}>
               <Link href="/checkout">Checkout</Link>
             </Button>
