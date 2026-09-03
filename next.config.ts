@@ -63,6 +63,13 @@ const nextConfig: NextConfig = {
       { source: "/carriers/vet-visit-carriers", destination: "/carriers/pet-carriers-for-vet-visits", permanent: true },
       { source: "/carriers/car-travel-carriers", destination: "/carriers/pet-car-travel-carriers", permanent: true },
       { source: "/carriers/everyday-carriers", destination: "/carriers/everyday-pet-carriers", permanent: true },
+      // Dycietx soft-sided carrier discontinued/removed (2026-09), redirected to the
+      // equivalent Amazon Basics soft carrier listing.
+      {
+        source: "/product/dycietx-soft-sided-foldable-cat-dog-pet-puppy-carrier-bag-portable-pets-travel-carriers-for-cats-dogs-with-shoulder-strap-removable-mat-durable-cat-basket-of-17-lbs-airline-approved-black-m",
+        destination: "/product/amazon-basics-soft-cat-and-dog-carrier-airline-approved-grey",
+        permanent: true,
+      },
     ];
   },
 };
