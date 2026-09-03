@@ -9,27 +9,7 @@ import { usePublicSettings } from "@/components/cart/use-public-settings";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { formatPrice } from "@/lib/utils";
-
-function addWorkingDays(from: Date, days: number): Date {
-  const result = new Date(from);
-  let added = 0;
-  while (added < days) {
-    result.setDate(result.getDate() + 1);
-    const dayOfWeek = result.getDay();
-    if (dayOfWeek !== 0 && dayOfWeek !== 6) added++;
-  }
-  return result;
-}
-
-// Matches DELIVERY_OPTIONS' standard delivery eta of "2 to 3 working days"
-// (lib/constants.ts), skipping weekends rather than counting calendar days.
-function estimatedDeliveryRange(): string {
-  const now = new Date();
-  const start = addWorkingDays(now, 2);
-  const end = addWorkingDays(now, 3);
-  const fmt = (d: Date) => d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
-  return `${fmt(start)} to ${fmt(end)}`;
-}
+import { DELIVERY_OPTIONS } from "@/lib/constants";
 
 export default function CartPage() {
   const {
@@ -139,7 +119,7 @@ export default function CartPage() {
                   ))}
                 </ul>
                 <p className="mt-3 text-sm text-gray-500">
-                  Estimated delivery: <span className="font-medium text-ink">{estimatedDeliveryRange()}</span> with
+                  Estimated delivery: <span className="font-medium text-ink">{DELIVERY_OPTIONS[0].eta}</span> with
                   standard shipping.
                 </p>
               </>
