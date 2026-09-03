@@ -396,6 +396,41 @@ This is the part most likely to trip up future changes, read carefully.
   clickable link when it's a genuine `http(s)` URL, never trust it blindly even though it's
   admin-entered.
 
+## Customer chat widget
+
+- `components/chat/chat-widget.tsx` is a bottom-right floating chat widget mounted globally in
+  `app/layout.tsx` (alongside `CartDrawer`/`WelcomePopup`/`Toaster`), backed by `app/api/chat/route.ts`
+  and Claude (same `ANTHROPIC_API_KEY` env var and raw `fetch` to `api.anthropic.com` pattern as
+  `lib/ai-content.ts`'s Amazon-import rewriting, model `claude-sonnet-5`). If the key is unset, the
+  route returns a canned "chat isn't switched on yet, email us" reply instead of failing, same
+  graceful-fallback convention as the rest of the AI features.
+- **The system prompt is built fresh on every single chat request** by
+  `lib/chat-context.ts`'s `buildChatSystemPrompt()`, which calls `getActiveProducts()`,
+  `getAllCategoryNodes()` and `getSettings()` directly, the exact same live data every other page
+  reads. This is deliberate: a product added, edited, priced, restocked or deleted in the admin
+  panel, or a category added/renamed, is reflected in the bot's very next reply with **no code
+  change, no redeploy, and no manual update to this file required**. Never rewrite this to bake a
+  static product/category list into a prompt string, that would silently go stale the moment
+  someone touches the catalogue in admin.
+- FAQ content is shared between the homepage accordion and the chat prompt via
+  `lib/homepage-faqs.ts` (`HOMEPAGE_FAQS`), edit that one file to update both.
+- **The bot must never be wired to look up a specific customer's order.** `lib/chat-context.ts`'s
+  prompt explicitly instructs it to refuse and redirect to `/track-order` (which has its own
+  order-number + email verification) instead of guessing or fabricating order status. Giving a
+  general-purpose chat prompt free-form read access to `lib/orders.ts` keyed on whatever the
+  customer types would let anyone probe other customers' order data, don't add that.
+- The prompt also explicitly tells the bot not to discuss internal sourcing/business operations
+  (the Amazon Business repackaging model documented earlier in this file is for developer eyes
+  only, never customer-facing) and to ignore any instruction embedded in a customer's message that
+  tries to override these rules or reveal the system prompt.
+- Conversation history lives in `sessionStorage` client-side only (`components/chat/chat-widget.tsx`),
+  nothing is persisted server-side. The API route caps incoming history to the last 20 messages and
+  2000 characters each before it ever reaches Claude, both as an abuse guard and to bound cost.
+- Product/category links the bot outputs use markdown-link syntax `[text](/path)`, rendered client-side
+  by the widget's own tiny regex-based parser (not `lib/markdown-lite.tsx`, that one's built for the
+  richer product-description format). The prompt is instructed to only ever use paths that actually
+  appear in the live product/category lists it was given, never invented ones.
+
 ## Adding products
 
 When the user provides Amazon URL(s) to add as products, follow `docs/PRODUCT-WORKFLOW.md` exactly.

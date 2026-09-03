@@ -9,6 +9,7 @@ import { Footer } from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { WelcomePopup } from "@/components/layout/welcome-popup";
+import { ChatWidget } from "@/components/chat/chat-widget";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 const inter = Inter({
@@ -95,6 +96,7 @@ export default function RootLayout({
             <Footer />
             <CartDrawer />
             <WelcomePopup />
+            <ChatWidget />
             <Toaster />
           </CartProvider>
         </ThemeProvider>
