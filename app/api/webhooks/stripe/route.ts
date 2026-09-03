@@ -96,6 +96,8 @@ export async function POST(request: Request) {
       const order = await createOrder({
         payment_method: "card",
         stripe_session_id: session.id,
+        stripe_payment_intent_id:
+          typeof session.payment_intent === "string" ? session.payment_intent : session.payment_intent?.id,
         customer_name: meta.customer_name || session.customer_details?.name || "Customer",
         customer_email: session.customer_details?.email || "",
         customer_phone: meta.customer_phone || undefined,

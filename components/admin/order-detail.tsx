@@ -12,6 +12,7 @@ import {
   MapPin,
   Package,
   Phone,
+  RotateCcw,
   Truck,
   User,
 } from "lucide-react";
@@ -133,6 +134,122 @@ function NotificationRow({
   );
 }
 
+function RefundCard({ order, onRefunded }: { order: Order; onRefunded: () => void }) {
+  const alreadyRefunded = order.refunded_amount || 0;
+  const remaining = Math.max(0, Math.round((order.total - alreadyRefunded) * 100) / 100);
+  const [amount, setAmount] = React.useState(remaining.toFixed(2));
+  const [refunding, setRefunding] = React.useState(false);
+
+  const isCod = order.payment_method === "cash_on_delivery";
+  if (isCod || !order.stripe_session_id || order.payment_status === "pending" || order.payment_status === "failed") {
+    return null;
+  }
+
+  async function handleRefund() {
+    const value = Number(amount);
+    if (!Number.isFinite(value) || value <= 0) {
+      toast.error("Enter a valid refund amount.");
+      return;
+    }
+    if (value > remaining + 0.005) {
+      toast.error(`You can refund up to ${formatPrice(remaining)}.`);
+      return;
+    }
+    if (!confirm(`Refund ${formatPrice(value)} to the customer's card via Stripe? This cannot be undone.`)) return;
+
+    setRefunding(true);
+    try {
+      const res = await fetch(`/api/admin/orders/${order.id}/refund`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: value }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || "Could not process the refund.");
+      }
+      toast.success(`Refunded ${formatPrice(value)}`);
+      onRefunded();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not process the refund.");
+    } finally {
+      setRefunding(false);
+    }
+  }
+
+  if (remaining <= 0) {
+    return (
+      <Card title="Refund" icon={RotateCcw}>
+        <p className="text-sm font-medium text-success">Fully refunded {formatPrice(alreadyRefunded)}.</p>
+        {order.refunds && order.refunds.length > 0 && (
+          <ul className="mt-2 flex flex-col gap-1 text-xs text-muted-foreground">
+            {order.refunds.map((r) => (
+              <li key={r.id}>
+                {formatPrice(r.amount)} on {formatDate(r.created_at)}
+              </li>
+            ))}
+          </ul>
+        )}
+      </Card>
+    );
+  }
+
+  return (
+    <Card title="Refund" icon={RotateCcw}>
+      <div className="flex flex-col gap-1.5 text-sm">
+        <div className="flex justify-between">
+          <span className="text-muted-foreground">Order total</span>
+          <span>{formatPrice(order.total)}</span>
+        </div>
+        {alreadyRefunded > 0 && (
+          <div className="flex justify-between text-alert">
+            <span>Already refunded</span>
+            <span>-{formatPrice(alreadyRefunded)}</span>
+          </div>
+        )}
+        <div className="flex justify-between border-t border-border pt-1.5 font-medium text-ink">
+          <span>Refundable</span>
+          <span>{formatPrice(remaining)}</span>
+        </div>
+      </div>
+
+      <div className="mt-3">
+        <Label htmlFor="refund-amount">Refund amount (£)</Label>
+        <Input
+          id="refund-amount"
+          type="number"
+          step="0.01"
+          min="0.01"
+          max={remaining}
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          className="mt-1.5"
+        />
+      </div>
+
+      <Button
+        variant="outline"
+        className="mt-3 w-full border-alert/40 text-alert hover:bg-alert-light"
+        onClick={handleRefund}
+        disabled={refunding}
+      >
+        {refunding ? "Processing refund..." : `Refund ${formatPrice(Number(amount) || 0)}`}
+      </Button>
+      <p className="mt-2 text-xs text-muted-foreground">Issues a real refund via Stripe to the customer&rsquo;s original payment method.</p>
+
+      {order.refunds && order.refunds.length > 0 && (
+        <ul className="mt-3 flex flex-col gap-1 border-t border-border pt-3 text-xs text-muted-foreground">
+          {order.refunds.map((r) => (
+            <li key={r.id}>
+              {formatPrice(r.amount)} refunded on {formatDate(r.created_at)}
+            </li>
+          ))}
+        </ul>
+      )}
+    </Card>
+  );
+}
+
 export function OrderDetail({ order }: { order: Order }) {
   const router = useRouter();
   const [statusUpdating, setStatusUpdating] = React.useState(false);
@@ -204,6 +321,21 @@ export function OrderDetail({ order }: { order: Order }) {
     }
   }
 
+  function copyCustomerDetails() {
+    const lines = [
+      order.customer_name,
+      order.customer_email,
+      order.customer_phone || "",
+      order.shipping_address.line1,
+      order.shipping_address.line2 || "",
+      `${order.shipping_address.city}${order.shipping_address.county ? `, ${order.shipping_address.county}` : ""}`,
+      order.shipping_address.postcode,
+      order.shipping_address.country,
+    ].filter(Boolean);
+    navigator.clipboard.writeText(lines.join("\n"));
+    toast.success("Customer details copied");
+  }
+
   function copyReorderLinks() {
     const links = order.items.map((item) => item.amazon_url).filter(Boolean).join("\n");
     if (!links) {
@@ -232,18 +364,24 @@ export function OrderDetail({ order }: { order: Order }) {
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="flex flex-col gap-6 lg:col-span-2">
           <Card title="Customer" icon={User}>
-            <div className="flex flex-col gap-2 text-sm">
-              <p className="font-medium text-ink">{order.customer_name}</p>
-              <p className="flex items-center gap-1.5 text-muted-foreground">
-                <Mail className="size-3.5 shrink-0" />
-                {order.customer_email}
-              </p>
-              {order.customer_phone && (
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex flex-col gap-2 text-sm">
+                <p className="font-medium text-ink">{order.customer_name}</p>
                 <p className="flex items-center gap-1.5 text-muted-foreground">
-                  <Phone className="size-3.5 shrink-0" />
-                  {order.customer_phone}
+                  <Mail className="size-3.5 shrink-0" />
+                  {order.customer_email}
                 </p>
-              )}
+                {order.customer_phone && (
+                  <p className="flex items-center gap-1.5 text-muted-foreground">
+                    <Phone className="size-3.5 shrink-0" />
+                    {order.customer_phone}
+                  </p>
+                )}
+              </div>
+              <Button size="sm" variant="outline" onClick={copyCustomerDetails} className="shrink-0">
+                <Copy className="size-3.5" />
+                Copy details
+              </Button>
             </div>
           </Card>
 
@@ -347,6 +485,8 @@ export function OrderDetail({ order }: { order: Order }) {
               <p className="mt-2 text-xs font-medium text-success">Collected on delivery</p>
             )}
           </Card>
+
+          <RefundCard key={order.refunded_amount || 0} order={order} onRefunded={() => router.refresh()} />
 
           <Card title="Fulfilment Status">
             <Label>Status</Label>

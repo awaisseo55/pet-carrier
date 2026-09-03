@@ -145,6 +145,12 @@ export interface Order {
   tracking_number?: string;
   /** Only ever rendered as a link when it's a genuine http(s) URL, see isSafeTrackingUrl() in lib/email.ts. */
   tracking_url?: string;
+  /** Set on order creation from the completed Checkout Session, so a refund never needs to re-fetch the session. Absent on orders created before this field existed or paid by cash on delivery, see the refund route's fallback lookup. */
+  stripe_payment_intent_id?: string;
+  /** Cumulative amount refunded so far, in pounds. Absent/0 means nothing refunded yet. payment_status only flips to "refunded" once this reaches order.total, a partial refund leaves payment_status as "paid" with this set below total. */
+  refunded_amount?: number;
+  /** One entry per successful Stripe refund, oldest first, for a visible audit trail on the order detail page. */
+  refunds?: { id: string; amount: number; created_at: string }[];
   /**
    * Durable per-order sent-once markers so webhook retries, repeated identical
    * admin status updates, or page refreshes can never trigger a duplicate

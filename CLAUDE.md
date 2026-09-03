@@ -439,6 +439,25 @@ notified.
      (add it to `OrderNotificationType`, `MARKER_FIELD` and `SEND_FN` in the notify route, add a
      `NotificationRow` in the detail page), don't make it fire automatically from the status PATCH,
      that's the exact pattern this rebuild removed.
+- **"Copy details" button** on the Customer card copies name, email, phone and the full shipping
+  address as a plain-text block, for pasting into courier/label-printing software. Client-side
+  only (`navigator.clipboard`), no new endpoint.
+- **Refunds are genuine Stripe refunds, never a local-only status flip.** The Refund card (only
+  rendered for card orders that have actually been paid, hidden entirely for cash-on-delivery)
+  shows the order total, anything already refunded, and the remaining refundable balance, with an
+  editable amount defaulting to the full remaining balance so both full and partial refunds use
+  the same field. `POST /api/admin/orders/[id]/refund` (`app/api/admin/orders/[id]/refund/route.ts`)
+  calls `stripe.refunds.create()` against the order's `stripe_payment_intent_id` (stored on order
+  creation from the webhook's Checkout Session; for orders created before that field existed, it
+  falls back to `stripe.checkout.sessions.retrieve()` to look the payment intent up). On success it
+  appends to `Order.refunds[]` and updates `Order.refunded_amount`, only flipping `payment_status`
+  to `"refunded"` once the cumulative refunded amount reaches the order total, a partial refund
+  leaves `payment_status` as `"paid"` with `refunded_amount` below `total` so the UI can show both
+  the refunded and still-refundable amounts. The route re-validates the requested amount against
+  the actual remaining balance server-side (never trusts the client number alone), and Stripe's own
+  error (e.g. "charge already refunded") surfaces directly to the admin via `adminErrorResponse()`
+  rather than a generic failure message. The confirm() dialog before submitting matches this
+  codebase's existing delete-confirmation convention, since a refund is just as irreversible.
 
 ## Customer chat widget
 
