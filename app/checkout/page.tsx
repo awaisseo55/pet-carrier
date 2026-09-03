@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, Lock, Mail, RotateCcw, ShieldCheck, Tag, Truck } from "lucide-react";
+import { Check, Heart, Lock, Mail, PawPrint, RotateCcw, ShieldCheck, Tag, Truck } from "lucide-react";
 import { useCart } from "@/components/cart/cart-context";
 import { usePublicSettings } from "@/components/cart/use-public-settings";
 import { Button } from "@/components/ui/button";
@@ -370,6 +370,21 @@ export default function CheckoutPage() {
             <div className="flex items-center gap-2">
               <RotateCcw className="size-3.5 shrink-0 text-blue-600" />
               14-day returns on every order
+            </div>
+          </div>
+
+          <div className="relative mt-5 overflow-hidden rounded-lg border border-blue-100 bg-blue-50/60 p-4">
+            <PawPrint className="pointer-events-none absolute -right-3 -bottom-3 size-16 text-blue-100" aria-hidden="true" />
+            <div className="relative flex items-start gap-3">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white text-blue-600 shadow-sm">
+                <Heart className="size-4" fill="currentColor" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-ink">Love pets? So do we.</p>
+                <p className="mt-0.5 text-xs text-gray-500">
+                  Every order helps support pet welfare initiatives across the UK.
+                </p>
+              </div>
             </div>
           </div>
         </aside>
