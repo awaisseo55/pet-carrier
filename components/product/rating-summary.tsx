@@ -35,9 +35,11 @@ interface RatingSummaryProps {
 export function RatingSummary({ averageRating, reviewCount, variant = "full", className }: RatingSummaryProps) {
   const hasReviews = reviewCount > 0;
 
+  // Per spec: hide entirely rather than show empty stars / "Be the first to
+  // review" clutter when a product has no reviews yet, for both variants.
+  if (!hasReviews) return null;
+
   if (variant === "compact") {
-    // Per spec: hide entirely rather than show "No reviews" clutter on cards.
-    if (!hasReviews) return null;
     return (
       <div className={cn("flex items-center gap-1.5 text-xs", className)}>
         <StarRow rating={averageRating} sizeClass="size-3.5" />
@@ -50,22 +52,6 @@ export function RatingSummary({ averageRating, reviewCount, variant = "full", cl
   function scrollToReviews(e: React.MouseEvent) {
     e.preventDefault();
     document.getElementById("reviews")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  if (!hasReviews) {
-    return (
-      <button
-        type="button"
-        onClick={scrollToReviews}
-        className={cn(
-          "my-1.5 flex cursor-pointer items-center gap-1.5 text-sm text-muted-foreground hover:text-blue-600",
-          className
-        )}
-      >
-        <StarRow rating={0} sizeClass="size-4" />
-        Be the first to review
-      </button>
-    );
   }
 
   return (
