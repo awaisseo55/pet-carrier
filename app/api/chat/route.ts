@@ -65,7 +65,8 @@ export async function POST(request: Request) {
     });
 
     if (!response.ok) {
-      throw new Error(`Claude API returned ${response.status}`);
+      const errorBody = await response.text();
+      throw new Error(`Claude API returned ${response.status}: ${errorBody.slice(0, 500)}`);
     }
 
     const data = await response.json();
@@ -75,6 +76,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ reply });
   } catch (error) {
     console.error("Chat widget error", error);
-    return NextResponse.json({ reply: ERROR_REPLY });
+    // TEMPORARY diagnostic: surface the real error while wiring this up,
+    // remove the `debug` field once confirmed working end to end.
+    return NextResponse.json({ reply: ERROR_REPLY, debug: error instanceof Error ? error.message : String(error) });
   }
 }
