@@ -41,6 +41,16 @@ export async function getCustomerByEmail(email: string): Promise<Customer | unde
   return customers.find((c) => c.email.toLowerCase() === email.toLowerCase());
 }
 
+export type CustomerSummary = Omit<Customer, "password_hash">;
+
+/** Admin-facing list, newest first, with the password hash stripped. */
+export async function getAllCustomersForAdmin(): Promise<CustomerSummary[]> {
+  const customers = await getAllCustomers();
+  return customers
+    .map(({ password_hash: _password_hash, ...rest }) => rest)
+    .sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
+}
+
 export async function createCustomer(name: string, email: string, password: string): Promise<Customer> {
   const customers = await getAllCustomers();
   const customer: Customer = {

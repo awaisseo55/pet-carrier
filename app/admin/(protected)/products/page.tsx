@@ -3,9 +3,10 @@ import { Plus } from "lucide-react";
 import { ProductTable } from "@/components/admin/product-table";
 import { Button } from "@/components/ui/button";
 import { getAllProducts } from "@/lib/products";
+import { getAllCategoryNodes } from "@/lib/category-store";
 
 export default async function AdminProductsPage() {
-  const products = await getAllProducts();
+  const [products, categories] = await Promise.all([getAllProducts(), getAllCategoryNodes()]);
 
   return (
     <div>
@@ -23,7 +24,7 @@ export default async function AdminProductsPage() {
       </div>
 
       <div className="mt-6">
-        <ProductTable products={products} />
+        <ProductTable products={products} categories={categories} />
       </div>
     </div>
   );

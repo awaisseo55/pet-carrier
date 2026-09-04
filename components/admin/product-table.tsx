@@ -4,7 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Search, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
@@ -21,11 +21,34 @@ import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
 import type { Product } from "@/lib/types";
 import { toast } from "sonner";
 
-export function ProductTable({ products }: { products: Product[] }) {
+export function ProductTable({
+  products,
+  categories,
+}: {
+  products: Product[];
+  categories: { path: string; name: string }[];
+}) {
   const router = useRouter();
   const [selected, setSelected] = React.useState<Set<string>>(new Set());
   const [adjustment, setAdjustment] = React.useState("");
   const [busy, setBusy] = React.useState(false);
+  const [query, setQuery] = React.useState("");
+  const [categoryFilter, setCategoryFilter] = React.useState("all");
+  const [statusFilter, setStatusFilter] = React.useState("all");
+  const [stockFilter, setStockFilter] = React.useState("all");
+
+  const categoryNameByPath = React.useMemo(() => new Map(categories.map((c) => [c.path, c.name])), [categories]);
+
+  const filtered = products.filter((product) => {
+    if (categoryFilter !== "all" && !product.category_slugs.includes(categoryFilter)) return false;
+    if (statusFilter !== "all") {
+      const isActive = statusFilter === "active";
+      if (product.is_active !== isActive) return false;
+    }
+    if (stockFilter !== "all" && product.stock_status !== stockFilter) return false;
+    if (query.trim() && !product.title.toLowerCase().includes(query.trim().toLowerCase())) return false;
+    return true;
+  });
 
   function toggle(id: string) {
     setSelected((prev) => {
@@ -37,7 +60,9 @@ export function ProductTable({ products }: { products: Product[] }) {
   }
 
   function toggleAll() {
-    setSelected((prev) => (prev.size === products.length ? new Set() : new Set(products.map((p) => p.id))));
+    setSelected((prev) =>
+      filtered.length > 0 && prev.size === filtered.length ? new Set() : new Set(filtered.map((p) => p.id))
+    );
   }
 
   async function handleDelete(id: string, title: string) {
@@ -98,6 +123,56 @@ export function ProductTable({ products }: { products: Product[] }) {
 
   return (
     <div>
+      <div className="mb-4 flex flex-wrap gap-3">
+        <div className="relative w-full sm:w-72">
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search by title"
+            className="h-10 pl-9"
+          />
+        </div>
+        <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+          <SelectTrigger className="h-10 w-56">
+            <SelectValue placeholder="Category" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All categories</SelectItem>
+            {categories.map((c) => (
+              <SelectItem key={c.path} value={c.path}>
+                {c.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Select value={statusFilter} onValueChange={setStatusFilter}>
+          <SelectTrigger className="h-10 w-36">
+            <SelectValue placeholder="Status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All statuses</SelectItem>
+            <SelectItem value="active">Active</SelectItem>
+            <SelectItem value="draft">Draft</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select value={stockFilter} onValueChange={setStockFilter}>
+          <SelectTrigger className="h-10 w-40">
+            <SelectValue placeholder="Stock" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All stock</SelectItem>
+            <SelectItem value="in_stock">In stock</SelectItem>
+            <SelectItem value="low_stock">Low stock</SelectItem>
+            <SelectItem value="out_of_stock">Out of stock</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <p className="mb-3 text-xs text-muted-foreground">
+        Showing {filtered.length} of {products.length} product(s)
+      </p>
+
       {selected.size > 0 && (
         <div className="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-blue-200 bg-blue-50 p-4">
           <span className="text-sm font-medium text-blue-800">{selected.size} selected</span>
@@ -132,7 +207,7 @@ export function ProductTable({ products }: { products: Product[] }) {
             <tr className="border-b border-border text-left text-muted-foreground">
               <th className="p-3">
                 <Checkbox
-                  checked={products.length > 0 && selected.size === products.length}
+                  checked={filtered.length > 0 && selected.size === filtered.length}
                   onCheckedChange={toggleAll}
                 />
               </th>
@@ -145,7 +220,7 @@ export function ProductTable({ products }: { products: Product[] }) {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {filtered.map((product) => (
               <tr key={product.id} className="border-b border-border last:border-0 hover:bg-gray-100/30">
                 <td className="p-3">
                   <Checkbox checked={selected.has(product.id)} onCheckedChange={() => toggle(product.id)} />
@@ -165,7 +240,10 @@ export function ProductTable({ products }: { products: Product[] }) {
                   </div>
                 </td>
                 <td className="p-3 text-sm text-gray-500">
-                  {product.category_slugs.length} categor{product.category_slugs.length === 1 ? "y" : "ies"}
+                  {product.category_slugs.length === 0
+                    ? "Uncategorised"
+                    : categoryNameByPath.get(product.category_slugs[0]) || product.category_slugs[0]}
+                  {product.category_slugs.length > 1 && ` +${product.category_slugs.length - 1}`}
                 </td>
                 <td className="p-3">{formatPrice(product.price)}</td>
                 <td className="p-3 capitalize">{product.stock_status.replace("_", " ")}</td>
