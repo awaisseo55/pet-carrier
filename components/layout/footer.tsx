@@ -72,7 +72,7 @@ const paymentMethods = ["Visa", "Mastercard", "Amex", "PayPal", "Apple Pay", "Go
 export function Footer() {
   function handleNewsletter(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    toast.success("Thanks for signing up! Keep an eye on your inbox for pet care tips and your 5% code.");
+    toast.success("Thanks for signing up! Keep an eye on your inbox for pet care tips and your £5 code.");
     e.currentTarget.reset();
   }
 
@@ -82,7 +82,7 @@ export function Footer() {
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
             <div>
-              <h3 className="font-heading text-2xl font-semibold text-white">Get pet care tips and 5% off</h3>
+              <h3 className="font-heading text-2xl font-semibold text-white">Get pet care tips and £5 off</h3>
               <p className="mt-1 text-gray-400">Join our list for care guides and first look at new arrivals.</p>
             </div>
             <form onSubmit={handleNewsletter} className="flex w-full max-w-md gap-2">

@@ -14,7 +14,7 @@ const SHOW_DELAY_MS = 3500;
 const WELCOME_CODE = "WELCOME5";
 
 /**
- * First-order 5% off popup, shown once per browser (localStorage flag, not
+ * First-order £5 off popup, shown once per browser (localStorage flag, not
  * per page view) a few seconds after arrival so it doesn't interrupt the
  * initial page load. Backed by the real WELCOME5 coupon in data/coupons.json
  * rather than a decorative code, the copy button and "use at checkout"
@@ -60,7 +60,7 @@ export function WelcomePopup() {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="gap-0 overflow-hidden p-0 sm:max-w-3xl sm:grid sm:grid-cols-2">
-        <DialogTitle className="sr-only">Get 5% off your first order</DialogTitle>
+        <DialogTitle className="sr-only">Get £5 off your first order</DialogTitle>
 
         <div className="relative hidden min-h-[380px] sm:block">
           <Image
@@ -79,10 +79,10 @@ export function WelcomePopup() {
                 <Sparkles className="size-5" />
               </span>
               <h2 className="mt-4 font-heading text-2xl font-semibold text-ink">
-                Get 5% off your first order
+                Get £5 off your first order
               </h2>
               <p className="mt-2 text-sm text-gray-500">
-                Pop your email in and we&apos;ll send a welcome code for 5% off, plus the odd care tip
+                Pop your email in and we&apos;ll send a welcome code for £5 off, plus the odd care tip
                 from us.
               </p>
               <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-3">
@@ -116,7 +116,7 @@ export function WelcomePopup() {
               </span>
               <h2 className="mt-4 font-heading text-2xl font-semibold text-ink">You&apos;re in!</h2>
               <p className="mt-2 text-sm text-gray-500">
-                Use this code at checkout to get 5% off your first order.
+                Use this code at checkout to get £5 off your first order.
               </p>
               <button
                 type="button"

@@ -104,7 +104,7 @@ export async function getRuleBasedReply(message: string): Promise<string> {
   }
 
   if (/\bdiscount|coupon|promo|code\b|\boff\b.{0,10}(first|order)/.test(text)) {
-    return "New customers can use code WELCOME5 at checkout for 5% off their first order.";
+    return "New customers can use code WELCOME5 at checkout for £5 off their first order.";
   }
 
   if (/\bhuman|real person|agent|speak to|talk to|contact|phone|email address/.test(text)) {
