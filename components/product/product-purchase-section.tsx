@@ -8,7 +8,7 @@ import { VariantSelector } from "@/components/product/variant-selector";
 import { RatingSummary } from "@/components/product/rating-summary";
 import { Badge } from "@/components/ui/badge";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
-import { addWorkingDays, formatPrice, formatShortDate } from "@/lib/utils";
+import { formatPrice } from "@/lib/utils";
 import { variantPriceRange } from "@/lib/variants";
 import type { PublicProduct, PublicProductVariant } from "@/lib/types";
 
@@ -35,16 +35,6 @@ export function ProductPurchaseSection({
   const hasVariants = !!product.hasVariants && !!product.variants && product.variants.length > 0;
   const [selectedVariant, setSelectedVariant] = React.useState<PublicProductVariant | null>(null);
 
-  // Lead with dispatch speed (1-3 working days, see /shipping), which Pet Carrier
-  // directly controls, rather than the full order-to-doorstep window, which also
-  // depends on third-party courier transit and reads as a discouragingly long wait.
-  const dispatchWindow = React.useMemo(() => {
-    const today = new Date();
-    return {
-      earliest: formatShortDate(addWorkingDays(today, 1)),
-      latest: formatShortDate(addWorkingDays(today, 3)),
-    };
-  }, []);
 
   const range = hasVariants ? variantPriceRange(product.variants!) : null;
   const displayPrice = selectedVariant ? selectedVariant.price : (range ? range.low : product.price);
@@ -109,10 +99,8 @@ export function ProductPurchaseSection({
         <div className="mt-6 flex items-start gap-3 rounded-lg border border-blue-100 bg-blue-50 p-3.5">
           <Truck className="mt-0.5 size-5 shrink-0 text-blue-700" />
           <div>
-            <p className="text-sm font-semibold text-ink">
-              Dispatched {dispatchWindow.earliest} – {dispatchWindow.latest}
-            </p>
-            <p className="text-xs text-gray-500">Sent via tracked UK courier from our Preston warehouse</p>
+            <p className="text-sm font-semibold text-ink">Estimated delivery in 2–3 days</p>
+            <p className="text-xs text-gray-500">Tracked UK courier from our Preston warehouse</p>
           </div>
         </div>
 
