@@ -517,6 +517,34 @@ being sold. Before trusting an ASIN's title, brand or images, verify them agains
 page rather than taking supplied copy at face value, a mismatched brand/product on a live listing is
 a trading-standards problem, not just a content bug.
 
+## Google Merchant Center product feed
+
+`/feed.xml` (`app/feed.xml/route.ts` + `lib/merchant-feed.ts`) is a live RSS 2.0 + `g:` namespace
+feed for Google Merchant Center, built from `getActiveProducts()` on every request (same
+"no redeploy needed" principle as the chat system prompt and sitemap), so an admin price/stock/
+image/active-status change is reflected on Google's next scheduled fetch automatically. Register
+`https://pet-carrier.co.uk/feed.xml` in Merchant Center as a scheduled-fetch feed.
+
+- **`g:identifier_exists` is set to `"no"` for every item, deliberately.** These are genuine
+  Amazon-sourced products that almost certainly have a real manufacturer GTIN/UPC/EAN, but nothing
+  in the scrape/import pipeline (`lib/amazon.ts`) currently captures one, only the Amazon ASIN,
+  which Google doesn't accept as a substitute identifier. **Never fabricate a GTIN to fill the
+  gap**: a made-up one fails Google's checksum validation and is a genuine data-quality policy
+  violation, worse than omitting it. `identifier_exists: no` is Google's own documented path for
+  "don't have one on file yet". If real GTINs are ever sourced per product (Amazon listing pages
+  sometimes show one under "Product information"; Keepa's API, see `KEEPA_API_KEY` below, returns
+  EAN/UPC per ASIN more reliably), add a `gtin` field to `Product` and wire it into
+  `lib/merchant-feed.ts` in place of the `identifier_exists` fallback.
+- Reusing the same real GTIN that Amazon's own listing uses for the identical physical product is
+  fine and expected, that's how Google Shopping's price-comparison model works across many
+  sellers, it is not a policy violation and won't get the account suspended. The actual reseller
+  compliance requirements here are: correct brand (already real per-product, e.g. "Feandrea", never
+  "Pet Carrier", see `Product.brand`), condition `"new"`, and accurate business/returns/shipping
+  info (all already in place).
+- Per-item shipping cost isn't set in the feed; the site's shipping rates (`data/settings.json`'s
+  `standard_shipping_cost`/`free_shipping_threshold` etc.) are flat/threshold-based, so configure
+  them once in Merchant Center's own Shipping settings rather than duplicating them per item.
+
 ## Known TODOs (see inline `// TODO:` comments for exact locations)
 
 - **Business address is currently the owner's home address** (10 Stafford Road, Preston, PR1 6LB),
@@ -527,11 +555,13 @@ a trading-standards problem, not just a content bug.
   office/virtual-address service later to keep the home address private; if that happens, update
   all of the above plus `data/settings.json`'s `contact_address`, and check Google Merchant Center
   / Google Business Profile for the new address too so verification doesn't break.
-- `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET`: placeholders, add real
-  keys before launch.
-- `RESEND_API_KEY`: unset by default locally, order/contact emails are logged to console instead
-  of sent (see the **"Transactional email"** section, this is implemented, just needs the key set
-  per environment). `CUSTOMER_REPLY_TO_EMAIL` is currently a personal Gmail address, intended to
+- `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET`: set to real live keys in
+  Vercel's Production environment as of 2026-09, so checkout takes real payments there. Still
+  unset/placeholder locally by default (see `.env.local.example`), which is expected for dev.
+- `RESEND_API_KEY`: set to a real key in Vercel's Production environment as of 2026-09, so
+  order/contact emails actually send there. Still unset locally by default, order/contact emails
+  are logged to console instead of sent when developing locally (see the **"Transactional
+  email"** section). `CUSTOMER_REPLY_TO_EMAIL` is currently a personal Gmail address, intended to
   move to `info@pet-carrier.co.uk` once that inbox exists, just by changing the env var.
 - `ENABLE_CASH_ON_DELIVERY`: off by default, set to `"true"` to offer cash on delivery at checkout,
   see the **"Cash on delivery checkout"** section.
