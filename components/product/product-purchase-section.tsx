@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ShieldCheck, RotateCcw, Truck } from "lucide-react";
+import { MapPin, ShieldCheck, RotateCcw, Truck } from "lucide-react";
 import { ProductGallery } from "@/components/product/product-gallery";
 import { AddToCart } from "@/components/product/add-to-cart";
 import { VariantSelector } from "@/components/product/variant-selector";
@@ -95,19 +95,24 @@ export function ProductPurchaseSection({
           <AddToCart product={product} selectedVariant={selectedVariant} />
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-3 rounded-lg bg-gray-100/60 p-4 sm:grid-cols-3">
-          <div className="flex items-center gap-2 text-sm">
-            <Truck className="size-4 shrink-0 text-blue-700" />
-            Free UK shipping over £70
-          </div>
-          <div className="flex items-center gap-2 text-sm">
-            <RotateCcw className="size-4 shrink-0 text-blue-700" />
-            14-day returns
-          </div>
-          <div className="flex items-center gap-2 text-sm">
-            <ShieldCheck className="size-4 shrink-0 text-blue-700" />
-            Secure checkout
-          </div>
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {[
+            { icon: Truck, title: "Free UK Shipping", subtitle: "On orders over £70" },
+            { icon: RotateCcw, title: "14-Day Returns", subtitle: "Easy, no-fuss refunds" },
+            { icon: ShieldCheck, title: "Secure Checkout", subtitle: "Encrypted card payment" },
+            { icon: MapPin, title: "Dispatched from the UK", subtitle: "Packed in Preston" },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="flex flex-col items-center gap-1.5 rounded-lg border border-border bg-white p-3 text-center shadow-sm"
+            >
+              <div className="flex size-9 items-center justify-center rounded-full bg-blue-50 text-blue-700">
+                <item.icon className="size-4.5" />
+              </div>
+              <span className="text-xs font-semibold leading-tight text-ink">{item.title}</span>
+              <span className="text-[11px] leading-tight text-gray-500">{item.subtitle}</span>
+            </div>
+          ))}
         </div>
 
         <div className="mt-8">
