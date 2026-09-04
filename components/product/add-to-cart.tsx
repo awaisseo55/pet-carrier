@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { Minus, Plus, ShoppingBag } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Check, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-context";
 import type { PublicProduct, PublicProductVariant } from "@/lib/types";
@@ -17,6 +18,7 @@ interface AddToCartProps {
 export function AddToCart({ product, selectedVariant = null }: AddToCartProps) {
   const { addItem } = useCart();
   const [quantity, setQuantity] = React.useState(1);
+  const [justAdded, setJustAdded] = React.useState(false);
 
   const requiresVariant = !!product.hasVariants;
   const missingSelection = requiresVariant && !selectedVariant;
@@ -41,6 +43,8 @@ export function AddToCart({ product, selectedVariant = null }: AddToCartProps) {
       quantity
     );
     toast.success(`${product.title} added to your basket`);
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 1200);
   }
 
   function buttonLabel() {
@@ -50,6 +54,7 @@ export function AddToCart({ product, selectedVariant = null }: AddToCartProps) {
       return "Select options";
     }
     if (outOfStock) return "Out of Stock";
+    if (justAdded) return "Added";
     return "Add to Basket";
   }
 
@@ -73,8 +78,19 @@ export function AddToCart({ product, selectedVariant = null }: AddToCartProps) {
         </button>
       </div>
       <Button size="lg" variant="default" className="flex-1" onClick={handleAdd} disabled={disabled}>
-        <ShoppingBag className="size-4" />
-        {buttonLabel()}
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            key={justAdded ? "added" : "default"}
+            initial={{ scale: 0.6, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.6, opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="flex items-center gap-2"
+          >
+            {justAdded ? <Check className="size-4" /> : <ShoppingBag className="size-4" />}
+            {buttonLabel()}
+          </motion.span>
+        </AnimatePresence>
       </Button>
     </div>
   );

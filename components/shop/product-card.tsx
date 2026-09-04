@@ -1,8 +1,10 @@
 "use client";
 
+import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingBag } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Check, ShoppingBag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-context";
@@ -17,6 +19,7 @@ export function ProductCard({ product }: { product: PublicProduct }) {
   const { addItem } = useCart();
   const image = product.images[0] || PRODUCT_PLACEHOLDER;
   const primaryCategory = product.category_slugs[0] ? getCategoryByPath(product.category_slugs[0]) : undefined;
+  const [justAdded, setJustAdded] = React.useState(false);
 
   function handleAdd(e: React.MouseEvent) {
     e.preventDefault();
@@ -30,6 +33,8 @@ export function ProductCard({ product }: { product: PublicProduct }) {
       stock_status: product.stock_status,
     });
     toast.success(`${product.title} added to your basket`);
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 1200);
   }
 
   return (
@@ -43,7 +48,7 @@ export function ProductCard({ product }: { product: PublicProduct }) {
           alt={product.title}
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          className="object-contain"
+          className="object-contain transition-transform duration-300 group-hover:scale-105"
         />
         {product.compare_at_price && (
           <Badge variant="secondary" className="absolute top-3 left-3">
@@ -81,8 +86,33 @@ export function ProductCard({ product }: { product: PublicProduct }) {
             aria-label="Add to basket"
             onClick={handleAdd}
             disabled={product.stock_status === "out_of_stock"}
+            className="overflow-hidden"
           >
-            <ShoppingBag className="size-4" />
+            <AnimatePresence mode="wait" initial={false}>
+              {justAdded ? (
+                <motion.span
+                  key="check"
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.5, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                  className="flex"
+                >
+                  <Check className="size-4" />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="bag"
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.5, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                  className="flex"
+                >
+                  <ShoppingBag className="size-4" />
+                </motion.span>
+              )}
+            </AnimatePresence>
           </Button>
         </div>
       </div>
