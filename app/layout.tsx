@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { CartProvider } from "@/components/cart/cart-context";
@@ -9,6 +8,7 @@ import { Footer } from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { WelcomePopup } from "@/components/layout/welcome-popup";
+import { CookieConsent } from "@/components/layout/cookie-consent";
 import { ChatWidget } from "@/components/chat/chat-widget";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -82,11 +82,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
         />
-        <Script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="oe+0WxSevsXawq740ab8Pw"
-          strategy="afterInteractive"
-        />
       </head>
       <body className="min-h-full flex flex-col antialiased bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
@@ -97,6 +92,7 @@ export default function RootLayout({
             <CartDrawer />
             <WelcomePopup />
             <ChatWidget />
+            <CookieConsent />
             <Toaster />
           </CartProvider>
         </ThemeProvider>
