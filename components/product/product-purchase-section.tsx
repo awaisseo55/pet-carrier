@@ -97,17 +97,37 @@ export function ProductPurchaseSection({
 
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {[
-            { icon: Truck, title: "Free UK Shipping", subtitle: "On orders over £70" },
-            { icon: RotateCcw, title: "14-Day Returns", subtitle: "Easy, no-fuss refunds" },
-            { icon: ShieldCheck, title: "Secure Checkout", subtitle: "Encrypted card payment" },
-            { icon: MapPin, title: "Dispatched from the UK", subtitle: "Packed in Preston" },
+            {
+              icon: Truck,
+              title: "Free UK Shipping",
+              subtitle: "On orders over £70",
+              tileBg: "bg-blue-600",
+            },
+            {
+              icon: RotateCcw,
+              title: "14-Day Returns",
+              subtitle: "Easy, no-fuss refunds",
+              tileBg: "bg-violet-600",
+            },
+            {
+              icon: ShieldCheck,
+              title: "Secure Checkout",
+              subtitle: "Encrypted card payment",
+              tileBg: "bg-emerald-600",
+            },
+            {
+              icon: MapPin,
+              title: "Dispatched from the UK",
+              subtitle: "Packed in Preston",
+              tileBg: "bg-teal-600",
+            },
           ].map((item) => (
             <div
               key={item.title}
-              className="flex flex-col items-center gap-1.5 rounded-lg border border-border bg-white p-3 text-center shadow-sm"
+              className="flex flex-col items-center gap-2 rounded-lg border border-border bg-white p-3.5 text-center shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
             >
-              <div className="flex size-9 items-center justify-center rounded-full bg-blue-50 text-blue-700">
-                <item.icon className="size-4.5" />
+              <div className={`flex size-11 items-center justify-center rounded-xl text-white shadow-sm ${item.tileBg}`}>
+                <item.icon className="size-5" strokeWidth={2.25} />
               </div>
               <span className="text-xs font-semibold leading-tight text-ink">{item.title}</span>
               <span className="text-[11px] leading-tight text-gray-500">{item.subtitle}</span>
