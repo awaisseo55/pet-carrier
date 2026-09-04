@@ -1,14 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { MapPin, ShieldCheck, RotateCcw, Truck } from "lucide-react";
+import { ShieldCheck, RotateCcw, Truck } from "lucide-react";
 import { ProductGallery } from "@/components/product/product-gallery";
 import { AddToCart } from "@/components/product/add-to-cart";
 import { VariantSelector } from "@/components/product/variant-selector";
 import { RatingSummary } from "@/components/product/rating-summary";
 import { Badge } from "@/components/ui/badge";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
-import { formatPrice } from "@/lib/utils";
+import { addWorkingDays, formatPrice, formatShortDate } from "@/lib/utils";
 import { variantPriceRange } from "@/lib/variants";
 import type { PublicProduct, PublicProductVariant } from "@/lib/types";
 
@@ -34,6 +34,17 @@ export function ProductPurchaseSection({
 }) {
   const hasVariants = !!product.hasVariants && !!product.variants && product.variants.length > 0;
   const [selectedVariant, setSelectedVariant] = React.useState<PublicProductVariant | null>(null);
+
+  // Lead with dispatch speed (1-3 working days, see /shipping), which Pet Carrier
+  // directly controls, rather than the full order-to-doorstep window, which also
+  // depends on third-party courier transit and reads as a discouragingly long wait.
+  const dispatchWindow = React.useMemo(() => {
+    const today = new Date();
+    return {
+      earliest: formatShortDate(addWorkingDays(today, 1)),
+      latest: formatShortDate(addWorkingDays(today, 3)),
+    };
+  }, []);
 
   const range = hasVariants ? variantPriceRange(product.variants!) : null;
   const displayPrice = selectedVariant ? selectedVariant.price : (range ? range.low : product.price);
@@ -95,44 +106,29 @@ export function ProductPurchaseSection({
           <AddToCart product={product} selectedVariant={selectedVariant} />
         </div>
 
-        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {[
-            {
-              icon: Truck,
-              title: "Free UK Shipping",
-              subtitle: "On orders over £70",
-              tileBg: "bg-blue-600",
-            },
-            {
-              icon: RotateCcw,
-              title: "14-Day Returns",
-              subtitle: "Easy, no-fuss refunds",
-              tileBg: "bg-violet-600",
-            },
-            {
-              icon: ShieldCheck,
-              title: "Secure Checkout",
-              subtitle: "Encrypted card payment",
-              tileBg: "bg-emerald-600",
-            },
-            {
-              icon: MapPin,
-              title: "Dispatched from the UK",
-              subtitle: "Packed in Preston",
-              tileBg: "bg-teal-600",
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="flex flex-col items-center gap-2 rounded-lg border border-border bg-white p-3.5 text-center shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <div className={`flex size-11 items-center justify-center rounded-xl text-white shadow-sm ${item.tileBg}`}>
-                <item.icon className="size-5" strokeWidth={2.25} />
-              </div>
-              <span className="text-xs font-semibold leading-tight text-ink">{item.title}</span>
-              <span className="text-[11px] leading-tight text-gray-500">{item.subtitle}</span>
-            </div>
-          ))}
+        <div className="mt-6 flex items-start gap-3 rounded-lg border border-blue-100 bg-blue-50 p-3.5">
+          <Truck className="mt-0.5 size-5 shrink-0 text-blue-700" />
+          <div>
+            <p className="text-sm font-semibold text-ink">
+              Dispatched {dispatchWindow.earliest} – {dispatchWindow.latest}
+            </p>
+            <p className="text-xs text-gray-500">Sent via tracked UK courier from our Preston warehouse</p>
+          </div>
+        </div>
+
+        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-gray-500">
+          <span className="flex items-center gap-1.5">
+            <Truck className="size-3.5 text-blue-600" />
+            Free UK shipping over £70
+          </span>
+          <span className="flex items-center gap-1.5">
+            <RotateCcw className="size-3.5 text-blue-600" />
+            14-day returns
+          </span>
+          <span className="flex items-center gap-1.5">
+            <ShieldCheck className="size-3.5 text-blue-600" />
+            Secure checkout
+          </span>
         </div>
 
         <div className="mt-8">
