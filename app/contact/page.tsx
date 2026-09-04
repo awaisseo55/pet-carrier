@@ -39,8 +39,8 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <MapPin className="mt-0.5 size-5 shrink-0 text-blue-700" />
                 <div>
-                  <p className="font-medium">Based in</p>
-                  <p className="text-sm text-gray-500">Manchester, United Kingdom</p>
+                  <p className="font-medium">Address</p>
+                  <p className="text-sm text-gray-500">10 Stafford Road, Preston, PR1 6LB, United Kingdom</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

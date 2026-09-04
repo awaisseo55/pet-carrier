@@ -24,7 +24,7 @@ export function HomepageIntro() {
         </p>
         <p>
           Every pet carrier, stroller and bed on the site is chosen by hand, checked against the
-          animal it’s meant for, and dispatched from our base in Manchester. Whether you need a
+          animal it’s meant for, and dispatched from our base in Preston. Whether you need a
           soft-sided animal carrier for a small dog, a sturdy hard-sided crate for car travel, or a
           carrier built specifically for small pets, our category pages group everything by animal
           and by use, so you can find the right fit without wading through listings that were never

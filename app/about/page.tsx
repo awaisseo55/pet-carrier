@@ -8,7 +8,7 @@ import { LIFESTYLE_IMAGES } from "@/lib/images";
 export const metadata: Metadata = {
   title: "Our Story",
   description:
-    "Pet Carrier is a UK limited company based in Manchester, curating comfortable, well-made carriers, strollers and beds for dogs, cats, small pets and birds.",
+    "Pet Carrier is a UK limited company based in Preston, curating comfortable, well-made carriers, strollers and beds for dogs, cats, small pets and birds.",
 };
 
 const process = [
@@ -36,14 +36,14 @@ const process = [
   {
     step: "4",
     icon: Truck,
-    title: "Pack and dispatch from Manchester",
+    title: "Pack and dispatch from Preston",
     description:
       "Every order ships from our UK base with tracking, and a real inbox to contact if something isn't right.",
   },
 ];
 
 const stats = [
-  { icon: MapPin, label: "Based in Manchester, UK" },
+  { icon: MapPin, label: "Based in Preston, UK" },
   { icon: Truck, label: "Free UK shipping over £70" },
   { icon: Undo2, label: "14-day returns" },
   { icon: ShieldCheck, label: "Secure checkout via Stripe" },
@@ -55,7 +55,7 @@ export default function AboutPage() {
       <div className="text-center">
         <h1 className="font-heading text-4xl font-semibold text-foreground">About Pet Carrier</h1>
         <p className="mt-3 text-lg text-gray-500">
-          A UK online retailer for pet carriers, strollers and beds, run from Manchester and built
+          A UK online retailer for pet carriers, strollers and beds, run from Preston and built
           around getting the right product to the right pet.
         </p>
       </div>
@@ -73,7 +73,7 @@ export default function AboutPage() {
       <div className="mt-10 flex flex-col gap-5 text-gray-600">
         <h2 className="font-heading text-2xl font-semibold text-foreground">Who We Are</h2>
         <p>
-          Pet Carrier is a UK registered limited company based in Manchester, specialising in pet
+          Pet Carrier is a UK registered limited company based in Preston, specialising in pet
           carriers, strollers and beds for dogs, cats, small pets and birds. Every order is packed
           and dispatched from right here, not routed through an overseas seller you can never
           actually reach.

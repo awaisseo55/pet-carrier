@@ -519,6 +519,14 @@ a trading-standards problem, not just a content bug.
 
 ## Known TODOs (see inline `// TODO:` comments for exact locations)
 
+- **Business address is currently the owner's home address** (10 Stafford Road, Preston, PR1 6LB),
+  published in `data/settings.json`, `lib/seo.ts`'s Organization JSON-LD, the footer, `/contact`,
+  `/about` and `/terms` (2026-09 decision: needed for Google Merchant Center verification, which
+  checks the submitted business address against what's publicly shown on-site). Not yet the
+  registered office on Companies House. The owner may want to move to a registered
+  office/virtual-address service later to keep the home address private; if that happens, update
+  all of the above plus `data/settings.json`'s `contact_address`, and check Google Merchant Center
+  / Google Business Profile for the new address too so verification doesn't break.
 - `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET`: placeholders, add real
   keys before launch.
 - `RESEND_API_KEY`: unset by default locally, order/contact emails are logged to console instead

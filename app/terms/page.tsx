@@ -57,7 +57,10 @@ export default function TermsPage() {
       <p>These terms are governed by the laws of England and Wales.</p>
 
       <h2>Contact</h2>
-      <p>Questions about these terms can be sent to hello@pet-carrier.co.uk.</p>
+      <p>
+        Pet Carrier is a UK limited company trading from 10 Stafford Road, Preston, PR1 6LB, United
+        Kingdom. Questions about these terms can be sent to hello@pet-carrier.co.uk.
+      </p>
     </LegalPage>
   );
 }

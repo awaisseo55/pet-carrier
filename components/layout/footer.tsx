@@ -108,7 +108,7 @@ export function Footer() {
             </Link>
             <p className="mt-4 max-w-xs text-sm text-gray-400">
               Everything for your pet on the move and at rest. Carriers, strollers and beds, handpicked
-              and dispatched from Manchester, UK.
+              and dispatched from Preston, UK.
             </p>
             <ul className="mt-5 flex flex-col gap-2.5">
               {trustPoints.map((point) => (
@@ -225,6 +225,7 @@ export function Footer() {
       <div className="border-t border-gray-700 bg-gray-900">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-6 text-xs text-gray-500 sm:flex-row sm:items-center sm:px-6 lg:px-8">
           <p>&copy; {new Date().getFullYear()} Pet Carrier. All rights reserved.</p>
+          <p>10 Stafford Road, Preston, PR1 6LB, United Kingdom</p>
           <p>pet-carrier.co.uk</p>
         </div>
       </div>

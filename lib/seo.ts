@@ -12,7 +12,9 @@ export function organizationJsonLd() {
     description: "Everything for your pet on the move and at rest.",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Manchester",
+      streetAddress: "10 Stafford Road",
+      addressLocality: "Preston",
+      postalCode: "PR1 6LB",
       addressCountry: "GB",
     },
     sameAs: [
