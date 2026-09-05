@@ -45,6 +45,8 @@ export const PRODUCTS = [
     metaTitle: "Wheeled Cat Carrier - Airline Approved, Locking Wheels",
     metaDescription:
       "A 3-in-1 wheeled cat carrier with a locking pull-rod, shoulder strap and hand-carry handle. Airline approved, holds pets up to 9kg. Fast UK delivery.",
+    shortDescription:
+      "A 3-in-1 wheeled cat carrier with a locking pull-rod, shoulder strap and hand-carry handle, built for cats and small dogs up to 9kg. Airline approved with mesh ventilation and a washable base pad.",
     brand: "Pawinner",
     finalPrice: 63.99,
     category_slugs: [
@@ -143,6 +145,8 @@ Wipe the outer fabric down with a damp cloth after use, and lift out the double-
     metaTitle: "Pet Carrier with Wheels - Foldable, Telescopic Handle",
     metaDescription:
       "A foldable rolling pet carrier with a telescopic handle, four 360-degree wheels and a washable pad. For cats and small dogs up to 15kg. Fast UK delivery.",
+    shortDescription:
+      "A foldable rolling pet carrier with a telescopic handle, four 360-degree wheels and a washable pad, for cats and small dogs up to 15kg. Folds flat for storage between trips.",
     brand: "GYMAX",
     finalPrice: 57.99,
     category_slugs: [
@@ -234,6 +238,8 @@ Wipe the Oxford fabric shell down with a damp cloth as needed, and remove the ba
     metaTitle: "Expandable Cat Carrier with Wheels - Airline Approved",
     metaDescription:
       "An expandable rolling cat carrier with a telescopic handle, four silent wheels and TSA airline-approved sizing. Nearly double the interior space. Fast UK delivery.",
+    shortDescription:
+      "An expandable rolling cat carrier with a telescopic aluminium handle, four silent wheels and TSA airline-approved sizing. The zip-open front nearly doubles the interior space once you're settled.",
     brand: "PAWZIDEA",
     finalPrice: 106.99,
     category_slugs: [
@@ -317,6 +323,8 @@ Wipe the mesh and frame down with a damp cloth, and remove the double-sided pad 
     metaTitle: "Collapsible Pet Carrier - Airline Approved, Expandable",
     metaDescription:
       "A collapsible, expandable soft-sided pet carrier with a steel-strip frame, mesh sides and a removable mat. TSA airline approved for pets up to 7kg.",
+    shortDescription:
+      "A collapsible, expandable soft-sided pet carrier with a steel-strip frame, mesh sides and a removable mat. TSA airline approved for pets up to 7kg, with top and side entry.",
     brand: "PLJVOYK",
     finalPrice: 82.99,
     category_slugs: [
@@ -400,6 +408,8 @@ Wipe the mesh and frame down with a damp cloth, and remove the base mat to wash 
     metaTitle: "Washable Dog Bed - Calming Crate Mattress",
     metaDescription:
       "A washable, calming dog crate mattress with rose velvet surface and a non-skid Oxford base. Available in several sizes and colours. Fast UK delivery.",
+    shortDescription:
+      "A washable, calming dog crate mattress with a soft rose velvet surface and a non-skid Oxford base. Available in several sizes to suit breeds from small to large.",
     brand: "KSIIA",
     finalPrice: 35.99,
     category_slugs: ["beds/dog-beds", "beds/dog-beds/large-dog-beds", "beds/travel-beds"],
@@ -473,6 +483,8 @@ Once unpacked, pat the bed out and leave it for around 24 hours to reach its ful
     metaTitle: "Anti-Anxiety Dog Bed - Washable, Non-Slip Base",
     metaDescription:
       "A washable rectangle dog bed with soft plush lining, thick bolster sides and a non-slip bottom. Available in several sizes. Fast UK delivery.",
+    shortDescription:
+      "A washable rectangle dog bed with soft plush lining, thick bolster sides and a non-slip bottom. Available in a range of sizes from small through to large.",
     brand: "JOEJOY",
     finalPrice: 38.99,
     category_slugs: ["beds/dog-beds", "beds/dog-beds/small-dog-beds", "beds/dog-beds/large-dog-beds"],
@@ -547,6 +559,8 @@ The whole bed is machine washable, so wash on a gentle cycle when it needs refre
     metaTitle: "Orthopaedic Dog Bed - Memory Foam, Waterproof Cover",
     metaDescription:
       "A memory foam orthopaedic dog bed with a bolster sofa design and waterproof cover. Available in multiple sizes and colours. Fast UK delivery.",
+    shortDescription:
+      "A memory foam orthopaedic dog bed with a 4-sided bolster sofa design and a waterproof cover. Built to ease pressure on joints, available in multiple sizes and colours.",
     brand: "EHEYCIGA",
     finalPrice: 48.56,
     category_slugs: ["beds/dog-beds/orthopaedic-dog-beds", "beds/dog-beds/large-dog-beds", "beds/dog-beds"],
@@ -620,6 +634,8 @@ Allow the bed 24 to 48 hours after unpacking to expand fully. Unzip the cover to
     metaTitle: "Calming Dog Bed - Washable Crate Mattress",
     metaDescription:
       "A washable, anti-anxiety dog crate mattress with a soft plush top and a water-resistant, anti-slip base. Available in several sizes. Fast UK delivery.",
+    shortDescription:
+      "A washable, anti-anxiety dog crate mattress with an ultra-soft plush top and a water-resistant, anti-slip base. Available in a range of sizes to suit most breeds.",
     brand: "Jaspuriea",
     finalPrice: 33.99,
     category_slugs: ["beds/dog-beds", "beds/travel-beds", "beds/dog-beds/small-dog-beds"],
@@ -692,6 +708,8 @@ When it first arrives, pat the mattress out and leave it for about 24 hours to r
     metaTitle: "Orthopaedic Dog Bed Sofa - Washable, Large",
     metaDescription:
       "A large orthopaedic dog bed sofa with egg-crate foam support, a 4-sided bolster design and a waterproof inner liner. Fast UK delivery.",
+    shortDescription:
+      "A large orthopaedic dog bed sofa with high-density egg-crate foam support, a 4-sided bolster design and a waterproof inner liner. Machine washable cover for easy care.",
     brand: "Bedsure",
     finalPrice: 64.99,
     category_slugs: ["beds/dog-beds/orthopaedic-dog-beds", "beds/dog-beds/large-dog-beds", "beds/dog-beds"],
@@ -765,6 +783,8 @@ Unzip the cover and machine wash it separately whenever it needs cleaning, keepi
     metaTitle: "Orthopaedic Dog Bed Medium - Memory Foam",
     metaDescription:
       "A medium memory foam orthopaedic dog bed with a bolster sofa design and waterproof cover. Multiple sizes and colours available. Fast UK delivery.",
+    shortDescription:
+      "A memory foam orthopaedic dog bed with a 4-sided bolster sofa design and a waterproof cover, sized for smaller breeds. Built to ease pressure on joints.",
     brand: "EHEYCIGA",
     finalPrice: 47.99,
     category_slugs: ["beds/dog-beds/orthopaedic-dog-beds", "beds/dog-beds", "beds/dog-beds/small-dog-beds"],

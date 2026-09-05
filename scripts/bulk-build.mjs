@@ -213,18 +213,16 @@ async function buildProduct(content) {
   const { hasVariants, variantType, variants } = buildVariants(research, content, colourImageByName);
 
   const now = new Date().toISOString();
-  const shortDescription = content.description
-    .split("\n\n")
-    .find((block) => block && !block.startsWith("#"))
-    ?.trim()
-    .slice(0, 300);
 
   const product = {
     id: content.asin,
     slug: content.slug,
     title: content.title,
     description: content.description,
-    short_description: shortDescription || content.title,
+    // short_description is rendered as plain text on the product page, not
+    // through the markdown renderer, so it must never contain [text](/link)
+    // syntax the way the full description body does.
+    short_description: content.shortDescription || content.title,
     features: content.features,
     specifications: content.specifications,
     price: content.finalPrice,
