@@ -43,3 +43,6 @@ next-env.d.ts
 
 # claude code harness state
 .claude/
+
+# scratch data from scripts/bulk-research.mjs, not meant to be committed
+scripts/.bulk-research/
