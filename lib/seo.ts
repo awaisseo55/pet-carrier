@@ -1,6 +1,10 @@
 import { personSlug } from "./people";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pet-carrier.co.uk";
+// Trailing slash stripped defensively: NEXT_PUBLIC_SITE_URL has been set with
+// one on Vercel before, which double-slashes every concatenated URL below
+// (sitemap entries, JSON-LD, etc.) and got flagged by Ahrefs as both a
+// "double slash in URL" and "3XX redirect in sitemap" issue.
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://pet-carrier.co.uk").replace(/\/+$/, "");
 
 export function organizationJsonLd() {
   return {

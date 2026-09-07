@@ -26,7 +26,7 @@ const FROM_ADDRESS = process.env.RESEND_FROM_EMAIL || "Pet Carrier <orders@pet-c
 const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "awaisseo55@gmail.com";
 const CUSTOMER_REPLY_TO = process.env.CUSTOMER_REPLY_TO_EMAIL || "awaisseo55@gmail.com";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pet-carrier.co.uk";
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://pet-carrier.co.uk").replace(/\/+$/, "");
 
 // ---------------------------------------------------------------------
 // Escaping and small formatting helpers
