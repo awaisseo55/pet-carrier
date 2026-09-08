@@ -13,9 +13,9 @@ type Consent = "all" | "essential";
 /**
  * Small floating card, not a full-width legacy bar, so it doesn't block the
  * page or fight the centred WelcomePopup dialog for attention. Genuinely
- * gates the Ahrefs analytics script (rendered here, not in layout.tsx's
- * <head>) rather than just decorating an already-loading script: it only
- * mounts once the visitor has actively chosen "Accept all".
+ * gates the Ahrefs and Google Analytics scripts (rendered here, not in
+ * layout.tsx's <head>) rather than just decorating an already-loading
+ * script: they only mount once the visitor has actively chosen "Accept all".
  */
 export function CookieConsent() {
   const [consent, setConsent] = React.useState<Consent | null>(null);
@@ -44,11 +44,23 @@ export function CookieConsent() {
   return (
     <>
       {hydrated && consent === "all" && (
-        <Script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="oe+0WxSevsXawq740ab8Pw"
-          strategy="afterInteractive"
-        />
+        <>
+          <Script
+            src="https://analytics.ahrefs.com/analytics.js"
+            data-key="oe+0WxSevsXawq740ab8Pw"
+            strategy="afterInteractive"
+          />
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-ZHZKCGJT4F"
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-ZHZKCGJT4F');`}
+          </Script>
+        </>
       )}
 
       <AnimatePresence>
