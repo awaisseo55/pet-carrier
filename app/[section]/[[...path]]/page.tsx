@@ -73,7 +73,7 @@ export default async function CategoryPage({
 }) {
   const { section, path } = await params;
 
-  if (!["carriers", "strollers", "beds"].includes(section)) notFound();
+  if (!["carriers"].includes(section)) notFound();
 
   const fullPath = fullPathFrom(section, path);
   const resolved = await getResolvedCategory(fullPath);
@@ -114,7 +114,7 @@ export default async function CategoryPage({
   });
   const faqSchema = faqJsonLd(resolved.faqs);
 
-  const sectionLabels: Record<Section, string> = { carriers: "Carriers", strollers: "Strollers", beds: "Beds" };
+  const sectionLabels: Record<Section, string> = { carriers: "Carriers" };
 
   // Only a short opening paragraph sits above the product grid; the rest of
   // the intro (buying considerations, "who this suits" etc.) reads better

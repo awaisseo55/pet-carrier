@@ -20,7 +20,7 @@ export default async function AdminCategoriesPage() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="font-heading text-2xl font-semibold text-foreground">Categories</h1>
-          <p className="mt-1 text-gray-500">{nodes.length} categories across carriers, strollers and beds.</p>
+          <p className="mt-1 text-gray-500">{nodes.length} carrier categories.</p>
         </div>
         <Button variant="default" asChild>
           <Link href="/admin/categories/new">

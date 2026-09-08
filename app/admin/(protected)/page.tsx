@@ -44,7 +44,7 @@ export default async function AdminDashboardPage() {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold">{categories.length}</p>
-            <p className="text-xs text-muted-foreground">Across carriers, strollers, beds</p>
+            <p className="text-xs text-muted-foreground">Across all carrier categories</p>
           </CardContent>
         </Card>
         <Card>

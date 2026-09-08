@@ -14,8 +14,6 @@ import { CarriersMegaMenu } from "@/components/layout/carriers-mega-menu";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/strollers", label: "STROLLERS" },
-  { href: "/beds", label: "BEDS" },
   { href: "/blog", label: "BLOG" },
   { href: "/about", label: "ABOUT" },
   { href: "/contact", label: "CONTACT" },
@@ -23,8 +21,6 @@ const navLinks = [
 
 const mobileLinks = [
   { href: "/carriers", label: "Carriers" },
-  { href: "/strollers", label: "Strollers" },
-  { href: "/beds", label: "Beds" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -59,7 +55,7 @@ export function Header() {
             <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search for carriers, strollers or beds"
+              placeholder="Search for pet carriers"
               className="rounded-full pl-10"
             />
           </div>
@@ -125,7 +121,7 @@ export function Header() {
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search for carriers, strollers or beds"
+              placeholder="Search for pet carriers"
             />
             <Button type="submit" variant="primary">
               Search

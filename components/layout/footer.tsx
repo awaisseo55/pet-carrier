@@ -41,10 +41,10 @@ const trustPoints = [
 ];
 
 const shopLinks = [
-  { href: "/carriers", label: "Carriers" },
+  { href: "/carriers", label: "All Carriers" },
   { href: "/carriers/dog-carriers", label: "Dog Carriers" },
-  { href: "/strollers", label: "Strollers" },
-  { href: "/beds", label: "Beds" },
+  { href: "/carriers/cat-carriers", label: "Cat Carriers" },
+  { href: "/carriers/small-animal-carriers", label: "Small Animal Carriers" },
 ];
 
 const supportLinks = [
@@ -107,8 +107,8 @@ export function Footer() {
               <Image src="/logo.png" alt="Pet Carrier" width={200} height={100} className="h-11 w-auto" />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-gray-400">
-              Everything for your pet on the move and at rest. Carriers, strollers and beds, handpicked
-              and dispatched from Preston, UK.
+              Comfortable, secure pet carriers for every kind of trip, handpicked and dispatched from
+              Preston, UK.
             </p>
             <ul className="mt-5 flex flex-col gap-2.5">
               {trustPoints.map((point) => (

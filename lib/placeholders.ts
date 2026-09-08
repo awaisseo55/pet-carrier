@@ -1,6 +1,6 @@
 import "server-only";
 import type { CategoryNode } from "./categories";
-import { HERO_IMAGE, IMAGES_BY_ANIMAL, BED_IMAGES, STROLLER_IMAGES } from "./images";
+import { HERO_IMAGE, IMAGES_BY_ANIMAL } from "./images";
 import { getResolvedCategory } from "./category-store";
 import { findUploadedImage } from "./image-store";
 
@@ -11,8 +11,6 @@ export function categoryUploadSlug(categoryPath: string): string {
 function curatedFallbackImage(node: CategoryNode): string {
   const pool = IMAGES_BY_ANIMAL[node.animal];
   if (pool && pool.length > 0) return pool[0];
-  if (node.section === "beds") return BED_IMAGES[0];
-  if (node.section === "strollers") return STROLLER_IMAGES[0];
   return HERO_IMAGE;
 }
 

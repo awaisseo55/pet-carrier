@@ -18,14 +18,10 @@ function lowerName(name: string): string {
 
 const SECTION_NOUN: Record<Section, string> = {
   carriers: "carrier",
-  strollers: "stroller",
-  beds: "bed",
 };
 
 const SECTION_VERB: Record<Section, string> = {
   carriers: "travel",
-  strollers: "get out and about",
-  beds: "rest and recover",
 };
 
 function singularName(node: CategoryNode): string {
@@ -85,34 +81,6 @@ const CATEGORY_META_TITLES: Record<string, string> = {
   "carriers/bird-carriers/parrot-travel-cages": "Parrot Travel Cages with Room to Perch",
   "carriers/bird-carriers/small-bird-carriers": "Small Bird Carriers for Short, Calm Trips",
   "carriers/hiking-pet-carriers": "Hiking Pet Carriers for Longer Walks Outdoors",
-  strollers: "Pet Strollers for Dogs, Cats & Small Animals",
-  "strollers/dog-strollers": "Dog Strollers for a Comfortable Ride on Wheels",
-  "strollers/dog-strollers/small-dog-strollers": "Small Dog Strollers for Toy & Small Breeds",
-  "strollers/dog-strollers/large-dog-strollers": "Large Dog Strollers with a Sturdy Frame",
-  "strollers/dog-strollers/jogging-dog-strollers": "Jogging Dog Strollers for Runs Together",
-  "strollers/dog-strollers/double-dog-strollers": "Double Dog Strollers for Two Dogs Together",
-  "strollers/dog-strollers/puppy-strollers": "Puppy Strollers for Young, Unvaccinated Pups",
-  "strollers/cat-strollers": "Cat Strollers for Safe Outdoor Fresh Air",
-  "strollers/small-animal-strollers": "Small Animal Strollers for Rabbits & Guinea Pigs",
-  "strollers/multi-pet-strollers": "Multi-Pet Strollers for Travelling Together",
-  beds: "Pet Beds for Dogs, Cats & Small Animals",
-  "beds/dog-beds": "Dog Beds for Comfortable Rest & Recovery",
-  "beds/dog-beds/puppy-beds": "Puppy Beds for Growing Pups to Settle Into",
-  "beds/dog-beds/small-dog-beds": "Small Dog Beds for Small Dog Breeds",
-  "beds/dog-beds/large-dog-beds": "Large Dog Beds with Room to Stretch Out",
-  "beds/dog-beds/orthopaedic-dog-beds": "Orthopaedic Dog Beds for Joint Support",
-  "beds/dog-beds/elevated-dog-beds": "Elevated Dog Beds, Raised Off the Floor",
-  "beds/dog-beds/travel-dog-beds": "Travel Dog Beds for a Familiar Place to Rest",
-  "beds/cat-beds": "Cat Beds for Cosy, Comfortable Naps",
-  "beds/cat-beds/kitten-beds": "Kitten Beds for Young Kittens to Settle Into",
-  "beds/cat-beds/cat-cave-beds": "Cat Cave Beds for Cats Who Love to Hide",
-  "beds/cat-beds/heated-cat-beds": "Heated Cat Beds for Cats Who Feel the Cold",
-  "beds/cat-beds/window-cat-beds": "Window Cat Beds for Watching the World Go By",
-  "beds/small-animal-beds": "Small Animal Beds for Rabbits, Guinea Pigs & More",
-  "beds/small-animal-beds/rabbit-beds": "Rabbit Beds, Soft & Insulated for Burrowing",
-  "beds/small-animal-beds/guinea-pig-beds": "Guinea Pig Beds for Burrowing Somewhere Warm",
-  "beds/small-animal-beds/ferret-beds": "Ferret Beds for Sleeping Tucked Away",
-  "beds/travel-beds": "Travel Beds for a Familiar Bed Away from Home",
 };
 
 export function getMetaTitle(node: CategoryNode): string {
@@ -162,14 +130,6 @@ export function getWhyChoose(node: CategoryNode): string {
       `A dedicated ${noun} is built around the specific needs of ${node.descriptor}, rather than trying to be everything for everyone. That focus tends to show in the small details: where the ventilation sits, how the closures work, and how the weight is distributed when you're carrying it.`,
       `Choosing a ${noun} suited to ${node.descriptor} usually means less fuss on the day. Your pet settles faster because the space actually fits them properly, and you're not wrestling with a carrier that's either too roomy to feel secure or too snug to be comfortable.`,
     ],
-    strollers: [
-      `A stroller matched to ${node.descriptor} rides more smoothly and steers more predictably than a generic option. That matters on kerbs, in busy areas, and anywhere you need to manoeuvre without a fight.`,
-      `Picking a stroller designed around ${node.descriptor} means the frame, wheels and harness are all sized appropriately, rather than being a compromise that never quite feels right.`,
-    ],
-    beds: [
-      `A bed designed for ${node.descriptor} supports the body properly, which matters more than it might seem for a good night's sleep or a restful afternoon nap.`,
-      `Getting the right bed for ${node.descriptor} isn't just about comfort on the surface, it's about the right level of support and warmth underneath too.`,
-    ],
   };
 
   const list = reasons[node.section];
@@ -183,14 +143,6 @@ export function getWhyChoose(node: CategoryNode): string {
 
 export function getSizingGuide(node: CategoryNode): string {
   const noun = singularName(node);
-
-  if (node.section === "beds") {
-    return `The right size ${noun} gives your pet room to stretch out fully and still turn around comfortably. As a rough guide, measure your pet lying down at full length and add a little extra room on top, rather than sizing too tightly. For ${node.descriptor}, pay attention to the product's weight guidance as well as its dimensions, since some beds are built with a specific level of support in mind. If your pet tends to sleep curled up, a slightly smaller bed with raised sides can feel cosier, while pets who stretch out fully generally do better with a flatter, more open design.`;
-  }
-
-  if (node.section === "strollers") {
-    return `Check both the maximum weight capacity and the internal compartment dimensions before buying, since strollers are often limited by one or the other. For ${node.descriptor}, it's worth measuring your pet from nose to tail and checking their current weight against the product listing, leaving a little extra room to grow if you have a younger pet. Wheel size and frame width also matter if you'll be using pavements, gravel paths or need to fold the stroller down for the car.`;
-  }
 
   return `Getting the size right matters more than almost anything else with a ${noun}. Measure your pet from nose to the base of the tail for length, floor to the top of the head or ears for height, and across the shoulders for width, then check these against the product's stated dimensions rather than relying on breed alone. For ${node.descriptor}, a slightly snugger fit is often more reassuring than a very loose one, since most pets feel calmer in an enclosed space that moves with them rather than a large one that shifts around. Always check the maximum weight capacity too, since this can be the limiting factor even when the dimensions look right.`;
 }

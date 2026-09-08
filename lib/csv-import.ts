@@ -29,9 +29,7 @@ export async function resolveCategoryPath(categoryString: string): Promise<strin
 
   const allNodes = await getAllCategoryNodes();
   const sectionName = parts[0].toLowerCase();
-  const section = (["carriers", "strollers", "beds"] as Section[]).find(
-    (s) => s === sectionName || s.startsWith(sectionName)
-  );
+  const section = (["carriers"] as Section[]).find((s) => s === sectionName || s.startsWith(sectionName));
   if (!section) return null;
 
   let parentPath: string = section;

@@ -4,9 +4,13 @@ Project rules for working on pet-carrier.co.uk. Read this before making changes.
 
 ## What this is
 
-Pet Carrier is a UK e-commerce store, positioned as **"Everything for your pet on the move and at
-rest."** Primary focus is pet carriers (all pet types), with strollers and beds as secondary
-categories. We do not sell toys, food, treats, grooming or health products, that's out of scope.
+Pet Carrier is a UK e-commerce store, a **specialist pet carrier retailer** (dogs, cats, small
+animals and birds). We do not sell toys, food, treats, grooming or health products, that's out of
+scope. **Beds and Strollers were removed from the site entirely in 2026-09** (owner decision:
+concentrate topical/SEO focus on the domain's core carrier keyword rather than becoming a general
+pet-products store, see the "Category architecture" section below for what that removal touched).
+If you're ever asked to add a non-carrier pet product category, flag this decision and confirm
+before doing so, don't silently reintroduce it.
 
 Products are sourced from Amazon UK via a family member's Amazon Business account, repackaged and
 dispatched under the Pet Carrier brand by a UK Ltd company. Owner: Muhammad Awais, an SEO
@@ -162,7 +166,7 @@ optimiser in the loop is what caused two of the three outages below.
 - Warm, friendly, professional tone, not corporate, not overly casual. Focus on the pet owner's
   experience.
 - **Never make health claims.** Say "designed for comfort", not "prevents anxiety" or "reduces
-  stress". Products are carriers, strollers and beds, not medical devices.
+  stress". Products are pet carriers, not medical devices.
 - AI-generated product copy must be rewritten, not copied from Amazon. See `lib/ai-content.ts`.
 
 ## Product description formatting
@@ -268,23 +272,43 @@ accent colour (as opposed to the deliberate uses below), that's a regression, fi
 
 This is the part most likely to trip up future changes, read carefully.
 
-- The full category tree (carriers, strollers, beds and every subcategory, around 70 nodes) is
-  defined in code in `lib/categories.ts` as `CATEGORIES`. Each node has a `path` (e.g.
+- **Carrier-only as of 2026-09.** The site used to also carry Beds and Strollers as secondary
+  top-level sections (`Section` was `"carriers" | "strollers" | "beds"`). Both were removed
+  entirely: an SEO investigation found the homepage's equal-weight 3-category grid and ~40% of
+  category URLs pointing at near-empty or fully-empty (0-product) Beds/Strollers pages was diluting
+  topical relevance on a brand-new, carrier-keyword-matched domain, for two categories with no
+  proven commercial value yet (Strollers had zero inventory ever; Beds had 6 products added days
+  before removal, £0 in orders). `Section` in `lib/categories.ts` is now the single literal type
+  `"carriers"`. If Beds or Strollers are ever revisited, the stated preference was a separate
+  dedicated domain rather than reintroducing them here, confirm with the owner either way, don't
+  silently re-add the `Section` union values.
+  - Beds category URLs (`/beds/*`) and Strollers category URLs (`/strollers/*`), plus the 6
+    discontinued bed product URLs, return a genuine HTTP 410 Gone via `middleware.ts` at the repo
+    root, not a 404 or a redirect: several Beds pages were already indexed by Google, and 410 is
+    the more accurate "intentionally, permanently removed" signal. If a URL is ever permanently
+    removed again, follow this same pattern (`middleware.ts`) rather than only removing the route
+    and letting it 404.
+  - Bed products are deactivated (`is_active: false`) via `lib/products.ts`'s `getActiveProducts()`
+    filter, not deleted, so the records are preserved if ever reactivated. `is_active: false`
+    products still exist in `products.json`/R2 but are excluded from `generateStaticParams`, the
+    sitemap, search, and every product listing, and their `/product/[slug]` page 404s (separately
+    from the 410 the 6 specific ex-bed slugs get via middleware, which takes priority).
+- The full category tree (carriers and every subcategory, around 44 nodes) is defined in code in
+  `lib/categories.ts` as `CATEGORIES`. Each node has a `path` (e.g.
   `"carriers/dog-carriers/puppy-carriers"`), `section`, `level`, `parentPath`, `animal` and
   `descriptor`. Adding a node there is enough to publish a fully SEO-ready page, content is
   generated automatically.
 - `lib/category-content.ts` generates the intro, why-choose, sizing guide and FAQ copy for a
   category from its `animal` and `descriptor` fields, using templated variation so pages don't
-  read as duplicated. Don't hand-write prose for all ~70 categories, extend the templates instead.
+  read as duplicated. Don't hand-write prose for all ~44 categories, extend the templates instead.
 - `lib/category-store.ts` layers admin edits on top: `data/category-content.json` holds per-path
   overrides (name, intro, FAQs, image, featured products), plus any admin-added custom categories
   and soft-deleted paths. `getResolvedCategory(path)` merges the code-defined defaults with these
   overrides, always use it rather than reading `CATEGORIES` directly when rendering a page.
 - Every category is a real route via `app/[section]/[[...path]]/page.tsx`, an optional catch-all
-  that matches `/carriers`, `/carriers/dog-carriers`, `/carriers/dog-carriers/puppy-carriers`, and
-  the equivalent under `/strollers` and `/beds`. `generateStaticParams` pre-renders the ~70 built-in
-  nodes, admin-added custom categories render on demand (Next's default `dynamicParams`), so they
-  don't need a redeploy to go live.
+  that matches `/carriers`, `/carriers/dog-carriers`, `/carriers/dog-carriers/puppy-carriers`.
+  `generateStaticParams` pre-renders the ~44 built-in nodes, admin-added custom categories render on
+  demand (Next's default `dynamicParams`), so they don't need a redeploy to go live.
 - Products reference categories via `Product.category_slugs: string[]`, a product can (and often
   should) belong to several categories. `getProductsByCategoryIncludingDescendants` is what powers
   hub pages, e.g. `/carriers/dog-carriers` shows products tagged with any of its subcategories, not
@@ -570,8 +594,6 @@ image/active-status change is reflected on Google's next scheduled fetch automat
   volume justifies automated price/stock sync with Amazon.
 - Data layer is JSON files for MVP simplicity. Migrate to Supabase/Postgres once traffic or order
   volume make file-based storage a bottleneck, the `lib/*.ts` functions are the seam to change.
-- No verified Unsplash photo found yet for strollers specifically, see the TODO in `lib/images.ts`,
-  generic pet lifestyle images are used as a placeholder there instead.
 
 ## When making changes
 

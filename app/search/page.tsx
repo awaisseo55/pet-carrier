@@ -29,7 +29,7 @@ export default async function SearchPage({
       <p className="mt-1 text-sm text-muted-foreground">
         {query
           ? `${publicResults.length} product${publicResults.length === 1 ? "" : "s"} found`
-          : "Enter a search term to find carriers, strollers or beds."}
+          : "Enter a search term to find pet carriers."}
       </p>
 
       <div className="mt-8">
@@ -40,7 +40,7 @@ export default async function SearchPage({
             <Search className="size-10 text-gray-400" />
             <p className="font-medium text-foreground">Nothing to search for yet</p>
             <p className="max-w-sm text-sm text-muted-foreground">
-              Use the search bar above to find carriers, strollers or beds by name.
+              Use the search bar above to find pet carriers by name.
             </p>
           </div>
         )}

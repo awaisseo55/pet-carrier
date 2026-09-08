@@ -68,8 +68,6 @@ export function NewCategoryForm({ nodes }: { nodes: CategoryNode[] }) {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="carriers">Carriers</SelectItem>
-              <SelectItem value="strollers">Strollers</SelectItem>
-              <SelectItem value="beds">Beds</SelectItem>
             </SelectContent>
           </Select>
         </div>

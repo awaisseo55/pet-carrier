@@ -80,7 +80,7 @@ export async function generateProductContent(raw: ScrapedAmazonProduct): Promise
     return fallbackContent(raw);
   }
 
-  const prompt = `You are a copywriter for Pet Carrier, a UK pet product brand selling carriers, strollers and beds. Rewrite the following raw Amazon product data into unique, SEO-friendly content. Use British English (colour, favourite, £), a warm and professional tone, and never use em dashes or health claims. Do not copy the Amazon copy verbatim, write it fresh.
+  const prompt = `You are a copywriter for Pet Carrier, a UK pet carrier specialist brand. Rewrite the following raw Amazon product data into unique, SEO-friendly content. Use British English (colour, favourite, £), a warm and professional tone, and never use em dashes or health claims. Do not copy the Amazon copy verbatim, write it fresh.
 
 Raw title: ${raw.title}
 Raw price: ${raw.price ? `£${raw.price}` : "unknown"}

@@ -1,53 +1,47 @@
 import Link from "next/link";
-import { ArrowRight, Backpack, Bed, ShoppingBag } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
+// Carrier-only homepage grid (2026-09): this used to present Carriers,
+// Strollers and Beds as three equal-weight top-level sections, which gave
+// the homepage, the site's single highest-authority page, a diluted
+// "general pet products" signal rather than a focused carrier one. Beds and
+// Strollers were removed from the site entirely (see CLAUDE.md "Category
+// architecture"), so this now shows real carrier subcategories instead,
+// reusing the existing category structure rather than inventing new pages.
 const categories = [
-  {
-    href: "/carriers",
-    label: "Carriers",
-    description: "Carriers for every pet and every kind of trip.",
-    icon: Backpack,
-  },
-  {
-    href: "/strollers",
-    label: "Strollers",
-    description: "Comfortable rides for pets who love fresh air.",
-    icon: ShoppingBag,
-  },
-  {
-    href: "/beds",
-    label: "Beds",
-    description: "A cosy, familiar place to rest and recover.",
-    icon: Bed,
-  },
+  { href: "/carriers/dog-carriers", label: "Dog Carriers" },
+  { href: "/carriers/cat-carriers", label: "Cat Carriers" },
+  { href: "/carriers/small-animal-carriers", label: "Small Animal Carriers" },
+  { href: "/carriers/bird-carriers", label: "Bird Carriers" },
+  { href: "/carriers/pet-airline-approved-carriers", label: "Airline Approved Carriers" },
+  { href: "/carriers/pet-backpack-carriers", label: "Carrier Backpacks" },
+  { href: "/carriers/pet-sling-carriers", label: "Carrier Slings" },
+  { href: "/carriers/pet-rolling-carriers", label: "Carriers with Wheels" },
 ];
 
 export function ShopMainCategories() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="text-center">
-        <h2 className="font-heading text-3xl font-semibold text-ink sm:text-4xl">Shop by Category</h2>
+        <h2 className="font-heading text-3xl font-semibold text-ink sm:text-4xl">Shop Pet Carriers by Type</h2>
+        <p className="mt-2 text-gray-500">Every carrier we sell, organised by pet, style and use.</p>
       </div>
-      <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+      <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
         {categories.map((category) => (
           <Link
             key={category.href}
             href={category.href}
-            className="group flex flex-col gap-4 rounded-lg border border-border bg-card p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-400 hover:shadow-md"
+            className="group flex items-center justify-between gap-2 rounded-lg border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md"
           >
-            <span className="flex size-14 items-center justify-center rounded-full bg-blue-50 text-blue-700">
-              <category.icon className="size-7" strokeWidth={1.75} />
-            </span>
-            <div>
-              <h3 className="font-heading text-xl font-semibold text-ink">{category.label}</h3>
-              <p className="mt-1 text-sm text-gray-500">{category.description}</p>
-            </div>
-            <span className="mt-auto flex items-center gap-1.5 text-sm font-medium text-blue-700">
-              Explore
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-            </span>
+            <span className="font-medium text-ink">{category.label}</span>
+            <ArrowRight className="size-4 shrink-0 text-gray-500 transition-transform group-hover:translate-x-0.5 group-hover:text-blue-600" />
           </Link>
         ))}
+      </div>
+      <div className="mt-6 text-center">
+        <Link href="/carriers" className="text-sm font-medium text-blue-700 hover:underline">
+          View all pet carriers &rarr;
+        </Link>
       </div>
     </section>
   );

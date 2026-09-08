@@ -46,8 +46,6 @@ const TYPE_KEYWORDS: Record<string, RegExp> = {
   backpack: /\bbackpacks?\b/,
   crate: /\bcrates?\b/,
   "car seat": /car\s?seat|booster/,
-  stroller: /\bstrollers?\b/,
-  bed: /\bbeds?\b/,
   trolley: /\btrolley\b/,
 };
 
@@ -124,5 +122,5 @@ export async function getRuleBasedReply(message: string): Promise<string> {
     return faqScores[0].f.answer;
   }
 
-  return `I'm not able to answer that specific question yet, but I can help with order tracking, shipping, returns, discount codes or finding a product. You're welcome to browse [Carriers](/carriers), [Strollers](/strollers) or [Beds](/beds), or reach us directly at ${settings.contact_email} / the [Contact page](/contact).`;
+  return `I'm not able to answer that specific question yet, but I can help with order tracking, shipping, returns, discount codes or finding a product. You're welcome to browse [our pet carriers](/carriers), or reach us directly at ${settings.contact_email} / the [Contact page](/contact).`;
 }

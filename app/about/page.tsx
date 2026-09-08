@@ -8,7 +8,7 @@ import { LIFESTYLE_IMAGES } from "@/lib/images";
 export const metadata: Metadata = {
   title: "Our Story",
   description:
-    "Pet Carrier is a UK limited company based in Preston, curating comfortable, well-made carriers, strollers and beds for dogs, cats, small pets and birds.",
+    "Pet Carrier is a UK limited company based in Preston, curating comfortable, well-made pet carriers for dogs, cats, small pets and birds.",
 };
 
 const process = [
@@ -55,8 +55,8 @@ export default function AboutPage() {
       <div className="text-center">
         <h1 className="font-heading text-4xl font-semibold text-foreground">About Pet Carrier</h1>
         <p className="mt-3 text-lg text-gray-500">
-          A UK online retailer for pet carriers, strollers and beds, run from Preston and built
-          around getting the right product to the right pet.
+          A UK online retailer specialising in pet carriers, run from Preston and built around
+          getting the right carrier to the right pet.
         </p>
       </div>
 
@@ -74,9 +74,8 @@ export default function AboutPage() {
         <h2 className="font-heading text-2xl font-semibold text-foreground">Who We Are</h2>
         <p>
           Pet Carrier is a UK registered limited company based in Preston, specialising in pet
-          carriers, strollers and beds for dogs, cats, small pets and birds. Every order is packed
-          and dispatched from right here, not routed through an overseas seller you can never
-          actually reach.
+          carriers for dogs, cats, small pets and birds. Every order is packed and dispatched from
+          right here, not routed through an overseas seller you can never actually reach.
         </p>
         <p>
           We started because too many pet carriers are designed to look good in a listing photo
