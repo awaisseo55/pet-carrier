@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Script from "next/script";
 import { AnimatePresence, motion } from "framer-motion";
 import { Cookie, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,57 +11,32 @@ type Consent = "all" | "essential";
 
 /**
  * Small floating card, not a full-width legacy bar, so it doesn't block the
- * page or fight the centred WelcomePopup dialog for attention. Genuinely
- * gates the Ahrefs and Google Analytics scripts (rendered here, not in
- * layout.tsx's <head>) rather than just decorating an already-loading
- * script: they only mount once the visitor has actively chosen "Accept all".
+ * page or fight the centred WelcomePopup dialog for attention. Notice-only
+ * as of 2026-09: Ahrefs and GA are loaded unconditionally in layout.tsx's
+ * <head> (owner decision, to track all visitors), so choosing "Essential
+ * only" here no longer blocks them, it just records the visitor's stated
+ * preference in localStorage.
  */
 export function CookieConsent() {
-  const [consent, setConsent] = React.useState<Consent | null>(null);
   const [visible, setVisible] = React.useState(false);
-  const [hydrated, setHydrated] = React.useState(false);
 
   React.useEffect(() => {
     const timer = window.setTimeout(() => {
       const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored === "all" || stored === "essential") {
-        setConsent(stored);
-      } else {
+      if (stored !== "all" && stored !== "essential") {
         setVisible(true);
       }
-      setHydrated(true);
     }, 0);
     return () => window.clearTimeout(timer);
   }, []);
 
   function choose(next: Consent) {
     window.localStorage.setItem(STORAGE_KEY, next);
-    setConsent(next);
     setVisible(false);
   }
 
   return (
     <>
-      {hydrated && consent === "all" && (
-        <>
-          <Script
-            src="https://analytics.ahrefs.com/analytics.js"
-            data-key="oe+0WxSevsXawq740ab8Pw"
-            strategy="afterInteractive"
-          />
-          <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-ZHZKCGJT4F"
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-ZHZKCGJT4F');`}
-          </Script>
-        </>
-      )}
-
       <AnimatePresence>
         {visible && (
           <motion.div

@@ -82,6 +82,16 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
         />
+        <script async src="https://analytics.ahrefs.com/analytics.js" data-key="oe+0WxSevsXawq740ab8Pw" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZHZKCGJT4F" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-ZHZKCGJT4F');`,
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col antialiased bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
