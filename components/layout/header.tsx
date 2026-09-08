@@ -14,6 +14,8 @@ import { CarriersMegaMenu } from "@/components/layout/carriers-mega-menu";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
+  { href: "/carriers/dog-carriers", label: "DOG CARRIERS" },
+  { href: "/carriers/cat-carriers", label: "CAT CARRIERS" },
   { href: "/blog", label: "BLOG" },
   { href: "/about", label: "ABOUT" },
   { href: "/contact", label: "CONTACT" },
@@ -21,6 +23,10 @@ const navLinks = [
 
 const mobileLinks = [
   { href: "/carriers", label: "Carriers" },
+  { href: "/carriers/dog-carriers", label: "Dog Carriers" },
+  { href: "/carriers/cat-carriers", label: "Cat Carriers" },
+  { href: "/carriers/small-animal-carriers", label: "Small Animal Carriers" },
+  { href: "/carriers/bird-carriers", label: "Bird Carriers" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
