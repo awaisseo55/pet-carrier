@@ -50,7 +50,6 @@ const CATEGORY_META_TITLES: Record<string, string> = {
   "carriers/dog-carriers": "Dog Carriers: Comfortable Options for Every Size",
   "carriers/dog-carriers/puppy-carriers": "Puppy Carriers for Growing, Curious Pups",
   "carriers/dog-carriers/puppy-slings": "Puppy Sling Carriers | Soft & Safe Dog Carrying Slings",
-  "carriers/dog-carriers/puppy-bicycle-carriers": "Puppy Bicycle Carriers for Safe Rides Together",
   "carriers/dog-carriers/puppy-bike-carriers": "Puppy Bike Carriers for Secure Rides on Wheels",
   "carriers/dog-carriers/small-dog-carriers": "Small Dog Carriers for Dogs Up to 10kg",
   "carriers/dog-carriers/medium-dog-carriers": "Medium Dog Carriers for Dogs 10 to 25kg",

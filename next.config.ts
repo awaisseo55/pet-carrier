@@ -63,6 +63,11 @@ const nextConfig: NextConfig = {
       { source: "/carriers/vet-visit-carriers", destination: "/carriers/pet-carriers-for-vet-visits", permanent: true },
       { source: "/carriers/car-travel-carriers", destination: "/carriers/pet-car-travel-carriers", permanent: true },
       { source: "/carriers/everyday-carriers", destination: "/carriers/everyday-pet-carriers", permanent: true },
+      // Puppy Bicycle Carriers merged into Puppy Bike Carriers (2026-09): both targeted
+      // the same real search demand ("puppy bike carrier"), confirmed no separate UK
+      // volume exists for "bicycle"-specific phrasing, so keeping them as two pages was
+      // splitting authority for one keyword rather than targeting two.
+      { source: "/carriers/dog-carriers/puppy-bicycle-carriers", destination: "/carriers/dog-carriers/puppy-bike-carriers", permanent: true },
       // Dycietx soft-sided carrier discontinued/removed (2026-09), redirected to the
       // equivalent Amazon Basics soft carrier listing.
       {
