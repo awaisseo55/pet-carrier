@@ -18,7 +18,10 @@ const WELCOME_CODE = "WELCOME5";
  * per page view) a few seconds after arrival so it doesn't interrupt the
  * initial page load. Backed by the real WELCOME5 coupon in data/coupons.json
  * rather than a decorative code, the copy button and "use at checkout"
- * message are genuinely functional.
+ * message are genuinely functional. The entered email is posted to
+ * /api/subscribe and stored via lib/subscribers.ts (visible in
+ * /admin/subscribers) for future email campaigns, but that request never
+ * blocks or affects the "you're in" flow, which shows the code unconditionally.
  */
 export function WelcomePopup() {
   const [open, setOpen] = React.useState(false);
@@ -48,6 +51,17 @@ export function WelcomePopup() {
     e.preventDefault();
     setClaimed(true);
     window.localStorage.setItem(STORAGE_KEY, "1");
+
+    // Fire-and-forget: the code is shown immediately regardless of this
+    // request, storing the email is just so it's usable for a future
+    // campaign, not a condition of claiming the discount.
+    fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, source: "welcome_popup" }),
+    }).catch(() => {
+      // Non-critical: the visible "you're in" flow doesn't depend on this.
+    });
   }
 
   function handleCopy() {

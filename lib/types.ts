@@ -300,6 +300,15 @@ export interface ProductRatingStats {
   ratingBreakdown: RatingBreakdown;
 }
 
+export type SubscriberSource = "welcome_popup" | "footer";
+
+export interface Subscriber {
+  id: string;
+  email: string;
+  source: SubscriberSource;
+  created_at: string;
+}
+
 export interface CategoryOverride {
   path: string;
   name?: string;

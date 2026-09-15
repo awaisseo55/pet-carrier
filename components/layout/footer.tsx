@@ -72,8 +72,19 @@ const paymentMethods = ["Visa", "Mastercard", "Amex", "PayPal", "Apple Pay", "Go
 export function Footer() {
   function handleNewsletter(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const email = (new FormData(form).get("email") as string) || "";
+
     toast.success("Thanks for signing up! Keep an eye on your inbox for pet care tips and your £5 code.");
-    e.currentTarget.reset();
+    form.reset();
+
+    fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, source: "footer" }),
+    }).catch(() => {
+      // Non-critical: the visible success toast doesn't depend on this.
+    });
   }
 
   return (
@@ -88,6 +99,7 @@ export function Footer() {
             <form onSubmit={handleNewsletter} className="flex w-full max-w-md gap-2">
               <Input
                 type="email"
+                name="email"
                 required
                 placeholder="you@example.com"
                 className="bg-white text-ink border-transparent"
