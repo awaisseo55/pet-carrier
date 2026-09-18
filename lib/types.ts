@@ -229,6 +229,12 @@ export interface BlogPost {
   editorial_note?: string;
   faqs?: BlogFaq[];
   related_slugs?: string[];
+  // Live "shop this section" product blocks: rendered directly after the H2
+  // whose heading text matches `after_heading`, pulling real, currently
+  // in-stock products for `category_path` at request time (see
+  // components/blog/category-product-showcase.tsx) rather than storing
+  // static product IDs here, so it never goes stale as the catalogue changes.
+  section_products?: { after_heading: string; category_path: string; limit?: number }[];
 }
 
 export interface CartItem {

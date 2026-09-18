@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { slugify } from "./utils";
@@ -6,10 +7,12 @@ import { slugify } from "./utils";
  * Minimal markdown-like renderer for admin-authored product/content copy.
  * Supports exactly what the site's product descriptions and FAQ answers
  * need: "## "/"### " headings, "- " bullet lists, blank-line-separated
- * paragraphs, inline [text](/path) links, and **bold** emphasis (no
- * italic/tables/nesting). Never touches dangerouslySetInnerHTML, everything
- * renders as real React elements built from trusted, admin-entered text.
+ * paragraphs, standalone "![alt](src)" images, inline [text](/path) links,
+ * and **bold** emphasis (no italic/tables/nesting). Never touches
+ * dangerouslySetInnerHTML, everything renders as real React elements built
+ * from trusted, admin-entered text.
  */
+const IMAGE_BLOCK_RE = /^!\[([^\]]*)\]\(([^)]+)\)$/;
 function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
   const inlinePattern = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
@@ -50,6 +53,28 @@ function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
   return parts;
 }
 
+/**
+ * Splits raw markdown-lite content into chunks on each top-level "## "
+ * heading boundary (H3s stay attached to their parent H2's chunk), so a page
+ * can render each chunk through renderRichText separately and interleave
+ * other React content (e.g. a live product showcase) directly after a
+ * specific section. The heading text returned for a chunk is the H2's own
+ * text with no "## " prefix, or null for the intro content before the first
+ * H2. Chunk boundaries land on the same blank-line-separated blocks
+ * renderRichText already splits on, so nothing about how each chunk renders
+ * changes.
+ */
+export function splitContentBySection(content: string): { heading: string | null; content: string }[] {
+  const parts = content.trim().split(/\n(?=## )/);
+  return parts.map((part) => {
+    const isH2 = part.startsWith("## ");
+    if (!isH2) return { heading: null, content: part };
+    const newlineIndex = part.indexOf("\n");
+    const headingLine = newlineIndex === -1 ? part : part.slice(0, newlineIndex);
+    return { heading: headingLine.slice(3).trim(), content: part };
+  });
+}
+
 export function renderRichText(text: string): React.ReactNode[] {
   if (!text) return [];
   const blocks = text.trim().split(/\n\s*\n/);
@@ -58,6 +83,17 @@ export function renderRichText(text: string): React.ReactNode[] {
   blocks.forEach((block, blockIndex) => {
     const trimmed = block.trim();
     const key = `block-${blockIndex}`;
+
+    const imageMatch = IMAGE_BLOCK_RE.exec(trimmed);
+    if (imageMatch) {
+      const [, alt, src] = imageMatch;
+      nodes.push(
+        <span key={key} className="relative my-2 block aspect-16/9 overflow-hidden rounded-xl border border-border">
+          <Image src={src} alt={alt} fill sizes="800px" className="object-cover" />
+        </span>
+      );
+      return;
+    }
 
     if (trimmed.startsWith("### ") || trimmed.startsWith("## ")) {
       const isH3 = trimmed.startsWith("### ");

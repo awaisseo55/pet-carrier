@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -6,7 +7,7 @@ import { ChevronRight } from "lucide-react";
 import { getAllBlogPosts, getBlogPostBySlug, getRelatedBlogPosts } from "@/lib/blog";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { getPersonByName } from "@/lib/people";
-import { renderRichText } from "@/lib/markdown-lite";
+import { renderRichText, splitContentBySection } from "@/lib/markdown-lite";
 import { estimateReadingTime } from "@/lib/reading-time";
 import { extractToc } from "@/lib/toc";
 import { PersonCard } from "@/components/blog/person-card";
@@ -18,6 +19,7 @@ import { CommonMistakes } from "@/components/blog/common-mistakes";
 import { EditorialNote } from "@/components/blog/editorial-note";
 import { ArticleFaq } from "@/components/blog/article-faq";
 import { RelatedArticles } from "@/components/blog/related-articles";
+import { CategoryProductShowcase } from "@/components/blog/category-product-showcase";
 
 // Belt-and-braces alongside the on-demand revalidatePath() calls in
 // lib/revalidate.ts (which fire immediately after an admin save).
@@ -72,6 +74,7 @@ export default async function BlogPostPage({
     { name: post.title, url: `/blog/${post.slug}` },
   ]);
   const article = articleJsonLd(post);
+  const sections = splitContentBySection(post.content);
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
@@ -154,7 +157,19 @@ export default async function BlogPostPage({
         <TableOfContents entries={toc} />
       </div>
 
-      <div className="prose-content mt-8 flex flex-col gap-5 text-gray-500">{renderRichText(post.content)}</div>
+      <div className="prose-content mt-8 flex flex-col gap-5 text-gray-500">
+        {sections.map((section, i) => {
+          const showcase = post.section_products?.find((s) => s.after_heading === section.heading);
+          return (
+            <Fragment key={i}>
+              {renderRichText(section.content)}
+              {showcase && (
+                <CategoryProductShowcase categoryPath={showcase.category_path} limit={showcase.limit} />
+              )}
+            </Fragment>
+          );
+        })}
+      </div>
 
       <div className="mt-10 flex flex-col gap-8">
         {post.checklist_items && post.checklist_items.length > 0 && (

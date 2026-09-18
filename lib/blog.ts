@@ -60,7 +60,7 @@ const CATEGORY_BLOG_RULES: { paths: string[]; prefix?: boolean; slugs: string[] 
   {
     paths: ["carriers/cat-carriers"],
     prefix: true,
-    slugs: ["helping-a-nervous-cat-get-used-to-a-carrier"],
+    slugs: ["complete-guide-to-cat-carriers", "helping-a-nervous-cat-get-used-to-a-carrier"],
   },
   {
     paths: ["carriers/dog-carriers"],
