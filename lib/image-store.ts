@@ -36,6 +36,14 @@ export async function uploadImageBuffer(
         Key: pathname,
         Body: buffer,
         ContentType: contentType,
+        // R2 sets no Cache-Control by default, so without this the browser
+        // re-fetches every product image fresh on every single page view
+        // instead of serving it from cache, which both inflates request
+        // volume to Cloudflare/R2 and means a transient fetch hiccup shows as
+        // a broken image until the next full reload retries it. Keys are
+        // never overwritten in place (see CLAUDE.md's R2 image rules, a
+        // changed image always gets a new key), so caching forever is safe.
+        CacheControl: "public, max-age=31536000, immutable",
       })
     );
     return `${R2_PUBLIC_URL}/${pathname}`;
