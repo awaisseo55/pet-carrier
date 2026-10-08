@@ -8376,7 +8376,8 @@
       "carriers/cat-carriers",
       "carriers/dog-carriers/small-dog-carriers",
       "carriers/pet-soft-sided-carriers",
-      "carriers/pet-carriers-for-vet-visits"
+      "carriers/pet-carriers-for-vet-visits",
+      "carriers/dog-carriers/rolling-dog-carriers"
     ],
     "size_range": "",
     "weight_capacity": "",
@@ -8386,7 +8387,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-09-05T12:25:19.883Z",
-    "updated_at": "2026-09-05T12:25:19.883Z",
+    "updated_at": "2026-10-08T14:44:45.795Z",
     "markup_percentage": 40,
     "meta_title": "Pet Carrier with Wheels - Foldable, Telescopic Handle",
     "meta_description": "A foldable rolling pet carrier with a telescopic handle, four 360-degree wheels and a washable pad. For cats and small dogs up to 15kg. Fast UK delivery.",
@@ -8655,7 +8656,9 @@
       "carriers/everyday-pet-carriers",
       "carriers/pet-carriers-for-vet-visits",
       "carriers/dog-carriers/puppy-carriers",
-      "carriers/cat-carriers"
+      "carriers/cat-carriers",
+      "carriers/pet-rolling-carriers",
+      "carriers/dog-carriers/rolling-dog-carriers"
     ],
     "size_range": "",
     "weight_capacity": "",
@@ -8665,7 +8668,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-09-05T12:27:13.106Z",
-    "updated_at": "2026-09-05T12:27:13.106Z",
+    "updated_at": "2026-10-08T14:44:45.796Z",
     "markup_percentage": 40,
     "meta_title": "Collapsible Pet Carrier - Airline Approved, Expandable",
     "meta_description": "A collapsible, expandable soft-sided pet carrier with a steel-strip frame, mesh sides and a removable mat. TSA airline approved for pets up to 7kg.",
@@ -11608,6 +11611,121 @@
         "colourImage": "https://images.pet-carrier.co.uk/uploads/product/B0CRYW1CDB/colour-beige-v2-main.webp",
         "sizeLabel": "XXL (107 x 76 x 19 cm)",
         "size": "XXL"
+      }
+    ]
+  },
+  {
+    "id": "B0CHNY5M17",
+    "slug": "morpilot-wheeled-pet-carrier-airline-approved-dark-grey",
+    "title": "Morpilot Wheeled Pet Carrier, Airline Approved, Top Opening, Dark Grey",
+    "description": "## About the Morpilot Wheeled Pet Carrier\n\nNot every pet wants to be carried the whole way, and not every owner wants to carry them. The Morpilot Wheeled Pet Carrier is built for exactly that gap: a soft-sided carrier that sits on its own wheeled chassis, so your cat or dog travels alongside you rather than hanging from your shoulder for an entire airport walk or a long corridor to the vet. A top-opening mesh panel means your pet can see out and get plenty of airflow, while the double-bar trolley handle and independent metal base keep the whole thing steady as you pull it along.\n\nIt's sized for [small dogs](/carriers/dog-carriers/small-dog-carriers) and cats up to around 7kg, and the carrier detaches from its wheeled base entirely, turning into a regular shoulder-strap travel bag when you'd rather carry it by hand. That flexibility makes it a sensible pick for anyone who splits their journey between walking and wheeling, whether that's getting through an airport or just getting from the car to the front door.\n\n## Key Features and Benefits\n\n### Top-Opening Mesh Design\n\nA mesh panel across the top lets your pet see out and keeps air moving through the carrier, which helps nervous cats and dogs settle rather than feeling shut away. You can check on them at a glance without having to unzip the whole carrier.\n\n### Telescopic Handle with 360° Swivel Wheels\n\nThe three-stage retractable handle extends to suit your height and locks securely in place, while the wheels swivel a full 360 degrees for manoeuvring through narrow spaces like airport aisles or vet waiting rooms without wrestling the carrier around corners.\n\n### Detachable Travel Bag\n\nRemove the wheels and chassis and the carrier becomes a standalone bag with an adjustable shoulder strap, useful for the parts of a journey where wheeling isn't practical, such as stairs or a crowded train platform.\n\n### Secure Safety Strap and Lockable Zipper\n\nAn internal safety strap and a zip that locks in place help stop an anxious pet from pushing their way out mid-journey, giving you one less thing to worry about on a busy trip.\n\n### Rear Storage Pocket\n\nA spacious pocket at the rear holds the wheels when detached, along with a water bowl, treats or anything else you need close to hand, so you're not juggling a separate bag as well as the carrier.\n\n## Who This Pet Carrier Is Best For\n\nThis [dog carrier](/carriers/dog-carriers) and [cat carrier](/carriers/cat-carriers) suits:\n\n- Small dogs and cats up to around 7kg who are happier wheeled than carried for longer stretches\n- [Airline approved](/carriers/pet-airline-approved-carriers) travel, fitting under most airline seats once the wheels or base panel are removed (always confirm exact dimensions with your airline beforehand)\n- [Vet visits](/carriers/pet-carriers-for-vet-visits) and other short trips where a detachable carry bag is handy once you're inside\n- [Car travel](/carriers/pet-car-travel-carriers), camping trips or any outing where you'd rather wheel your pet than carry them the whole way\n- Owners who want one carrier that works both as a trolley and a regular shoulder bag\n\n## Care Instructions\n\nWipe down the fabric exterior and mesh panels with a damp cloth after each trip, especially around the base where dirt from wheeling collects. Spot clean any marks on the interior lining with a mild detergent and let the carrier air dry fully before folding or storing it, to stop any damp smell developing. Check the wheels and handle joints occasionally for grit or hair, since these can affect how smoothly the carrier rolls.",
+    "short_description": "A wheeled soft-sided carrier for small dogs and cats up to 7kg, with a top-opening mesh panel, telescopic handle and detachable base that converts it into a regular shoulder bag.",
+    "features": [
+      "Top-opening mesh panel for airflow and visibility",
+      "Three-stage telescopic handle with 360° swivel wheels",
+      "Detaches from its wheeled base to become a standalone shoulder bag",
+      "Internal safety strap and lockable zip closure",
+      "Rear storage pocket for wheels, bowls and travel essentials",
+      "Suits small dogs and cats up to around 7kg"
+    ],
+    "specifications": {
+      "Suitable for": "Small dogs and cats, approximately up to 7kg",
+      "External dimensions": "Approximately 43cm L x 28cm W x 28cm H",
+      "Material": "Durable fabric exterior with mesh ventilation panels",
+      "Available colours": "Dark Grey, Grey",
+      "Wheels": "4 wheels with a three-stage telescopic handle",
+      "Closure": "Lockable zip closure, top opening",
+      "Detachable base": "Yes, removes to convert into a shoulder bag",
+      "Brand": "Morpilot"
+    },
+    "price": 89.99,
+    "compare_at_price": null,
+    "sku": "PC-B0CHNY5M17",
+    "stock_status": "in_stock",
+    "images": [
+      "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-0-main.webp",
+      "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-1-main.webp",
+      "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-2-main.webp",
+      "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-3-main.webp",
+      "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-4-main.webp",
+      "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-5-main.webp",
+      "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-6-main.webp",
+      "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-7-main.webp",
+      "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-8-main.webp",
+      "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-9-main.webp"
+    ],
+    "category_slugs": [
+      "carriers/dog-carriers/rolling-dog-carriers",
+      "carriers/dog-carriers/small-dog-carriers",
+      "carriers/cat-carriers",
+      "carriers/pet-rolling-carriers",
+      "carriers/pet-airline-approved-carriers",
+      "carriers/cat-carriers/airline-approved-cat-carriers",
+      "carriers/pet-car-travel-carriers",
+      "carriers/pet-carriers-for-vet-visits"
+    ],
+    "size_range": "One size (approx. 43cm L x 28cm W x 28cm H)",
+    "weight_capacity": "Up to 7kg (approximately 14lbs)",
+    "brand": "Morpilot",
+    "amazon_asin": "B0CHNY5M17",
+    "amazon_url": "https://www.amazon.co.uk/dp/B0CHNY5M17",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-10-08T14:43:55.033Z",
+    "updated_at": "2026-10-08T14:43:55.033Z",
+    "markup_percentage": 0,
+    "meta_title": "Wheeled Pet Carrier - Airline Approved, Dark Grey",
+    "meta_description": "Morpilot wheeled pet carrier for small dogs and cats, airline approved, top-opening mesh design. £89.99 with fast UK delivery.",
+    "faqs": [
+      {
+        "question": "Is this carrier genuinely suitable for both cats and small dogs?",
+        "answer": "Yes. It's sized for pets up to around 7kg, which covers most cats and many small dog breeds. Always check your own pet's weight and build against the dimensions before buying."
+      },
+      {
+        "question": "Will it definitely fit under an airline seat?",
+        "answer": "It's designed to meet major airlines' cabin carrier guidelines once the wheels and base panel are removed, but airline rules vary and change, so always confirm the exact allowance with your airline before you fly."
+      },
+      {
+        "question": "Can I use it without the wheels?",
+        "answer": "Yes, the whole carrier detaches from the wheeled chassis and becomes a standalone bag with an adjustable shoulder strap, so you can switch between wheeling and carrying as needed."
+      },
+      {
+        "question": "What's the difference between the two colour options?",
+        "answer": "Dark Grey and Grey are the same carrier in two shades, so pick whichever suits your preference, there's no difference in size or features between them."
+      },
+      {
+        "question": "How do I clean it?",
+        "answer": "Wipe the exterior and mesh with a damp cloth and spot clean the interior as needed. Let it dry fully before storing."
+      },
+      {
+        "question": "Is the handle adjustable for different heights?",
+        "answer": "Yes, the telescopic handle extends in three stages and locks in place, so you can set it to a comfortable height for pulling."
+      }
+    ],
+    "hasVariants": true,
+    "variantType": "colour",
+    "variants": [
+      {
+        "id": "B0CHNY5M17",
+        "type": "colour",
+        "colour": "Dark Grey",
+        "colourHex": "#4A4A4A",
+        "colourImage": "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-0-main.webp",
+        "price": 89.99,
+        "sku": "PC-B0CHNY5M17",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0CHNY5M17",
+        "inStock": true
+      },
+      {
+        "id": "B0C84Q4T4J",
+        "type": "colour",
+        "colour": "Grey",
+        "colourHex": "#808080",
+        "colourImage": "https://images.pet-carrier.co.uk/uploads/product/B0CHNY5M17/image-9-main.webp",
+        "price": 89.99,
+        "sku": "PC-B0C84Q4T4J",
+        "amazonUrl": "https://www.amazon.co.uk/dp/B0C84Q4T4J",
+        "inStock": true
       }
     ]
   }
