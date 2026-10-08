@@ -1,5 +1,8 @@
 export type StockStatus = "in_stock" | "low_stock" | "out_of_stock";
 
+/** "amazon" is the default when absent, see getProductSource() in lib/products.ts. Sourcing channel, not a customer-facing label. */
+export type ProductSource = "amazon" | "temu";
+
 export type VariantType = "size" | "colour" | "size-colour";
 
 export interface ProductVariant {
@@ -45,7 +48,10 @@ export interface Product {
   weight_capacity: string;
   brand: string;
   amazon_asin: string;
+  /** Internal fulfilment link used by staff to order the item for repackaging, see CLAUDE.md. Despite the field name, this also holds non-Amazon supplier URLs (e.g. Temu) when source is set accordingly. */
   amazon_url: string;
+  /** Sourcing channel, absent means "amazon" (the only channel that existed before this field was added), see getProductSource() in lib/products.ts. */
+  source?: ProductSource;
   is_active: boolean;
   is_featured?: boolean;
   created_at: string;

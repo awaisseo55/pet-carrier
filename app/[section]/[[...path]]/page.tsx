@@ -17,6 +17,7 @@ import {
   getFeaturedProducts,
   getProductById,
   getProductsByCategoryIncludingDescendants,
+  getProductSource,
   toPublicProduct,
 } from "@/lib/products";
 import { getCategoryImageUrl } from "@/lib/placeholders";
@@ -93,7 +94,14 @@ export default async function CategoryPage({
     await Promise.all(resolved.featuredProductIds.map((id) => getProductById(id)))
   ).filter((p): p is NonNullable<typeof p> => Boolean(p));
   const featuredIds = new Set(featuredProducts.map((p) => p.id));
-  const orderedProducts = [...featuredProducts, ...products.filter((p) => !featuredIds.has(p.id))];
+  const remaining = products.filter((p) => !featuredIds.has(p.id));
+  // Temu-sourced products carry a better margin, so they're surfaced ahead of
+  // Amazon-sourced ones in this default ("Featured") ordering, admin-pinned
+  // picks above still take absolute priority. Only affects this default view,
+  // an explicit sort (price, newest, etc.) overrides it, see sortProducts().
+  const temuFirst = remaining.filter((p) => getProductSource(p) === "temu");
+  const amazonRest = remaining.filter((p) => getProductSource(p) !== "temu");
+  const orderedProducts = [...featuredProducts, ...temuFirst, ...amazonRest];
 
   // Only needed for the empty-grid state's "view our featured carrier"
   // fallback link, so only fetched when there's actually nothing to show,

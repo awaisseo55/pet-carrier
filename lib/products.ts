@@ -1,11 +1,16 @@
 import "server-only";
-import type { Product, ProductRatingStats, PublicProduct } from "./types";
+import type { Product, ProductRatingStats, ProductSource, PublicProduct } from "./types";
 import { getHomepageSettings } from "./homepage";
 import { readJsonFile, writeJsonFile } from "./data-store";
 import { extractAsin } from "./amazon";
 
 export async function getAllProducts(): Promise<Product[]> {
   return readJsonFile<Product[]>("products.json");
+}
+
+/** Products created before the Temu channel existed have no `source` set, which means "amazon", the only channel there was at the time. */
+export function getProductSource(product: Product): ProductSource {
+  return product.source ?? "amazon";
 }
 
 /** Strips the internal `amazon_url` fulfilment link (product-level and per-variant) before a product crosses into a public "use client" component. */

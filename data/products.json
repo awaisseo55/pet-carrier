@@ -11766,14 +11766,20 @@
       "https://images.pet-carrier.co.uk/uploads/product/PC-YVSHQPJ4/image-6-main.webp"
     ],
     "category_slugs": [
+      "carriers/dog-carriers",
       "carriers/dog-carriers/rolling-dog-carriers",
       "carriers/dog-carriers/large-dog-carriers",
+      "carriers/dog-carriers/airline-approved-dog-carriers",
+      "carriers/dog-carriers/dog-car-carriers",
       "carriers/cat-carriers",
       "carriers/cat-carriers/large-cat-carriers",
+      "carriers/cat-carriers/airline-approved-cat-carriers",
       "carriers/pet-rolling-carriers",
       "carriers/pet-airline-approved-carriers",
       "carriers/pet-car-travel-carriers",
-      "carriers/pet-carriers-for-vet-visits"
+      "carriers/pet-carriers-for-vet-visits",
+      "carriers/pet-soft-sided-carriers",
+      "carriers/everyday-pet-carriers"
     ],
     "size_range": "One size (approx. 59cm L x 39.2cm W x 40.9cm H)",
     "weight_capacity": "Not specified by the supplier; sized for larger cats and dogs",
@@ -11783,7 +11789,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-10-08T20:21:20.969Z",
-    "updated_at": "2026-10-08T20:21:20.969Z",
+    "updated_at": "2026-10-08T20:40:17.048Z",
     "markup_percentage": 0,
     "meta_title": "Extra Large Rolling Pet Carrier - Airline Approved",
     "meta_description": "Rolling pet trolley carrier for larger cats and dogs, detachable 2-in-1 design, airline approved. £54.17 with fast UK delivery.",
@@ -11813,6 +11819,7 @@
         "answer": "Wipe the fabric exterior and mesh panels with a damp cloth, spot clean the interior as needed, and let it dry fully before folding it away."
       }
     ],
-    "hasVariants": false
+    "hasVariants": false,
+    "source": "temu"
   }
 ]
