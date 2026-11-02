@@ -133,7 +133,7 @@ function TrackingResult({ order }: { order: PublicOrderTracking }) {
               <React.Fragment key={step.status}>
                 <li className="flex items-center gap-2 sm:flex-col sm:items-center sm:text-center">
                   {reached ? (
-                    <CheckCircle2 className="size-5 shrink-0 text-blue-600" />
+                    <CheckCircle2 className="size-5 shrink-0 text-forest-600" />
                   ) : (
                     <Circle className="size-5 shrink-0 text-gray-300" />
                   )}
@@ -142,7 +142,7 @@ function TrackingResult({ order }: { order: PublicOrderTracking }) {
                   </span>
                 </li>
                 {i < STEPS.length - 1 && (
-                  <div className={`h-px flex-1 sm:h-0.5 ${i < stepIndex ? "bg-blue-600" : "bg-gray-200"}`} />
+                  <div className={`h-px flex-1 sm:h-0.5 ${i < stepIndex ? "bg-forest-600" : "bg-gray-200"}`} />
                 )}
               </React.Fragment>
             );
@@ -153,7 +153,7 @@ function TrackingResult({ order }: { order: PublicOrderTracking }) {
       {(order.courier_name || order.tracking_number) && (
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-md bg-gray-50 px-4 py-3">
           <div className="flex items-center gap-2 text-sm text-foreground">
-            <Truck className="size-4 shrink-0 text-blue-700" />
+            <Truck className="size-4 shrink-0 text-forest-700" />
             <span>
               {order.courier_name || "Courier"}
               {order.tracking_number ? ` · ${order.tracking_number}` : ""}

@@ -1,17 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ShieldCheck, Truck, Undo2, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { getHeroImageUrl } from "@/lib/placeholders";
 import { getHomepageSettings } from "@/lib/homepage";
+import { Reveal } from "@/components/motion/reveal";
+import { Parallax } from "@/components/motion/parallax";
 
-const BADGE_ICONS: Record<string, typeof MapPin> = {
-  "UK Based": MapPin,
-  "Fast Dispatch": Truck,
-  "14-Day Returns": Undo2,
-  "Secure Checkout": ShieldCheck,
-};
-
+/**
+ * Editorial split hero: headline and actions on cream at the left, a single
+ * large lifestyle photograph framed in sage at the right. No icon rows, no
+ * floating stat chips, no gradient scrims, the photograph does the work.
+ */
 export async function Hero() {
   const [{ url: heroImageUrl, isCustom }, homepage] = await Promise.all([
     getHeroImageUrl(),
@@ -19,48 +17,64 @@ export async function Hero() {
   ]);
 
   return (
-    <section className="relative overflow-hidden bg-white">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-5 lg:gap-12 lg:px-8 lg:py-20">
-        <div className="order-2 lg:order-1 lg:col-span-3">
-          <h1 className="font-heading text-4xl font-extrabold leading-tight text-ink sm:text-5xl lg:text-6xl">
-            {homepage.hero_heading}
-          </h1>
-          <p className="mt-5 max-w-xl text-lg text-gray-600 sm:text-xl">{homepage.hero_subheading}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button size="lg" variant="default" asChild>
-              <Link href="/carriers">Shop Carriers</Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <Link href="/carriers">Explore Categories</Link>
-            </Button>
-          </div>
-          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-border pt-6">
-            {homepage.trust_badges.map((badge) => {
-              const Icon = BADGE_ICONS[badge] || ShieldCheck;
-              return (
-                <div key={badge} className="flex items-center gap-2 text-sm font-medium text-gray-600">
-                  <Icon className="size-4 text-blue-600" />
-                  {badge}
-                </div>
-              );
-            })}
-          </div>
+    <section className="bg-background">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8 lg:py-16">
+        <div className="lg:col-span-5">
+          <Reveal direction="up">
+            <h1 className="text-[2.6rem] leading-[1.06] text-forest-800 sm:text-5xl lg:text-[3.6rem]">
+              {homepage.hero_heading}
+            </h1>
+          </Reveal>
+
+          <Reveal direction="up" delay={0.12}>
+            <span className="mt-6 block h-[3px] w-20 rounded-full bg-ember-500" />
+          </Reveal>
+
+          <Reveal direction="up" delay={0.2}>
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-gray-600">
+              {homepage.hero_subheading}
+            </p>
+          </Reveal>
+
+          <Reveal direction="up" delay={0.3}>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link
+                href="/carriers"
+                className="rounded-xl bg-forest-800 px-7 py-3.5 text-sm font-bold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-forest-900 hover:shadow-md"
+              >
+                Shop carriers
+              </Link>
+              <Link
+                href="#find-your-fit"
+                className="rounded-xl border border-forest-300 bg-white px-7 py-3.5 text-sm font-bold text-forest-800 transition-all hover:-translate-y-0.5 hover:border-forest-600 hover:bg-forest-50"
+              >
+                Find the right fit
+              </Link>
+            </div>
+          </Reveal>
         </div>
-        <div className="order-1 lg:order-2 lg:col-span-2">
-          <div className="relative mx-auto aspect-4/5 w-full max-w-md overflow-hidden rounded-lg shadow-lg lg:max-w-none">
-            <Image
-              src={heroImageUrl}
-              alt={
-                isCustom
-                  ? "Pet Carrier hero image"
-                  : "A pug settled comfortably into a stylish grey pet carrier bed"
-              }
-              fill
-              priority
-              sizes="(min-width: 1024px) 40vw, 90vw"
-              className="object-cover"
-            />
-          </div>
+
+        <div className="lg:col-span-7">
+          <Reveal direction="left" duration={0.7}>
+            <div className="rounded-[2rem] bg-forest-100 p-2.5 sm:p-3">
+              <Parallax distance={18}>
+                <div className="relative aspect-4/3 w-full overflow-hidden rounded-[1.6rem]">
+                  <Image
+                    src={heroImageUrl}
+                    alt={
+                      isCustom
+                        ? "Pet Carrier hero image"
+                        : "A pug settled comfortably into a stylish grey pet carrier"
+                    }
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 58vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </Parallax>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

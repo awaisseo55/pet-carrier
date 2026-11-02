@@ -28,7 +28,7 @@ export async function CategoryProductShowcase({ categoryPath, limit = 3 }: { cat
         </h4>
         <Link
           href={categoryUrl}
-          className="flex shrink-0 items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-800"
+          className="flex shrink-0 items-center gap-1 text-sm font-medium text-forest-600 hover:text-forest-800"
         >
           View all <ArrowRight className="size-3.5" />
         </Link>

@@ -174,8 +174,8 @@ export function ProductTable({
       </p>
 
       {selected.size > 0 && (
-        <div className="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-blue-200 bg-blue-50 p-4">
-          <span className="text-sm font-medium text-blue-800">{selected.size} selected</span>
+        <div className="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-forest-200 bg-forest-50 p-4">
+          <span className="text-sm font-medium text-forest-800">{selected.size} selected</span>
           <div className="flex items-center gap-2">
             <Input
               type="number"

@@ -220,12 +220,12 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <div className="mt-5 flex items-center justify-between gap-3 rounded-lg border-2 border-blue-600 bg-blue-50/50 p-4">
+            <div className="mt-5 flex items-center justify-between gap-3 rounded-lg border-2 border-forest-600 bg-forest-50/50 p-4">
               <div className="flex items-center gap-3">
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-blue-600">
+                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-forest-600">
                   <Check className="size-3 text-white" strokeWidth={3} />
                 </span>
-                <Truck className="size-5 shrink-0 text-blue-700" />
+                <Truck className="size-5 shrink-0 text-forest-700" />
                 <div>
                   <p className="text-sm font-medium text-ink">{DELIVERY_OPTIONS[0].label}</p>
                   <p className="text-xs text-gray-500">{DELIVERY_OPTIONS[0].eta}</p>
@@ -239,7 +239,7 @@ export default function CheckoutPage() {
           <section className="rounded-lg border border-border bg-card p-6 shadow-sm sm:p-7">
             <SectionHeading title="Payment" />
 
-            <div className="mt-5 rounded-lg border border-blue-200 bg-blue-50 p-4">
+            <div className="mt-5 rounded-lg border border-forest-200 bg-forest-50 p-4">
               <div className="flex items-center gap-2 font-medium text-ink">
                 <Lock className="size-4" />
                 Pay securely by card via Stripe
@@ -283,11 +283,11 @@ export default function CheckoutPage() {
                 <Checkbox checked={termsAccepted} onCheckedChange={(c) => setTermsAccepted(!!c)} className="mt-0.5" />
                 <span>
                   I agree to the{" "}
-                  <Link href="/terms" className="text-blue-700 underline" target="_blank">
+                  <Link href="/terms" className="text-forest-700 underline" target="_blank">
                     Terms and Conditions
                   </Link>{" "}
                   and{" "}
-                  <Link href="/privacy" className="text-blue-700 underline" target="_blank">
+                  <Link href="/privacy" className="text-forest-700 underline" target="_blank">
                     Privacy Policy
                   </Link>
                 </span>
@@ -360,23 +360,23 @@ export default function CheckoutPage() {
 
           <div className="mt-5 flex flex-col gap-2 border-t border-border pt-4 text-xs text-gray-500">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="size-3.5 shrink-0 text-blue-600" />
+              <ShieldCheck className="size-3.5 shrink-0 text-forest-600" />
               Secure checkout, your details are encrypted
             </div>
             <div className="flex items-center gap-2">
-              <Truck className="size-3.5 shrink-0 text-blue-600" />
+              <Truck className="size-3.5 shrink-0 text-forest-600" />
               Free UK shipping over {formatPrice(settings.free_shipping_threshold)}
             </div>
             <div className="flex items-center gap-2">
-              <RotateCcw className="size-3.5 shrink-0 text-blue-600" />
+              <RotateCcw className="size-3.5 shrink-0 text-forest-600" />
               14-day returns on every order
             </div>
           </div>
 
-          <div className="relative mt-5 overflow-hidden rounded-lg border border-blue-100 bg-blue-50/60 p-4">
-            <PawPrint className="pointer-events-none absolute -right-3 -bottom-3 size-16 text-blue-100" aria-hidden="true" />
+          <div className="relative mt-5 overflow-hidden rounded-lg border border-forest-100 bg-forest-50/60 p-4">
+            <PawPrint className="pointer-events-none absolute -right-3 -bottom-3 size-16 text-forest-100" aria-hidden="true" />
             <div className="relative flex items-start gap-3">
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white text-blue-600 shadow-sm">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white text-forest-600 shadow-sm">
                 <Heart className="size-4" fill="currentColor" />
               </span>
               <div>

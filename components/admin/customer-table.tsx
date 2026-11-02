@@ -85,7 +85,7 @@ export function CustomerTable({ customers }: { customers: CustomerRow[] }) {
                     {customer.orderCount > 0 && (
                       <Link
                         href={`/admin/orders?q=${encodeURIComponent(customer.email)}`}
-                        className="inline-flex items-center gap-1 text-xs font-medium text-blue-700 hover:underline"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-forest-700 hover:underline"
                       >
                         View orders
                         <ChevronRight className="size-3.5" />

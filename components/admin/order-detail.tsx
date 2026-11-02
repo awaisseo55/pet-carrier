@@ -54,7 +54,7 @@ function Card({ title, icon: Icon, children }: { title: string; icon?: React.Ele
   return (
     <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
       <h2 className="flex items-center gap-2 font-heading text-base font-semibold text-foreground">
-        {Icon && <Icon className="size-4 text-blue-600" />}
+        {Icon && <Icon className="size-4 text-forest-600" />}
         {title}
       </h2>
       <div className="mt-4">{children}</div>
@@ -427,7 +427,7 @@ export function OrderDetail({ order }: { order: Order }) {
                         href={item.amazon_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-1 inline-flex items-center gap-1 text-xs text-blue-700 hover:underline"
+                        className="mt-1 inline-flex items-center gap-1 text-xs text-forest-700 hover:underline"
                       >
                         <ExternalLink className="size-3" />
                         Amazon source link
@@ -469,7 +469,7 @@ export function OrderDetail({ order }: { order: Order }) {
         <div className="flex flex-col gap-6">
           <Card title="Payment">
             <div className="flex items-center gap-1.5 text-sm font-medium text-ink">
-              {isCod ? <Truck className="size-4 text-blue-700" /> : <Package className="size-4 text-gray-500" />}
+              {isCod ? <Truck className="size-4 text-forest-700" /> : <Package className="size-4 text-gray-500" />}
               {isCod ? "Cash on delivery" : "Card via Stripe"}
             </div>
             <p className="mt-1.5 text-xs text-muted-foreground">

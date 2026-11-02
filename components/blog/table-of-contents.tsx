@@ -11,7 +11,7 @@ export function TableOfContents({ entries }: { entries: TocEntry[] }) {
       <ul className="mt-3 flex flex-col gap-1.5">
         {entries.map((entry) => (
           <li key={entry.id} className={entry.level === 3 ? "ml-4" : ""}>
-            <a href={`#${entry.id}`} className="text-sm text-blue-700 hover:underline">
+            <a href={`#${entry.id}`} className="text-sm text-forest-700 hover:underline">
               {entry.label}
             </a>
           </li>

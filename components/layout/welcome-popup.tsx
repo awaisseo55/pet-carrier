@@ -89,7 +89,7 @@ export function WelcomePopup() {
         <div className="flex flex-col justify-center p-8 sm:p-10">
           {!claimed ? (
             <>
-              <span className="flex size-10 items-center justify-center rounded-full bg-blue-50 text-blue-700">
+              <span className="flex size-10 items-center justify-center rounded-full bg-forest-50 text-forest-700">
                 <Sparkles className="size-5" />
               </span>
               <h2 className="mt-4 font-heading text-2xl font-semibold text-ink">
@@ -135,12 +135,12 @@ export function WelcomePopup() {
               <button
                 type="button"
                 onClick={handleCopy}
-                className="mt-5 flex items-center justify-between gap-3 rounded-lg border-2 border-dashed border-blue-300 bg-blue-50/60 px-4 py-3 text-left cursor-pointer"
+                className="mt-5 flex items-center justify-between gap-3 rounded-lg border-2 border-dashed border-forest-300 bg-forest-50/60 px-4 py-3 text-left cursor-pointer"
               >
-                <span className="font-heading text-lg font-bold tracking-wide text-blue-700">
+                <span className="font-heading text-lg font-bold tracking-wide text-forest-700">
                   {WELCOME_CODE}
                 </span>
-                <span className="flex items-center gap-1.5 text-xs font-medium text-blue-700">
+                <span className="flex items-center gap-1.5 text-xs font-medium text-forest-700">
                   {copied ? (
                     <>
                       <Check className="size-3.5" /> Copied

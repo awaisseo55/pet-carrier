@@ -1,47 +1,56 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SHOP_BY_PET_IMAGES } from "@/lib/images";
+import { ChevronRight } from "lucide-react";
+import { getCategoryImageUrl } from "@/lib/placeholders";
+import { StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 
+/**
+ * Four equal photographic tiles, each labelled with a white pill at the
+ * bottom-left, as in the reference comp. No gradient scrim, no product
+ * counts, no body copy: the photograph is the content and the pill is the
+ * only chrome on top of it.
+ */
 const pets = [
-  { href: "/carriers/dog-carriers", label: "Dogs", image: SHOP_BY_PET_IMAGES.dogs },
-  { href: "/carriers/cat-carriers", label: "Cats", image: SHOP_BY_PET_IMAGES.cats },
-  {
-    href: "/carriers/small-animal-carriers",
-    label: "Small Animals",
-    image: SHOP_BY_PET_IMAGES["small-animals"],
-  },
-  { href: "/carriers/bird-carriers", label: "Birds", image: SHOP_BY_PET_IMAGES.birds },
-];
+  { path: "carriers/dog-carriers", label: "Dogs" },
+  { path: "carriers/cat-carriers", label: "Cats" },
+  { path: "carriers/small-animal-carriers", label: "Small pets" },
+  { path: "carriers/bird-carriers", label: "Birds" },
+] as const;
 
-export function ShopByPet() {
+export async function ShopByPet() {
+  const tiles = await Promise.all(
+    pets.map(async (pet) => {
+      const { url } = await getCategoryImageUrl(pet.path);
+      return { ...pet, image: url };
+    })
+  );
+
   return (
-    <section className="bg-gray-50 py-16">
+    <section id="shop-by-pet" className="scroll-mt-24 bg-background py-10 lg:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="font-heading text-3xl font-semibold text-ink sm:text-4xl">Shop by Pet</h2>
-          <p className="mt-2 text-gray-500">Carriers designed around how each animal actually travels.</p>
-        </div>
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-          {pets.map((pet) => (
-            <Link
-              key={pet.href}
-              href={pet.href}
-              className="group relative aspect-3/4 overflow-hidden rounded-lg shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
-            >
-              <Image
-                src={pet.image}
-                alt={`${pet.label} carriers`}
-                fill
-                sizes="(min-width: 1024px) 25vw, 50vw"
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-              <span className="absolute bottom-4 left-4 font-heading text-xl font-semibold text-white">
-                {pet.label}
-              </span>
-            </Link>
+        <h2 className="sr-only">Shop pet carriers by pet</h2>
+        <StaggerGroup className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+          {tiles.map((tile) => (
+            <StaggerItem key={tile.path}>
+              <Link
+                href={`/${tile.path}`}
+                className="group relative block aspect-4/3 overflow-hidden rounded-[1.5rem] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                <Image
+                  src={tile.image}
+                  alt={`${tile.label} pet carriers`}
+                  fill
+                  sizes="(min-width: 1024px) 24vw, 48vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                />
+                <span className="absolute bottom-3.5 left-3.5 inline-flex items-center gap-1 rounded-full bg-white/95 py-2 pr-2.5 pl-4 text-sm font-bold text-forest-800 shadow-sm backdrop-blur-sm sm:bottom-4 sm:left-4">
+                  {tile.label}
+                  <ChevronRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );

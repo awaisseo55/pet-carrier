@@ -5,22 +5,26 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-pointer",
+  "group/btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-pointer",
   {
     variants: {
       variant: {
-        // "default"/"primary" is the orange CTA colour (Add to Basket,
-        // Checkout, Sign In). "secondary"/"outline" are the neutral
-        // white-with-border style for less prominent actions. "ghost" and
-        // "link" use brand blue, matching the site's link colour.
-        default: "bg-primary text-primary-foreground shadow-sm hover:bg-coral-600",
-        primary: "bg-primary text-primary-foreground shadow-sm hover:bg-coral-600",
-        secondary:
-          "bg-white text-ink border border-border shadow-sm hover:bg-gray-50",
+        // "default"/"primary" is the burnt amber CTA colour (Add to Basket,
+        // Checkout, Sign In). "forest" is the dark brand-green button used
+        // where a CTA sits on an amber or busy background. "secondary"/
+        // "outline" are the neutral white-with-border style for less
+        // prominent actions. "ghost" and "link" use the forest accent.
+        default:
+          "bg-primary text-primary-foreground shadow-sm hover:bg-ember-600 hover:shadow-md hover:-translate-y-0.5",
+        primary:
+          "bg-primary text-primary-foreground shadow-sm hover:bg-ember-600 hover:shadow-md hover:-translate-y-0.5",
+        forest:
+          "bg-forest-700 text-white shadow-sm hover:bg-forest-800 hover:shadow-md hover:-translate-y-0.5",
+        secondary: "bg-white text-ink border border-border shadow-sm hover:bg-gray-50 hover:border-gray-300",
         outline:
-          "border border-border text-ink bg-white shadow-sm hover:bg-gray-50",
-        ghost: "text-ink hover:bg-blue-50 hover:text-blue-700",
-        link: "text-blue-600 underline-offset-4 hover:underline hover:text-blue-800 rounded-none",
+          "border border-forest-300 text-forest-800 bg-transparent hover:bg-forest-50 hover:border-forest-500",
+        ghost: "text-ink hover:bg-forest-50 hover:text-forest-700",
+        link: "text-forest-700 underline-offset-4 hover:underline hover:text-forest-900 rounded-none",
         subtle: "bg-gray-100 text-ink hover:bg-gray-200",
       },
       size: {

@@ -11,7 +11,7 @@ export function PersonCard({ person }: { person: Person }) {
       <PersonAvatar person={person} size="md" />
       <div className="flex-1">
         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{roleLabel}</p>
-        <Link href={person.profileUrl} className="font-heading text-lg font-semibold text-foreground hover:text-blue-700">
+        <Link href={person.profileUrl} className="font-heading text-lg font-semibold text-foreground hover:text-forest-700">
           {person.name}
         </Link>
         <p className="text-sm text-gray-600">{person.title}</p>

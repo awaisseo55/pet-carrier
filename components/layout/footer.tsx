@@ -88,13 +88,13 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-gray-800 text-gray-300">
-      <div className="border-b border-gray-700">
+    <footer className="bg-forest-800 text-forest-100/80">
+      <div className="border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
             <div>
-              <h3 className="font-heading text-2xl font-semibold text-white">Get pet care tips and £5 off</h3>
-              <p className="mt-1 text-gray-400">Join our list for care guides and first look at new arrivals.</p>
+              <h3 className="text-2xl text-white">Get pet care tips and £5 off</h3>
+              <p className="mt-1 text-forest-100/60">Join our list for care guides and first look at new arrivals.</p>
             </div>
             <form onSubmit={handleNewsletter} className="flex w-full max-w-md gap-2">
               <Input
@@ -102,11 +102,14 @@ export function Footer() {
                 name="email"
                 required
                 placeholder="you@example.com"
-                className="bg-white text-ink border-transparent"
+                className="rounded-xl border-transparent bg-white text-ink"
               />
-              <Button type="submit" variant="default" size="default">
+              <button
+                type="submit"
+                className="shrink-0 cursor-pointer rounded-xl bg-ember-500 px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-ember-600"
+              >
                 Subscribe
-              </Button>
+              </button>
             </form>
           </div>
         </div>
@@ -118,14 +121,14 @@ export function Footer() {
             <Link href="/" className="inline-block rounded-lg bg-white px-3 py-2">
               <Image src="/logo.png" alt="Pet Carrier" width={200} height={100} className="h-11 w-auto" />
             </Link>
-            <p className="mt-4 max-w-xs text-sm text-gray-400">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-forest-100/60">
               Comfortable, secure pet carriers for every kind of trip, handpicked and dispatched from
               Preston, UK.
             </p>
             <ul className="mt-5 flex flex-col gap-2.5">
               {trustPoints.map((point) => (
-                <li key={point.label} className="flex items-center gap-2 text-sm text-gray-300">
-                  <point.icon className="size-4 shrink-0 text-blue-400" />
+                <li key={point.label} className="flex items-center gap-2 text-sm text-forest-100/80">
+                  <point.icon className="size-4 shrink-0 text-ember-400" />
                   {point.label}
                 </li>
               ))}
@@ -136,7 +139,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex size-9 items-center justify-center rounded-full bg-gray-700/60 hover:bg-gray-700"
+                className="flex size-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 hover:text-white"
               >
                 <InstagramIcon className="size-4" />
               </a>
@@ -145,7 +148,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="flex size-9 items-center justify-center rounded-full bg-gray-700/60 hover:bg-gray-700"
+                className="flex size-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 hover:text-white"
               >
                 <FacebookIcon className="size-4" />
               </a>
@@ -154,7 +157,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
-                className="flex size-9 items-center justify-center rounded-full bg-gray-700/60 hover:bg-gray-700"
+                className="flex size-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 hover:text-white"
               >
                 <TikTokIcon className="size-4" />
               </a>
@@ -163,7 +166,7 @@ export function Footer() {
 
           <div className="grid flex-1 grid-cols-2 gap-8 sm:grid-cols-4">
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Shop</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-ember-300">Shop</h4>
               <ul className="mt-3 flex flex-col gap-2 text-sm">
                 {shopLinks.map((link) => (
                   <li key={link.href + link.label}>
@@ -176,7 +179,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Support</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-ember-300">Support</h4>
               <ul className="mt-3 flex flex-col gap-2 text-sm">
                 {supportLinks.map((link) => (
                   <li key={link.href + link.label}>
@@ -189,7 +192,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Company</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-ember-300">Company</h4>
               <ul className="mt-3 flex flex-col gap-2 text-sm">
                 {companyLinks.map((link) => (
                   <li key={link.href + link.label}>
@@ -202,7 +205,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Legal</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-ember-300">Legal</h4>
               <ul className="mt-3 flex flex-col gap-2 text-sm">
                 {legalLinks.map((link) => (
                   <li key={link.href}>
@@ -216,16 +219,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-gray-700 pt-8 sm:flex-row sm:items-center">
-          <p className="flex items-center gap-1.5 text-xs text-gray-500">
-            <ShieldCheck className="size-4 shrink-0 text-gray-500" />
+        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
+          <p className="flex items-center gap-1.5 text-xs text-forest-100/50">
+            <ShieldCheck className="size-4 shrink-0 text-forest-100/50" />
             Secure checkout, payments processed by Stripe
           </p>
           <div className="flex flex-wrap gap-2">
             {paymentMethods.map((method) => (
               <span
                 key={method}
-                className="rounded-md border border-gray-700 bg-gray-700/40 px-2.5 py-1 text-xs font-medium text-gray-300"
+                className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-medium text-forest-100/70"
               >
                 {method}
               </span>
@@ -234,8 +237,8 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-gray-700 bg-gray-900">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-6 text-xs text-gray-500 sm:flex-row sm:items-center sm:px-6 lg:px-8">
+      <div className="border-t border-white/10 bg-forest-900">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-6 text-xs text-forest-100/50 sm:flex-row sm:items-center sm:px-6 lg:px-8">
           <p>&copy; {new Date().getFullYear()} Pet Carrier. All rights reserved.</p>
           <p>10 Stafford Road, Preston, PR1 6LB, United Kingdom</p>
           <p>pet-carrier.co.uk</p>

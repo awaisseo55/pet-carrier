@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Newsreader } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { CartProvider } from "@/components/cart/cart-context";
 import { Header } from "@/components/layout/header";
+import { PromoBar } from "@/components/layout/promo-bar";
 import { Footer } from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { CartDrawer } from "@/components/cart/cart-drawer";
@@ -12,9 +13,24 @@ import { CookieConsent } from "@/components/layout/cookie-consent";
 import { ChatWidget } from "@/components/chat/chat-widget";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
-const inter = Inter({
-  variable: "--font-inter",
+// Plus Jakarta Sans across the whole site, headings and body. Variable
+// weight, so the heavy display weights (700/800) and the regular body
+// weight all come from one font file.
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// Display serif for large headlines only, matching the reference comp. Body
+// copy, buttons, labels and product titles all stay on Plus Jakarta Sans.
+// Not Fraunces: that face is reserved for another brand under the same
+// operator (see CLAUDE.md "Design system").
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  display: "swap",
+  style: ["normal", "italic"],
 });
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://pet-carrier.co.uk").replace(/\/+$/, "");
@@ -59,7 +75,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#2563EB",
+  themeColor: "#14532D",
 };
 
 export default function RootLayout({
@@ -71,7 +87,7 @@ export default function RootLayout({
     <html
       lang="en-GB"
       suppressHydrationWarning
-      className={inter.variable}
+      className={`${jakarta.variable} ${newsreader.variable}`}
     >
       <head>
         <script
@@ -96,6 +112,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col antialiased bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <CartProvider>
+            <PromoBar />
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />

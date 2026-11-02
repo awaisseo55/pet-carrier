@@ -62,7 +62,7 @@ export function RatingSummary({ averageRating, reviewCount, variant = "full", cl
     >
       <StarRow rating={averageRating} sizeClass="size-4" />
       <span className="font-semibold text-foreground">{averageRating.toFixed(1)}</span>
-      <span className="text-blue-600 group-hover:underline">
+      <span className="text-forest-600 group-hover:underline">
         ({reviewCount} review{reviewCount === 1 ? "" : "s"})
       </span>
     </button>

@@ -57,7 +57,7 @@ export function FilterSection({
               <label
                 key={option.value}
                 className={cn(
-                  "-mx-1.5 flex items-center justify-between gap-2 rounded-md px-1.5 py-1.5 hover:bg-blue-50",
+                  "-mx-1.5 flex items-center justify-between gap-2 rounded-md px-1.5 py-1.5 hover:bg-forest-50",
                   disabled ? "cursor-not-allowed opacity-40" : "cursor-pointer"
                 )}
               >
@@ -77,7 +77,7 @@ export function FilterSection({
             <button
               type="button"
               onClick={() => setShowAll((s) => !s)}
-              className="mt-1 text-left text-xs font-medium text-blue-600 hover:underline cursor-pointer"
+              className="mt-1 text-left text-xs font-medium text-forest-600 hover:underline cursor-pointer"
             >
               {showAll ? "Show less" : `+${hiddenCount} more`}
             </button>

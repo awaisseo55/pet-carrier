@@ -1,11 +1,15 @@
 import { Hero } from "@/components/home/hero";
-import { ShopMainCategories } from "@/components/home/shop-main-categories";
+import { TrustBar } from "@/components/home/trust-bar";
 import { ShopByPet } from "@/components/home/shop-by-pet";
-import { HomepageIntro } from "@/components/home/homepage-intro";
-import { FeaturedProduct } from "@/components/home/featured-product";
+import { CarrierFinder } from "@/components/home/carrier-finder";
+import { BestSellers } from "@/components/home/best-sellers";
+import { SizeGuideBanner } from "@/components/home/size-guide-banner";
+import { Offers } from "@/components/home/offers";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
-import { HomepageFaq, HOMEPAGE_FAQS } from "@/components/home/homepage-faq";
+import { ChoosingGuide } from "@/components/home/choosing-guide";
 import { BlogPreview } from "@/components/home/blog-preview";
+import { HomepageFaq, HOMEPAGE_FAQS } from "@/components/home/homepage-faq";
+import { HomepageIntro } from "@/components/home/homepage-intro";
 import { faqJsonLd } from "@/lib/seo";
 
 // Belt-and-braces alongside the on-demand revalidatePath() calls in
@@ -16,17 +20,26 @@ export const revalidate = 300;
 export default function HomePage() {
   const faqSchema = faqJsonLd(HOMEPAGE_FAQS);
 
+  // Order follows the reference comp: editorial hero, a quiet
+  // trust line, photographic pet tiles, the carrier finder, then real stock
+  // before any explanatory copy.
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Hero />
-      <ShopMainCategories />
+      <TrustBar />
       <ShopByPet />
-      <HomepageIntro />
-      <FeaturedProduct />
+      <div id="find-your-fit" className="scroll-mt-24">
+        <CarrierFinder />
+      </div>
+      <BestSellers />
+      <SizeGuideBanner />
+      <Offers />
       <WhyChooseUs />
-      <HomepageFaq />
+      <ChoosingGuide />
       <BlogPreview />
+      <HomepageFaq />
+      <HomepageIntro />
     </>
   );
 }

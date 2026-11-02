@@ -325,7 +325,7 @@ export function AmazonImport() {
                   {result.duplicate && result.existing_product_id ? (
                     <Link
                       href={`/admin/products/${result.existing_product_id}/edit`}
-                      className="mt-1 inline-block text-sm font-medium text-blue-700 hover:underline"
+                      className="mt-1 inline-block text-sm font-medium text-forest-700 hover:underline"
                     >
                       Edit the existing product instead &rarr;
                     </Link>

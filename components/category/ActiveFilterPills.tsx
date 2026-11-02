@@ -23,7 +23,7 @@ export function ActiveFilterPills({ pills, onRemove, onClearAll }: ActiveFilterP
           key={pill.key}
           type="button"
           onClick={() => onRemove(pill.key)}
-          className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-blue-50 hover:text-blue-700 cursor-pointer"
+          className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-forest-50 hover:text-forest-700 cursor-pointer"
         >
           {pill.label}
           <X className="size-3.5" />
@@ -32,7 +32,7 @@ export function ActiveFilterPills({ pills, onRemove, onClearAll }: ActiveFilterP
       <button
         type="button"
         onClick={onClearAll}
-        className="text-sm font-medium text-blue-600 hover:underline cursor-pointer"
+        className="text-sm font-medium text-forest-600 hover:underline cursor-pointer"
       >
         Clear all filters
       </button>

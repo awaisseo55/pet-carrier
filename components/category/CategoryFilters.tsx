@@ -332,7 +332,7 @@ export function CategoryFilters({ products }: CategoryFiltersProps) {
                 <button
                   type="button"
                   onClick={() => pushFilters({ ...DEFAULT_FILTERS, sort: appliedFilters.sort })}
-                  className="text-sm font-medium text-blue-600 hover:underline cursor-pointer"
+                  className="text-sm font-medium text-forest-600 hover:underline cursor-pointer"
                 >
                   Clear all
                 </button>

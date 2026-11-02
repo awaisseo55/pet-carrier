@@ -14,11 +14,11 @@ import { CarriersMegaMenu } from "@/components/layout/carriers-mega-menu";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/carriers/dog-carriers", label: "DOG CARRIERS" },
-  { href: "/carriers/cat-carriers", label: "CAT CARRIERS" },
-  { href: "/blog", label: "BLOG" },
-  { href: "/about", label: "ABOUT" },
-  { href: "/contact", label: "CONTACT" },
+  { href: "/carriers/dog-carriers", label: "Dogs" },
+  { href: "/carriers/cat-carriers", label: "Cats" },
+  { href: "/carriers/small-animal-carriers", label: "Small pets" },
+  { href: "/carriers/bird-carriers", label: "Birds" },
+  { href: "/blog", label: "Guides" },
 ];
 
 const mobileLinks = [
@@ -49,7 +49,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-white">
+    <header className="sticky top-0 z-40 border-b border-gray-200 bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0">
           <Image src="/logo.png" alt="Pet Carrier" width={200} height={100} className="h-12 w-auto sm:h-14" priority />
@@ -62,7 +62,7 @@ export function Header() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search for pet carriers"
-              className="rounded-full pl-10"
+              className="rounded-xl border-gray-200 bg-white pl-10"
             />
           </div>
         </form>
@@ -147,7 +147,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-lg px-2 py-2 text-ink font-medium hover:bg-blue-50 hover:text-blue-700"
+              className="rounded-lg px-2 py-2 text-ink font-medium hover:bg-forest-50 hover:text-forest-700"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}

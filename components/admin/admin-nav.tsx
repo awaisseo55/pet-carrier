@@ -60,7 +60,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
             onClick={onNavigate}
             className={cn(
               "flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
-              active ? "bg-blue-600 text-white" : "text-gray-300 hover:bg-white/10 hover:text-white"
+              active ? "bg-forest-600 text-white" : "text-gray-300 hover:bg-white/10 hover:text-white"
             )}
           >
             <link.icon className="size-4.5" />

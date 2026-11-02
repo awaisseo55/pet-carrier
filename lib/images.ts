@@ -19,38 +19,45 @@ export const HERO_IMAGE = unsplash("1591768795000-25df3bf6620a", 1400);
 
 export const SHOP_BY_PET_IMAGES = {
   dogs: unsplash("1583512603805-3cc6b41f3edb", 800),
-  cats: unsplash("1761614282055-29e039aac354", 800),
+  cats: unsplash("1565029400423-ec64047d5f07", 800),
   "small-animals": unsplash("1658938821244-b2f28b7756eb", 800),
   birds: unsplash("1452570053594-1b985d6ea890", 800),
 } as const;
 
+// First entry is the category fallback, so each pool now leads with the shot
+// that actually shows the animal with a carrier and sits with the Forest &
+// Amber palette. All visually checked, see CLAUDE.md "When making changes".
 export const DOG_IMAGES = [
+  unsplash("1765045952615-9e28d239f053"), // yorkie looking out of a front carrier
+  unsplash("1591768795000-25df3bf6620a"), // pug in a stylish carrier bed
   unsplash("1583512603805-3cc6b41f3edb"), // french bulldog puppy, yellow background
   unsplash("1444212477490-ca407925329e"), // three puppies outdoors
   unsplash("1583511655857-d19b40a7a54e"), // french bulldog puppy, blue background
-  unsplash("1591768795000-25df3bf6620a"), // pug in a stylish carrier bed
-  unsplash("1765045952615-9e28d239f053"), // yorkie peeking out of a carrier
 ];
 
+// First entry is what lib/placeholders.ts falls back to for cat categories,
+// so it leads with the clearest cat-and-carrier shot of the pool. The wheeled
+// carrier photo below reads as an unidentifiable blur at tile size (checked on
+// the homepage), so it is no longer first.
 export const CAT_IMAGES = [
+  unsplash("1565029400423-ec64047d5f07"), // tabby dozing beside a black soft-sided carrier
   unsplash("1761614282055-29e039aac354"), // cat in a wheeled carrier
-  unsplash("1565029400423-ec64047d5f07"), // cat resting beside a carrier bag
   unsplash("1765182272682-c1e8edf6251e"), // cat peeking out of a woven bag
   unsplash("1595433707802-6b2626ef1c91"), // kitten portrait
 ];
 
 export const SMALL_ANIMAL_IMAGES = [
+  unsplash("1585110396000-c9ffd4e4b308"), // white rabbit in a mossy garden
   unsplash("1658938821244-b2f28b7756eb"), // two guinea pigs eating
   unsplash("1658938822127-44b96082ddf6"), // two guinea pigs
   unsplash("1612267168669-679c961c5b31"), // three guinea pigs
-  unsplash("1585110396000-c9ffd4e4b308"), // white rabbit
   unsplash("1591561582301-7ce6588cc286"), // white rabbit, close up
 ];
 
 export const BIRD_IMAGES = [
+  unsplash("1552728089-57bdde30beb3"), // green parakeet on a mossy branch
   unsplash("1452570053594-1b985d6ea890"), // blue and gold macaw
   unsplash("1444464666168-49d633b86797"), // kingfisher
-  unsplash("1552728089-57bdde30beb3"), // green parakeet
 ];
 
 export const BED_IMAGES = [
@@ -70,6 +77,9 @@ export const LIFESTYLE_IMAGES = {
   whyChoose3: unsplash("1658938821244-b2f28b7756eb", 700), // guinea pigs
   newsletter: unsplash("1552053831-71594a27632d", 1200), // dog with a flower
   about: unsplash("1565029400423-ec64047d5f07", 1200), // cat resting by a carrier
+  // Homepage size-guide banner. Visually checked: a calico cat being carried
+  // in a woven basket bag, no logos or text.
+  carrying: unsplash("1765182272682-c1e8edf6251e", 1200),
   blogFallback: unsplash("1560807707-8cc77767d783", 900), // spaniel puppy
 };
 

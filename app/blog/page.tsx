@@ -40,7 +40,7 @@ export default async function BlogPage() {
               />
             </div>
             <div className="flex flex-1 flex-col gap-2 p-5">
-              <span className="text-xs font-medium uppercase tracking-wide text-blue-600">
+              <span className="text-xs font-medium uppercase tracking-wide text-forest-600">
                 {post.category}
               </span>
               <h2 className="font-heading text-lg font-semibold leading-snug text-foreground">

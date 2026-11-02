@@ -107,7 +107,7 @@ export function OrderTable({ orders, initialQuery }: { orders: Order[]; initialQ
                 return (
                   <tr key={order.id} className="border-b border-border last:border-0 hover:bg-gray-50">
                     <td className="p-3 font-medium">
-                      <Link href={`/admin/orders/${order.id}`} className="hover:text-blue-700">
+                      <Link href={`/admin/orders/${order.id}`} className="hover:text-forest-700">
                         #{order.id}
                       </Link>
                     </td>
@@ -120,7 +120,7 @@ export function OrderTable({ orders, initialQuery }: { orders: Order[]; initialQ
                     </td>
                     <td className="p-3">
                       <div className="flex items-center gap-1.5 text-xs font-medium">
-                        {isCod ? <Truck className="size-3.5 text-blue-700" /> : <CreditCard className="size-3.5 text-gray-500" />}
+                        {isCod ? <Truck className="size-3.5 text-forest-700" /> : <CreditCard className="size-3.5 text-gray-500" />}
                         {isCod ? "Cash on delivery" : "Card"}
                       </div>
                     </td>
@@ -138,7 +138,7 @@ export function OrderTable({ orders, initialQuery }: { orders: Order[]; initialQ
                     <td className="p-3">
                       <Link
                         href={`/admin/orders/${order.id}`}
-                        className="inline-flex items-center gap-1 text-xs font-medium text-blue-700 hover:underline"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-forest-700 hover:underline"
                       >
                         View details
                         <ChevronRight className="size-3.5" />

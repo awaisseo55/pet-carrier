@@ -218,55 +218,64 @@ product copy:
 
 ## Design system (do not deviate without asking)
 
-Rebuilt 2026-07 to match Chewy.com's clean white e-commerce aesthetic: white backgrounds
-throughout, navy/blue brand accent, orange CTAs. Not warm/editorial, not dark. This replaced an
-earlier emerald/coral palette; if you see stray `emerald-*`/`coral-*` classes used as link or brand
-accent colour (as opposed to the deliberate uses below), that's a regression, fix it to blue.
+**Forest & Amber, rebuilt 2026-11** at the owner's explicit request, working from a reference
+comp the owner supplied (`~/Documents/want something like this.png`): a warm editorial
+"premium pet brand" look, not a white/blue big-box one. This **replaced the 2026-07 Chewy-style
+white/blue/orange system entirely**. If you see `blue-*` or `coral-*` Tailwind classes anywhere,
+that's a regression from the old system, they no longer exist as tokens, use `forest-*` and
+`ember-*`.
 
-- **Backgrounds**: pure white (`bg-white`) is the default everywhere on the public site and the
-  admin content area. `bg-gray-50` (#F9FAFB) for alternating section backgrounds, `bg-gray-100`
-  (#F3F4F6) for subtle muted emphasis (image placeholders etc). The **only** two places allowed to
-  use a dark background are the site **footer** and the **admin sidebar/mobile nav**, both
-  `bg-gray-800` (#1F2937). Nothing else, ever, not a modal, drawer, card, or homepage section.
-  Cart drawer, cart page, checkout, and every admin content page must be white.
-- **Text**: near-black (`text-ink`, #111827) for headings and important text, medium-dark gray
-  (`text-gray-500`/`text-gray-600`) for secondary/body text. Never go lighter than `text-gray-500`
-  for meaningful text on a white background (`text-gray-400` is fine only for large decorative
-  icons). On the dark footer/admin sidebar, use white for primary text and `text-gray-300` for
-  muted/inactive text.
-- **Colours** (all defined in `app/globals.css` under `@theme`):
-  - **Primary/CTA** (Add to Basket, Checkout, Sign In, and any primary action button): orange,
-    `coral-500` (#F97316), hover `coral-600` (#EA580C). This is what the `Button` component's
-    `default`/`primary` variant renders. Don't reuse orange for incidental "selected" states
-    (checkboxes, radios, active thumbnails, active nav) — that's blue, see below.
-  - **Brand/link accent**: blue, using Tailwind's stock `blue-600`/`blue-700`/`blue-800` palette
-    (#2563EB / #1D4ED8 / #1E40AF) — these are Tailwind defaults, not custom tokens. Used for the
-    header logo, nav hover/active state, inline links, category eyebrow labels, checked
-    checkboxes/radios, selected thumbnails, and hover backgrounds (`blue-50`/`#EFF6FF`).
-  - **Success/positive** (`success`/`success-light` tokens, emerald): reserved for "In Stock",
-    applied-coupon confirmations, and the free-shipping-progress state. Don't use emerald as a
-    generic accent colour elsewhere, that's blue's job now.
-  - **Warning** (`warning`/`warning-light` tokens, amber #F59E0B): low-stock indicators only.
-  - **Alert/discount** (`alert`/`alert-light` tokens, red #DC2626): error messages, and "Save £X"
-    discount badges/sale pricing (`Badge` `secondary` variant, and the product price itself when a
-    `compare_at_price` is set).
-  - Star ratings are amber (`amber-400`), independent of the above, matching the near-universal
-    gold-star convention.
-- **Fonts**: `Inter` for both headings (`font-heading` / `--font-inter`) and body. Prices and
-  numbers use `tabular-nums` (set globally on `body`). Never use Fraunces, Geist, or Manrope, those
-  belong to other brands under the same operator (Manrope was this brand's old heading font, pre
-  rebrand, don't bring it back).
-- **Shape language**: `rounded-md` on buttons (not pill-shaped, that's the old brand), `rounded-lg`
-  on cards. Icon avatars/circles and badges can still be `rounded-full`. Soft shadows only,
-  `shadow-sm` to `shadow-md`, no custom heavy shadow utilities.
-- **Light mode only.** There is no dark mode toggle in the UI and no `.dark` CSS overrides in
-  `globals.css`; `next-themes` is wired up with `defaultTheme="light"` and `enableSystem={false}`
-  purely so `components/ui/sonner.tsx` has a theme context, it does not change any styling. Don't
-  add `dark:` Tailwind classes or reintroduce `prefers-color-scheme`-based theming.
+- **Page surface**: `bg-background` (#F4F6EF), a very slightly **green**-tinted off-white. The
+  neutral ramp (`--color-gray-*`) is tinted green to match, and **red is kept at or below green in
+  every step on purpose**: an earlier warm/beige ramp with red above green read as *pink* across
+  the page background, which the owner flagged immediately. Keep that constraint if you retune it.
+- **Cards and plates**: pure white (`bg-card`) sitting on the cream page. The contrast between the
+  two is what gives the layout depth now the site is no longer white-on-white.
+- **Sage panels**: `bg-forest-100` (#E3EDE0). This is the signature surface, used for feature
+  blocks (carrier finder, size-guide banner, category page headers, product gallery frames and
+  the delivery note in the buy box). Reach for a sage panel before reaching for a bordered card.
+- **Dark surfaces**: `bg-forest-800` (#1C3B2E) for the footer, the top promo bar, the admin
+  sidebar and the one "Why Pet Carrier" band on the homepage. `bg-forest-900` for the footer's
+  bottom strip. Nothing else goes dark.
+- **Colours** (all defined in `app/globals.css` under `:root` and mapped in `@theme inline`):
+  - **Brand accent**: `forest-*` green. 700 (#14532D) and 800 (#1C3B2E) are the brand shades, used
+    for headings, nav, links, primary buttons and selected states. **This family replaced
+    `blue-*`.**
+  - **Primary action**: `--primary` is **forest-800**, not amber. Add to Basket, Checkout, "Find my
+    carrier" and every primary button are deep green, as in the reference comp.
+  - **Amber accent**: `ember-*` (#C98B3A at 500). An *accent*, not a CTA: the short 3px rule under
+    headlines, "Save £X" sale badges, eyebrow labels, footer column headings. **This family
+    replaced `coral-*`.** Do not turn buttons amber.
+  - **Success** (`success`, emerald, warmed toward the forest family): "In Stock", applied coupons,
+    free-shipping progress. **Warning** (`warning`): low stock only. **Alert** (`alert`): error
+    messages only, no longer used for sale badges (a pink-red badge fights this palette).
+  - Star ratings stay `amber-400` gold, per the near-universal convention.
+- **Fonts**: **Plus Jakarta Sans** (`--font-jakarta`) for body, UI, buttons, nav, labels, product
+  titles and prices, and **Newsreader** (`--font-newsreader`, `font-heading`) as the display serif
+  for `h1`/`h2`/`h3` only. The owner asked for Plus Jakarta Sans specifically; the serif pairing
+  comes from the reference comp. Small text inside a heading context can opt out with `font-sans`.
+  **Never use Fraunces, Geist, Inter, or Manrope**: Fraunces and Manrope belong to other brands
+  under the same operator, and Inter is the retired Chewy-era face.
+- **Shape language**: generous radii. `rounded-xl` on buttons and inputs, `rounded-2xl` on cards,
+  `rounded-[1.5rem]`/`rounded-[2rem]` on sage panels, photo tiles and gallery frames. Soft shadows
+  only; depth comes from the cream/white/sage contrast, not heavy shadow.
+- **Photography over icons.** The owner's explicit steer was that the old build felt "AI" because
+  it was "full of icons". Category tiles, the hero, the size-guide banner and the category page
+  headers all use real photographs. Icons are small, thin-stroke and incidental. Do not add
+  three-up circle-icon "feature" grids, that layout is what the rebuild removed.
+- **Motion** (owner chose "maximum"): `components/motion/` holds the primitives, `Reveal`,
+  `StaggerGroup`/`StaggerItem`, `Parallax` and `CountUp`. Every one of them checks
+  `useReducedMotion()` and renders a plain element when it's on, and `app/globals.css` collapses
+  CSS animations under the same media query. Reveals are `once: true` so content never re-animates
+  on scroll-back. Keep both of those properties when adding motion.
+- **Light mode only.** There is no dark mode toggle and no `.dark` overrides; `next-themes` is
+  wired with `defaultTheme="light"` and `enableSystem={false}` purely so
+  `components/ui/sonner.tsx` has a theme context. Don't add `dark:` classes.
 - **Header navigation must always be visible without hovering.** This was a real bug once
   (invisible nav text), treat any regression here as critical. Only the Carriers mega menu panel
-  itself is hover-triggered, the nav labels are not. The header also has a persistent, prominent
-  search bar in the centre on `md`+ screens (Chewy-style), collapsing to a toggle icon on mobile.
+  is hover-triggered. The header keeps its persistent centre search bar on `md`+, collapsing to a
+  toggle icon on mobile, and the deep-forest promo bar sits above it on every page
+  (`components/layout/promo-bar.tsx`, rendered from `app/layout.tsx`).
 
 ## Category architecture
 

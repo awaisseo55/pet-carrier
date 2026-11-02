@@ -30,7 +30,7 @@ export default async function AdminDashboardPage() {
         <Card>
           <CardHeader className="flex-row items-center justify-between space-y-0 pb-0">
             <CardTitle className="text-sm font-medium text-muted-foreground">Products</CardTitle>
-            <Package className="size-4 text-blue-600" />
+            <Package className="size-4 text-forest-600" />
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold">{activeProducts}</p>
@@ -40,7 +40,7 @@ export default async function AdminDashboardPage() {
         <Card>
           <CardHeader className="flex-row items-center justify-between space-y-0 pb-0">
             <CardTitle className="text-sm font-medium text-muted-foreground">Categories</CardTitle>
-            <FolderTree className="size-4 text-blue-600" />
+            <FolderTree className="size-4 text-forest-600" />
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold">{categories.length}</p>
@@ -50,7 +50,7 @@ export default async function AdminDashboardPage() {
         <Card>
           <CardHeader className="flex-row items-center justify-between space-y-0 pb-0">
             <CardTitle className="text-sm font-medium text-muted-foreground">Pending Orders</CardTitle>
-            <ShoppingCart className="size-4 text-coral-600" />
+            <ShoppingCart className="size-4 text-ember-600" />
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold">{pendingOrders}</p>
@@ -72,7 +72,7 @@ export default async function AdminDashboardPage() {
       <div className="mt-8 flex flex-wrap gap-3">
         <Link
           href="/admin/products/new"
-          className="rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-coral-600"
+          className="rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-ember-600"
         >
           Add Product from Amazon URL
         </Link>
@@ -110,7 +110,7 @@ export default async function AdminDashboardPage() {
                 {recentOrders.map((order) => (
                   <tr key={order.id} className="border-b border-border last:border-0 hover:bg-gray-50">
                     <td className="p-3 font-medium">
-                      <Link href={`/admin/orders/${order.id}`} className="hover:text-blue-700">
+                      <Link href={`/admin/orders/${order.id}`} className="hover:text-forest-700">
                         #{order.id}
                       </Link>
                     </td>

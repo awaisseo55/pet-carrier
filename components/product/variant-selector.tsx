@@ -34,7 +34,7 @@ function ColourSwatch({
       title={variant.colour}
       className={cn(
         "relative size-10 shrink-0 overflow-hidden rounded-full border border-border transition-shadow cursor-pointer",
-        active && "ring-2 ring-blue-600 ring-offset-2",
+        active && "ring-2 ring-forest-600 ring-offset-2",
         disabled && "cursor-not-allowed opacity-40"
       )}
     >
@@ -70,8 +70,8 @@ function SizeButton({
       aria-pressed={active}
       className={cn(
         "rounded-md border px-3.5 py-2 text-sm font-medium transition-colors cursor-pointer",
-        active && "border-blue-600 bg-blue-600 text-white",
-        !active && !disabled && "border-border bg-white text-foreground hover:border-blue-400",
+        active && "border-forest-600 bg-forest-600 text-white",
+        !active && !disabled && "border-border bg-white text-foreground hover:border-forest-400",
         disabled && "cursor-not-allowed border-border bg-gray-100 text-gray-400 line-through"
       )}
     >

@@ -94,7 +94,7 @@ export default async function BlogPostPage({
         </Link>
       </nav>
 
-      <span className="text-sm font-medium uppercase tracking-wide text-blue-600">
+      <span className="text-sm font-medium uppercase tracking-wide text-forest-600">
         {post.category}
       </span>
       <h1 className="mt-2 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
@@ -105,7 +105,7 @@ export default async function BlogPostPage({
         <p>
           By{" "}
           {author ? (
-            <Link href={author.profileUrl} className="font-medium text-foreground hover:text-blue-700">
+            <Link href={author.profileUrl} className="font-medium text-foreground hover:text-forest-700">
               {author.name}
             </Link>
           ) : (
@@ -117,7 +117,7 @@ export default async function BlogPostPage({
           <p>
             Reviewed by{" "}
             {reviewer ? (
-              <Link href={reviewer.profileUrl} className="font-medium text-foreground hover:text-blue-700">
+              <Link href={reviewer.profileUrl} className="font-medium text-foreground hover:text-forest-700">
                 {reviewer.name}
               </Link>
             ) : (

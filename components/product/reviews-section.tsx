@@ -121,9 +121,9 @@ function ReviewCard({
         type="button"
         onClick={handleHelpful}
         disabled={voted}
-        className="mt-3 flex items-center gap-1.5 text-sm text-gray-500 hover:text-blue-600 disabled:cursor-not-allowed"
+        className="mt-3 flex items-center gap-1.5 text-sm text-gray-500 hover:text-forest-600 disabled:cursor-not-allowed"
       >
-        <ThumbsUp className={cn("size-3.5", voted && "fill-current text-blue-600")} />
+        <ThumbsUp className={cn("size-3.5", voted && "fill-current text-forest-600")} />
         Was this helpful?{helpfulCount > 0 ? ` (${helpfulCount})` : ""}
       </button>
     </div>

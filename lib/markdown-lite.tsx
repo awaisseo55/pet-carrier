@@ -29,7 +29,7 @@ function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
       parts.push(<strong key={`${keyPrefix}-strong-${i}`}>{bold}</strong>);
     } else if (href.startsWith("/")) {
       parts.push(
-        <Link key={`${keyPrefix}-link-${i}`} href={href} className="text-blue-600 hover:text-blue-800 hover:underline">
+        <Link key={`${keyPrefix}-link-${i}`} href={href} className="text-forest-600 hover:text-forest-800 hover:underline">
           {label}
         </Link>
       );
@@ -40,7 +40,7 @@ function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 hover:text-blue-800 hover:underline"
+          className="text-forest-600 hover:text-forest-800 hover:underline"
         >
           {label}
         </a>

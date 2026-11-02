@@ -185,7 +185,7 @@ export function ReviewForm({ productSlug, onSuccess, onCancel }: ReviewFormProps
           }}
           className={cn(
             "mt-1.5 flex flex-wrap items-center gap-3 rounded-lg border-2 border-dashed p-4 transition-colors",
-            dragOver ? "border-blue-500 bg-blue-50" : "border-border"
+            dragOver ? "border-forest-500 bg-forest-50" : "border-border"
           )}
         >
           {previews.map((src, index) => (
@@ -206,7 +206,7 @@ export function ReviewForm({ productSlug, onSuccess, onCancel }: ReviewFormProps
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="flex size-16 shrink-0 cursor-pointer flex-col items-center justify-center gap-1 rounded-lg border border-border bg-white text-gray-400 hover:text-blue-600"
+              className="flex size-16 shrink-0 cursor-pointer flex-col items-center justify-center gap-1 rounded-lg border border-border bg-white text-gray-400 hover:text-forest-600"
             >
               <ImagePlus className="size-5" />
               <span className="text-[10px]">Add</span>

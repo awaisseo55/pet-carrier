@@ -50,7 +50,7 @@ function renderMessageContent(content: string, keyPrefix: string): React.ReactNo
       nodes.push(content.slice(lastIndex, match.index));
     }
     nodes.push(
-      <Link key={`${keyPrefix}-link-${i++}`} href={match[2]} className="font-medium text-blue-700 underline hover:text-blue-800">
+      <Link key={`${keyPrefix}-link-${i++}`} href={match[2]} className="font-medium text-forest-700 underline hover:text-forest-800">
         {match[1]}
       </Link>
     );
@@ -133,7 +133,7 @@ export function ChatWidget() {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close chat" : "Open chat"}
         className={cn(
-          "fixed bottom-5 right-5 z-50 flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md transition-transform hover:scale-105 hover:bg-coral-600 cursor-pointer sm:bottom-6 sm:right-6",
+          "fixed bottom-5 right-5 z-50 flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md transition-transform hover:scale-105 hover:bg-ember-600 cursor-pointer sm:bottom-6 sm:right-6",
           open && "scale-0 opacity-0 pointer-events-none"
         )}
       >
@@ -146,21 +146,21 @@ export function ChatWidget() {
           open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
         )}
       >
-        <div className="flex items-center justify-between gap-3 bg-blue-700 px-4 py-3.5 text-white">
+        <div className="flex items-center justify-between gap-3 bg-forest-700 px-4 py-3.5 text-white">
           <div className="flex items-center gap-2.5">
             <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/15">
               <PawPrint className="size-4" />
             </span>
             <div>
               <p className="text-sm font-semibold leading-tight">Pet Carrier Chat</p>
-              <p className="text-xs text-blue-100">Usually replies in a few seconds</p>
+              <p className="text-xs text-forest-100">Usually replies in a few seconds</p>
             </div>
           </div>
           <button
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close chat"
-            className="flex size-7 items-center justify-center rounded-full text-blue-100 hover:bg-white/10 hover:text-white cursor-pointer"
+            className="flex size-7 items-center justify-center rounded-full text-forest-100 hover:bg-white/10 hover:text-white cursor-pointer"
           >
             <X className="size-4" />
           </button>
@@ -177,7 +177,7 @@ export function ChatWidget() {
                   className={cn(
                     "max-w-[85%] whitespace-pre-wrap rounded-lg px-3.5 py-2.5 text-sm leading-relaxed",
                     m.role === "user"
-                      ? "bg-blue-600 text-white"
+                      ? "bg-forest-600 text-white"
                       : "border border-border bg-white text-ink shadow-sm"
                   )}
                 >
@@ -200,7 +200,7 @@ export function ChatWidget() {
                     key={topic}
                     type="button"
                     onClick={() => sendMessage(topic)}
-                    className="rounded-full border border-blue-200 bg-white px-3 py-1.5 text-xs font-medium text-blue-700 hover:bg-blue-50 cursor-pointer"
+                    className="rounded-full border border-forest-200 bg-white px-3 py-1.5 text-xs font-medium text-forest-700 hover:bg-forest-50 cursor-pointer"
                   >
                     {topic}
                   </button>

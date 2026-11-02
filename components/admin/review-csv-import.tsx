@@ -184,7 +184,7 @@ export function ReviewCsvImportDialog() {
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
               className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed p-10 text-center transition-colors ${
-                dragActive ? "border-blue-500 bg-blue-50" : "border-border bg-gray-50 hover:border-blue-400"
+                dragActive ? "border-forest-500 bg-forest-50" : "border-border bg-gray-50 hover:border-forest-400"
               }`}
             >
               <Upload className="size-8 text-gray-400" />
@@ -210,7 +210,7 @@ export function ReviewCsvImportDialog() {
                 <a
                   href="/example-reviews.csv"
                   download
-                  className="font-medium text-blue-700 hover:underline"
+                  className="font-medium text-forest-700 hover:underline"
                 >
                   Download an example CSV
                 </a>{" "}
@@ -223,7 +223,7 @@ export function ReviewCsvImportDialog() {
         {step === "mapping" && (
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
-              <FileText className="size-5 text-blue-600" />
+              <FileText className="size-5 text-forest-600" />
               <p className="font-medium text-ink">{fileName}</p>
               <span className="text-sm text-gray-500">({rows.length} rows detected)</span>
             </div>
@@ -283,7 +283,7 @@ export function ReviewCsvImportDialog() {
           <div>
             <p className="font-medium text-ink">Importing reviews...</p>
             <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-gray-100">
-              <div className="h-full rounded-full bg-blue-600 transition-all" style={{ width: `${progress}%` }} />
+              <div className="h-full rounded-full bg-forest-600 transition-all" style={{ width: `${progress}%` }} />
             </div>
             <p className="mt-2 text-sm text-gray-500">{progress}% complete</p>
           </div>

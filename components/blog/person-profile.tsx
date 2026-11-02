@@ -26,7 +26,7 @@ export function PersonProfile({ person, posts }: { person: Person; posts: BlogPo
       <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
         <PersonAvatar person={person} size="lg" />
         <div>
-          <span className="text-xs font-medium uppercase tracking-wide text-blue-600">
+          <span className="text-xs font-medium uppercase tracking-wide text-forest-600">
             Pet Carrier {roleLabel}
           </span>
           <h1 className="mt-1 font-heading text-3xl font-semibold text-foreground sm:text-4xl">{person.name}</h1>
@@ -83,14 +83,14 @@ export function PersonProfile({ person, posts }: { person: Person; posts: BlogPo
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md"
+                className="group overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-forest-400 hover:shadow-md"
               >
                 <div className="relative aspect-16/9 overflow-hidden">
                   <Image src={post.cover_image} alt={post.title} fill sizes="360px" className="object-cover" />
                 </div>
                 <div className="p-4">
-                  <span className="text-xs font-medium uppercase tracking-wide text-blue-600">{post.category}</span>
-                  <p className="mt-1 font-medium text-foreground group-hover:text-blue-700">{post.title}</p>
+                  <span className="text-xs font-medium uppercase tracking-wide text-forest-600">{post.category}</span>
+                  <p className="mt-1 font-medium text-foreground group-hover:text-forest-700">{post.title}</p>
                   <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{post.excerpt}</p>
                   <p className="mt-2 text-xs text-muted-foreground">
                     {new Date(post.published_at).toLocaleDateString("en-GB", {
@@ -110,7 +110,7 @@ export function PersonProfile({ person, posts }: { person: Person; posts: BlogPo
       </div>
 
       <div className="mt-10 border-t border-border pt-6">
-        <Link href="/blog" className="text-sm font-medium text-blue-700 hover:underline">
+        <Link href="/blog" className="text-sm font-medium text-forest-700 hover:underline">
           &larr; Back to the blog
         </Link>
       </div>

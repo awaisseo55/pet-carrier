@@ -85,7 +85,7 @@ export default function AboutPage() {
         </p>
         <p>
           We’re still a small, growing business, and every message that comes through our{" "}
-          <Link href="/contact" className="text-blue-700 hover:underline">
+          <Link href="/contact" className="text-forest-700 hover:underline">
             contact page
           </Link>{" "}
           is read and answered by a real person, usually within one working day.
@@ -100,10 +100,10 @@ export default function AboutPage() {
           {process.map((item) => (
             <div key={item.step} className="relative rounded-lg border border-border bg-card p-6">
               <div className="flex items-center gap-3">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-forest-600 text-sm font-semibold text-white">
                   {item.step}
                 </span>
-                <item.icon className="size-5 shrink-0 text-blue-700" />
+                <item.icon className="size-5 shrink-0 text-forest-700" />
                 <h3 className="font-heading text-base font-semibold text-foreground">{item.title}</h3>
               </div>
               <p className="mt-3 text-sm text-gray-500">{item.description}</p>
@@ -116,7 +116,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.label} className="flex flex-col items-center gap-2 text-center">
-              <stat.icon className="size-6 text-blue-700" />
+              <stat.icon className="size-6 text-forest-700" />
               <span className="text-sm font-medium text-foreground">{stat.label}</span>
             </div>
           ))}
@@ -124,7 +124,7 @@ export default function AboutPage() {
       </div>
 
       <div className="mt-14 flex flex-col items-center gap-4 rounded-lg border border-border bg-card p-8 text-center">
-        <Mail className="size-8 text-blue-700" />
+        <Mail className="size-8 text-forest-700" />
         <h2 className="font-heading text-xl font-semibold text-foreground">Questions Before You Order?</h2>
         <p className="max-w-md text-sm text-gray-500">
           Whether it’s sizing advice or a question about a specific pet, get in touch and we’ll help

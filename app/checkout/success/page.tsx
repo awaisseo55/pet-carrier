@@ -13,7 +13,7 @@ export default function CheckoutSuccessPage() {
     <React.Suspense
       fallback={
         <div className="mx-auto max-w-2xl px-4 py-24 text-center sm:px-6 lg:px-8">
-          <Loader2 className="mx-auto size-8 animate-spin text-blue-600" />
+          <Loader2 className="mx-auto size-8 animate-spin text-forest-600" />
         </div>
       }
     >
@@ -107,8 +107,8 @@ function CheckoutSuccessContent() {
   if (status === "checking") {
     return (
       <div className="mx-auto max-w-2xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-blue-50">
-          <Loader2 className="size-8 animate-spin text-blue-600" />
+        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-forest-50">
+          <Loader2 className="size-8 animate-spin text-forest-600" />
         </div>
         <h1 className="mt-6 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
           Confirming your order...

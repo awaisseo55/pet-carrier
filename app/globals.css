@@ -2,68 +2,101 @@
 @import "tw-animate-css";
 
 :root {
-  /* Chewy-inspired clean white e-commerce palette. Light mode only, see
-     CLAUDE.md "Design system" for the rationale behind each token. */
-  --color-ink: #111827;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
+  /* ------------------------------------------------------------------
+     Forest & Amber palette (2026-11 rebrand, replaces the earlier
+     Chewy-style white/blue/orange scheme). Warm cream page, deep forest
+     brand accent, burnt amber CTA. See CLAUDE.md "Design system".
 
-  /* Success / positive signals only (e.g. "In Stock"), not the brand accent. */
-  --color-emerald-50: #ecfdf5;
-  --color-emerald-100: #d1fae5;
-  --color-emerald-200: #a7f3d0;
-  --color-emerald-300: #6ee7b7;
-  --color-emerald-400: #34d399;
-  --color-emerald-500: #10b981;
-  --color-emerald-600: #059669;
-  --color-emerald-700: #047857;
-  --color-emerald-800: #065f46;
-  --color-emerald-900: #064e3b;
+     Naming note: the accent family is `forest-*` (it replaced `blue-*`)
+     and the CTA family is `ember-*` (it replaced `coral-*`). Nothing in
+     the codebase should reference blue-* or coral-* any more.
+     ------------------------------------------------------------------ */
 
-  /* Coral/orange: the primary CTA colour (Add to Basket, Checkout, Sign In). */
-  --color-coral-50: #fff7ed;
-  --color-coral-100: #ffedd5;
-  --color-coral-200: #fed7aa;
-  --color-coral-300: #fdba74;
-  --color-coral-400: #fb923c;
-  --color-coral-500: #f97316;
-  --color-coral-600: #ea580c;
-  --color-coral-700: #c2410c;
-  --color-coral-800: #9a3412;
-  --color-coral-900: #7c2d12;
+  /* Ink: the deep forest the reference comp uses for headlines and nav. */
+  --color-ink: #1c3b2e;
+
+  /* Neutral ramp, tinted very slightly GREEN rather than warm beige. Every
+     `gray-*` class in the codebase resolves to these, so this is what sets
+     the temperature of the whole site. Red is kept at or below green in
+     every step on purpose: a beige ramp with red above green reads as pink
+     across a large flat area like the page background. */
+  --color-gray-50: #f1f3ec;
+  --color-gray-100: #e8ebe1;
+  --color-gray-200: #dadfd2;
+  --color-gray-300: #c1c8b7;
+  --color-gray-400: #959d8c;
+  --color-gray-500: #6c7466;
+  --color-gray-600: #515949;
+  --color-gray-700: #3b4036;
+  --color-gray-800: #272b23;
+  --color-gray-900: #1a1d17;
+
+  /* Brand accent: deep forest green. Links, nav, eyebrows, selected
+     states, focus rings. 700 is the brand shade. */
+  --color-forest-50: #f1f6ee;
+  --color-forest-100: #e3ede0;   /* sage panel, the comp's feature blocks */
+  --color-forest-200: #cfe0c8;
+  --color-forest-300: #a9c6a0;
+  --color-forest-400: #7ea673;
+  --color-forest-500: #558150;
+  --color-forest-600: #35603b;
+  --color-forest-700: #244a33;
+  --color-forest-800: #1c3b2e;   /* brand: nav, footer, primary buttons */
+  --color-forest-900: #13291f;
+
+  /* Amber: an accent, not a CTA. Used for the short rule under headlines,
+     sale badges and small highlights, the way the reference comp uses it. */
+  --color-ember-50: #fdf7ec;
+  --color-ember-100: #f8ecd4;
+  --color-ember-200: #f0d9ab;
+  --color-ember-300: #e4bd77;
+  --color-ember-400: #d4a155;
+  --color-ember-500: #c98b3a;
+  --color-ember-600: #ab6f2a;
+  --color-ember-700: #8a5722;
+  --color-ember-800: #6d441d;
+  --color-ember-900: #513418;
+
+  /* Success / positive signals only (e.g. "In Stock"), not the brand accent.
+     Shifted warmer so it reads as part of the forest family. */
+  --color-emerald-50: #eef7f0;
+  --color-emerald-100: #d8ecdd;
+  --color-emerald-200: #b4dabf;
+  --color-emerald-300: #86c198;
+  --color-emerald-400: #52a26f;
+  --color-emerald-500: #2f8551;
+  --color-emerald-600: #1f6b40;
+  --color-emerald-700: #185434;
+  --color-emerald-800: #12402a;
+  --color-emerald-900: #0d2c1e;
 
   --color-success: var(--color-emerald-600);
   --color-success-light: var(--color-emerald-50);
-  --color-alert: #dc2626;
-  --color-alert-light: #fef2f2;
-  --color-warning: #f59e0b;
-  --color-warning-light: #fffbeb;
+  --color-alert: #b91c1c;
+  --color-alert-light: #fbeeea;
+  --color-warning: #b45309;
+  --color-warning-light: #fdf6e9;
 
-  --background: #ffffff;
+  /* Warm cream page, true-white cards sitting on top of it. The contrast
+     between the two is what gives the layout its depth now that the site
+     is no longer white-on-white. */
+  --background: #f4f6ef;
   --foreground: var(--color-ink);
   --card: #ffffff;
   --card-foreground: var(--color-ink);
-  --muted: var(--color-gray-50);
+  --muted: var(--color-gray-100);
   --muted-foreground: var(--color-gray-500);
-  /* Primary = the orange CTA colour, used by Button's default/primary variant. */
-  --primary: var(--color-coral-500);
+  --primary: var(--color-forest-800);
   --primary-foreground: #ffffff;
-  /* Secondary = the neutral white/bordered button, not a colour block. */
   --secondary: #ffffff;
   --secondary-foreground: var(--color-ink);
   --border: var(--color-gray-200);
   --input: var(--color-gray-200);
-  /* Focus/selection ring is brand blue, matching link colour. */
-  --ring: #2563eb;
-  --radius: 0.5rem;
+  --ring: var(--color-forest-700);
+  --radius: 0.875rem;
+
+  /* Surface used for the dark footer and admin sidebar. */
+  --surface-dark: var(--color-forest-800);
 }
 
 @theme inline {
@@ -86,6 +119,7 @@
   --color-alert-light: var(--color-alert-light);
   --color-warning: var(--color-warning);
   --color-warning-light: var(--color-warning-light);
+  --color-surface-dark: var(--surface-dark);
 
   --color-ink: var(--color-ink);
   --color-gray-50: var(--color-gray-50);
@@ -110,19 +144,30 @@
   --color-emerald-800: var(--color-emerald-800);
   --color-emerald-900: var(--color-emerald-900);
 
-  --color-coral-50: var(--color-coral-50);
-  --color-coral-100: var(--color-coral-100);
-  --color-coral-200: var(--color-coral-200);
-  --color-coral-300: var(--color-coral-300);
-  --color-coral-400: var(--color-coral-400);
-  --color-coral-500: var(--color-coral-500);
-  --color-coral-600: var(--color-coral-600);
-  --color-coral-700: var(--color-coral-700);
-  --color-coral-800: var(--color-coral-800);
-  --color-coral-900: var(--color-coral-900);
+  --color-forest-50: var(--color-forest-50);
+  --color-forest-100: var(--color-forest-100);
+  --color-forest-200: var(--color-forest-200);
+  --color-forest-300: var(--color-forest-300);
+  --color-forest-400: var(--color-forest-400);
+  --color-forest-500: var(--color-forest-500);
+  --color-forest-600: var(--color-forest-600);
+  --color-forest-700: var(--color-forest-700);
+  --color-forest-800: var(--color-forest-800);
+  --color-forest-900: var(--color-forest-900);
 
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-inter);
+  --color-ember-50: var(--color-ember-50);
+  --color-ember-100: var(--color-ember-100);
+  --color-ember-200: var(--color-ember-200);
+  --color-ember-300: var(--color-ember-300);
+  --color-ember-400: var(--color-ember-400);
+  --color-ember-500: var(--color-ember-500);
+  --color-ember-600: var(--color-ember-600);
+  --color-ember-700: var(--color-ember-700);
+  --color-ember-800: var(--color-ember-800);
+  --color-ember-900: var(--color-ember-900);
+
+  --font-sans: var(--font-jakarta);
+  --font-heading: var(--font-newsreader);
 }
 
 * {
@@ -136,13 +181,39 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-h1, h2, h3, h4, h5, h6, .font-heading {
-  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+/* Two faces, as in the reference comp: a display serif for the big
+   headlines, Plus Jakarta Sans for everything a customer reads or clicks
+   (body copy, buttons, nav, labels, product titles, prices). */
+h1,
+h2,
+h3,
+.font-heading {
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Escape hatch for small text inside a heading context (eyebrows, badges,
+   price rows) that should not inherit the tight display tracking. */
+.font-sans {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: normal;
 }
 
 @theme {
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
 
   @keyframes accordion-down {
     from {
@@ -158,6 +229,33 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     }
     to {
       height: 0;
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      /* The track renders its children twice, so travelling exactly half its
+         width loops seamlessly. */
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
     }
   }
 }
@@ -177,5 +275,32 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   &::-webkit-scrollbar-thumb {
     background-color: var(--color-gray-300);
     border-radius: 9999px;
+  }
+}
+
+/* Soft grain, applied to large cream sections. Keeps big flat areas from
+   looking like untextured default white, at no network cost. */
+@utility texture-grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+}
+
+/* Honour the OS "reduce motion" setting across every animation on the site,
+   including the Framer Motion reveals, which read the same media query. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

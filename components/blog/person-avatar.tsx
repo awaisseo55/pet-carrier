@@ -9,7 +9,7 @@ import type { Person } from "@/lib/people";
  */
 export function PersonAvatar({ person, size = "lg" }: { person: Person; size?: "lg" | "md" | "sm" }) {
   const initial = person.name.charAt(0).toUpperCase();
-  const palette = "bg-blue-50 text-blue-700 border-blue-200";
+  const palette = "bg-forest-50 text-forest-700 border-forest-200";
 
   const dimensions = size === "lg" ? "size-28 text-4xl" : size === "md" ? "size-16 text-xl" : "size-10 text-sm";
 

@@ -28,23 +28,23 @@ export default function ContactPage() {
             <h2 className="font-heading text-lg font-semibold text-foreground">Contact details</h2>
             <div className="mt-5 flex flex-col gap-5">
               <div className="flex items-start gap-3">
-                <Mail className="mt-0.5 size-5 shrink-0 text-blue-700" />
+                <Mail className="mt-0.5 size-5 shrink-0 text-forest-700" />
                 <div>
                   <p className="font-medium">Email</p>
-                  <a href="mailto:hello@pet-carrier.co.uk" className="text-sm text-gray-500 hover:text-blue-700">
+                  <a href="mailto:hello@pet-carrier.co.uk" className="text-sm text-gray-500 hover:text-forest-700">
                     hello@pet-carrier.co.uk
                   </a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin className="mt-0.5 size-5 shrink-0 text-blue-700" />
+                <MapPin className="mt-0.5 size-5 shrink-0 text-forest-700" />
                 <div>
                   <p className="font-medium">Address</p>
                   <p className="text-sm text-gray-500">10 Stafford Road, Preston, PR1 6LB, United Kingdom</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Clock className="mt-0.5 size-5 shrink-0 text-blue-700" />
+                <Clock className="mt-0.5 size-5 shrink-0 text-forest-700" />
                 <div>
                   <p className="font-medium">Response time</p>
                   <p className="text-sm text-gray-500">We usually reply within one working day.</p>
@@ -61,9 +61,9 @@ export default function ContactPage() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="flex items-center gap-3 rounded-md px-2 py-2.5 text-sm font-medium text-foreground hover:bg-blue-50 hover:text-blue-700"
+                    className="flex items-center gap-3 rounded-md px-2 py-2.5 text-sm font-medium text-foreground hover:bg-forest-50 hover:text-forest-700"
                   >
-                    <link.icon className="size-4 shrink-0 text-blue-700" />
+                    <link.icon className="size-4 shrink-0 text-forest-700" />
                     <span className="flex-1">{link.label}</span>
                     <ChevronRight className="size-4 shrink-0 text-gray-400" />
                   </Link>

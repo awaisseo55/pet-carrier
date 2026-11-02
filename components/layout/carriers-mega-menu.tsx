@@ -43,11 +43,11 @@ export function CarriersMegaMenu() {
       <Link
         href="/carriers"
         className={cn(
-          "flex items-center gap-1 px-3 py-2 text-sm font-semibold tracking-wide text-ink transition-colors hover:text-blue-700",
-          active && "text-blue-700 underline underline-offset-8 decoration-2"
+          "flex items-center gap-1 px-3 py-2 text-sm font-semibold tracking-wide text-ink transition-colors hover:text-forest-700",
+          active && "text-forest-700 underline underline-offset-8 decoration-2"
         )}
       >
-        CARRIERS
+        Carriers
         <ChevronDown className="size-3.5" />
       </Link>
 
@@ -61,14 +61,14 @@ export function CarriersMegaMenu() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="-mx-2 block rounded px-2 py-1 text-sm text-ink hover:bg-gray-50 hover:text-blue-700"
+                      className="-mx-2 block rounded px-2 py-1 text-sm text-ink hover:bg-gray-50 hover:text-forest-700"
                     >
                       {item.label}
                     </Link>
                   </li>
                 ))}
                 <li>
-                  <Link href="/carriers" className="-mx-2 block rounded px-2 py-1 text-sm font-medium text-blue-600 hover:underline">
+                  <Link href="/carriers" className="-mx-2 block rounded px-2 py-1 text-sm font-medium text-forest-600 hover:underline">
                     View All Carriers
                   </Link>
                 </li>
@@ -81,7 +81,7 @@ export function CarriersMegaMenu() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="-mx-2 block rounded px-2 py-1 text-sm text-ink hover:bg-gray-50 hover:text-blue-700"
+                      className="-mx-2 block rounded px-2 py-1 text-sm text-ink hover:bg-gray-50 hover:text-forest-700"
                     >
                       {item.label}
                     </Link>
@@ -96,7 +96,7 @@ export function CarriersMegaMenu() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="-mx-2 block rounded px-2 py-1 text-sm text-ink hover:bg-gray-50 hover:text-blue-700"
+                      className="-mx-2 block rounded px-2 py-1 text-sm text-ink hover:bg-gray-50 hover:text-forest-700"
                     >
                       {item.label}
                     </Link>

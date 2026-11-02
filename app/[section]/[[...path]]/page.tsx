@@ -141,44 +141,62 @@ export default async function CategoryPage({
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <nav className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
-        <Link href="/" className="hover:text-foreground">
+      <nav className="mb-7 flex flex-wrap items-center gap-1.5 text-sm text-gray-500">
+        <Link href="/" className="transition-colors hover:text-forest-700">
           Home
         </Link>
         {breadcrumbTrail.map((c) => (
           <span key={c.path} className="flex items-center gap-1.5">
             <ChevronRight className="size-3.5" />
-            <Link href={`/${c.path}`} className="hover:text-foreground">
+            <Link href={`/${c.path}`} className="transition-colors hover:text-forest-700">
               {c.name}
             </Link>
           </span>
         ))}
       </nav>
 
-      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1fr_320px]">
-        <div>
-          <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">{resolved.name}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">{sectionLabels[section as Section]}</p>
+      <div className="grid grid-cols-1 items-stretch gap-6 overflow-hidden rounded-[2rem] bg-forest-100 lg:grid-cols-5">
+        <div className="flex flex-col justify-center p-8 sm:p-10 lg:col-span-3 lg:p-12">
+          <span className="text-[0.7rem] font-bold tracking-[0.16em] text-ember-600 uppercase">
+            {sectionLabels[section as Section]}
+          </span>
+          <h1 className="mt-2.5 text-3xl leading-[1.08] text-forest-800 sm:text-4xl lg:text-5xl">
+            {resolved.name}
+          </h1>
+          <span className="mt-5 block h-[3px] w-16 rounded-full bg-ember-500" />
+          <div className="mt-5 max-w-xl leading-relaxed text-forest-800/75">
+            {renderRichText(shortIntro)}
+          </div>
+          {orderedProducts.length > 0 && (
+            <p className="mt-5 text-sm font-semibold text-forest-800/60">
+              {orderedProducts.length} carrier{orderedProducts.length === 1 ? "" : "s"} in this range
+            </p>
+          )}
         </div>
-        <div className="relative hidden aspect-video w-full overflow-hidden rounded-lg shadow-sm lg:block">
-          <Image src={categoryImage.url} alt={`${resolved.name}`} fill sizes="320px" className="object-cover" />
+        <div className="relative order-first min-h-56 lg:order-last lg:col-span-2">
+          <Image
+            src={categoryImage.url}
+            alt={resolved.name}
+            fill
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            className="object-cover"
+          />
         </div>
       </div>
 
-      <div className="mt-4 max-w-3xl text-gray-600">{renderRichText(shortIntro)}</div>
-
       {children.length > 0 && (
         <div className="mt-10">
-          <h2 className="font-heading text-xl font-semibold text-foreground">Shop {resolved.name} by Type</h2>
-          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <h2 className="text-2xl text-forest-800 sm:text-3xl">Shop {resolved.name} by type</h2>
+          <span className="mt-4 mb-6 block h-[3px] w-14 rounded-full bg-ember-500" />
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {children.map((child) => (
               <Link
                 key={child.path}
                 href={`/${child.path}`}
-                className="group flex items-center justify-between gap-2 rounded-lg border border-border bg-card p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md"
+                className="group flex items-center justify-between gap-2 rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:border-forest-300 hover:shadow-lg"
               >
-                <span className="font-medium text-foreground">{child.name}</span>
-                <ArrowRight className="size-4 shrink-0 text-gray-500 transition-transform group-hover:translate-x-0.5 group-hover:text-blue-600" />
+                <span className="text-sm font-bold text-forest-800">{child.name}</span>
+                <ArrowRight className="size-4 shrink-0 text-gray-500 transition-transform group-hover:translate-x-0.5 group-hover:text-forest-600" />
               </Link>
             ))}
           </div>
@@ -186,23 +204,24 @@ export default async function CategoryPage({
       )}
 
       <div className="mt-10">
-        <h2 className="font-heading text-xl font-semibold text-foreground">Shop {resolved.name}</h2>
+        <h2 className="text-2xl text-forest-800 sm:text-3xl">Shop {resolved.name}</h2>
+        <span className="mt-4 block h-[3px] w-14 rounded-full bg-ember-500" />
         {orderedProducts.length > 0 ? (
-          <div className="mt-4">
+          <div className="mt-6">
             <CategoryFilters products={orderedProducts.map(toPublicProduct)} />
           </div>
         ) : (
-          <div className="mt-4 flex flex-col items-center gap-3 rounded-lg border border-dashed border-border bg-gray-50 py-16 text-center">
-            <PackageSearch className="size-10 text-gray-400" />
-            <p className="font-medium text-foreground">New products coming soon, check back very soon</p>
-            <p className="max-w-sm text-sm text-muted-foreground">
+          <div className="mt-6 flex flex-col items-center gap-3 rounded-[2rem] bg-forest-100 py-16 text-center">
+            <PackageSearch className="size-9 text-forest-600" strokeWidth={1.5} />
+            <p className="text-xl text-forest-800">New products coming soon</p>
+            <p className="max-w-sm text-sm text-forest-800/70">
               We’re adding {resolved.name.toLowerCase()} to the shop. In the meantime, have a look at our featured
               carrier or browse related categories below.
             </p>
             {fallbackFeaturedProduct && (
               <Link
                 href={`/product/${fallbackFeaturedProduct.slug}`}
-                className="text-sm font-medium text-blue-700 hover:underline"
+                className="mt-1 inline-flex items-center gap-1 rounded-xl bg-forest-800 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-forest-900"
               >
                 View our featured carrier &rarr;
               </Link>
@@ -213,14 +232,14 @@ export default async function CategoryPage({
 
       {restIntro && (
         <div className="mt-12 max-w-3xl">
-          <h2 className="font-heading text-xl font-semibold text-foreground">More About {resolved.name}</h2>
+          <h2 className="text-2xl text-forest-800 sm:text-3xl">More about {resolved.name.toLowerCase()}</h2>
           <div className="mt-3 flex flex-col gap-4 text-gray-600">{renderRichText(restIntro)}</div>
         </div>
       )}
 
       <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div>
-          <h2 className="font-heading text-xl font-semibold text-foreground">Why Choose a {resolved.name.replace(/s$/, "")}</h2>
+          <h2 className="text-2xl text-forest-800 sm:text-3xl">Why choose a {resolved.name.replace(/s$/, "").toLowerCase()}</h2>
           <div className="mt-3 flex flex-col gap-3 text-gray-600">
             {resolved.whyChoose.split("\n\n").map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
@@ -228,13 +247,13 @@ export default async function CategoryPage({
           </div>
         </div>
         <div>
-          <h2 className="font-heading text-xl font-semibold text-foreground">Sizing and Buying Guide</h2>
+          <h2 className="text-2xl text-forest-800 sm:text-3xl">Sizing and buying guide</h2>
           <p className="mt-3 text-gray-600">{resolved.sizingGuide}</p>
         </div>
       </div>
 
       <div className="mt-12">
-        <h2 className="font-heading text-xl font-semibold text-foreground">Frequently Asked Questions</h2>
+        <h2 className="text-2xl text-forest-800 sm:text-3xl">Frequently asked questions</h2>
         <Accordion type="single" collapsible className="mt-4">
           {resolved.faqs.map((faq) => (
             <AccordionItem key={faq.question} value={faq.question}>
@@ -247,13 +266,13 @@ export default async function CategoryPage({
 
       {related.length > 0 && (
         <div className="mt-12">
-          <h2 className="font-heading text-xl font-semibold text-foreground">Related Categories</h2>
+          <h2 className="text-2xl text-forest-800 sm:text-3xl">Related categories</h2>
           <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {related.map((cat) => (
               <Link
                 key={cat.path}
                 href={`/${cat.path}`}
-                className="rounded-lg border border-border bg-card p-4 text-sm font-medium shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md"
+                className="rounded-lg border border-border bg-card p-4 text-sm font-medium shadow-sm transition-all hover:-translate-y-0.5 hover:border-forest-400 hover:shadow-md"
               >
                 {cat.name}
               </Link>
@@ -270,13 +289,13 @@ export default async function CategoryPage({
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex gap-4 rounded-lg border border-border bg-card p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md"
+                className="group flex gap-4 rounded-lg border border-border bg-card p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-forest-400 hover:shadow-md"
               >
                 <div className="relative aspect-square w-20 shrink-0 overflow-hidden rounded-md">
                   <Image src={post.cover_image} alt={post.title} fill sizes="80px" className="object-cover" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground group-hover:text-blue-700">{post.title}</p>
+                  <p className="font-medium text-foreground group-hover:text-forest-700">{post.title}</p>
                   <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{post.excerpt}</p>
                 </div>
               </Link>

@@ -58,7 +58,7 @@ export function CookieConsent() {
                 <X className="size-4" />
               </button>
 
-              <span className="flex size-9 items-center justify-center rounded-full bg-blue-50 text-blue-700">
+              <span className="flex size-9 items-center justify-center rounded-full bg-forest-50 text-forest-700">
                 <Cookie className="size-4.5" />
               </span>
 
@@ -66,7 +66,7 @@ export function CookieConsent() {
               <p className="mt-1.5 pr-4 text-sm text-gray-500">
                 Essential cookies keep your basket and sign-in working. With your permission we&apos;d
                 also like to use analytics cookies to understand how the site&apos;s used.{" "}
-                <Link href="/privacy" className="text-blue-600 underline-offset-2 hover:underline">
+                <Link href="/privacy" className="text-forest-600 underline-offset-2 hover:underline">
                   Cookie policy
                 </Link>
               </p>
