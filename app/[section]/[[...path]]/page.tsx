@@ -188,8 +188,10 @@ export default async function CategoryPage({
       )}
 
       <div className="mt-8 sm:mt-10">
-        <h2 className="text-2xl text-forest-800 sm:text-3xl">Shop {resolved.name}</h2>
-        <span className="mt-4 block h-[3px] w-14 rounded-full bg-ember-500" />
+        {/* Visually redundant with the H1 directly above it, but kept in the
+            accessibility tree so the product grid still has a labelled
+            heading for screen readers and document outline. */}
+        <h2 className="sr-only">Shop {resolved.name}</h2>
         {orderedProducts.length > 0 ? (
           <div className="mt-6">
             <CategoryFilters products={orderedProducts.map(toPublicProduct)} />
