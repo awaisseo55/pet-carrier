@@ -77,10 +77,11 @@
   --color-warning: #b45309;
   --color-warning-light: #fdf6e9;
 
-  /* Warm cream page, true-white cards sitting on top of it. The contrast
-     between the two is what gives the layout its depth now that the site
-     is no longer white-on-white. */
-  --background: #f4f6ef;
+  /* White page (owner's call, 2026-11). Depth now comes from the sage
+     feature panels and the gray-50 alternating bands rather than from a
+     tinted page colour, so anything that used to be a white plate on a
+     tinted page must become a gray-50 plate on white or it disappears. */
+  --background: #ffffff;
   --foreground: var(--color-ink);
   --card: #ffffff;
   --card-foreground: var(--color-ink);

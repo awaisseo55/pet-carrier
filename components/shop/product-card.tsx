@@ -45,7 +45,7 @@ export function ProductCard({ product, className }: { product: PublicProduct; cl
         className
       )}
     >
-      <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[1.5rem] bg-white">
+      <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[1.5rem] bg-gray-50">
         <Image
           src={image}
           alt={product.title}
