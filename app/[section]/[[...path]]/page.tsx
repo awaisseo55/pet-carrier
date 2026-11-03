@@ -133,7 +133,7 @@ export default async function CategoryPage({
   const restIntro = introBlocks.slice(1).join("\n\n");
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
       <script
         type="application/ld+json"
@@ -141,7 +141,7 @@ export default async function CategoryPage({
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <nav className="mb-7 flex flex-wrap items-center gap-1.5 text-sm text-gray-500">
+      <nav className="mb-4 flex flex-wrap items-center gap-1.5 text-sm text-gray-500 sm:mb-7">
         <Link href="/" className="transition-colors hover:text-forest-700">
           Home
         </Link>
@@ -156,7 +156,7 @@ export default async function CategoryPage({
       </nav>
 
       <div className="grid grid-cols-1 items-stretch gap-6 overflow-hidden rounded-[2rem] bg-forest-100 lg:grid-cols-5">
-        <div className="flex flex-col justify-center p-8 sm:p-10 lg:col-span-3 lg:p-12">
+        <div className="flex flex-col justify-center p-6 sm:p-10 lg:col-span-3 lg:p-12">
           <span className="text-[0.7rem] font-bold tracking-[0.16em] text-ember-600 uppercase">
             {sectionLabels[section as Section]}
           </span>
@@ -164,7 +164,7 @@ export default async function CategoryPage({
             {resolved.name}
           </h1>
           <span className="mt-5 block h-[3px] w-16 rounded-full bg-ember-500" />
-          <div className="mt-5 max-w-xl leading-relaxed text-forest-800/75">
+          <div className="mt-4 max-w-xl leading-relaxed text-forest-800/75 [&>p]:line-clamp-4 sm:mt-5 sm:[&>p]:line-clamp-none">
             {renderRichText(shortIntro)}
           </div>
           {orderedProducts.length > 0 && (
@@ -173,7 +173,7 @@ export default async function CategoryPage({
             </p>
           )}
         </div>
-        <div className="relative order-first min-h-56 lg:order-last lg:col-span-2">
+        <div className="relative order-first min-h-40 sm:min-h-56 lg:order-last lg:col-span-2">
           <Image
             src={categoryImage.url}
             alt={resolved.name}
@@ -185,15 +185,15 @@ export default async function CategoryPage({
       </div>
 
       {children.length > 0 && (
-        <div className="mt-10">
+        <div className="mt-8 sm:mt-10">
           <h2 className="text-2xl text-forest-800 sm:text-3xl">Shop {resolved.name} by type</h2>
-          <span className="mt-4 mb-6 block h-[3px] w-14 rounded-full bg-ember-500" />
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <span className="mt-4 mb-5 block h-[3px] w-14 rounded-full bg-ember-500 sm:mb-6" />
+          <div className="scrollbar-thin -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
             {children.map((child) => (
               <Link
                 key={child.path}
                 href={`/${child.path}`}
-                className="group flex items-center justify-between gap-2 rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:border-forest-300 hover:shadow-lg"
+                className="group flex w-[62%] shrink-0 snap-start items-center justify-between gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-1 hover:border-forest-300 hover:shadow-lg sm:w-auto sm:p-5"
               >
                 <span className="text-sm font-bold text-forest-800">{child.name}</span>
                 <ArrowRight className="size-4 shrink-0 text-gray-500 transition-transform group-hover:translate-x-0.5 group-hover:text-forest-600" />
@@ -203,7 +203,7 @@ export default async function CategoryPage({
         </div>
       )}
 
-      <div className="mt-10">
+      <div className="mt-8 sm:mt-10">
         <h2 className="text-2xl text-forest-800 sm:text-3xl">Shop {resolved.name}</h2>
         <span className="mt-4 block h-[3px] w-14 rounded-full bg-ember-500" />
         {orderedProducts.length > 0 ? (
