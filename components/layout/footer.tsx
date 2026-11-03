@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ShieldCheck, Star, Truck } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 function TikTokIcon(props: React.SVGProps<SVGSVGElement>) {

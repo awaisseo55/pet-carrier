@@ -1,6 +1,5 @@
 import { getActiveProducts, toPublicProduct } from "@/lib/products";
 import { ProductRail } from "@/components/home/product-rail";
-import { formatPrice } from "@/lib/utils";
 
 /**
  * Reduced-price products, pulled live from the catalogue rather than hardcoded,
@@ -27,7 +26,7 @@ export async function Offers() {
       products={reduced.map(toPublicProduct)}
       viewAllHref="/carriers"
       viewAllLabel="Browse the full range"
-      className="bg-gray-50"
+      className="bg-background"
     />
   );
 }

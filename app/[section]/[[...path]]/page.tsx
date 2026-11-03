@@ -20,7 +20,6 @@ import {
   getProductSource,
   toPublicProduct,
 } from "@/lib/products";
-import { getCategoryImageUrl } from "@/lib/placeholders";
 import { breadcrumbJsonLd, collectionPageJsonLd, faqJsonLd } from "@/lib/seo";
 import { renderRichText } from "@/lib/markdown-lite";
 
@@ -80,12 +79,11 @@ export default async function CategoryPage({
   const resolved = await getResolvedCategory(fullPath);
   if (!resolved) notFound();
 
-  const [breadcrumbTrail, children, related, products, categoryImage, relevantPosts] = await Promise.all([
+  const [breadcrumbTrail, children, related, products, relevantPosts] = await Promise.all([
     getBreadcrumbNodes(fullPath),
     getChildNodes(fullPath),
     getRelatedNodes(fullPath),
     getProductsByCategoryIncludingDescendants(fullPath),
-    getCategoryImageUrl(fullPath),
     getRelevantBlogPosts(fullPath),
   ]);
 
@@ -128,9 +126,11 @@ export default async function CategoryPage({
   // the intro (buying considerations, "who this suits" etc.) reads better
   // once someone has already seen what's on offer, so it moves below the
   // grid alongside Why Choose/Sizing Guide rather than delaying the products.
-  const introBlocks = resolved.intro.trim().split(/\n\s*\n/);
-  const shortIntro = introBlocks[0] ?? "";
-  const restIntro = introBlocks.slice(1).join("\n\n");
+  // The full intro renders below the product grid rather than above it: on a
+  // category page the products are the conversion surface, and a lead
+  // paragraph plus a category photo was pushing them roughly two screens down
+  // on a phone. Nothing is dropped, so the page keeps all of its copy for SEO.
+  const fullIntro = resolved.intro.trim();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
@@ -155,33 +155,17 @@ export default async function CategoryPage({
         ))}
       </nav>
 
-      <div className="grid grid-cols-1 items-stretch gap-6 overflow-hidden rounded-[2rem] bg-forest-100 lg:grid-cols-5">
-        <div className="flex flex-col justify-center p-6 sm:p-10 lg:col-span-3 lg:p-12">
-          <span className="text-[0.7rem] font-bold tracking-[0.16em] text-ember-600 uppercase">
-            {sectionLabels[section as Section]}
-          </span>
-          <h1 className="mt-2.5 text-3xl leading-[1.08] text-forest-800 sm:text-4xl lg:text-5xl">
-            {resolved.name}
-          </h1>
-          <span className="mt-5 block h-[3px] w-16 rounded-full bg-ember-500" />
-          <div className="mt-4 max-w-xl leading-relaxed text-forest-800/75 [&>p]:line-clamp-4 sm:mt-5 sm:[&>p]:line-clamp-none">
-            {renderRichText(shortIntro)}
-          </div>
-          {orderedProducts.length > 0 && (
-            <p className="mt-5 text-sm font-semibold text-forest-800/60">
-              {orderedProducts.length} carrier{orderedProducts.length === 1 ? "" : "s"} in this range
-            </p>
-          )}
-        </div>
-        <div className="relative order-first min-h-40 sm:min-h-56 lg:order-last lg:col-span-2">
-          <Image
-            src={categoryImage.url}
-            alt={resolved.name}
-            fill
-            sizes="(min-width: 1024px) 40vw, 100vw"
-            className="object-cover"
-          />
-        </div>
+      <div>
+        <span className="text-[0.7rem] font-bold tracking-[0.16em] text-ember-600 uppercase">
+          {sectionLabels[section as Section]}
+        </span>
+        <h1 className="mt-2 text-3xl leading-[1.08] text-forest-800 sm:text-4xl">{resolved.name}</h1>
+        <span className="mt-4 block h-[3px] w-14 rounded-full bg-ember-500" />
+        {orderedProducts.length > 0 && (
+          <p className="mt-3 text-sm font-medium text-gray-500">
+            {orderedProducts.length} carrier{orderedProducts.length === 1 ? "" : "s"} in this range
+          </p>
+        )}
       </div>
 
       {children.length > 0 && (
@@ -230,10 +214,10 @@ export default async function CategoryPage({
         )}
       </div>
 
-      {restIntro && (
+      {fullIntro && (
         <div className="mt-12 max-w-3xl">
           <h2 className="text-2xl text-forest-800 sm:text-3xl">More about {resolved.name.toLowerCase()}</h2>
-          <div className="mt-3 flex flex-col gap-4 text-gray-600">{renderRichText(restIntro)}</div>
+          <div className="mt-3 flex flex-col gap-4 text-gray-600">{renderRichText(fullIntro)}</div>
         </div>
       )}
 

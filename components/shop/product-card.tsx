@@ -46,7 +46,11 @@ export function ProductCard({ product, className }: { product: PublicProduct; cl
         className
       )}
     >
-      <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[1.5rem] bg-gray-50">
+      {/* No tinted plate behind the photo. Most product shots are
+          white-background cut-outs, so a grey rounded box around them read as
+          a box inside a box. The image now sits directly on the page and the
+          card is defined by its text block and hover lift instead. */}
+      <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl">
         <Image
           src={image}
           alt={product.title}
@@ -67,11 +71,11 @@ export function ProductCard({ product, className }: { product: PublicProduct; cl
             aria-hidden
             fill
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-            className="object-contain p-6 opacity-0 transition-all duration-500 group-hover:scale-[1.06] group-hover:opacity-100"
+            className="object-contain p-2 opacity-0 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-100"
           />
         )}
 
-        <div className="absolute top-4 left-4 z-10 flex flex-col gap-1.5">
+        <div className="absolute top-2 left-2 z-10 flex flex-col gap-1.5">
           {saving > 0 && <Badge variant="secondary">Save {formatPrice(saving)}</Badge>}
           {product.stock_status === "low_stock" && <Badge variant="warning">Low stock</Badge>}
           {outOfStock && <Badge variant="outline">Out of stock</Badge>}
@@ -86,7 +90,7 @@ export function ProductCard({ product, className }: { product: PublicProduct; cl
             type="button"
             onClick={handleAdd}
             aria-label={`Add ${product.title} to basket`}
-            className="absolute right-3.5 bottom-3.5 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-forest-200 bg-white/90 text-forest-800 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-forest-800 hover:bg-forest-800 hover:text-white md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 md:focus-visible:translate-y-0 md:focus-visible:opacity-100"
+            className="absolute right-2 bottom-2 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-forest-200 bg-white/90 text-forest-800 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-forest-800 hover:bg-forest-800 hover:text-white md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 md:focus-visible:translate-y-0 md:focus-visible:opacity-100"
           >
             <AnimatePresence mode="wait" initial={false}>
               {justAdded ? (
