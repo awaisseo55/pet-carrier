@@ -12,9 +12,11 @@ import { DELIVERY_OPTIONS } from "./constants";
  * reimplemented per call site.
  *
  * Resend only sends mail, it does not receive it: a customer replying to one
- * of these emails goes straight to CUSTOMER_REPLY_TO_EMAIL's real inbox
- * (currently a Gmail address), it never comes back through this app or
- * Resend's API. See the "Transactional email" section in CLAUDE.md.
+ * of these emails goes to CUSTOMER_REPLY_TO_EMAIL's inbox, it never comes back
+ * through this app or Resend's API. Inbound mail for that address is handled
+ * entirely outside this codebase by Cloudflare Email Routing, which holds the
+ * MX records for the apex domain and forwards to the owner's real inbox. See
+ * the "Transactional email" section in CLAUDE.md.
  */
 
 const resendApiKey = process.env.RESEND_API_KEY;
@@ -24,7 +26,7 @@ const resend = resendApiKey ? new Resend(resendApiKey) : null;
 // never hard-coded as the only source of truth.
 const FROM_ADDRESS = process.env.RESEND_FROM_EMAIL || "Pet Carrier <orders@pet-carrier.co.uk>";
 const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "awaisseo55@gmail.com";
-const CUSTOMER_REPLY_TO = process.env.CUSTOMER_REPLY_TO_EMAIL || "awaisseo55@gmail.com";
+const CUSTOMER_REPLY_TO = process.env.CUSTOMER_REPLY_TO_EMAIL || "orders@pet-carrier.co.uk";
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://pet-carrier.co.uk").replace(/\/+$/, "");
 

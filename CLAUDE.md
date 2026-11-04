@@ -377,9 +377,26 @@ This is the part most likely to trip up future changes, read carefully.
   safe fallback defaults if any are unset. If `RESEND_API_KEY` is unset, sends are skipped with a
   console warning rather than throwing, so a missing key never breaks order creation.
 - **Resend only sends mail, it does not receive it.** A customer replying to an order email lands
-  in `CUSTOMER_REPLY_TO_EMAIL`'s real inbox directly (currently a Gmail address, intended to move
-  to `info@pet-carrier.co.uk` later, just by changing the env var), it never comes back through
-  this app or through Resend's API. There is no inbound-email handling anywhere in the codebase.
+  in `CUSTOMER_REPLY_TO_EMAIL`'s inbox, it never comes back through this app or through Resend's
+  API. There is no inbound-email handling anywhere in the codebase, and there should not be.
+- **Inbound mail is Cloudflare Email Routing, set up 2026-11, entirely outside this repo.**
+  `CUSTOMER_REPLY_TO_EMAIL` is now `orders@pet-carrier.co.uk` rather than a personal Gmail, so
+  customers never see the owner's private address. The apex domain's MX records point at
+  `route1/2/3.mx.cloudflare.net` and a forwarding rule sends `orders@pet-carrier.co.uk` to the
+  owner's Gmail. Replies are sent *as* `orders@pet-carrier.co.uk` from that Gmail via Gmail's
+  "Send mail as" using Resend's SMTP relay (`smtp.resend.com`, username `resend`, password is a
+  dedicated Resend API key), so they carry the domain's DKIM signature instead of failing
+  authentication. Consequences to respect:
+  - **Before changing `CUSTOMER_REPLY_TO_EMAIL` to any new address, add a matching Email Routing
+    rule in Cloudflare first**, otherwise customer replies bounce silently. There is nothing in
+    this codebase that would catch that.
+  - **Never remove or replace the apex MX records** when touching DNS. They are the only reason
+    the domain can receive mail at all; the Resend sending records live separately on
+    `send.pet-carrier.co.uk` (SPF + bounce MX) and `resend._domainkey` (DKIM), and the two sets
+    are independent. Breaking either one breaks a different half of the mail flow.
+  - The apex SPF is Cloudflare's (`v=spf1 include:_spf.mx.cloudflare.net ~all`). It does not
+    cover Resend because Resend's envelope sender is on the `send.` subdomain, which is correct,
+    do not "fix" it by merging the two.
 - Every customer-controlled value (name, address lines, delivery instructions, tracking number)
   must go through `escapeHtml()` from `lib/email.ts` before it reaches an HTML email string. The
   shared `renderLayout()`/`itemsTableHtml()`/`totalsHtml()`/`addressHtml()` helpers in that file
@@ -594,8 +611,8 @@ image/active-status change is reflected on Google's next scheduled fetch automat
 - `RESEND_API_KEY`: set to a real key in Vercel's Production environment as of 2026-09, so
   order/contact emails actually send there. Still unset locally by default, order/contact emails
   are logged to console instead of sent when developing locally (see the **"Transactional
-  email"** section). `CUSTOMER_REPLY_TO_EMAIL` is currently a personal Gmail address, intended to
-  move to `info@pet-carrier.co.uk` once that inbox exists, just by changing the env var.
+  email"** section). `CUSTOMER_REPLY_TO_EMAIL` is `orders@pet-carrier.co.uk` as of 2026-11, backed
+  by Cloudflare Email Routing, see the **"Transactional email"** section before changing it.
 - `ENABLE_CASH_ON_DELIVERY`: off by default, set to `"true"` to offer cash on delivery at checkout,
   see the **"Cash on delivery checkout"** section.
 - `ANTHROPIC_API_KEY`: unset by default, Amazon import falls back to rule-based content.
