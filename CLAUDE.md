@@ -226,6 +226,17 @@ product copy:
 - If the destination's keyword doesn't appear naturally in the sentence, skip the link rather than
   force it onto the wrong word, a small rewrite to work the keyword in naturally is preferable to
   either forcing a mismatched anchor or leaving the paragraph unlinked.
+- **Never leave an internal link pointing at a URL that redirects.** When a category slug is
+  renamed, adding the `next.config.ts` redirect is only half the job: the links already authored
+  into `data/products.json` descriptions must be repointed too. The 2026-08 "By Style" rename did
+  only the redirect half, and 91 links across 50 products were still hopping through a 301 until
+  2026-11. Redirects exist for external links and old bookmarks, not for our own internal linking.
+  After any slug rename, grep every description for the old path in a markdown link target
+  (`](\/carriers/old-slug)`) and repoint it, then assert zero remain.
+- Preferred anchors for the pages where the obvious short phrase is too generic:
+  **"vet visit pet carrier"** for `/carriers/pet-carriers-for-vet-visits` and **"airline approved
+  pet carrier"** for `/carriers/pet-airline-approved-carriers` (owner's call, a bare "vet visits"
+  or "airline approved" doesn't carry the keyword).
 
 ## Design system (do not deviate without asking)
 
