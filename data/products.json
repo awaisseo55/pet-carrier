@@ -12017,7 +12017,7 @@
     "is_active": true,
     "is_featured": false,
     "created_at": "2026-11-09T12:24:06.301Z",
-    "updated_at": "2026-11-09T13:01:53.368Z",
+    "updated_at": "2026-11-09T13:06:21.011Z",
     "markup_percentage": 412,
     "meta_title": "Soft-Sided Cat & Small Dog Carrier - Foldable Travel Bag",
     "meta_description": "A foldable soft-sided carrier for cats and small dogs. Clear front window, full mesh ventilation, padded handle and a detachable shoulder strap. 40 x 26 x 22cm.",
@@ -12045,6 +12045,36 @@
         "amazonUrl": "https://www.temu.com/uk/large--bag-portable-folding--travel-crate-cage-with-zipper-closure--interior-front-door-window-side-ventilation-mesh-lightweight-sturdy-for-airplane-car-vet--safe-comfortable-carrier-for-medium-dogs-cats-puppies-easy-fold-design-for-home-storage--for-small-dog-puppy-carrier-for-small-dog-dog-carrier-for-medium-dog-pet-backpack-lightw-backpack-dog-car-seat-for-medium-dog-pet-backpack-with-fan-dog-carrier-backpack-g-601103552427837.html",
         "inStock": true,
         "colourImage": "https://images.pet-carrier.co.uk/uploads/product/601103552427837/image-11-main.webp"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What size pet does this carrier suit?",
+        "answer": "It measures 40cm long, 26cm wide and 22cm high, which suits most cats, kittens, puppies and small dog breeds. Measure your pet from nose to tail base and from floor to shoulder, then compare against those dimensions before ordering, since build varies a lot between pets of the same weight."
+      },
+      {
+        "question": "Is this carrier suitable for medium or large dogs?",
+        "answer": "No. At 40 x 26 x 22cm it is a small carrier, so a medium or large dog would not be able to turn around and settle comfortably. Have a look at our medium dog carriers instead."
+      },
+      {
+        "question": "Does it fold flat for storage?",
+        "answer": "Yes. The carrier unzips and lies flat when it is empty, so it slides under a bed or behind a car seat, then zips back into shape in seconds."
+      },
+      {
+        "question": "Which colours are available?",
+        "answer": "Two: a grey body with pink trim, and an all-over charcoal. Use the colour selector on this page to choose, and the main photo will update to match."
+      },
+      {
+        "question": "Can I use it for car journeys and vet trips?",
+        "answer": "Yes. The semi-rigid frame holds its shape with your pet inside rather than collapsing around them, and the padded top handle and detachable shoulder strap make it quick to carry in and out. The outer fabric wipes clean afterwards."
+      },
+      {
+        "question": "How do I clean it?",
+        "answer": "Wipe the Oxford cloth outer with a damp cloth and a little mild soap, then let it dry fully before folding it away. Spot clean the base padding rather than soaking it, so the structure is not affected."
+      },
+      {
+        "question": "Is it airline approved?",
+        "answer": "We do not list it as airline approved. Cabin pet rules differ by airline and by route, so check your airline's own maximum carrier dimensions against 40 x 26 x 22cm before you book."
       }
     ]
   }
