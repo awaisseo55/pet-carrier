@@ -168,6 +168,17 @@ optimiser in the loop is what caused two of the three outages below.
 - **Never make health claims.** Say "designed for comfort", not "prevents anxiety" or "reduces
   stress". Products are pet carriers, not medical devices.
 - AI-generated product copy must be rewritten, not copied from Amazon. See `lib/ai-content.ts`.
+- **Never name the sourcing channel in customer-facing copy.** The Amazon Business / Temu
+  repackaging model is for developer eyes only, so don't write "sourced from Amazon", don't name
+  Amazon in the disclaimer's sourcing paragraph, and don't surface `amazon_url` (the internal
+  fulfilment link) anywhere outside admin pages and the owner's new-order email.
+  - **Exception: "Amazon Basics" as a product brand stays.** Three products are genuinely
+    manufactured under that brand, so it remains in `Product.brand`, the title, the slug and the
+    description's "Brand:" line (2026-11 owner decision). Renaming it would misstate the
+    manufacturer, which is a trading-standards problem and breaks Google Merchant Center's
+    reseller brand rule, see the feed section below. What was removed was only the conversational
+    repetition in body copy ("Amazon Basics has built the frame…"). If asked again to "remove
+    Amazon everywhere", flag this distinction rather than renaming the brand.
 
 ## Product description formatting
 
