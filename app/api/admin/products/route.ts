@@ -4,7 +4,7 @@ import { findProductByAsin, upsertProduct } from "@/lib/products";
 import { downloadAndProcessImages } from "@/lib/image-pipeline";
 import { adminErrorResponse } from "@/lib/api-error";
 import { revalidateProductPaths } from "@/lib/revalidate";
-import type { Product } from "@/lib/types";
+import type { Product, ProductSource } from "@/lib/types";
 
 interface SaveProductError {
   amazon_url: string;
@@ -30,6 +30,10 @@ interface SaveProductInput {
   size_range: string;
   weight_capacity: string;
   amazon_url: string;
+  /** Real manufacturer brand. Falls back to "Pet Carrier" only when the importer didn't capture one. */
+  brand?: string;
+  /** Sourcing channel. Absent means "amazon", see getProductSource() in lib/products.ts. */
+  source?: ProductSource;
   is_active?: boolean;
   is_featured?: boolean;
 }
@@ -53,7 +57,7 @@ export async function POST(request: Request) {
       if (duplicate) {
         errors.push({
           amazon_url: input.amazon_url,
-          error: `A product from this Amazon listing already exists: "${duplicate.title}".`,
+          error: `A product from this ${input.source === "temu" ? "Temu" : "Amazon"} listing already exists: "${duplicate.title}".`,
           duplicate: true,
           existing_product_id: duplicate.id,
         });
@@ -96,9 +100,11 @@ export async function POST(request: Request) {
         category_slugs: input.category_slugs,
         size_range: input.size_range || "Standard",
         weight_capacity: input.weight_capacity || "See listing",
-        brand: "Pet Carrier",
+        brand: input.brand?.trim() || "Pet Carrier",
         amazon_asin: input.asin,
         amazon_url: input.amazon_url,
+        // Absent means "amazon", so only the non-default is written.
+        ...(input.source && input.source !== "amazon" ? { source: input.source } : {}),
         is_active: input.is_active ?? true,
         is_featured: input.is_featured ?? false,
         created_at: now,

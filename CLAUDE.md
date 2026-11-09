@@ -352,6 +352,30 @@ This is the part most likely to trip up future changes, read carefully.
   3. `lib/image-pipeline.ts` downloads and converts images to WebP, then stores them via
      `lib/image-store.ts` (`/public/uploads/product/[asin]/` locally, the public R2 bucket in
      production).
+- **The Temu import (2026-11) is paste-assisted, and that is not a shortcut to fix later.** Temu
+  answers *every* server-side request for a product page with an obfuscated JavaScript anti-bot
+  challenge (verified against `www.`/`m.`/bare hosts and against Googlebot and
+  facebookexternalhit user agents: all return the same ~1.4KB challenge page, no Open Graph
+  tags). Writing something to defeat that is bot-detection bypass, don't. So
+  `app/api/admin/temu/fetch/route.ts` takes the price and gallery image URLs the admin copied off
+  the listing, and reuses steps 2 and 3 above unchanged.
+  - `lib/temu-url.ts` holds the pure URL helpers and has **no `server-only` marker on purpose**,
+    because `components/admin/temu-import.tsx` is a client component and needs `parseTemuUrl` to
+    prefill the gallery image. Keep it dependency-free.
+  - It reads the goods ID from the `-g-<digits>.html` suffix, the main image from the
+    `top_gallery_url` query param, and **drops every query parameter** from the stored URL: Temu
+    links carry `_x_sessn_id` session ids and referral tracking that must not land on a product
+    record.
+  - `isTemuImageUrl()` allowlists `*.kwcdn.com` over https. The import fetches these server-side,
+    so don't relax it to "any URL the admin pasted". Temu's image CDN is open (no auth), which is
+    why image download works even though page scraping doesn't.
+  - A Temu product stores the goods ID in `amazon_asin` and the canonical URL in `amazon_url`
+    (both field names predate the second channel, see the note on `Product.amazon_url`), and sets
+    `source: "temu"` so the display-priority rule applies.
+  - `GeneratedContent.ai_generated` is `false` when the rule-based fallback ran. The Temu form
+    shows a warning in that case, because unlike Amazon (whose scraped title is real prose) the
+    only title Temu gives us is a keyword-stuffed URL slug, so the fallback output must not be
+    published as-is.
 - All admin image uploads (category, hero, blog, product) go through the single
   `/api/admin/upload` route, resized and converted to WebP by sharp, then persisted via
   `lib/image-store.ts` (same local-vs-R2 split as the data layer above). Images are uploaded to

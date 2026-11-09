@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AmazonImport } from "@/components/admin/amazon-import";
+import { TemuImport } from "@/components/admin/temu-import";
 import { ManualProductForm } from "@/components/admin/manual-product-form";
 import { CsvImport } from "@/components/admin/csv-import";
 import { BulkUrlImport } from "@/components/admin/bulk-url-import";
@@ -20,6 +21,7 @@ export function AddProductTabs() {
     <Tabs value={tab} onValueChange={setTab}>
       <TabsList>
         <TabsTrigger value="amazon">Add from Amazon URL</TabsTrigger>
+        <TabsTrigger value="temu">Add from Temu URL</TabsTrigger>
         <TabsTrigger value="manual">Add Manually</TabsTrigger>
         <TabsTrigger value="csv">Import CSV</TabsTrigger>
         <TabsTrigger value="bulk">Bulk URLs</TabsTrigger>
@@ -27,6 +29,9 @@ export function AddProductTabs() {
 
       <TabsContent value="amazon" className="mt-6">
         <AmazonImport />
+      </TabsContent>
+      <TabsContent value="temu" className="mt-6">
+        <TemuImport />
       </TabsContent>
       <TabsContent value="manual" className="mt-6">
         <ManualProductForm key={prefillAmazonUrl} initialAmazonUrl={prefillAmazonUrl} />

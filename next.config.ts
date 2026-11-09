@@ -40,6 +40,13 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images-na.ssl-images-amazon.com",
       },
+      // Temu's image CDN. Only ever rendered in the admin Temu import preview:
+      // once saved, images are downloaded and re-hosted on R2 like every other
+      // product image. See lib/temu-url.ts.
+      {
+        protocol: "https",
+        hostname: "*.kwcdn.com",
+      },
       // Cloudflare R2 public bucket serving product/category/hero images (see lib/image-store.ts).
       ...(r2Hostname
         ? [

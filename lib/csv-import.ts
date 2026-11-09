@@ -177,13 +177,11 @@ export async function processCsvRow(
   if (options.useAI) {
     try {
       const generated = await generateProductContent({
-        asin: data.sku || id,
         title,
         price: rawPrice,
         images: imageUrls,
         bullets: features,
         description,
-        amazon_url: data.amazon_url || "",
       });
       description = generated.description;
       shortDescription = shortDescription || generated.short_description;

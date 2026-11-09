@@ -1,6 +1,18 @@
 import "server-only";
-import type { ScrapedAmazonProduct } from "./amazon";
 import { CATEGORIES } from "./categories";
+
+/**
+ * Supplier-neutral input to the rewriter. ScrapedAmazonProduct (scraped) and
+ * the Temu import's hand-assembled draft (pasted, since Temu can't be
+ * scraped, see lib/temu-url.ts) both satisfy this.
+ */
+export interface ScrapedProductInput {
+  title: string;
+  price: number | null;
+  images: string[];
+  bullets: string[];
+  description: string;
+}
 
 export interface GeneratedContent {
   title: string;
@@ -11,6 +23,12 @@ export interface GeneratedContent {
   features: string[];
   image_alt_texts: string[];
   suggested_category_slugs: string[];
+  /**
+   * False when the rule-based fallback produced this (no ANTHROPIC_API_KEY,
+   * or the Claude call failed). The copy is then lightly-tidied raw supplier
+   * text, not original writing, so an import UI should warn before publishing.
+   */
+  ai_generated: boolean;
 }
 
 // TODO: add ANTHROPIC_API_KEY to .env.local to enable AI-rewritten content.
@@ -49,7 +67,7 @@ export function suggestCategorySlugs(text: string): string[] {
   return [hub];
 }
 
-function fallbackContent(raw: ScrapedAmazonProduct): GeneratedContent {
+function fallbackContent(raw: ScrapedProductInput): GeneratedContent {
   const cleanTitle = raw.title.replace(/\s+/g, " ").trim();
   const shortTitle = cleanTitle.length > 60 ? `${cleanTitle.slice(0, 57)}...` : cleanTitle;
 
@@ -66,21 +84,26 @@ function fallbackContent(raw: ScrapedAmazonProduct): GeneratedContent {
     features: raw.bullets.length > 0 ? raw.bullets : ["Comfortable, secure design", "Built for everyday use"],
     image_alt_texts: raw.images.map((_, i) => `${cleanTitle} - image ${i + 1}`),
     suggested_category_slugs: suggestCategorySlugs(`${raw.title} ${raw.description}`),
+    ai_generated: false,
   };
 }
 
 /**
- * Rewrites raw, Amazon-sourced product data into original, SEO-friendly
- * copy using Claude. Falls back to a simple rule-based rewrite if the API
- * key is missing or the request fails, so the admin flow never breaks.
+ * Rewrites raw supplier product data into original, SEO-friendly copy using
+ * Claude. Falls back to a simple rule-based rewrite if the API key is missing
+ * or the request fails, so the admin flow never breaks.
+ *
+ * The prompt never names the supplier: the sourcing channel is internal only
+ * (see CLAUDE.md "Voice and content rules"), and the same rewriter now serves
+ * both the Amazon and Temu imports.
  */
-export async function generateProductContent(raw: ScrapedAmazonProduct): Promise<GeneratedContent> {
+export async function generateProductContent(raw: ScrapedProductInput): Promise<GeneratedContent> {
   if (!ANTHROPIC_API_KEY) {
     console.warn("ANTHROPIC_API_KEY not set, using fallback content generation. TODO: configure Claude API.");
     return fallbackContent(raw);
   }
 
-  const prompt = `You are a copywriter for Pet Carrier, a UK pet carrier specialist brand. Rewrite the following raw Amazon product data into unique, SEO-friendly content. Use British English (colour, favourite, £), a warm and professional tone, and never use em dashes or health claims. Do not copy the Amazon copy verbatim, write it fresh.
+  const prompt = `You are a copywriter for Pet Carrier, a UK pet carrier specialist brand. Rewrite the following raw supplier product data into unique, SEO-friendly content. Use British English (colour, favourite, £), a warm and professional tone, and never use em dashes or health claims. Do not copy the supplier's wording verbatim, write it fresh. The raw title may be keyword-stuffed, so write a clean, natural title rather than echoing it.
 
 Raw title: ${raw.title}
 Raw price: ${raw.price ? `£${raw.price}` : "unknown"}
@@ -133,6 +156,7 @@ Respond with ONLY a JSON object matching this exact shape, no other text:
       features: Array.isArray(parsed.features) && parsed.features.length > 0 ? parsed.features : raw.bullets,
       image_alt_texts: raw.images.map((_, i) => `${parsed.title || raw.title} - image ${i + 1}`),
       suggested_category_slugs: suggestCategorySlugs(`${parsed.title || raw.title} ${raw.description}`),
+      ai_generated: true,
     };
   } catch (error) {
     console.error("Claude content generation failed, using fallback", error);
