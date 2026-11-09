@@ -35,7 +35,8 @@ export default function DisclaimerPage() {
       <p>
         Pet Carrier curates and sells products through a UK-based fulfilment process. We are an
         independent retailer and are not officially affiliated with, endorsed by, or sponsored by
-        Amazon or any manufacturer whose products may share similarities with items in our range.
+        any manufacturer, brand or marketplace whose products may share similarities with items in
+        our range.
       </p>
 
       <h2>External links</h2>

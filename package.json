@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "check:images": "node scripts/check-image-domains.mjs",
+    "build:badges": "node scripts/build-brand-badges.mjs",
     "test": "vitest run"
   },
   "dependencies": {
