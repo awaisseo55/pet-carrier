@@ -12005,7 +12005,8 @@
       "carriers/pet-soft-sided-carriers",
       "carriers/pet-carriers-for-vet-visits",
       "carriers/pet-car-travel-carriers",
-      "carriers/everyday-pet-carriers"
+      "carriers/everyday-pet-carriers",
+      "carriers/small-animal-carriers"
     ],
     "size_range": "One size (approx. 40cm L x 26cm W x 22cm H)",
     "weight_capacity": "Not specified by the supplier; sized for cats and small dogs",
@@ -12013,10 +12014,10 @@
     "amazon_asin": "601103552427837",
     "amazon_url": "https://www.temu.com/uk/large--bag-portable-folding--travel-crate-cage-with-zipper-closure--interior-front-door-window-side-ventilation-mesh-lightweight-sturdy-for-airplane-car-vet--safe-comfortable-carrier-for-medium-dogs-cats-puppies-easy-fold-design-for-home-storage--for-small-dog-puppy-carrier-for-small-dog-dog-carrier-for-medium-dog-pet-backpack-lightw-backpack-dog-car-seat-for-medium-dog-pet-backpack-with-fan-dog-carrier-backpack-g-601103552427837.html",
     "source": "temu",
-    "is_active": false,
+    "is_active": true,
     "is_featured": false,
     "created_at": "2026-11-09T12:24:06.301Z",
-    "updated_at": "2026-11-09T12:32:40.799Z",
+    "updated_at": "2026-11-09T12:32:39.719Z",
     "markup_percentage": 412,
     "meta_title": "Soft-Sided Cat & Small Dog Carrier - Foldable Travel Bag",
     "meta_description": "A foldable soft-sided carrier for cats and small dogs. Clear front window, full mesh ventilation, padded handle and a detachable shoulder strap. 40 x 26 x 22cm.",
