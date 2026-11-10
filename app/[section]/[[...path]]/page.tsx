@@ -97,8 +97,15 @@ export default async function CategoryPage({
   // Amazon-sourced ones in this default ("Featured") ordering, admin-pinned
   // picks above still take absolute priority. Only affects this default view,
   // an explicit sort (price, newest, etc.) overrides it, see sortProducts().
-  const temuFirst = remaining.filter((p) => getProductSource(p) === "temu");
-  const amazonRest = remaining.filter((p) => getProductSource(p) !== "temu");
+  // Within each group, cheapest first: "Temu first" on its own was surfacing
+  // a £54 trolley ahead of £28 stock, which undercuts the point of leading
+  // with the better-margin, better-value items. For a variant product
+  // Product.price is already the lowest variant price ("From £X"), so this
+  // sorts on the number the customer actually sees on the card.
+  const byPriceAsc = <T extends { price: number }>(list: T[]) =>
+    [...list].sort((a, b) => a.price - b.price);
+  const temuFirst = byPriceAsc(remaining.filter((p) => getProductSource(p) === "temu"));
+  const amazonRest = byPriceAsc(remaining.filter((p) => getProductSource(p) !== "temu"));
   const orderedProducts = [...featuredProducts, ...temuFirst, ...amazonRest];
 
   // Only needed for the empty-grid state's "view our featured carrier"
