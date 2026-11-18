@@ -305,7 +305,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="size-3.5" />
-                  hello@pet-carrier.co.uk
+                  order@pet-carrier.co.uk
                 </div>
               </div>
             </div>

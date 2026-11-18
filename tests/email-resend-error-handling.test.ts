@@ -13,7 +13,7 @@ vi.mock("resend", () => ({
 // var must be set before the module is first imported.
 process.env.RESEND_API_KEY = "test_key_do_not_log_me_123";
 process.env.ADMIN_NOTIFICATION_EMAIL = "owner@example.com";
-process.env.RESEND_FROM_EMAIL = "Pet Carrier <orders@pet-carrier.co.uk>";
+process.env.RESEND_FROM_EMAIL = "Pet Carrier <order@pet-carrier.co.uk>";
 
 const { sendOrderConfirmationEmail } = await import("@/lib/email");
 

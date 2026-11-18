@@ -240,9 +240,9 @@ This is the part most likely to trip up future changes, read carefully.
   safe fallback defaults if any are unset. If `RESEND_API_KEY` is unset, sends are skipped with a
   console warning rather than throwing, so a missing key never breaks order creation.
 - **Resend only sends mail, it does not receive it.** A customer replying to an order email lands
-  in `CUSTOMER_REPLY_TO_EMAIL`'s real inbox directly (currently a Gmail address, intended to move
-  to `info@pet-carrier.co.uk` later, just by changing the env var), it never comes back through
-  this app or through Resend's API. There is no inbound-email handling anywhere in the codebase.
+  in `CUSTOMER_REPLY_TO_EMAIL`'s real inbox directly (`order@pet-carrier.co.uk`, forwarded to the
+  owner's Gmail by Cloudflare Email Routing), it never comes back through this app or through
+  Resend's API. There is no inbound-email handling anywhere in the codebase.
 - Every customer-controlled value (name, address lines, delivery instructions, tracking number)
   must go through `escapeHtml()` from `lib/email.ts` before it reaches an HTML email string. The
   shared `renderLayout()`/`itemsTableHtml()`/`totalsHtml()`/`addressHtml()` helpers in that file
@@ -308,8 +308,9 @@ a trading-standards problem, not just a content bug.
   keys before launch.
 - `RESEND_API_KEY`: unset by default locally, order/contact emails are logged to console instead
   of sent (see the **"Transactional email"** section, this is implemented, just needs the key set
-  per environment). `CUSTOMER_REPLY_TO_EMAIL` is currently a personal Gmail address, intended to
-  move to `info@pet-carrier.co.uk` once that inbox exists, just by changing the env var.
+  per environment). `CUSTOMER_REPLY_TO_EMAIL` is `order@pet-carrier.co.uk` as of 2026-11, backed by
+  a Cloudflare Email Routing rule. Add a matching routing rule before ever changing it, or customer
+  replies bounce silently.
 - `ENABLE_CASH_ON_DELIVERY`: off by default, set to `"true"` to offer cash on delivery at checkout,
   see the **"Cash on delivery checkout"** section.
 - `ANTHROPIC_API_KEY`: unset by default, Amazon import falls back to rule-based content.

@@ -18,7 +18,7 @@ export default function PrivacyPage() {
       <h2>Who we are</h2>
       <p>
         Pet Carrier (pet-carrier.co.uk) is a UK-based online store selling pet carriers. For any
-        privacy questions, contact hello@pet-carrier.co.uk.
+        privacy questions, contact order@pet-carrier.co.uk.
       </p>
 
       <h2>What we collect</h2>
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
       <p>
         Under UK GDPR, you have the right to access, correct, or request deletion of your personal
         data, and to object to certain processing. To exercise these rights, email
-        hello@pet-carrier.co.uk.
+        order@pet-carrier.co.uk.
       </p>
 
       <h2>Cookies</h2>
