@@ -125,6 +125,42 @@ optimiser in the loop is what caused two of the three outages below.
    admin UI or the JSON data alone. **Never overwrite an R2 image key to "fix" wrong content once
    the bare URL may have been requested even once. Upload to a brand-new key instead** and update
    the record to point at that new key, then verify the *bare* URL (no query string) directly.
+5. **Serving the 1200x1200 file into a 300px grid tile, so a listing page weighed ~26 MB.** Found
+   2026-11 from an owner screenshot of `/carriers/dog-carriers` with every product image showing
+   alt text while the page itself, the logo and all other assets rendered fine. Nothing was wrong
+   server-side: all 169 image requests returned `200`, `cf-cache-status: HIT`, and a 100-parallel
+   burst of 338 requests from the same machine returned 338 `200`s, so it was neither failure mode
+   #2 nor #3. The cause was pure weight. `images.unoptimized: true` means `next/image` emits no
+   `srcset` and the `sizes` attribute does nothing, so whatever URL is on the record is the file
+   the browser downloads at full size. `Product.images` holds only the 1200x1200 `-main.webp`
+   (~115 KB each), the card rendered two of them per product (main plus the hover photo), and 86
+   products came to 169 requests and 25.8 MB on one page. On a constrained connection the browser
+   stalls and abandons image fetches, and when the HTTP/2 connection to the image host gives up,
+   every in-flight image fails at the same moment, which is why it looks like a total outage of
+   one hostname and is intermittent rather than reproducible. **The symptom is identical to the
+   other four, so measure the page's total image bytes and request count before assuming a cause.**
+   Fixed by `components/product/thumb-image.tsx`, which requests the 400x400 `-thumb.webp` variant
+   (~16 KB) for any tile rendered well under 400px: 169 requests / 25.8 MB became 86 / 1.6 MB.
+
+**Image sizes: which stored variant to use**
+
+`lib/image-pipeline.ts` writes three sizes per photo (`-main.webp` 1200x1200, `-thumb.webp`
+400x400, `-zoom.webp` 2000px cap) but only the main URL is stored on `Product.images`. Because
+nothing resizes in flight, choosing the right stored file is the only performance lever there is.
+
+- **Any product photo rendered well under 400px must use `components/product/thumb-image.tsx`**
+  (listing cards, gallery strips, colour swatches, cart rows), never a bare `next/image`.
+  `ThumbImage` derives the thumb URL via `lib/image-variants.ts` and falls back to the full-size
+  URL if that variant 404s, so it can never be worse than the full-size image. The product page's
+  main gallery image and the lightbox deliberately keep the full size.
+- **`npm run check:thumbs`** reports any product image that is missing its thumb variant *or* that
+  no longer exists in the bucket at all, and exits non-zero. Run it after adding products.
+  **`npm run backfill:thumbs`** generates the missing thumbs. The backfill only ever writes keys
+  that do not already exist, so it cannot trip failure mode #4.
+- The thumb check is also the only thing that verifies a referenced image actually resolves.
+  `npm run check:images` validates hostnames only, which is how a dead
+  `variants[].colourImage` URL (failure mode #1 again, on the DONYER POWER blue carrier) sat
+  unnoticed until the 2026-11 sweep.
 
 **Strict rules going forward:**
 

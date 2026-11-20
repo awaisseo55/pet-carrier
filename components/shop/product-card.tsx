@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Plus } from "lucide-react";
@@ -10,6 +9,7 @@ import { useCart } from "@/components/cart/cart-context";
 import { RatingSummary } from "@/components/product/rating-summary";
 import { cn, formatPrice } from "@/lib/utils";
 import { PRODUCT_PLACEHOLDER } from "@/lib/constants";
+import { ThumbImage } from "@/components/product/thumb-image";
 import type { PublicProduct } from "@/lib/types";
 import { toast } from "sonner";
 
@@ -17,6 +17,15 @@ export function ProductCard({ product, className }: { product: PublicProduct; cl
   const { addItem } = useCart();
   const image = product.images[0] || PRODUCT_PLACEHOLDER;
   const hoverImage = product.images[1];
+
+  // The hover photo is only mounted once the card is actually pointed at, so
+  // a listing costs one request per product instead of two, and touch devices
+  // never download it at all. The main photo keeps its full opacity until the
+  // hover photo has really loaded, so a slow second image can never leave the
+  // tile looking empty mid-crossfade.
+  const [hoverMounted, setHoverMounted] = React.useState(false);
+  const [hoverReady, setHoverReady] = React.useState(false);
+
   const [justAdded, setJustAdded] = React.useState(false);
   const outOfStock = product.stock_status === "out_of_stock";
   const saving = product.compare_at_price ? product.compare_at_price - product.price : 0;
@@ -45,13 +54,15 @@ export function ProductCard({ product, className }: { product: PublicProduct; cl
         "group relative flex flex-col transition-transform duration-300 hover:-translate-y-1.5",
         className
       )}
+      onPointerEnter={() => setHoverMounted(true)}
+      onFocusCapture={() => setHoverMounted(true)}
     >
       {/* No tinted plate behind the photo. Most product shots are
           white-background cut-outs, so a grey rounded box around them read as
           a box inside a box. The image now sits directly on the page and the
           card is defined by its text block and hover lift instead. */}
       <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl">
-        <Image
+        <ThumbImage
           src={image}
           alt={product.title}
           fill
@@ -61,17 +72,21 @@ export function ProductCard({ product, className }: { product: PublicProduct; cl
             // Cross-fades to the second photo on hover when the product has
             // one: the cheapest way to make a catalogue of cut-out product
             // shots feel considered rather than scraped.
-            hoverImage && "group-hover:opacity-0"
+            hoverImage && hoverReady && "group-hover:opacity-0"
           )}
         />
-        {hoverImage && (
-          <Image
+        {hoverImage && hoverMounted && (
+          <ThumbImage
             src={hoverImage}
             alt=""
             aria-hidden
             fill
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-            className="object-contain p-2 opacity-0 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-100"
+            onLoad={() => setHoverReady(true)}
+            className={cn(
+              "object-contain p-2 opacity-0 transition-all duration-500 group-hover:scale-[1.04]",
+              hoverReady && "group-hover:opacity-100"
+            )}
           />
         )}
 

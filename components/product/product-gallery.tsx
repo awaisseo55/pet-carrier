@@ -4,6 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import { ZoomIn } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThumbImage } from "@/components/product/thumb-image";
 import { ImageLightbox } from "@/components/product/image-lightbox";
 
 export function ProductGallery({ images, title }: { images: string[]; title: string }) {
@@ -48,7 +49,10 @@ export function ProductGallery({ images, title }: { images: string[]; title: str
               )}
               aria-label={`View image ${index + 1}`}
             >
-              <Image src={img} alt="" fill sizes="72px" className="object-contain p-1.5" />
+              {/* 72px squares: the strip asks for the 400x400 variant rather
+                  than pulling eight 1200x1200 photos. The main image above
+                  deliberately keeps the full size. */}
+              <ThumbImage src={img} alt="" fill sizes="72px" className="object-contain p-1.5" />
             </button>
           ))}
         </div>

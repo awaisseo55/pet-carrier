@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { ThumbImage } from "@/components/product/thumb-image";
 import { distinctColours, distinctSizes } from "@/lib/variants";
 import type { PublicProductVariant, VariantType } from "@/lib/types";
 
@@ -39,7 +39,7 @@ function ColourSwatch({
       )}
     >
       {variant.colourImage ? (
-        <Image src={variant.colourImage} alt="" fill sizes="40px" className="object-cover" />
+        <ThumbImage src={variant.colourImage} alt="" fill sizes="40px" className="object-cover" />
       ) : variant.colourHex ? (
         <span className="block size-full" style={{ backgroundColor: variant.colourHex }} />
       ) : (
