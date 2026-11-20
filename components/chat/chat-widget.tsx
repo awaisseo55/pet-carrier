@@ -105,7 +105,7 @@ export function ChatWidget() {
       });
       const data = await res.json();
       const replyText: string =
-        data.reply || "Sorry, I didn't quite catch that. Could you try asking again, or reach us at order@pet-carrier.co.uk?";
+        data.reply || "Sorry, I didn't quite catch that. Could you try asking again, or reach us at orders@pet-carrier.co.uk?";
       setMessages((prev) => [...prev, { id: crypto.randomUUID(), role: "assistant", content: replyText }]);
     } catch {
       setMessages((prev) => [
@@ -113,7 +113,7 @@ export function ChatWidget() {
         {
           id: crypto.randomUUID(),
           role: "assistant",
-          content: "Sorry, something went wrong sending that. Please try again, or reach us at order@pet-carrier.co.uk.",
+          content: "Sorry, something went wrong sending that. Please try again, or reach us at orders@pet-carrier.co.uk.",
         },
       ]);
     } finally {

@@ -46,7 +46,7 @@ export default function DisclaimerPage() {
       </p>
 
       <h2>Contact</h2>
-      <p>If you have questions about this disclaimer, contact order@pet-carrier.co.uk.</p>
+      <p>If you have questions about this disclaimer, contact orders@pet-carrier.co.uk.</p>
     </LegalPage>
   );
 }

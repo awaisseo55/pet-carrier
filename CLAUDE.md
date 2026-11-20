@@ -426,10 +426,10 @@ This is the part most likely to trip up future changes, read carefully.
   in `CUSTOMER_REPLY_TO_EMAIL`'s inbox, it never comes back through this app or through Resend's
   API. There is no inbound-email handling anywhere in the codebase, and there should not be.
 - **Inbound mail is Cloudflare Email Routing, set up 2026-11, entirely outside this repo.**
-  `CUSTOMER_REPLY_TO_EMAIL` is now `order@pet-carrier.co.uk` rather than a personal Gmail, so
+  `CUSTOMER_REPLY_TO_EMAIL` is now `orders@pet-carrier.co.uk` rather than a personal Gmail, so
   customers never see the owner's private address. The apex domain's MX records point at
-  `route1/2/3.mx.cloudflare.net` and a forwarding rule sends `order@pet-carrier.co.uk` to the
-  owner's Gmail. Replies are sent *as* `order@pet-carrier.co.uk` from that Gmail via Gmail's
+  `route1/2/3.mx.cloudflare.net` and a forwarding rule sends `orders@pet-carrier.co.uk` to the
+  owner's Gmail. Replies are sent *as* `orders@pet-carrier.co.uk` from that Gmail via Gmail's
   "Send mail as" using Resend's SMTP relay (`smtp.resend.com`, username `resend`, password is a
   dedicated Resend API key), so they carry the domain's DKIM signature instead of failing
   authentication. Consequences to respect:
@@ -657,7 +657,7 @@ image/active-status change is reflected on Google's next scheduled fetch automat
 - `RESEND_API_KEY`: set to a real key in Vercel's Production environment as of 2026-09, so
   order/contact emails actually send there. Still unset locally by default, order/contact emails
   are logged to console instead of sent when developing locally (see the **"Transactional
-  email"** section). `CUSTOMER_REPLY_TO_EMAIL` is `order@pet-carrier.co.uk` as of 2026-11, backed
+  email"** section). `CUSTOMER_REPLY_TO_EMAIL` is `orders@pet-carrier.co.uk` as of 2026-11, backed
   by Cloudflare Email Routing, see the **"Transactional email"** section before changing it.
 - `ENABLE_CASH_ON_DELIVERY`: off by default, set to `"true"` to offer cash on delivery at checkout,
   see the **"Cash on delivery checkout"** section.

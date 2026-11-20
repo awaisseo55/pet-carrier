@@ -29,7 +29,7 @@ export function organizationJsonLd() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      email: "order@pet-carrier.co.uk",
+      email: "orders@pet-carrier.co.uk",
       areaServed: "GB",
     },
   };

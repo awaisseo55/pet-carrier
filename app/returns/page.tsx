@@ -69,7 +69,7 @@ export default function ReturnsPage() {
 
       <h2>How to start a return</h2>
       <p>
-        Email us at order@pet-carrier.co.uk with your order number and the reason for your return.
+        Email us at orders@pet-carrier.co.uk with your order number and the reason for your return.
         We’ll confirm the next steps and provide a returns address.
       </p>
 

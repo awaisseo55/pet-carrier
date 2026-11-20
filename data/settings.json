@@ -1,7 +1,7 @@
 {
   "store_name": "Pet Carrier",
   "tagline": "Everything for your pet on the move and at rest",
-  "contact_email": "order@pet-carrier.co.uk",
+  "contact_email": "orders@pet-carrier.co.uk",
   "contact_phone": "",
   "contact_address": "10 Stafford Road, Preston, PR1 6LB, United Kingdom",
   "social_instagram": "https://www.instagram.com/petcarrieruk",
@@ -14,5 +14,5 @@
   "next_day_shipping_cost": 9.99,
   "vat_rate": 20,
   "currency": "GBP",
-  "admin_notification_email": "order@pet-carrier.co.uk"
+  "admin_notification_email": "orders@pet-carrier.co.uk"
 }

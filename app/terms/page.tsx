@@ -59,7 +59,7 @@ export default function TermsPage() {
       <h2>Contact</h2>
       <p>
         Pet Carrier is a UK limited company trading from 10 Stafford Road, Preston, PR1 6LB, United
-        Kingdom. Questions about these terms can be sent to order@pet-carrier.co.uk.
+        Kingdom. Questions about these terms can be sent to orders@pet-carrier.co.uk.
       </p>
     </LegalPage>
   );

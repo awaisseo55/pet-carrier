@@ -24,9 +24,9 @@ const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 // Safe defaults per the brief; real values are set as Vercel env vars and
 // never hard-coded as the only source of truth.
-const FROM_ADDRESS = process.env.RESEND_FROM_EMAIL || "Pet Carrier <order@pet-carrier.co.uk>";
-const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "order@pet-carrier.co.uk";
-const CUSTOMER_REPLY_TO = process.env.CUSTOMER_REPLY_TO_EMAIL || "order@pet-carrier.co.uk";
+const FROM_ADDRESS = process.env.RESEND_FROM_EMAIL || "Pet Carrier <orders@pet-carrier.co.uk>";
+const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "orders@pet-carrier.co.uk";
+const CUSTOMER_REPLY_TO = process.env.CUSTOMER_REPLY_TO_EMAIL || "orders@pet-carrier.co.uk";
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://pet-carrier.co.uk").replace(/\/+$/, "");
 

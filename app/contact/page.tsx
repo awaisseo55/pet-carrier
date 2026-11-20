@@ -31,8 +31,8 @@ export default function ContactPage() {
                 <Mail className="mt-0.5 size-5 shrink-0 text-forest-700" />
                 <div>
                   <p className="font-medium">Email</p>
-                  <a href="mailto:order@pet-carrier.co.uk" className="text-sm text-gray-500 hover:text-forest-700">
-                    order@pet-carrier.co.uk
+                  <a href="mailto:orders@pet-carrier.co.uk" className="text-sm text-gray-500 hover:text-forest-700">
+                    orders@pet-carrier.co.uk
                   </a>
                 </div>
               </div>
