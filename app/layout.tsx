@@ -59,9 +59,15 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   icons: {
+    // Google documents a square favicon that is a multiple of 48px, and
+    // fetches /favicon.ico at the domain root as well as following these
+    // links. favicon.ico carries 16/32/48/96 frames (see
+    // scripts/build-favicon.mjs); the explicit 48x48 PNG below is the exact
+    // size Google asks for, so it never has to downscale a larger file.
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
       { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],

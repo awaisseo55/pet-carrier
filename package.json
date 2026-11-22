@@ -11,7 +11,8 @@
     "check:thumbs": "node scripts/backfill-image-thumbs.mjs --dry-run",
     "backfill:thumbs": "node scripts/backfill-image-thumbs.mjs",
     "build:badges": "node scripts/build-brand-badges.mjs",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:favicon": "node scripts/build-favicon.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1104.0",
